@@ -1,0 +1,23 @@
+{
+    "name": "konekt/appshell",
+    "description": "AppShell is a Concord box that serves as a foundation for Laravel business application",
+    "type": "library",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Attila Fulop",
+            "homepage": "https://github.com/fulopattila122"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/artkonekt/appshell"
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "konekt/concord": "dev-master"
+    },
+    "autoload": {
+        "psr-4": { "Konekt\\AppShell\\": "src"}
+    }
+}
