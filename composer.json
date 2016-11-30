@@ -3,6 +3,7 @@
     "description": "AppShell is a Concord box that serves as a foundation for Laravel business application",
     "type": "library",
     "minimum-stability": "dev",
+    "keywords": ["laravel", "concord", "concord-box"],
     "license": "MIT",
     "authors": [
         {
