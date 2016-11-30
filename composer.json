@@ -15,7 +15,9 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "konekt/concord": "dev-master"
+        "konekt/concord": "dev-master",
+        "konekt/location": "dev-master",
+        "konekt/user": "dev-master"
     },
     "autoload": {
         "psr-4": { "Konekt\\AppShell\\": "src"}
