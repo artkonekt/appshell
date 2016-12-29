@@ -13,7 +13,9 @@
 namespace Konekt\AppShell\Providers;
 
 
-class BoxServiceProvider
+use Konekt\Concord\AbstractBoxServiceProvider;
+
+class ModuleServiceProvider extends AbstractBoxServiceProvider
 {
 
 }
