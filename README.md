@@ -8,7 +8,7 @@ Incorporates the basics for:
 - Authentication
 - Clients
 - Impersonation
-- Theming
+- Extensible and themeable Admin
 
 The user/auth part is built on top of the Laravel facilities in a compatible manner.
 
