@@ -14,8 +14,17 @@ namespace Konekt\AppShell\Providers;
 
 
 use Konekt\Concord\AbstractBoxServiceProvider;
+use Konekt\Concord\Contracts\ConcordInterface;
 
 class ModuleServiceProvider extends AbstractBoxServiceProvider
 {
+    public function register()
+    {
+        parent::register();
+
+        $this->app->register(\Lavary\Menu\ServiceProvider::class);
+        $this->app->make(ConcordInterface::class)->registerFacade('Menu', \Lavary\Menu\Facade::class);
+    }
+
 
 }
