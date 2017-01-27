@@ -8,7 +8,15 @@ Incorporates the basics for:
 - Authentication
 - Clients
 - Impersonation
-- Extensible and themeable Admin
+- Extensible Admin Interface
 
 The user/auth part is built on top of the Laravel facilities in a compatible manner.
+
+## Built-in Facilities
+
+### Menu
+
+The menu functionality is built on top of [Lavary Menu Component](https://github.com/lavary/laravel-menu). The component is automatically loaded, is fully available (incl. the `Menu` facade).
+
+AppShell creates a menu named **appshellMenu** which is the main menu component, and is available in views as `$appshellMenu`.
 

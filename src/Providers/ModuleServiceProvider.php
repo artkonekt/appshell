@@ -13,8 +13,8 @@
 namespace Konekt\AppShell\Providers;
 
 
+use Konekt\AppShell\Contracts\MenuBuilderInterface;
 use Konekt\Concord\AbstractBoxServiceProvider;
-use Konekt\Concord\Contracts\ConcordInterface;
 
 class ModuleServiceProvider extends AbstractBoxServiceProvider
 {
@@ -22,8 +22,21 @@ class ModuleServiceProvider extends AbstractBoxServiceProvider
     {
         parent::register();
 
+        $this->app->register(AuthServiceProvider::class);
         $this->app->register(\Lavary\Menu\ServiceProvider::class);
-        $this->app->make(ConcordInterface::class)->registerFacade('Menu', \Lavary\Menu\Facade::class);
+        $this->app->concord->registerFacade('Menu', \Lavary\Menu\Facade::class);
+
+        $this->app->bind(MenuBuilderInterface::class, $this->config('menu.builder.class'));
+
+        $this->app->when($this->config('menu.builder.class'))
+            ->needs('$menu')
+            ->give($this->app->make('menu'));
+    }
+
+    public function boot()
+    {
+        $menuBuilder = $this->app->make(MenuBuilderInterface::class);
+        $menuBuilder->build($this->config('menu.name'));
     }
 
 
