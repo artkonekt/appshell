@@ -59,7 +59,14 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 
-Afterwards you can continute setting up the Laravel application as usual by setting values in `.env`, etc.
+After configuring `.env`, run the migrations:
+
+```bash
+php artisan migrate
+```
+
+AppShell contains ~10-15 migrations out of the box
+
 
 ### Configure PhpStorm For Properly Editing Sources In Vendor
 
