@@ -1,6 +1,6 @@
 # Konekt AppShell
 
-Konekt AppShell is a [Concord box](https://github.com/artkonekt/concord/blob/master/docs/boxes.md) that serves as a foundation for Laravel business applications.
+Konekt AppShell is a [Concord box](https://github.com/artkonekt/concord/blob/master/docs/boxes.md) (thus a Laravel Extension) that serves as a foundation for Laravel business applications.
 
 Incorporates the basics for:
 
@@ -16,7 +16,7 @@ The user/auth part is built on top of the Laravel facilities in a compatible man
 
 ```bash
 composer create-project laravel/laravel ashtest
-# Wait 1-4 minutes...
+# Wait 1-4 minutes to complete ...
 cd ashtest
 composer config minimum-stability dev
 composer require --prefer-source konekt/appshell:dev-master
@@ -43,7 +43,7 @@ Edit `config/app.php` and add this line to the `providers` array (below 'Package
 Konekt\Concord\ConcordServiceProvider::class,
 ```
 
-Tesst if it works by invoking the command
+Test if it works by invoking the command
 
 ```bash
 php artisan concord:list
