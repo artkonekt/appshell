@@ -13,6 +13,7 @@
 namespace Konekt\AppShell\Providers;
 
 
+use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Contracts\MenuBuilderInterface;
 use Konekt\Concord\AbstractBoxServiceProvider;
 
@@ -26,6 +27,8 @@ class ModuleServiceProvider extends AbstractBoxServiceProvider
         $this->app->register(\Lavary\Menu\ServiceProvider::class);
         $this->app->concord->registerFacade('Menu', \Lavary\Menu\Facade::class);
 
+        $this->registerScaffoldCommand();
+
         $this->app->bind(MenuBuilderInterface::class, $this->config('menu.builder.class'));
 
         $this->app->when($this->config('menu.builder.class'))
@@ -37,6 +40,18 @@ class ModuleServiceProvider extends AbstractBoxServiceProvider
     {
         $menuBuilder = $this->app->make(MenuBuilderInterface::class);
         $menuBuilder->build($this->config('menu.name'));
+    }
+
+    /**
+     * Register the appshell:scaffold command.
+     */
+    protected function registerScaffoldCommand()
+    {
+        $this->app->singleton('command.appshell.scaffold', function ($app) {
+            return new ScaffoldCommand();
+        });
+
+        $this->commands('command.appshell.scaffold');
     }
 
 
