@@ -25,7 +25,7 @@ class ModuleServiceProvider extends AbstractBoxServiceProvider
 
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(\Lavary\Menu\ServiceProvider::class);
-        $this->app->concord->registerFacade('Menu', \Lavary\Menu\Facade::class);
+        $this->app->concord->registerAlias('Menu', \Lavary\Menu\Facade::class);
 
         $this->registerScaffoldCommand();
 
