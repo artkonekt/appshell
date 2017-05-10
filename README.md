@@ -46,7 +46,7 @@ Konekt\Concord\ConcordServiceProvider::class,
 Test if it works by invoking the command
 
 ```bash
-php artisan concord:list
+php artisan concord:modules
 ```
 
 Now you should see this:
@@ -67,6 +67,11 @@ php artisan migrate
 
 AppShell contains ~10-15 migrations out of the box
 
+> If running with linux + apache/nginx these commands are useful:
+>
+> `sudo chown -R .www-data storage/`
+>
+> `sudo chmod -R g+w storage/`
 
 ### Configure PhpStorm For Properly Editing Sources In Vendor
 
