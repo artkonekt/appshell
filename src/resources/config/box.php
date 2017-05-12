@@ -10,5 +10,8 @@ return [
             'class' => \Konekt\AppShell\Menu\MenuBuilder::class
         ],
         'name' => 'appshellMenu'
+    ],
+    'views' => [
+        'namespace' => 'appshell'
     ]
 ];

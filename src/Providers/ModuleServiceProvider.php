@@ -38,6 +38,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
     public function boot()
     {
+        parent::boot();
+
         $menuBuilder = $this->app->make(MenuBuilderInterface::class);
         $menuBuilder->build($this->config('menu.name'));
     }
