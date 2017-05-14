@@ -24,7 +24,9 @@ class UserController extends BaseController
      */
     public function index()
     {
-        return $this->appShellView('user.index');
+        return $this->appShellView('user.index', [
+            'users' => UserProxy::all()
+        ]);
     }
 
     /**
@@ -34,11 +36,9 @@ class UserController extends BaseController
      */
     public function create()
     {
-        return $this->appShellView('user.create',
-            [
+        return $this->appShellView('user.create', [
                 'user' => app(User::class)
-            ]
-        );
+        ]);
     }
 
     /**
