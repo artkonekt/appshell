@@ -13,9 +13,11 @@
 namespace Konekt\AppShell\Providers;
 
 
+use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Contracts\MenuBuilderInterface;
 use Konekt\Concord\BaseBoxServiceProvider;
+use Konekt\User\Models\UserProxy;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
@@ -39,6 +41,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Route::model('user', UserProxy::modelClass());
 
         $menuBuilder = $this->app->make(MenuBuilderInterface::class);
         $menuBuilder->build($this->config('menu.name'));

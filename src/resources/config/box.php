@@ -13,5 +13,10 @@ return [
     ],
     'views' => [
         'namespace' => 'appshell'
+    ],
+    'routes' => [
+        'prefix'     => 'appshell',
+        'as'         => 'appshell.',
+        'middleware' => ['web', 'auth']
     ]
 ];
