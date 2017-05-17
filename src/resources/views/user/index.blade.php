@@ -1,29 +1,42 @@
 @extends('appshell::layouts.default')
 
+@section('title')
+    {{ __('Users') }}
+@stop
+
 @section('content')
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>{{ __('E-mail') }}</th>
-                <th>{{ __('Name') }}</th>
-                <th>{{ __('Registered') }}</th>
-                <th>{{ __('Last login') }}</th>
-            </tr>
-        </thead>
+    <div class="card">
 
-        <tbody>
-            @foreach($users as $user)
+        <div class="card-header">
+            <i class="fa fa-user-circle-o"></i> @yield('title')
+        </div>
+
+        <div class="card-block">
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <td><a href="{{ route('appshell.user.show', $user) }}">{{ $user->email }}</a></td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->created_at->diffForHumans() }}</td>
-                    <td>{{ $user->last_login_at ? $user->last_login_at->diffForHumans() : __('never') }}</td>
+                    <th>{{ __('E-mail') }}</th>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Registered') }}</th>
+                    <th>{{ __('Last login') }}</th>
                 </tr>
-            @endforeach
-        </tbody>
+                </thead>
 
-    </table>
+                <tbody>
+                @foreach($users as $user)
+                    <tr>
+                        <td><a href="{{ route('appshell.user.show', $user) }}">{{ $user->email }}</a></td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->created_at->diffForHumans() }}</td>
+                        <td>{{ $user->last_login_at ? $user->last_login_at->diffForHumans() : __('never') }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
 
+            </table>
+
+        </div>
+    </div>
 
 @stop
