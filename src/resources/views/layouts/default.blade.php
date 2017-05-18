@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/appshell.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
 
     <!-- Scripts -->
     <script>
@@ -72,6 +72,7 @@
     </footer>
 
 <!-- Scripts -->
+@include('appshell::layouts.default._scripts')
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

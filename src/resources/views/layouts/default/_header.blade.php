@@ -4,7 +4,7 @@
 
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item">
-            <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
+            <a class="nav-link navbar-toggler sidebar-toggler" href="#" onclick="sidebarMinimize()">☰</a>
         </li>
     </ul>
 

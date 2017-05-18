@@ -75,7 +75,10 @@ app-root {
 
   .sidebar {
     position: fixed;
-    width: $sidebar-width;
+    width: $mobile-sidebar-width;
+    @include media-breakpoint-up(lg) {
+      width: $sidebar-width;
+    }
     height: 100%;
 
     .sidebar-nav {
