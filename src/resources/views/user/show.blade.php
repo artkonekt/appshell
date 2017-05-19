@@ -6,40 +6,52 @@
 
 @section('content')
 
-    <div class="card">
-
-        <div class="card-header">
-            <i class="fa fa-user-circle-o"></i> {{ $user->name }}
-            <small>{{ $user->email }}</small>
-            <span class="badge badge-{{ $user->is_active ? 'success' : 'warning' }}">
-                {{ $user->is_active ? __('active') : __('inactive') }}
-            </span>
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            @component('appshell::widgets.card_with_icon', [
+                    'icon' => $user->is_active ? 'account' : 'account-o',
+                    'type' => $user->is_active ? 'success' : 'warning'
+            ])
+                {{ $user->name }}
+                @if (!$user->is_active)
+                    <small>
+                        <span class="badge badge-default">
+                            {{ __('inactive') }}
+                        </span>
+                    </small>
+                @endif
+                @slot('subtitle')
+                    {{ $user->email }}
+                @endslot
+            @endcomponent
         </div>
 
-        <div class="card-block">
+        <div class="col-sm-6 col-md-3">
+            @component('appshell::widgets.card_with_icon', ['icon' => 'time-countdown'])
+                @if ($user->last_login_at)
+                    {{ __('Last login') }}
+                    {{ $user->last_login_at->diffForHumans() }}
+                @else
+                    {{ __('never logged in') }}
+                @endif
 
-            <table class="table">
-                <tbody>
-                <tr>
-                    <th>{{ __('Id') }}:</th>
-                    <td>{{ $user->id }}</td>
-                </tr>
-                <tr>
-                    <th>{{ __('Registered') }}:</th>
-                    <td>{{ $user->created_at->format(__('Y-m-d H:i')) }}</td>
-                </tr>
-                <tr>
-                    <th>{{ __('Last update') }}:</th>
-                    <td>{{ $user->updated_at->format(__('Y-m-d H:i')) }}</td>
-                </tr>
-                <tr>
-                    <th>{{ __('Last login') }}:</th>
-                    <td>{{ $user->last_login_at ? $user->last_login_at->format(__('Y-m-d H:i')) : __('never') }}</td>
-                </tr>
-                </tbody>
-            </table>
+                @slot('subtitle')
+                    {{ __('Member since') }}
+                    {{ $user->created_at->format(__('Y-m-d H:i')) }}
+
+                @endslot
+            @endcomponent
+        </div>
+
+    </div>
+
+    <div class="card">
+        <div class="card-block">
+            <a href="{{ route('appshell.user.edit', $user) }}" class="btn btn-outline-primary">{{ __('Edit user') }}</a>
         </div>
     </div>
+
+
 
 
 @stop

@@ -26,16 +26,15 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         parent::register();
 
         $this->app->register(AuthServiceProvider::class);
-        $this->app->register(\Lavary\Menu\ServiceProvider::class);
-        $this->concord->registerAlias('Menu', \Lavary\Menu\Facade::class);
+        $this->registerThirdPartyProviders();
 
         $this->registerCommands();
 
         $this->app->bind(MenuBuilderInterface::class, $this->config('menu.builder.class'));
 
         $this->app->when($this->config('menu.builder.class'))
-            ->needs('$menu')
-            ->give($this->app->make('menu'));
+                  ->needs('$menu')
+                  ->give($this->app->make('menu'));
     }
 
     public function boot()
@@ -47,6 +46,28 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $menuBuilder = $this->app->make(MenuBuilderInterface::class);
         $menuBuilder->build($this->config('menu.name'));
     }
+
+    /**
+     * Registers 3rd party providers, AppShell is built on top of
+     *
+     * They are:
+     *  - Lavary Menu,
+     *  - Laravel Collective Forms
+     *  - Laracasts Flash
+     */
+    protected function registerThirdPartyProviders()
+    {
+        // Register The Menu Component
+        $this->app->register(\Lavary\Menu\ServiceProvider::class);
+        $this->concord->registerAlias('Menu', \Lavary\Menu\Facade::class);
+        // Register Forms Component
+        $this->app->register(\Collective\Html\HtmlServiceProvider::class);
+        $this->concord->registerAlias('Form', \Collective\Html\FormFacade::class);
+        $this->concord->registerAlias('Html', \Collective\Html\HtmlFacade::class);
+        // Register The Flash Component
+        $this->app->register(\Laracasts\Flash\FlashServiceProvider::class);
+    }
+
 
     /**
      * Register appshell's commands
