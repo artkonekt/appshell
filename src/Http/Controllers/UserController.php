@@ -52,8 +52,13 @@ class UserController extends BaseController
     {
         //@todo $this->validate()
 
+        $data = $request->except('password');
+        if ($request->has('password')) {
+            $data['password'] = bcrypt($request->get('password'));
+        }
+
         try {
-            UserProxy::create($request->all());
+            UserProxy::create($data);
 
             flash()->success(__('User has been created'));
         } catch (\Exception $e) {
