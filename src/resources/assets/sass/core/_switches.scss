@@ -37,7 +37,7 @@
     display: block;
     height: inherit;
     @if $type == icon {
-      font-family: FontAwesome;
+      font-family: $core-icon-font-name;
     }
     font-size: $font-size;
     font-weight: 600;

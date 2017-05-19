@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Http\Controllers;
 use Illuminate\Http\Request;
 use Konekt\User\Contracts\User;
 use Konekt\User\Models\UserProxy;
+use Konekt\User\Models\UserType;
 
 class UserController extends BaseController
 {
@@ -37,7 +38,8 @@ class UserController extends BaseController
     public function create()
     {
         return $this->appShellView('user.create', [
-                'user' => app(User::class)
+                'user'  => app(User::class),
+                'types' => UserType::choices()
         ]);
     }
 
@@ -56,10 +58,11 @@ class UserController extends BaseController
             flash()->success(__('User has been created'));
         } catch (\Exception $e) {
             flash()->error(__('Error: %s', ['args' => $e->getMessage()]));
+            return redirect()->back();
         }
 
         //@todo process route prefixes based on box config
-        return redirect('appshell.users.index');
+        return redirect(route('appshell.user.index'));
     }
 
     /**
@@ -81,7 +84,8 @@ class UserController extends BaseController
      */
     public function edit(User $user)
     {
-        return $this->appShellView('user.edit', compact('user'));
+        $types = UserType::choices();
+        return $this->appShellView('user.edit', compact('user', 'types'));
     }
 
     /**
@@ -92,16 +96,21 @@ class UserController extends BaseController
      */
     public function update(User $user, Request $request)
     {
+        $data = $request->except('password');
+        if ($request->has('password')) {
+            $data['password'] = bcrypt($request->get('password'));
+        }
         try {
-            $user->update($request->all());
+            $user->update($data);
 
             flash()->success(__('User has been updated'));
         } catch (\Exception $e) {
             flash()->error(__('Error: %s', ['args' => $e->getMessage()]));
+            return redirect()->back();
         }
 
         //@todo process route prefixes based on box config
-        return redirect('appshell.users.index');
+        return redirect(route('appshell.user.index'));
     }
 
     /**

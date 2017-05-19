@@ -26,6 +26,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         parent::register();
 
         $this->app->register(AuthServiceProvider::class);
+        /** @todo Whether or not to register event/listener bindings
+         *        provided by the box must be defined in box config
+         *        and handled by Concord
+         */
+        $this->app->register(EventServiceProvider::class);
         $this->registerThirdPartyProviders();
 
         $this->registerCommands();

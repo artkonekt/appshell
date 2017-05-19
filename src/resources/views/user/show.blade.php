@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-sm-6 col-md-3">
             @component('appshell::widgets.card_with_icon', [
-                    'icon' => $user->is_active ? 'account' : 'account-o',
+                    'icon' => $user->is_active ? 'account-circle' : 'account-o',
                     'type' => $user->is_active ? 'success' : 'warning'
             ])
                 {{ $user->name }}
@@ -39,6 +39,15 @@
                     {{ __('Member since') }}
                     {{ $user->created_at->format(__('Y-m-d H:i')) }}
 
+                @endslot
+            @endcomponent
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            @component('appshell::widgets.card_with_icon', ['icon' => 'star-circle'])
+                {{ $user->login_count }}
+                @slot('subtitle')
+                    {{ __('Login count') }}
                 @endslot
             @endcomponent
         </div>

@@ -9,7 +9,16 @@
     <div class="card">
 
         <div class="card-header">
-            <i class="fa fa-user-circle-o"></i> @yield('title')
+            @yield('title')
+
+            <div class="card-actionbar">
+                <a href="{{ route('appshell.user.create') }}" class="btn btn-sm btn-outline-success float-right">
+                    <i class="zmdi zmdi-plus"></i>
+                    {{ __('New User') }}
+                </a>
+
+            </div>
+
         </div>
 
         <div class="card-block">
