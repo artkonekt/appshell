@@ -73,7 +73,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->register(\Laracasts\Flash\FlashServiceProvider::class);
         // Register The Breadcrumbs Component
         $this->app->register(\Yajra\Breadcrumbs\ServiceProvider::class);
-        $this->concord->registerAlias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facade::class);
+        $this->concord->registerAlias('Breadcrumbs', \Yajra\Breadcrumbs\Facade::class);
     }
 
 
