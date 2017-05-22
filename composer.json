@@ -21,7 +21,8 @@
         "konekt/user": "dev-master",
         "lavary/laravel-menu": "~1.6",
         "laravelcollective/html": "~5.4",
-        "laracasts/flash": "~3.0"
+        "laracasts/flash": "~3.0",
+        "yajra/laravel-breadcrumbs": "~4.0"
     },
     "autoload": {
         "psr-4": { "Konekt\\AppShell\\": "src"}
