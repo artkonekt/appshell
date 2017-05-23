@@ -20,6 +20,7 @@ return [
         'middleware' => ['web', 'auth'],
         'files'      => ['web']
     ],
+    'breadcrumbs' => true,
     'components' => [
         'breadcrumbs' => [
             'view' => 'appshell::widgets.breadcrumbs'
