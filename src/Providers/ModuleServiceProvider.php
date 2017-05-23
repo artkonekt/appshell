@@ -14,6 +14,7 @@ namespace Konekt\AppShell\Providers;
 
 
 use Illuminate\Support\Facades\Route;
+use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Contracts\MenuBuilderInterface;
 use Konekt\Concord\BaseBoxServiceProvider;
@@ -21,6 +22,8 @@ use Konekt\User\Models\UserProxy;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
+    use HasBreadcrumbs;
+
     public function register()
     {
         parent::register();
@@ -45,6 +48,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     public function boot()
     {
         parent::boot();
+        $this->loadBreadcrumbs();
 
         Route::model('user', UserProxy::modelClass());
 
