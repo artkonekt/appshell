@@ -59,21 +59,14 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
      *  - Lavary Menu,
      *  - Laravel Collective Forms
      *  - Laracasts Flash
+     *  - Yajra Breadcrumbs
      */
     protected function registerThirdPartyProviders()
     {
-        // Register The Menu Component
-        $this->app->register(\Lavary\Menu\ServiceProvider::class);
-        $this->concord->registerAlias('Menu', \Lavary\Menu\Facade::class);
-        // Register Forms Component
-        $this->app->register(\Collective\Html\HtmlServiceProvider::class);
-        $this->concord->registerAlias('Form', \Collective\Html\FormFacade::class);
-        $this->concord->registerAlias('Html', \Collective\Html\HtmlFacade::class);
-        // Register The Flash Component
-        $this->app->register(\Laracasts\Flash\FlashServiceProvider::class);
-        // Register The Breadcrumbs Component
-        $this->app->register(\Yajra\Breadcrumbs\ServiceProvider::class);
-        $this->concord->registerAlias('Breadcrumbs', \Yajra\Breadcrumbs\Facade::class);
+        $this->registerMenuComponent();
+        $this->registerFormComponent();
+        $this->registerFlashComponent();
+        $this->registerBreadcrumbsComponent();
     }
 
 
@@ -87,6 +80,54 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ScaffoldCommand::class
             ]);
         }
+    }
+
+
+    /**
+     * Register Laravel Collective Form Component
+     */
+    private function registerFormComponent()
+    {
+        $this->app->register(\Collective\Html\HtmlServiceProvider::class);
+        $this->concord->registerAlias('Form', \Collective\Html\FormFacade::class);
+        $this->concord->registerAlias('Html', \Collective\Html\HtmlFacade::class);
+    }
+
+    /**
+     * Registers Lavary Menu Component
+     */
+    private function registerMenuComponent()
+    {
+        $this->app->register(\Lavary\Menu\ServiceProvider::class);
+        $this->concord->registerAlias('Menu', \Lavary\Menu\Facade::class);
+    }
+
+    /**
+     * Register the Laracasts Flash Component
+     */
+    private function registerFlashComponent()
+    {
+        $this->app->register(\Laracasts\Flash\FlashServiceProvider::class);
+    }
+
+    /**
+     * Register the breadcrumbs component, also merge the config from within the box config
+     */
+    private function registerBreadcrumbsComponent()
+    {
+        // Register The Breadcrumbs Component
+        $this->app->register(\Yajra\Breadcrumbs\ServiceProvider::class);
+        $this->concord->registerAlias('Breadcrumbs', \Yajra\Breadcrumbs\Facade::class);
+
+        // Merge component config from the box config
+        // Note that this can still be overwritten
+        // by the app in config/breadcrumbs.php
+        $this->app['config']->set('breadcrumbs',
+            array_merge(
+                $this->config('components.breadcrumbs'),  // key within box config
+                $this->app['config']['breadcrumbs'] ?: [] // current
+            )
+        );
     }
 
 

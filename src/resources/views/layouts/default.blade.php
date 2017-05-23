@@ -55,7 +55,7 @@
 
         <!-- Main content -->
         <main class="main">
-            @include('appshell::layouts.default._breadcrumbz')
+            @include('appshell::layouts.default._breadcrumbs')
 
             <div class="container-fluid">
                 @include('flash::message')

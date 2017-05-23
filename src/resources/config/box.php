@@ -17,6 +17,12 @@ return [
     'routes' => [
         'prefix'     => 'appshell',
         'as'         => 'appshell.',
-        'middleware' => ['web', 'auth']
+        'middleware' => ['web', 'auth'],
+        'files'      => ['web']
+    ],
+    'components' => [
+        'breadcrumbs' => [
+            'view' => 'appshell::widgets.breadcrumbs'
+        ]
     ]
 ];
