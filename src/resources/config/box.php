@@ -5,6 +5,7 @@ return [
         Konekt\Address\Providers\ModuleServiceProvider::class => [],
         Konekt\User\Providers\ModuleServiceProvider::class => []
     ],
+    'event_listeners' => true,
     'menu' => [
         'builder' => [
             'class' => \Konekt\AppShell\Menu\MenuBuilder::class
