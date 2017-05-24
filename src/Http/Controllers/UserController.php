@@ -16,7 +16,7 @@ namespace Konekt\AppShell\Http\Controllers;
 use Illuminate\Http\Request;
 use Konekt\User\Contracts\User;
 use Konekt\User\Models\UserProxy;
-use Konekt\User\Models\UserType;
+use Konekt\User\Models\UserTypeProxy;
 
 class UserController extends BaseController
 {
@@ -39,7 +39,7 @@ class UserController extends BaseController
     {
         return $this->appShellView('user.create', [
                 'user'  => app(User::class),
-                'types' => UserType::choices()
+                'types' => UserTypeProxy::choices()
         ]);
     }
 
@@ -89,7 +89,7 @@ class UserController extends BaseController
      */
     public function edit(User $user)
     {
-        $types = UserType::choices();
+        $types = UserTypeProxy::choices();
         return $this->appShellView('user.edit', compact('user', 'types'));
     }
 
