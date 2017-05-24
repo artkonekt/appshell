@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Contracts\MenuBuilderInterface;
+use Konekt\AppShell\Contracts\Requests\CreateUser as CreateUserContract;
+use Konekt\AppShell\Contracts\Requests\UpdateUser as UpdateRequestContract;
+use Konekt\AppShell\Http\Requests\CreateUser;
+use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Models\UserProxy;
 
@@ -34,6 +38,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerCommands();
 
         $this->app->bind(MenuBuilderInterface::class, $this->config('menu.builder.class'));
+        // @todo these should be registered automatically by concord similarily to enums & models
+        $this->app->bind(CreateUserContract::class, CreateUser::class);
+        $this->app->bind(UpdateRequestContract::class, UpdateUser::class);
 
         $this->app->when($this->config('menu.builder.class'))
                   ->needs('$menu')

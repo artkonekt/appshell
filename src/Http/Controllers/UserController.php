@@ -13,7 +13,8 @@
 namespace Konekt\AppShell\Http\Controllers;
 
 
-use Illuminate\Http\Request;
+use Konekt\AppShell\Contracts\Requests\CreateUser;
+use Konekt\AppShell\Contracts\Requests\UpdateUser;
 use Konekt\User\Contracts\User;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserTypeProxy;
@@ -44,18 +45,14 @@ class UserController extends BaseController
     }
 
     /**
-     * @param Request $request
+     * @param CreateUser $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(CreateUser $request)
     {
-        //@todo $this->validate()
-
         $data = $request->except('password');
-        if ($request->has('password')) {
-            $data['password'] = bcrypt($request->get('password'));
-        }
+        $data['password'] = bcrypt($request->get('password'));
 
         try {
             UserProxy::create($data);
@@ -94,12 +91,12 @@ class UserController extends BaseController
     }
 
     /**
-     * @param User    $user
-     * @param Request $request
+     * @param User       $user
+     * @param UpdateUser $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(User $user, Request $request)
+    public function update(User $user, UpdateUser $request)
     {
         $data = $request->except('password');
         if ($request->has('password')) {
