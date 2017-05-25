@@ -28,6 +28,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 {
     use HasBreadcrumbs;
 
+    protected $requests = [
+        CreateUser::class,
+        UpdateUser::class
+    ];
+
     public function register()
     {
         parent::register();
@@ -38,9 +43,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerCommands();
 
         $this->app->bind(MenuBuilderInterface::class, $this->config('menu.builder.class'));
-        // @todo these should be registered automatically by concord similarily to enums & models
-        $this->app->bind(CreateUserContract::class, CreateUser::class);
-        $this->app->bind(UpdateRequestContract::class, UpdateUser::class);
 
         $this->app->when($this->config('menu.builder.class'))
                   ->needs('$menu')
