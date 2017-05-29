@@ -51,11 +51,10 @@ class UserController extends BaseController
      */
     public function store(CreateUser $request)
     {
-        $data = $request->except('password');
-        $data['password'] = bcrypt($request->get('password'));
+        $request->merge(['password' => bcrypt($request->get('password'))]);
 
         try {
-            UserProxy::create($data);
+            UserProxy::create($request->all());
 
             flash()->success(__('User has been created'));
         } catch (\Exception $e) {

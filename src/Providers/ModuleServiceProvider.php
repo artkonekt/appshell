@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the BoxServiceProvider class.
+ * Contains the ModuleServiceProvider class.
  *
  * @copyright   Copyright (c) 2016 Attila Fulop
  * @author      Attila Fulop
@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Contracts\MenuBuilderInterface;
-use Konekt\AppShell\Contracts\Requests\CreateUser as CreateUserContract;
-use Konekt\AppShell\Contracts\Requests\UpdateUser as UpdateRequestContract;
 use Konekt\AppShell\Http\Requests\CreateUser;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\Concord\BaseBoxServiceProvider;
