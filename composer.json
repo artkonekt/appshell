@@ -22,7 +22,8 @@
         "lavary/laravel-menu": "~1.6",
         "laravelcollective/html": "~5.4",
         "laracasts/flash": "~3.0",
-        "yajra/laravel-breadcrumbs": "~4.1"
+        "yajra/laravel-breadcrumbs": "~4.1",
+        "spatie/laravel-permission": "~2.1"
     },
     "autoload": {
         "psr-4": { "Konekt\\AppShell\\": "src"}
