@@ -73,7 +73,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerFormComponent();
         $this->registerFlashComponent();
         $this->registerBreadcrumbsComponent();
-        $this->registerPermissionComponent();
     }
 
 
@@ -135,14 +134,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 $this->app['config']['breadcrumbs'] ?: [] // current
             )
         );
-    }
-
-    /**
-     * Registers the permission component from spatie.be
-     */
-    private function registerPermissionComponent()
-    {
-        $this->app->register(\Spatie\Permission\PermissionServiceProvider::class);
     }
 
 
