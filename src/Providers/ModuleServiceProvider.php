@@ -19,7 +19,9 @@ use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Contracts\MenuBuilderInterface;
 use Konekt\AppShell\Http\Requests\CreateUser;
 use Konekt\AppShell\Http\Requests\UpdateUser;
+use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
+use Konekt\User\Contracts\User as UserContract;
 use Konekt\User\Models\UserProxy;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
@@ -51,6 +53,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     {
         parent::boot();
         $this->loadBreadcrumbs();
+
+        // Use the User model that's extended with Acl
+        $this->concord->registerModel(UserContract::class, User::class);
 
         Route::model('user', UserProxy::modelClass());
 
