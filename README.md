@@ -73,6 +73,39 @@ AppShell contains ~10-15 migrations out of the box
 >
 > `sudo chmod -R g+w storage/`
 
+## Laravel Auth Support
+
+If the "final" user class is not going to be `App\User` then don't forget to modify model class this to your app's `config/auth.php` file:
+
+```php
+    //...
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            // 'model' => App\User::class <- change this to:
+            'model' => Konekt\AppShell\Models\User::class,
+        ],
+    //...
+```
+
+Another approach is to keep `App\User` but modify the class to extend AppShell's user model:
+
+```php
+<?php
+namespace App;
+
+class User extends Konekt\AppShell\Models\User
+{
+    
+}
+```
+
+Also add this to you `AppServiceProviders`'s boot method:
+
+```php
+   $this->app->concord->registerModel(Konekt\User\Contracts\User::class, \App\User::class);
+```
+
 ### Configure PhpStorm For Properly Editing Sources In Vendor
 
 You can set up PhpStorm to directly edit the source files in vendor, and have full IDE support.
