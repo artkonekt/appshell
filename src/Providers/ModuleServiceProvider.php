@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Contracts\MenuBuilderInterface;
+use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateUser;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Models\User;
@@ -57,6 +58,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         // Use the User model that's extended with Acl
         $this->concord->registerModel(UserContract::class, User::class);
 
+        Route::aliasMiddleware('acl', AclMiddleware::class);
         Route::model('user', UserProxy::modelClass());
 
         $menuBuilder = $this->app->make(MenuBuilderInterface::class);

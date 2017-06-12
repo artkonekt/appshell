@@ -56,7 +56,9 @@
 
     <div class="card">
         <div class="card-block">
+            @can('edit users')
             <a href="{{ route('appshell.user.edit', $user) }}" class="btn btn-outline-primary">{{ __('Edit user') }}</a>
+            @endcan
         </div>
     </div>
 

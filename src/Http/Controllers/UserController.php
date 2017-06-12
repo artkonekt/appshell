@@ -126,14 +126,14 @@ class UserController extends BaseController
         try {
             $user->delete();
 
-            flash()->success(__('User has been deleted'));
+            flash()->warning(__('User has been deleted'));
 
         } catch (\Exception $e) {
             flash()->error(__('Error: %s', ['args' => $e->getMessage()]));
         }
 
         //@todo process route prefixes based on box config
-        return redirect('appshell.users.index');
+        return redirect(route('appshell.user.index'));
     }
 
 }

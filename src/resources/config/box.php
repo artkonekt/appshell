@@ -19,7 +19,7 @@ return [
     'routes' => [
         'prefix'     => 'appshell',
         'as'         => 'appshell.',
-        'middleware' => ['web', 'auth'],
+        'middleware' => ['web', 'auth', 'acl'],
         'files'      => ['web']
     ],
     'breadcrumbs' => true,

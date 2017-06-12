@@ -28,9 +28,13 @@
                     {!! Form::close() !!}
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('appshell.user.destroy', $user) }}"
-                       class="btn btn-outline-danger float-right">{{ __('Delete user') }}</a>
-
+                    @can('delete users')
+                        {!! Form::open(['route' => ['appshell.user.destroy', $user], 'method' => 'DELETE']) !!}
+                        <button class="btn btn-outline-danger float-right">
+                            {{ __('Delete user') }}
+                        </button>
+                        {!! Form::close() !!}
+                    @endcan
                 </div>
             </div>
         </div>
