@@ -14,6 +14,7 @@ namespace Konekt\AppShell\Providers;
 
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Contracts\MenuBuilderInterface;
@@ -61,8 +62,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         Route::aliasMiddleware('acl', AclMiddleware::class);
         Route::model('user', UserProxy::modelClass());
 
+        $name = $this->config('menu.name');
         $menuBuilder = $this->app->make(MenuBuilderInterface::class);
-        $menuBuilder->build($this->config('menu.name'));
+        View::composer('appshell::layouts.default._nav', function($view) use ($name, $menuBuilder) {
+            $view->with($name, $menuBuilder->build($name));
+        });
     }
 
     /**

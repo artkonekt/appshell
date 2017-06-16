@@ -2,11 +2,14 @@
     @unless(Auth::guest())
         @can('list users')
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('appshell.user.index') }}">
-                <i class="zmdi zmdi-accounts zmdi-hc-fw"></i>
-                {{ __('Users') }}
-            </a>
-
+            @foreach($appshellMenu->items as $item)
+                <a class="nav-link" href="{!! $item->url() !!}">
+                    @if($item->data('icon'))
+                        <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
+                    @endif
+                    {!! $item->title !!}
+                </a>
+            @endforeach
         </li>
         @endcan
     @endunless

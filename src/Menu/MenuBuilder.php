@@ -30,13 +30,12 @@ class MenuBuilder implements MenuBuilderInterface
      */
     public function build(string $name)
     {
-        $this->menu->make($name, function($menu) {
-            $menu->add(__('Home'));
-
-            if (Gate::allows('list.users')) {
-                $menu->add(__('Users'), ['route' => 'user.index']);
+        return $this->menu->make($name, function($menu) {
+            if (Gate::allows('list users')) {
+                $menu
+                    ->add(__('Users'), ['route' => 'appshell.user.index'])
+                    ->data('icon', 'accounts');
             }
-
         });
     }
 
