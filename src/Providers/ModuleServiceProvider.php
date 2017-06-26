@@ -14,7 +14,6 @@ namespace Konekt\AppShell\Providers;
 
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
