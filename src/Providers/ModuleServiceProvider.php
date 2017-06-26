@@ -56,15 +56,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         Route::model('user', UserProxy::modelClass());
 
         $this->initializeMenus();
-
-        $module = $this;
-        // Injects the menu component in the _nav partial
-        View::composer('appshell::layouts.default._nav', function($view) use ($module) {
-            $view->with(
-                $module->config('menu.blade_var_name'),
-                $module->app->make(MenuBuilder::class)->build($module->config('menu.name'))
-            );
-        });
     }
 
     /**
@@ -104,6 +95,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     {
         foreach ($this->config('menu') as $name => $config) {
             Menu::create($name, $config);
+        }
+
+        // Add default menu items to sidbar
+        if ($appshellMenu = Menu::get('appshell')) {
+            $appshellMenu->addItem('users', __('Users'), ['route' => 'appshell.user.index'])->data('icon', 'accounts');
         }
     }
 

@@ -8,8 +8,8 @@ return [
     ],
     'event_listeners' => true,
     'menu' => [
-        'sidebar' => [
-            'share'        => 'appshellSidebar',
+        'appshell' => [
+            'share'        => 'appshellMenu',
             'cascade_data' => false
         ]
     ],
