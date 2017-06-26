@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
-use Konekt\AppShell\Contracts\MenuBuilderInterface;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateUser;
 use Konekt\AppShell\Http\Requests\UpdateUser;
@@ -25,6 +24,7 @@ use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
 use Konekt\User\Models\UserProxy;
+use Menu;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
@@ -41,14 +41,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         $this->app->register(AuthServiceProvider::class);
         $this->registerThirdPartyProviders();
-
         $this->registerCommands();
-
-        $this->app->bind(MenuBuilderInterface::class, $this->config('menu.builder.class'));
-
-        $this->app->when($this->config('menu.builder.class'))
-                  ->needs('$menu')
-                  ->give($this->app->make('menu'));
     }
 
     public function boot()
@@ -62,10 +55,15 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         Route::aliasMiddleware('acl', AclMiddleware::class);
         Route::model('user', UserProxy::modelClass());
 
-        $name = $this->config('menu.name');
-        $menuBuilder = $this->app->make(MenuBuilderInterface::class);
-        View::composer('appshell::layouts.default._nav', function($view) use ($name, $menuBuilder) {
-            $view->with($name, $menuBuilder->build($name));
+        $this->initializeMenus();
+
+        $module = $this;
+        // Injects the menu component in the _nav partial
+        View::composer('appshell::layouts.default._nav', function($view) use ($module) {
+            $view->with(
+                $module->config('menu.blade_var_name'),
+                $module->app->make(MenuBuilder::class)->build($module->config('menu.name'))
+            );
         });
     }
 
@@ -99,6 +97,16 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         }
     }
 
+    /**
+     * Initializes menus set in the configuration
+     */
+    protected function initializeMenus()
+    {
+        foreach ($this->config('menu') as $name => $config) {
+            Menu::create($name, $config);
+        }
+    }
+
 
     /**
      * Register Laravel Collective Form Component
@@ -111,12 +119,12 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     }
 
     /**
-     * Registers Lavary Menu Component
+     * Registers Konekt Menu Component
      */
     private function registerMenuComponent()
     {
-        $this->app->register(\Lavary\Menu\ServiceProvider::class);
-        $this->concord->registerAlias('Menu', \Lavary\Menu\Facade::class);
+        $this->app->register(\Konekt\Menu\MenuServiceProvider::class);
+        $this->concord->registerAlias('Menu', \Konekt\Menu\Facades\Menu::class);
     }
 
     /**

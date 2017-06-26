@@ -20,7 +20,7 @@
         "konekt/address": "dev-master",
         "konekt/user": "dev-master",
         "konekt/acl": "dev-master",
-        "lavary/laravel-menu": "~1.6",
+        "konekt/menu": "dev-master",
         "laravelcollective/html": "~5.4",
         "laracasts/flash": "~3.0",
         "yajra/laravel-breadcrumbs": "~4.1"

@@ -8,10 +8,10 @@ return [
     ],
     'event_listeners' => true,
     'menu' => [
-        'builder' => [
-            'class' => \Konekt\AppShell\Menu\MenuBuilder::class
-        ],
-        'name' => 'appshellMenu'
+        'sidebar' => [
+            'share'        => 'appshellSidebar',
+            'cascade_data' => false
+        ]
     ],
     'views' => [
         'namespace' => 'appshell'
