@@ -4,20 +4,22 @@ Konekt AppShell is a [Concord box](https://github.com/artkonekt/concord/blob/mas
 
 Incorporates the basics for:
 
-- Users and their profiles
-- Authentication
+- Users + profiles
+- User impersonation
+- Authentication, authorization (acl)
+- Locations (countries, provinces, addresses)
 - Clients
-- Impersonation
 - Extensible Admin Interface
+- Menu handling
 
 The user/auth part is built on top of the Laravel facilities in a compatible manner.
 
-## Create New AppShell Project (for contributing to appshell, concord, etc)
+## Create New AppShell Project
 
 ```bash
-composer create-project laravel/laravel ashtest
+composer create-project laravel/laravel myapp
 # Wait 1-4 minutes to complete ...
-cd ashtest
+cd myapp
 composer config minimum-stability dev
 composer require --prefer-source konekt/appshell:dev-master
 touch config/concord.php
@@ -75,8 +77,9 @@ AppShell contains ~10-15 migrations out of the box
 
 ## Laravel Auth Support
 
-If the "final" user class is not going to be `App\User` then don't forget to modify model class this to your app's `config/auth.php` file:
+First, Run `php artisan make:auth`
 
+If the "final" user class is not going to be `App\User` then don't forget to modify model class this to your app's `config/auth.php` file:
 ```php
     //...
     'providers' => [
@@ -87,24 +90,50 @@ If the "final" user class is not going to be `App\User` then don't forget to mod
         ],
     //...
 ```
-
+**OR:**
 Another approach is to keep `App\User` but modify the class to extend AppShell's user model:
 
 ```php
-<?php
 namespace App;
 
-class User extends Konekt\AppShell\Models\User
-{
-    
-}
+class User extends Konekt\AppShell\Models\User {}
 ```
 
-Also add this to you `AppServiceProviders`'s boot method:
+And add this to you `AppServiceProviders`'s boot method:
 
 ```php
    $this->app->concord->registerModel(Konekt\User\Contracts\User::class, \App\User::class);
 ```
+
+## Use AppShell's Admin Layout
+
+Change the layout in the first line of `resources/views/home.blade.php` file to be:
+
+```blade
+@extends('appshell::layouts.default')
+```
+
+### Add AppShell CSS To Laravel Mix
+
+In `webpack.mix.js` change:
+```js
+mix.js('resources/assets/js/app.js', 'public/js')
+   // Replace this line
+   //.sass('resources/assets/sass/app.scss', 'public/css');
+   // With this one:
+    .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell.sass', 'public/css');
+```
+
+and the compile the assets with mix: `npm run dev`
+
+> **TIP:** In case you get errors with mix, this may help (ubuntu/debian & derivatives):
+```bash
+sudo npm install -g npm
+sudo npm install -g n
+sudo n stable
+npm rebuild node-sass --force
+```
+
 
 ### Configure PhpStorm For Properly Editing Sources In Vendor
 
