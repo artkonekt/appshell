@@ -14,11 +14,14 @@ namespace Konekt\AppShell\Providers;
 
 
 use Illuminate\Support\Facades\Route;
+use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
+use Konekt\AppShell\Http\Requests\CreateRole;
 use Konekt\AppShell\Http\Requests\CreateUser;
+use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
@@ -32,7 +35,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
     protected $requests = [
         CreateUser::class,
-        UpdateUser::class
+        UpdateUser::class,
+        CreateRole::class,
+        UpdateRole::class
     ];
 
     public function register()
@@ -54,6 +59,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         Route::aliasMiddleware('acl', AclMiddleware::class);
         Route::model('user', UserProxy::modelClass());
+        Route::model('role', RoleProxy::modelClass());
 
         $this->initializeMenus();
     }
@@ -101,6 +107,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         // Add default menu items to sidbar
         if ($appshellMenu = Menu::get('appshell')) {
             $appshellMenu->addItem('users', __('Users'), ['route' => 'appshell.user.index'])->data('icon', 'accounts');
+            $appshellMenu->addItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])->data('icon', 'shield-security');
         }
     }
 

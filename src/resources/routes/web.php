@@ -11,3 +11,4 @@
 */
 
 Route::resource('user', 'UserController');
+Route::resource('role', 'RoleController');

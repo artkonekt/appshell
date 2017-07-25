@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the UpdateUser class.
+ * Contains the UpdateUser request interface.
  *
  * @copyright   Copyright (c) 2017 Attila Fulop
  * @author      Attila Fulop

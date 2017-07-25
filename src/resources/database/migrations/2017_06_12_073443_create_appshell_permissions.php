@@ -12,6 +12,8 @@ class CreateAppshellPermissions extends Migration
     /** @var array  */
     protected $permissions = ['list', 'create', 'view', 'edit', 'delete'];
 
+    protected $resources = ['users', 'roles'];
+
     /**
      * Run the migrations.
      *
@@ -21,10 +23,14 @@ class CreateAppshellPermissions extends Migration
     {
         $adminRole = RoleProxy::create(['name' => 'admin']);
 
-        foreach ($this->permissions as $permission) {
-            $adminRole->givePermissionTo(
-                PermissionProxy::create(['name' => "$permission users"])
-            );
+        foreach ($this->resources as $resource) {
+
+            foreach ($this->permissions as $permission) {
+                $adminRole->givePermissionTo(
+                    PermissionProxy::create(['name' => "$permission $resource"])
+                );
+            }
+
         }
 
         $admins = UserProxy::where(['type' => UserType::ADMIN])->get();
@@ -43,9 +49,13 @@ class CreateAppshellPermissions extends Migration
         $admins = UserProxy::where(['type' => UserType::ADMIN])->get();
         $admins->each->removeRole($adminRole);
 
-        foreach ($this->permissions as $permission) {
-            $adminRole->revokePermissionTo("$permission users");
-            PermissionProxy::where(['name' => "$permission users"])->delete();
+        foreach ($this->resources as $resource) {
+
+            foreach ($this->permissions as $permission) {
+                $adminRole->revokePermissionTo("$permission $resource");
+                PermissionProxy::where(['name' => "$permission $resource"])->delete();
+            }
+
         }
 
         $adminRole->delete();

@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the CreateUser class.
+ * Contains the CreateUser request interface.
  *
  * @copyright   Copyright (c) 2017 Attila Fulop
  * @author      Attila Fulop

@@ -23,3 +23,23 @@ Breadcrumbs::register('appshell.user.edit', function($breadcrumbs, $user) {
     $breadcrumbs->parent('appshell.user.show', $user);
     $breadcrumbs->push(__('Edit'), route('appshell.user.edit', $user));
 });
+
+Breadcrumbs::register('appshell.role.index', function($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Permissions'), route('appshell.role.index'));
+});
+
+Breadcrumbs::register('appshell.role.create', function($breadcrumbs) {
+    $breadcrumbs->parent('appshell.role.index');
+    $breadcrumbs->push(__('Create role'));
+});
+
+Breadcrumbs::register('appshell.role.show', function($breadcrumbs, $role) {
+    $breadcrumbs->parent('appshell.role.index');
+    $breadcrumbs->push(__(':Name role', ['name' => $role->name]), route('appshell.role.show', $role));
+});
+
+Breadcrumbs::register('appshell.role.edit', function($breadcrumbs, $role) {
+    $breadcrumbs->parent('appshell.role.show', $role);
+    $breadcrumbs->push(__('Edit'), route('appshell.role.edit', $role));
+});
