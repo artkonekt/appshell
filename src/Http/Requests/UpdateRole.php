@@ -17,13 +17,15 @@ use Konekt\AppShell\Contracts\Requests\UpdateRole as UpdateRoleContract;
 
 class UpdateRole extends FormRequest implements UpdateRoleContract
 {
+    use HasPermissions;
+
     /**
      * @inheritDoc
      */
     public function rules()
     {
         return [
-            'name' => 'required|min:2|max:255',
+            'name'        => 'required|min:2|max:255',
             'permissions' => 'sometimes|array'
         ];
     }
@@ -34,14 +36,6 @@ class UpdateRole extends FormRequest implements UpdateRoleContract
     public function authorize()
     {
         return true;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function permissions()
-    {
-        return array_keys($this->get('permissions'));
     }
 
 }

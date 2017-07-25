@@ -13,6 +13,7 @@
 namespace Konekt\AppShell\Http\Controllers;
 
 
+use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
 use Konekt\User\Contracts\User;
@@ -39,8 +40,9 @@ class UserController extends BaseController
     public function create()
     {
         return $this->appShellView('user.create', [
-                'user'  => app(User::class),
-                'types' => UserTypeProxy::choices()
+            'user'  => app(User::class),
+            'types' => UserTypeProxy::choices(),
+            'roles' => RoleProxy::all()
         ]);
     }
 
@@ -54,11 +56,12 @@ class UserController extends BaseController
         $request->merge(['password' => bcrypt($request->get('password'))]);
 
         try {
-            UserProxy::create($request->all());
+            $user = UserProxy::create($request->except('roles'));
+            $user->syncRoles($request->roles());
 
             flash()->success(__('User has been created'));
         } catch (\Exception $e) {
-            flash()->error(__('Error: %s', ['args' => $e->getMessage()]));
+            flash()->error(__('Error: :msg', ['args' => $e->getMessage()]));
             return redirect()->back();
         }
 
@@ -85,8 +88,11 @@ class UserController extends BaseController
      */
     public function edit(User $user)
     {
-        $types = UserTypeProxy::choices();
-        return $this->appShellView('user.edit', compact('user', 'types'));
+        return $this->appShellView('user.edit', [
+            'user'  => $user,
+            'types' => UserTypeProxy::choices(),
+            'roles' => RoleProxy::all()
+        ]);
     }
 
     /**
@@ -97,16 +103,17 @@ class UserController extends BaseController
      */
     public function update(User $user, UpdateUser $request)
     {
-        $data = $request->except('password');
+        $data = $request->except(['password', 'roles']);
         if ($request->has('password')) {
             $data['password'] = bcrypt($request->get('password'));
         }
         try {
             $user->update($data);
+            $user->syncRoles($request->roles());
 
             flash()->success(__('User has been updated'));
         } catch (\Exception $e) {
-            flash()->error(__('Error: %s', ['args' => $e->getMessage()]));
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
             return redirect()->back();
         }
 
@@ -129,7 +136,7 @@ class UserController extends BaseController
             flash()->warning(__('User has been deleted'));
 
         } catch (\Exception $e) {
-            flash()->error(__('Error: %s', ['args' => $e->getMessage()]));
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
 
         //@todo process route prefixes based on box config

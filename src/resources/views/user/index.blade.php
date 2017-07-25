@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="card">
+    <div class="card card-accent-secondary">
 
         <div class="card-header">
             @yield('title')

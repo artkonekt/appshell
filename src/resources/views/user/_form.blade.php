@@ -87,3 +87,25 @@
 
     </div>
 </div>
+
+<div class="form-group row{{ $errors->has('roles') ? ' has-danger' : '' }}">
+
+    <div class="col-12">
+        <legend>{{ __('Roles') }}</legend>
+    </div>
+
+    @foreach($roles as $role)
+        <div class="col-6 col-sm-2 @unless(($loop->index + 5) % 5)offset-sm-2 @endunless">
+            <label class="switch switch-icon switch-pill switch-primary">
+                {{ Form::checkbox("roles[{$role->name}]", 1, $user->hasRole($role), ['class' => 'switch-input']) }}
+                <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
+                <span class="switch-handle"></span>
+            </label>
+            {{ $role->name }}
+        </div>
+    @endforeach
+
+    @if ($errors->has('roles'))
+        <div class="form-control-feedback">{{ $errors->first('roles') }}</div>
+    @endif
+</div>

@@ -9,7 +9,7 @@
     <div class="row">
 
         <div class="col-xl-9">
-            <div class="card">
+            <div class="card card-accent-secondary">
                 <div class="card-header">
                     {{ __('Role Details') }}
                 </div>

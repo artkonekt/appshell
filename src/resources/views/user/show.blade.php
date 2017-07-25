@@ -27,6 +27,28 @@
         </div>
 
         <div class="col-sm-6 col-md-3">
+            @component('appshell::widgets.card_with_icon', [
+                    'icon' => 'shield-security',
+                    'type' => 'info'
+            ])
+                {{ $user->type }}
+
+                @slot('subtitle')
+                    @if($user->roles->count())
+                        {{ __('Roles') }}:
+                        {{ $user->roles->take(3)->implode('name', ' | ') }}
+                    @else
+                        {{ __('no roles') }}
+                    @endif
+
+                    @if($user->roles->count() > 3)
+                        | {{ __('+ :num more...', ['num' => $user->roles->count() - 3]) }}
+                    @endif
+                @endslot
+            @endcomponent
+        </div>
+
+        <div class="col-sm-6 col-md-3">
             @component('appshell::widgets.card_with_icon', ['icon' => 'time-countdown'])
                 @if ($user->last_login_at)
                     {{ __('Last login') }}

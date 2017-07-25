@@ -10,18 +10,18 @@
     @endif
 </div>
 
-<div class="form-group row">
+<div class="form-group row {{ $errors->has('permissions') ? ' has-danger' : '' }}">
 
-        @foreach($permissions as $permission)
-            <div class="col-6 col-sm-2 @unless(($loop->index + 5) % 5)offset-sm-1 @endunless">
-                {{ $permission->name }}
-                <label class="switch switch-icon switch-pill switch-primary">
-                    {{ Form::checkbox("permissions[{$permission->name}]", 1, $role->hasPermissionTo($permission), ['class' => 'switch-input']) }}
-                    <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
-                    <span class="switch-handle"></span>
-                </label>
-            </div>
-        @endforeach
+    @foreach($permissions as $permission)
+        <div class="col-6 col-sm-2 @unless(($loop->index + 5) % 5)offset-sm-1 @endunless">
+            {{ $permission->name }}
+            <label class="switch switch-icon switch-pill switch-primary">
+                {{ Form::checkbox("permissions[{$permission->name}]", 1, $role->hasPermissionTo($permission), ['class' => 'switch-input']) }}
+                <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
+                <span class="switch-handle"></span>
+            </label>
+        </div>
+    @endforeach
 
     @if ($errors->has('permissions'))
         <div class="form-control-feedback">{{ $errors->first('permissions') }}</div>

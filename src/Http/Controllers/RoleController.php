@@ -105,7 +105,7 @@ class RoleController extends BaseController
 
             flash()->success(__('Role has been updated'));
         } catch (\Exception $e) {
-            flash()->error(__('Error: %s', ['args' => $e->getMessage()]));
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
             return redirect()->back();
         }
 
@@ -128,7 +128,7 @@ class RoleController extends BaseController
             flash()->warning(__('Role has been deleted'));
 
         } catch (\Exception $e) {
-            flash()->error(__('Error: %s', ['args' => $e->getMessage()]));
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
 
         //@todo process route prefixes based on box config

@@ -15,5 +15,11 @@ namespace Konekt\AppShell\Contracts\Requests;
 
 interface CreateUser extends BaseRequest
 {
+    /**
+     * Returns the roles array
+     *
+     * @return array
+     */
+    public function roles();
 
 }

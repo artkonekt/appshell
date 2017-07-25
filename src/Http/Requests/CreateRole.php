@@ -17,6 +17,8 @@ use Konekt\AppShell\Contracts\Requests\CreateRole as CreateRoleContract;
 
 class CreateRole extends FormRequest implements CreateRoleContract
 {
+    use HasPermissions;
+
     /**
      * @inheritDoc
      */
@@ -34,14 +36,6 @@ class CreateRole extends FormRequest implements CreateRoleContract
     public function authorize()
     {
         return true;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function permissions()
-    {
-        return array_keys($this->get('permissions'));
     }
 
 }

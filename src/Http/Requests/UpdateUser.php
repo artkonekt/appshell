@@ -18,6 +18,8 @@ use Konekt\AppShell\Contracts\Requests\UpdateUser as UpdateUserContract;
 
 class UpdateUser extends FormRequest implements UpdateUserContract
 {
+    use HasRoles;
+
     /**
      * @inheritDoc
      */
@@ -28,7 +30,8 @@ class UpdateUser extends FormRequest implements UpdateUserContract
             'email'     => 'required|email',
             'password'  => 'nullable|min:7',
             'type'      => 'present',
-            'is_active' => 'boolean'
+            'is_active' => 'boolean',
+            'roles'     => 'sometimes|array'
         ];
     }
 

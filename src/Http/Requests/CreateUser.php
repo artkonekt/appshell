@@ -18,6 +18,8 @@ use Konekt\AppShell\Contracts\Requests\CreateUser as CreateUserContract;
 
 class CreateUser extends FormRequest implements CreateUserContract
 {
+    use HasRoles;
+
     /**
      * @inheritDoc
      */
@@ -28,7 +30,8 @@ class CreateUser extends FormRequest implements CreateUserContract
             'email'     => 'required|email',
             'password'  => 'required|min:7',
             'type'      => 'present',
-            'is_active' => 'boolean'
+            'is_active' => 'boolean',
+            'roles'     => 'sometimes|array'
         ];
     }
 

@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-sm-6">
-            <div class="card" id="roles">
+            <div class="card card-accent-secondary" id="roles">
 
                 <div class="card-header">
                     {{ __('Roles') }}
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="card" id="permissions">
+            <div class="card card-accent-secondary" id="permissions">
 
                 <div class="card-header">
                     {{ __('Permissions') }}
