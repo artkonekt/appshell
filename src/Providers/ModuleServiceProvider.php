@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Providers;
 use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
+use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateUser;
 use Konekt\AppShell\Http\Requests\UpdateUser;
@@ -82,7 +83,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                ScaffoldCommand::class
+                ScaffoldCommand::class,
+                SuperCommand::class
             ]);
         }
     }

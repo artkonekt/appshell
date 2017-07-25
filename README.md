@@ -75,6 +75,12 @@ AppShell contains ~10-15 migrations out of the box
 >
 > `sudo chmod -R g+w storage/`
 
+### Create An Initial Super User
+
+Run command `php artisan appshell:super`.
+
+This will ask a several questions and create a proper superuser that you can start working with.
+
 ## Laravel Auth Support
 
 First, Run `php artisan make:auth`
