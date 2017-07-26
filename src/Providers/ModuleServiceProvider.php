@@ -14,7 +14,6 @@ namespace Konekt\AppShell\Providers;
 
 
 use Illuminate\Support\Facades\Route;
-use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
@@ -26,7 +25,6 @@ use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
-use Konekt\User\Models\UserProxy;
 use Menu;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
@@ -58,8 +56,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->concord->registerModel(UserContract::class, User::class);
 
         Route::aliasMiddleware('acl', AclMiddleware::class);
-        Route::model('user', UserProxy::modelClass());
-        Route::model('role', RoleProxy::modelClass());
 
         $this->initializeMenus();
     }
