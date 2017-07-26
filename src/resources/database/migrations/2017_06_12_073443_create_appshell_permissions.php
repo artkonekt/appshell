@@ -1,18 +1,14 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Konekt\Acl\Models\PermissionProxy;
 use Konekt\Acl\Models\RoleProxy;
-use Konekt\Acl\PermissionRegistrar;
+use Konekt\AppShell\Acl\ResourcePermissions;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserType;
 
 class CreateAppshellPermissions extends Migration
 {
-    /** @var array  */
-    protected $permissions = ['list', 'create', 'view', 'edit', 'delete'];
-
-    protected $resources = ['users', 'roles'];
+    protected $resources = ['user', 'role'];
 
     /**
      * Run the migrations.
@@ -23,15 +19,9 @@ class CreateAppshellPermissions extends Migration
     {
         $adminRole = RoleProxy::create(['name' => 'admin']);
 
-        foreach ($this->resources as $resource) {
-
-            foreach ($this->permissions as $permission) {
-                $adminRole->givePermissionTo(
-                    PermissionProxy::create(['name' => "$permission $resource"])
-                );
-            }
-
-        }
+        $adminRole->givePermissionTo(
+            ResourcePermissions::createPermissionsForResource($this->resources)
+        );
 
         $admins = UserProxy::where(['type' => UserType::ADMIN])->get();
         $admins->each->assignRole($adminRole);
@@ -49,17 +39,8 @@ class CreateAppshellPermissions extends Migration
         $admins = UserProxy::where(['type' => UserType::ADMIN])->get();
         $admins->each->removeRole($adminRole);
 
-        foreach ($this->resources as $resource) {
-
-            foreach ($this->permissions as $permission) {
-                $adminRole->revokePermissionTo("$permission $resource");
-                PermissionProxy::where(['name' => "$permission $resource"])->delete();
-            }
-
-        }
+        ResourcePermissions::deletePermissionsForResource($this->resources);
 
         $adminRole->delete();
-
-        app(PermissionRegistrar::class)->forgetCachedPermissions();
     }
 }

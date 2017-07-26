@@ -4,6 +4,7 @@ namespace Konekt\AppShell\Http\Middleware;
 
 use Auth;
 use Closure;
+use Konekt\AppShell\Acl\ResourcePermissions;
 
 class AclMiddleware
 {
@@ -38,30 +39,9 @@ class AclMiddleware
      */
     protected function getNecessaryPermission($action)
     {
-        $parsedAction = $this->parseAction($action);
-        switch ($parsedAction['action']) {
-            case 'index':
-                $verb = 'list';
-                break;
-            case 'show':
-                $verb = 'view';
-                break;
-            case 'edit':
-            case 'update':
-                $verb = 'edit';
-                break;
-            case 'create':
-            case 'store':
-                $verb = 'create';
-                break;
-            case 'destroy':
-                $verb = 'delete';
-                break;
-            default:
-                return false;
-        }
+        $parsed = $this->parseAction($action);
 
-        return sprintf('%s %s', $verb, str_plural($parsedAction['resource']));
+        return ResourcePermissions::permissionFor($parsed['resource'], $parsed['action']);
     }
 
     /**

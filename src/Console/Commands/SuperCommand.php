@@ -15,14 +15,13 @@ namespace Konekt\AppShell\Console\Commands;
 use Illuminate\Console\Command;
 use Konekt\Acl\Contracts\Role;
 use Konekt\Acl\Models\RoleProxy;
+use Konekt\AppShell\Acl\ResourcePermissions;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserType;
 
 
 class SuperCommand extends Command
 {
-    protected $permissions = ['list', 'create', 'view', 'edit', 'delete'];
-
     protected $signature = 'appshell:super
                     {--views : Only scaffold the authentication views}
                     {--force : Overwrite existing views by default}';
@@ -103,9 +102,8 @@ class SuperCommand extends Command
     {
         $role = RoleProxy::create(['name' => $name])->fresh();
 
-        foreach ($this->permissions as $permission) {
-            $role->givePermissionTo("$permission users");
-        }
+        $role->givePermissionTo(ResourcePermissions::allPermissionsFor('user'));
+        $role->givePermissionTo(ResourcePermissions::allPermissionsFor('role'));
 
         return $role;
     }
