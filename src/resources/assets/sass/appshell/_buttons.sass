@@ -1,0 +1,18 @@
+$input-btn-padding-y-xs:    .15rem !default
+$input-btn-padding-x-xs:    .25rem !default
+$input-btn-line-height-xs:  1.1em !default
+$btn-border-radius-xs:      .1rem !default
+
+.btn-xs
+    +button-size($input-btn-padding-y-xs, $input-btn-padding-x-xs, $font-size-xs, $input-btn-line-height-xs, $btn-border-radius-xs)
+
+.btn
+    &.float-right
+        margin-left: .2rem
+
+.btn-show-on-tr-hover
+    display: none
+
+tr:hover
+    .btn-show-on-tr-hover
+        display: inline-block

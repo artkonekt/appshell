@@ -81,6 +81,15 @@
             @can('edit users')
             <a href="{{ route('appshell.user.edit', $user) }}" class="btn btn-outline-primary">{{ __('Edit user') }}</a>
             @endcan
+
+            @can('delete users')
+                {!! Form::open(['route' => ['appshell.user.destroy', $user], 'method' => 'DELETE', 'class' => "float-right"]) !!}
+                <button class="btn btn-outline-danger">
+                    {{ __('Delete user') }}
+                </button>
+                {!! Form::close() !!}
+            @endcan
+
         </div>
     </div>
 

@@ -23,13 +23,14 @@
         </div>
 
         <div class="card-block">
-            <table class="table table-striped">
+            <table class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>{{ __('E-mail') }}</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Registered') }}</th>
                     <th>{{ __('Last login') }}</th>
+                    <th style="width: 10%">&nbsp;</th>
                 </tr>
                 </thead>
 
@@ -46,6 +47,17 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->created_at->diffForHumans() }}</td>
                         <td>{{ $user->last_login_at ? $user->last_login_at->diffForHumans() : __('never') }}</td>
+                        <td>
+                            @can('edit users')
+                                <a href="{{ route('appshell.user.edit', $user) }}"
+                                   class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
+                            @endcan
+
+                            @can('delete users')
+                                <a href="{{ route('appshell.user.destroy', $user) }}"
+                                   class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right">{{ __('Delete') }}</a>
+                            @endcan
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
