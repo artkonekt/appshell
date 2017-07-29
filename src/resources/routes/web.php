@@ -11,4 +11,6 @@
 */
 
 Route::resource('user', 'UserController');
+Route::post('user/{$user}/activate', 'UserController@activate');
+Route::post('user/{$user}/inactivate', 'UserController@inactivate');
 Route::resource('role', 'RoleController');

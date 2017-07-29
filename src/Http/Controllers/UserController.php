@@ -143,4 +143,31 @@ class UserController extends BaseController
         return redirect(route('appshell.user.index'));
     }
 
+    public function inactivate(User $user)
+    {
+        try {
+            $user->inactivate();
+
+            flash()->warning(__('User has been inactivated'));
+
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+        }
+
+        return redirect()->back();
+    }
+
+    public function activate(User $user)
+    {
+        try {
+            $user->activate();
+
+            flash()->warning(__('User has been activated'));
+
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+        }
+
+        return redirect()->back();
+    }
 }
