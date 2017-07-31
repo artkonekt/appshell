@@ -102,8 +102,12 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         // Add default menu items to sidbar
         if ($appshellMenu = Menu::get('appshell')) {
-            $appshellMenu->addItem('users', __('Users'), ['route' => 'appshell.user.index'])->data('icon', 'accounts');
-            $appshellMenu->addItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])->data('icon', 'shield-security');
+            $appshellMenu->addItem('appshell', __('Appshell'));
+            $group = $appshellMenu->addItem('security', __('Security'))->data('icon', 'shield-security');
+
+
+            $group->addSubItem('users', __('Users'), ['route' => 'appshell.user.index'])->data('icon', 'accounts');
+            $group->addSubItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])->data('icon', 'shield-security');
         }
     }
 

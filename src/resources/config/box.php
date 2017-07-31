@@ -9,8 +9,9 @@ return [
     'event_listeners' => true,
     'menu' => [
         'appshell' => [
-            'share'        => 'appshellMenu',
-            'cascade_data' => false
+            'share'          => 'appshellMenu',
+            'cascade_data'   => false,
+            'active_element' => 'link'
         ]
     ],
     'views' => [

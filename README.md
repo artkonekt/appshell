@@ -124,7 +124,12 @@ Change the layout in the first line of `resources/views/home.blade.php` file to 
 In `webpack.mix.js` change:
 ```js
 mix.js('resources/assets/js/app.js', 'public/js')
-   // Replace this line
+   // Add this line:
+   .scripts([
+           'public/js/app.js',
+           'vendor/konekt/appshell/src/resources/assets/js/appshell.js'
+       ], 'public/js/app.js')
+   // And replace this line:
    //.sass('resources/assets/sass/app.scss', 'public/css');
    // With this one:
     .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell.sass', 'public/css');
