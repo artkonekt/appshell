@@ -61,7 +61,7 @@ class UserController extends BaseController
 
             flash()->success(__('User has been created'));
         } catch (\Exception $e) {
-            flash()->error(__('Error: :msg', ['args' => $e->getMessage()]));
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
             return redirect()->back();
         }
 

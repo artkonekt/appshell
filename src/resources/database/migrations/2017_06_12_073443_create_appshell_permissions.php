@@ -8,7 +8,7 @@ use Konekt\User\Models\UserType;
 
 class CreateAppshellPermissions extends Migration
 {
-    protected $resources = ['user', 'role'];
+    protected $resources = ['user', 'role', 'client'];
 
     /**
      * Run the migrations.

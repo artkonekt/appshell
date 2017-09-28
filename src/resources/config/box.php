@@ -3,6 +3,7 @@
 return [
     'modules' => [
         Konekt\Address\Providers\ModuleServiceProvider::class => [],
+        Konekt\Client\Providers\ModuleServiceProvider::class => [],
         Konekt\User\Providers\ModuleServiceProvider::class => [],
         Konekt\Acl\Providers\ModuleServiceProvider::class => []
     ],
