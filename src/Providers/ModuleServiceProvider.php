@@ -18,10 +18,13 @@ use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
+use Konekt\AppShell\Http\Requests\CreateClient;
 use Konekt\AppShell\Http\Requests\CreateRole;
 use Konekt\AppShell\Http\Requests\CreateUser;
 use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
+use Konekt\AppShell\Icons\EnumIconMapper;
+use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
@@ -35,7 +38,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateUser::class,
         UpdateUser::class,
         CreateRole::class,
-        UpdateRole::class
+        UpdateRole::class,
+        CreateClient::class
     ];
 
     public function register()
@@ -45,11 +49,15 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->register(AuthServiceProvider::class);
         $this->registerThirdPartyProviders();
         $this->registerCommands();
+        $this->app->singleton('appshell.icon', EnumIconMapper::class);
     }
 
     public function boot()
     {
         parent::boot();
+
+        (new ZmdiAppShellIcons($this->app->make('appshell.icon')))->registerIcons();
+
         $this->loadBreadcrumbs();
 
         // Use the User model that's extended with Acl

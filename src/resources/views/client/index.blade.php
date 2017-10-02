@@ -43,7 +43,8 @@
                                 {{ $client->name() }}
                             @endcan
                         </td>
-                        <td>{{ $client->type->label() }}</td>
+                        <td><i class="zmdi zmdi-{{ enum_icon($client->type) }}"
+                               title="{{ $client->type->label() }}"></i></td>
                         <td>{{ $client->created_at->diffForHumans() }}</td>
                         <td>
                             @can('edit clients')

@@ -26,6 +26,9 @@
         "yajra/laravel-breadcrumbs": "~4.1"
     },
     "autoload": {
-        "psr-4": { "Konekt\\AppShell\\": "src"}
+        "psr-4": { "Konekt\\AppShell\\": "src"},
+        "files": [
+            "src/Support/helpers.php"
+        ]
     }
 }
