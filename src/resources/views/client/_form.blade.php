@@ -31,7 +31,7 @@
         new Vue({
             el: '#app',
             data: {
-                clientType: '{{ $client->type->value() }}'
+                clientType: '{{ old('type') ?: $client->type->value() }}'
             }
         });
     </script>

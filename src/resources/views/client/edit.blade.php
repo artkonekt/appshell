@@ -22,7 +22,7 @@
                     <hr>
                     <div class="form-group">
                         <button class="btn btn-primary">{{ __('Save') }}</button>
-                        <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
+                        <a href="{{ route('appshell.client.index') }}" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
                     </div>
 
                     {!! Form::close() !!}

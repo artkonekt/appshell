@@ -162,7 +162,7 @@ class UserController extends BaseController
         try {
             $user->activate();
 
-            flash()->warning(__('User has been activated'));
+            flash()->success(__('User has been activated'));
 
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));

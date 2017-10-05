@@ -21,6 +21,7 @@ use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateClient;
 use Konekt\AppShell\Http\Requests\CreateRole;
 use Konekt\AppShell\Http\Requests\CreateUser;
+use Konekt\AppShell\Http\Requests\UpdateClient;
 use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Icons\EnumIconMapper;
@@ -39,7 +40,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateUser::class,
         CreateRole::class,
         UpdateRole::class,
-        CreateClient::class
+        CreateClient::class,
+        UpdateClient::class
     ];
 
     public function register()

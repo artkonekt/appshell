@@ -13,11 +13,9 @@
 namespace Konekt\AppShell\Http\Controllers;
 
 
-use Konekt\Address\Contracts\Organization;
-use Konekt\Address\Contracts\Person;
 use Konekt\AppShell\Contracts\Requests\CreateClient;
+use Konekt\AppShell\Contracts\Requests\UpdateClient;
 use Konekt\Client\Contracts\Client;
-use Konekt\Client\Contracts\ClientType as ClientTypeContract;
 use Konekt\Client\Models\ClientProxy;
 use Konekt\Client\Models\ClientType;
 use Konekt\Client\Models\ClientTypeProxy;
@@ -56,16 +54,17 @@ class ClientController extends BaseController
      */
     public function store(CreateClient $request)
     {
-        $type = ClientTypeProxy::create($request->get('type'));
-        $data = $request->get($this->getClientTypeArrayKey($type));
-
         try {
-            ClientProxy::createClient($type, $data);
+            ClientProxy::createClient(
+                ClientTypeProxy::create($request->get('type')),
+                $this->flattenInputArray($request->all())
+            );
 
             flash()->success(__('Client has been created'));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
-            return redirect()->back();
+
+            return redirect()->back()->withInput();
         }
 
         //@todo process route prefixes based on box config
@@ -99,25 +98,68 @@ class ClientController extends BaseController
         ]);
     }
 
+    /**
+     * @param Client       $client
+     * @param UpdateClient $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Client $client, UpdateClient $request)
+    {
+        try {
+            $client->updateClient($this->flattenInputArray($request->all()));
+
+            flash()->success(__('Client has been updated'));
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+
+            return redirect()->back()->withInput();
+        }
+
+        //@todo process route prefixes based on box config
+        return redirect(route('appshell.client.index'));
+    }
 
     /**
-     * Returns the array key to be used to return data from the request that depending on the client type
+     * Delete a client
      *
-     * @param ClientTypeContract $clientType
+     * @param Client $client
      *
-     * @return string
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    protected function getClientTypeArrayKey(ClientTypeContract $clientType)
+    public function destroy(Client $client)
     {
-        switch ($clientType->value()) {
-            case ClientType::INDIVIDUAL:
-                return 'person';
-                break;
+        try {
+            $name = $client->name();
+            $client->delete();
 
-            case ClientType::ORGANIZATION:
-                return 'organization';
-                break;
+            flash()->warning(__('Client :name has been deleted', ['name' => $name]));
+
+        } catch (\Exception $e) {
+            flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
+
+        //@todo process route prefixes based on box config
+        return redirect(route('appshell.client.index'));
+    }
+
+
+    /**
+     * Converts the request array by flattening properties depending on type
+     *
+     * @return array
+     */
+    protected function flattenInputArray(array $input)
+    {
+        $result = array_only($input, ['type', 'is_active']);
+
+        if (ClientType::INDIVIDUAL == $input['type']) {
+            $result = array_merge($result, $input['person']);
+        } else {
+            $result = array_merge($result, $input['organization']);
+        }
+
+        return $result;
     }
 
 }

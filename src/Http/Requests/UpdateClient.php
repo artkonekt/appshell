@@ -1,11 +1,11 @@
 <?php
 /**
- * Contains the CreateClient request class.
+ * Contains the UpdateClient class.
  *
  * @copyright   Copyright (c) 2017 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2017-10-02
+ * @since       2017-10-04
  *
  */
 
@@ -14,10 +14,10 @@ namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Konekt\AppShell\Contracts\Requests\CreateClient as CreateClientContract;
+use Konekt\AppShell\Contracts\Requests\UpdateClient as UpdateClientContract;
 use Konekt\Client\Models\ClientTypeProxy;
 
-class CreateClient extends FormRequest implements CreateClientContract
+class UpdateClient extends FormRequest implements UpdateClientContract
 {
     use HasPermissions;
 

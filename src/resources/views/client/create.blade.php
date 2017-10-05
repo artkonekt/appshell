@@ -15,14 +15,14 @@
                 </div>
                 <div class="card-block">
 
-                    {!! Form::open(['route' => 'appshell.client.store', 'autocomplete' => 'off']) !!}
+                    {!! Form::model($client, ['route' => 'appshell.client.store', 'autocomplete' => 'off']) !!}
 
                     @include('appshell::client._form')
 
                     <hr>
                     <div class="form-group">
                         <button class="btn btn-success">{{ __('Create client') }}</button>
-                        <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
+                        <a href="{{ route('appshell.client.index') }}" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
                     </div>
 
                     {!! Form::close() !!}
