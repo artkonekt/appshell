@@ -13,6 +13,7 @@
 namespace Konekt\AppShell\Providers;
 
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
@@ -74,17 +75,21 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
      * Registers 3rd party providers, AppShell is built on top of
      *
      * They are:
-     *  - Lavary Menu,
+     *  - Konekt Menu,
      *  - Laravel Collective Forms
      *  - Laracasts Flash
-     *  - Yajra Breadcrumbs
+     *  - DaveJamesMiller Breadcrumbs
      */
     protected function registerThirdPartyProviders()
     {
-        $this->registerMenuComponent();
-        $this->registerFormComponent();
-        $this->registerFlashComponent();
-        $this->registerBreadcrumbsComponent();
+        if (version_compare(Application::VERSION, '5.5.0', '<')) {
+            $this->registerMenuComponent();
+            $this->registerFormComponent();
+            $this->registerFlashComponent();
+            $this->registerBreadcrumbsComponent();
+        }
+
+        $this->mergeBreadCrumbsConfig();
     }
 
 
@@ -162,12 +167,17 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     private function registerBreadcrumbsComponent()
     {
         // Register The Breadcrumbs Component
-        $this->app->register(\Yajra\Breadcrumbs\ServiceProvider::class);
-        $this->concord->registerAlias('Breadcrumbs', \Yajra\Breadcrumbs\Facade::class);
+        $this->app->register(\DaveJamesMiller\Breadcrumbs\ServiceProvider::class);
+        $this->concord->registerAlias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facade::class);
+    }
 
-        // Merge component config from the box config
-        // Note that this can still be overwritten
-        // by the app in config/breadcrumbs.php
+    /**
+     * Merge component config from the box config.
+     * Note that this can still be overwritten
+     * by the app in config/breadcrumbs.php
+     */
+    private function mergeBreadCrumbsConfig()
+    {
         $this->app['config']->set('breadcrumbs',
             array_merge(
                 $this->config('components.breadcrumbs') ?: [],  // key within box config

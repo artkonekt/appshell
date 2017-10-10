@@ -168,7 +168,7 @@ Go to PhpStorm->**Settings->Version Control** and add the package folders you wa
 
 ### Menu
 
-The menu functionality is built on top of [Lavary Menu Component](https://github.com/lavary/laravel-menu). The component is automatically loaded, is fully available (incl. the `Menu` facade).
+The menu functionality is built on top of [Konek Menu Component](https://github.com/artkonekt/menu). The component is automatically loaded, is fully available (incl. the `Menu` facade).
 
 AppShell creates a menu named **appshellMenu** which is the main menu component, and is available in views as `$appshellMenu`.
 
