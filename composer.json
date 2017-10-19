@@ -21,7 +21,7 @@
         "konekt/user": "dev-master",
         "konekt/acl": "dev-master",
         "konekt/menu": "dev-master",
-        "laravelcollective/html": "~5.4",
+        "laravelcollective/html": "~5.4|~5.5",
         "laracasts/flash": "~3.0",
         "davejamesmiller/laravel-breadcrumbs": "^3.0.2|~4.0"
     },
