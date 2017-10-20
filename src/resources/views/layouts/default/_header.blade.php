@@ -1,39 +1,35 @@
-<header class="app-header navbar">
-    <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">☰</button>
-    <a class="navbar-brand" href="{{ url('/') }}"></a>
+<header class="appshell-header container-fluid">
 
-    <ul class="nav navbar-nav d-md-down-none">
-        <li class="nav-item">
-            <a class="nav-link navbar-toggler sidebar-toggler" href="#" onclick="sidebarMinimize()">☰</a>
-        </li>
-    </ul>
+    <div class="row">
 
-    <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}.jpg?s=40" class="img-avatar" alt="admin@bootstrapmaster.com">
-                <span class="d-md-down-none">{{ Auth::user()->name }}</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
+        <div class="col-md-9">
+            <h1>@yield('title')</h1>
 
-                <div class="dropdown-header text-center">
-                    <strong>{{ __('Account') }}</strong>
+        </div>
+
+        <div class="col-md-3 dropdown text-right">
+            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               id="account-dropdown-link">
+                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}.jpg?s=100" class="img-avatar">
+                <div class="appshell-header-user">
+                    <h4>{{ Auth::user()->name }}</h4>
                 </div>
-
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account-dropdown-link">
                 <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
 
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                            class="fa fa-lock"></i> Logout</a>
+                            class="fa fa-lock"></i> {{ __('Logout') }}</a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
-            </div>
-        </li>
-        <li class="nav-item d-md-down-none">
-            <a class="nav-link navbar-toggler aside-menu-toggler" href="#">☰</a>
-        </li>
 
-    </ul>
+            </div>
+
+        </div>
+
+    </div>
+
 </header>

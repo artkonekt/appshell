@@ -12,15 +12,10 @@
   border-radius: 1rem !important;
 }
 
-// temp fix for Vue-Strap
+// temp fix for Vue & React
 
 // Open state for the dropdown
-.open {
-  // Show the menu
-  > .dropdown-menu {
-    display: block;
-  }
-
+.open, .show {
   // Remove the outline when :focus is triggered
   > a {
     outline: 0;
@@ -35,4 +30,8 @@
     height: $navbar-height - 20px;
     margin: 0 10px;
   }
+}
+
+.card-block {
+  @extend .card-body;
 }

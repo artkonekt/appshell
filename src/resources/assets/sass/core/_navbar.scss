@@ -2,8 +2,8 @@
   position: relative;
   flex-direction: row;
   height: $navbar-height;
-  margin: 0;
   padding: 0;
+  margin: 0;
   background-color: $navbar-bg;
   @include borders($navbar-border);
 
@@ -21,6 +21,20 @@
     @include borders($navbar-brand-border);
   }
 
+  .navbar-toggler {
+    min-width: 50px;
+    padding: $navbar-toggler-padding-y 0;
+
+    &:hover .navbar-toggler-icon {
+      background-image: $navbar-toggler-icon-hover;
+    }
+  }
+
+  .navbar-toggler-icon {
+    height: 23px;
+    background-image: $navbar-toggler-icon;
+  }
+
   .navbar-nav {
     flex-direction: row;
     align-items: center;
@@ -32,9 +46,15 @@
     margin: 0 !important;
     text-align: center;
 
+    button {
+      margin: 0 auto;
+    }
+
     .nav-link {
       padding-top: 0;
       padding-bottom: 0;
+      background: 0;
+      border: 0;
 
       .badge {
         position: absolute;
@@ -90,4 +110,18 @@
 
 .navbar-divider {
   background-color: rgba(0,0,0,.075);
+}
+
+@include media-breakpoint-up(lg) {
+  .brand-minimized {
+    .app-header.navbar {
+      .navbar-brand {
+        width: $navbar-brand-minimized-width;
+        background-color: $navbar-brand-minimized-bg;
+        background-image: $navbar-brand-minimized-logo;
+        background-size: $navbar-brand-minimized-logo-size;
+        @include borders($navbar-brand-minimized-border);
+      }
+    }
+  }
 }

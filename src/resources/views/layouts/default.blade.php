@@ -8,9 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    <title>@yield('title') &middot; AppShell</title>
 
     <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link href="{{ asset('css/appshell.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
 
@@ -42,9 +43,7 @@
 1. '.footer-fixed'						- Fixed footer
 
 -->
-<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
-
-    @include('appshell::layouts.default._header')
+<body class="app sidebar-fixed aside-menu-fixed aside-menu-hidden">
 
     <div class="app-body" id="app">
         <div class="sidebar">
@@ -55,6 +54,7 @@
 
         <!-- Main content -->
         <main class="main">
+            @include('appshell::layouts.default._header')
             @include('appshell::layouts.default._breadcrumbs')
 
             <div class="container-fluid">

@@ -1,6 +1,6 @@
 <nav class="breadcrumb">
     @forelse ($breadcrumbs as $breadcrumb)
-        @if (!$breadcrumb->last)
+        @if ($breadcrumb->url && !$loop->last)
             <a class="breadcrumb-item" href="{{ $breadcrumb->url }}">
                 @if ( isset($breadcrumb->icon) )
                     <i class="fa {{ $breadcrumb->icon }}"></i>
