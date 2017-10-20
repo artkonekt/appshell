@@ -1,4 +1,5 @@
 <!-- Breadcrumb -->
+<div class="container-fluid">
 @if (Breadcrumbs::exists())
     {!! Breadcrumbs::render() !!}
 @else
@@ -12,3 +13,4 @@
         </span>
     </nav>
 @endif
+</div>
