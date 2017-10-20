@@ -29,5 +29,9 @@ return [
         'breadcrumbs' => [
             'view' => 'appshell::widgets.breadcrumbs'
         ]
+    ],
+    'ui' => [
+        'name' => 'AppShell',
+        'url'  => '/appshell/dashboard'
     ]
 ];

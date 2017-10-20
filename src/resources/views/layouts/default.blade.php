@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') &middot; AppShell</title>
+    <title>@yield('title') &middot; {{ $appshell->name }}</title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -47,6 +47,12 @@
 
     <div class="app-body" id="app">
         <div class="sidebar">
+            <nav class="appshell-logo">
+                <a href="{{ $appshell->url }}">
+                    <img src="/images/appshell/logo.svg" class="appshell-logo-img" />
+                    <h4 class="appshell-logo-text">{{ $appshell->name }}</h4>
+                </a>
+            </nav>
             <nav class="sidebar-nav">
                 @include('appshell::layouts.default._nav')
             </nav>
@@ -67,9 +73,10 @@
     </div>
 
     <footer class="app-footer">
-        <a href="http://coreui.io">CoreUI</a> © 2017 creativeLabs.
-        <span class="float-right">Powered by <a href="http://coreui.io">CoreUI</a>
-        </span>
+        @section('footer')
+        &copy; {{ date('Y') }}&nbsp;<a href="{{ $appshell->url }}">{{ $appshell->name }}</a>
+        @endsection
+        @yield('footer')
     </footer>
 
 <!-- Scripts -->

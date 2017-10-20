@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-md-3 dropdown text-right">
-            <a class="btn dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            <a class="btn btn-none dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                id="account-dropdown-link">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}.jpg?s=100" class="img-avatar">
                 <div class="appshell-header-user">

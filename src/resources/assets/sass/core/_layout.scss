@@ -75,12 +75,7 @@ app-root {
     position: fixed;
     z-index: $zindex-sticky - 1;
     width: $sidebar-width;
-    height: calc(100vh - #{$navbar-height});
-    // margin-top: - $navbar-height;
-
-    // .sidebar-nav {
-    //   height: calc(100vh - #{$navbar-height});
-    // }
+    height: 100vh;
   }
 
   .main, .app-footer {

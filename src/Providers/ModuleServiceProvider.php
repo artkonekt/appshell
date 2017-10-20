@@ -15,6 +15,7 @@ namespace Konekt\AppShell\Providers;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
@@ -61,6 +62,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         (new ZmdiAppShellIcons($this->app->make('appshell.icon')))->registerIcons();
 
+        $this->initUiData();
         $this->loadBreadcrumbs();
 
         // Use the User model that's extended with Acl
@@ -133,6 +135,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         }
     }
 
+
+    protected function initUiData()
+    {
+        View::share('appshell', (object) $this->config('ui'));
+    }
 
     /**
      * Register Laravel Collective Form Component
