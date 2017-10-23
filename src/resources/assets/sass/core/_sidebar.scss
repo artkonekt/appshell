@@ -7,6 +7,10 @@
   background: $sidebar-bg;
   @include borders($sidebar-borders);
 
+  .nav-dropdown > a {
+    text-transform: uppercase;
+  }
+
   .sidebar-close {
     position: absolute;
     right: 0;
@@ -97,6 +101,7 @@
   .nav-item {
     position: relative;
     margin: 0;
+    font-weight: 300;
     transition: background .3s ease-in-out;
   }
 
@@ -141,6 +146,7 @@
 
     &.active {
       color: $sidebar-nav-link-active-color;
+      font-weight: 600;
       background: $sidebar-nav-link-active-bg;
       @include borders($sidebar-nav-link-active-borders);
 
