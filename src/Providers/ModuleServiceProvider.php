@@ -89,6 +89,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             $this->registerFormComponent();
             $this->registerFlashComponent();
             $this->registerBreadcrumbsComponent();
+            $this->registerSluggableComponent();
         }
 
         $this->mergeBreadCrumbsConfig();
@@ -174,6 +175,14 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         // Register The Breadcrumbs Component
         $this->app->register(\DaveJamesMiller\Breadcrumbs\ServiceProvider::class);
         $this->concord->registerAlias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facade::class);
+    }
+
+    /**
+     * Register the sluggable component
+     */
+    private function registerSluggableComponent()
+    {
+        $this->app->register(\Cviebrock\EloquentSluggable\ServiceProvider::class);
     }
 
     /**
