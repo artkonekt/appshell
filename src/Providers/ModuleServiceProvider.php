@@ -84,7 +84,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
      */
     protected function registerThirdPartyProviders()
     {
-        if (version_compare(Application::VERSION, '5.5.0', '<')) {
+        if (
+            'testing' == $this->app->environment()
+            ||
+            version_compare(Application::VERSION, '5.5.0', '<')
+        ) {
             $this->registerMenuComponent();
             $this->registerFormComponent();
             $this->registerFlashComponent();
@@ -173,8 +177,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     private function registerBreadcrumbsComponent()
     {
         // Register The Breadcrumbs Component
-        $this->app->register(\DaveJamesMiller\Breadcrumbs\ServiceProvider::class);
-        $this->concord->registerAlias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facade::class);
+        $this->app->register(\DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class);
+        $this->concord->registerAlias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class);
     }
 
     /**
