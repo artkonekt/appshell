@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-4">
             @component('appshell::widgets.card_with_icon', [
                     'icon' => $user->is_active ? 'account-circle' : 'account-o',
                     'type' => $user->is_active ? 'success' : 'warning'
@@ -21,12 +21,13 @@
                     </small>
                 @endif
                 @slot('subtitle')
-                    {{ $user->email }}
+                    {{ __('Member since') }}
+                    {{ $user->created_at->format(__('Y-m-d H:i')) }}
                 @endslot
             @endcomponent
         </div>
 
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-4">
             @component('appshell::widgets.card_with_icon', [
                     'icon' => 'shield-security',
                     'type' => 'info'
@@ -48,28 +49,18 @@
             @endcomponent
         </div>
 
-        <div class="col-sm-6 col-md-3">
-            @component('appshell::widgets.card_with_icon', ['icon' => 'time-countdown'])
-                @if ($user->last_login_at)
-                    {{ __('Last login') }}
-                    {{ $user->last_login_at->diffForHumans() }}
-                @else
-                    {{ __('never logged in') }}
-                @endif
-
-                @slot('subtitle')
-                    {{ __('Member since') }}
-                    {{ $user->created_at->format(__('Y-m-d H:i')) }}
-
-                @endslot
-            @endcomponent
-        </div>
-
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-4">
             @component('appshell::widgets.card_with_icon', ['icon' => 'star-circle'])
-                {{ $user->login_count }}
+                {{ $user->login_count }} {{ __('logins') }}
+
                 @slot('subtitle')
-                    {{ __('Login count') }}
+                    @if ($user->last_login_at)
+                        {{ __('Last login') }}
+                        {{ $user->last_login_at->diffForHumans() }}
+                    @else
+                        {{ __('never logged in') }}
+                    @endif
+
                 @endslot
             @endcomponent
         </div>

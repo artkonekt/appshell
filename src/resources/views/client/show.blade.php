@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6">
             @component('appshell::widgets.card_with_icon', [
                     'icon' => enum_icon($client->type),
                     'type' => $client->is_active ? 'success' : 'warning'
@@ -26,7 +26,7 @@
             @endcomponent
         </div>
 
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-6">
             @component('appshell::widgets.card_with_icon', ['icon' => 'time-countdown'])
                 {{ __('Last purchase') }}
                 <span title="This is fake right now">{{ $client->updated_at->diffForHumans() }}</span>
