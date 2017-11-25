@@ -2,12 +2,12 @@
 
     <div class="row">
 
-        <div class="col-md-9">
+        <div class="col-md-6 col-lg-7">
             <h1>@yield('title')</h1>
 
         </div>
 
-        <div class="col-md-3 dropdown text-right">
+        <div class="col-md-6 col-lg-5 dropdown text-right">
             <a class="btn btn-none dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                id="account-dropdown-link">
                 <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}.jpg?s=100" class="img-avatar">
