@@ -38,7 +38,7 @@
                     <tr>
                         <td>
                             @can('view customers')
-                            <a href="{{ route('appshell.customer.show', $customer) }}">{{ $customer->name() }}</a>
+                            <a href="{{ route('appshell.customer.show', $customer) }}">{{ $customer->getName() }}</a>
                             @else
                                 {{ $customer->name() }}
                             @endcan

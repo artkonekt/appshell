@@ -1,7 +1,7 @@
 @extends('appshell::layouts.default')
 
 @section('title')
-    {{ __('Editing') }} {{ $customer->name() }}
+    {{ __('Editing') }} {{ $customer->getName() }}
 @stop
 
 @section('content')

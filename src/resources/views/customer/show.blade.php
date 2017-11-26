@@ -1,7 +1,7 @@
 @extends('appshell::layouts.default')
 
 @section('title')
-    {{ __('Viewing') }} {{ $customer->name() }}
+    {{ __('Viewing') }} {{ $customer->getName() }}
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
                     'icon' => enum_icon($customer->type),
                     'type' => $customer->is_active ? 'success' : 'warning'
             ])
-                {{ $customer->name() }}
+                {{ $customer->getName() }}
                 @if (!$customer->is_active)
                     <small>
                         <span class="badge badge-default">
