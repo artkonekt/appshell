@@ -19,7 +19,7 @@ return [
         'namespace' => 'appshell'
     ],
     'routes' => [
-        'prefix'     => 'appshell',
+        'prefix'     => 'admin',
         'as'         => 'appshell.',
         'middleware' => ['web', 'auth', 'acl'],
         'files'      => ['web']
