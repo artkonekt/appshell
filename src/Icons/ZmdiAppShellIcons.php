@@ -35,10 +35,10 @@ class ZmdiAppShellIcons
 
     public function registerIcons()
     {
-        $this->registerClientTypeIcons();
+        $this->registerCustomerTypeIcons();
     }
 
-    private function registerClientTypeIcons()
+    private function registerCustomerTypeIcons()
     {
         $this->iconMapper->registerEnumIcons(
             CustomerTypeProxy::enumClass(),

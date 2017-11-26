@@ -130,11 +130,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             $securityGroup->addSubItem('users', __('Users'), ['route' => 'appshell.user.index'])->data('icon', 'accounts');
             $securityGroup->addSubItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])->data('icon', 'shield-security');
 
-            // Clients Group
-            $clientGroup = $appshellMenu->addItem('crm', __('CRM'));
+            // CRM Group
+            $crmGroup = $appshellMenu->addItem('crm', __('CRM'));
 
-
-            $clientGroup->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])->data('icon', 'accounts-list');
+            $crmGroup->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])->data('icon', 'accounts-list');
         }
     }
 
