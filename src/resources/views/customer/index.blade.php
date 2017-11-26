@@ -1,7 +1,7 @@
 @extends('appshell::layouts.default')
 
 @section('title')
-    {{ __('Clients') }}
+    {{ __('Customers') }}
 @stop
 
 @section('content')
@@ -12,10 +12,10 @@
             @yield('title')
 
             <div class="card-actionbar">
-                @can('create clients')
-                <a href="{{ route('appshell.client.create') }}" class="btn btn-sm btn-outline-success float-right">
+                @can('create customers')
+                <a href="{{ route('appshell.customer.create') }}" class="btn btn-sm btn-outline-success float-right">
                     <i class="zmdi zmdi-plus"></i>
-                    {{ __('Create Client') }}
+                    {{ __('Create Customer') }}
                 </a>
                 @endcan
             </div>
@@ -34,26 +34,26 @@
                 </thead>
 
                 <tbody>
-                @foreach($clients as $client)
+                @foreach($customers as $customer)
                     <tr>
                         <td>
-                            @can('view clients')
-                            <a href="{{ route('appshell.client.show', $client) }}">{{ $client->name() }}</a>
+                            @can('view customers')
+                            <a href="{{ route('appshell.customer.show', $customer) }}">{{ $customer->name() }}</a>
                             @else
-                                {{ $client->name() }}
+                                {{ $customer->name() }}
                             @endcan
                         </td>
-                        <td><i class="zmdi zmdi-{{ enum_icon($client->type) }}"
-                               title="{{ $client->type->label() }}"></i></td>
-                        <td>{{ $client->created_at->diffForHumans() }}</td>
+                        <td><i class="zmdi zmdi-{{ enum_icon($customer->type) }}"
+                               title="{{ $customer->type->label() }}"></i></td>
+                        <td>{{ $customer->created_at->diffForHumans() }}</td>
                         <td>
-                            @can('edit clients')
-                                <a href="{{ route('appshell.client.edit', $client) }}"
+                            @can('edit customers')
+                                <a href="{{ route('appshell.customer.edit', $customer) }}"
                                    class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
                             @endcan
 
-                            @can('delete clients')
-                                <a href="{{ route('appshell.client.destroy', $client) }}"
+                            @can('delete customers')
+                                <a href="{{ route('appshell.customer.destroy', $customer) }}"
                                    class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right">{{ __('Delete') }}</a>
                             @endcan
                         </td>

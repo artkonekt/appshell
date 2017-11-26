@@ -20,10 +20,10 @@ use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
-use Konekt\AppShell\Http\Requests\CreateClient;
+use Konekt\AppShell\Http\Requests\CreateCustomer;
 use Konekt\AppShell\Http\Requests\CreateRole;
 use Konekt\AppShell\Http\Requests\CreateUser;
-use Konekt\AppShell\Http\Requests\UpdateClient;
+use Konekt\AppShell\Http\Requests\UpdateCustomer;
 use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Icons\EnumIconMapper;
@@ -42,8 +42,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateUser::class,
         CreateRole::class,
         UpdateRole::class,
-        CreateClient::class,
-        UpdateClient::class
+        CreateCustomer::class,
+        UpdateCustomer::class
     ];
 
     public function register()
@@ -134,7 +134,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             $clientGroup = $appshellMenu->addItem('crm', __('CRM'));
 
 
-            $clientGroup->addSubItem('clients', __('Clients'), ['route' => 'appshell.client.index'])->data('icon', 'accounts-list');
+            $clientGroup->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])->data('icon', 'accounts-list');
         }
     }
 

@@ -13,8 +13,8 @@
 namespace Konekt\AppShell\Icons;
 
 
-use Konekt\Client\Models\ClientType;
-use Konekt\Client\Models\ClientTypeProxy;
+use Konekt\Customer\Models\CustomerType;
+use Konekt\Customer\Models\CustomerTypeProxy;
 
 class ZmdiAppShellIcons
 {
@@ -41,10 +41,10 @@ class ZmdiAppShellIcons
     private function registerClientTypeIcons()
     {
         $this->iconMapper->registerEnumIcons(
-            ClientTypeProxy::enumClass(),
+            CustomerTypeProxy::enumClass(),
             [
-                ClientType::ORGANIZATION => 'city',
-                ClientType::INDIVIDUAL   => 'account'
+                CustomerType::ORGANIZATION => 'city',
+                CustomerType::INDIVIDUAL   => 'account'
             ]
         );
     }

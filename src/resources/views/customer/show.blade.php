@@ -1,7 +1,7 @@
 @extends('appshell::layouts.default')
 
 @section('title')
-    {{ __('Viewing') }} {{ $client->name() }}
+    {{ __('Viewing') }} {{ $customer->name() }}
 @stop
 
 @section('content')
@@ -9,11 +9,11 @@
     <div class="row">
         <div class="col-sm-6">
             @component('appshell::widgets.card_with_icon', [
-                    'icon' => enum_icon($client->type),
-                    'type' => $client->is_active ? 'success' : 'warning'
+                    'icon' => enum_icon($customer->type),
+                    'type' => $customer->is_active ? 'success' : 'warning'
             ])
-                {{ $client->name() }}
-                @if (!$client->is_active)
+                {{ $customer->name() }}
+                @if (!$customer->is_active)
                     <small>
                         <span class="badge badge-default">
                             {{ __('inactive') }}
@@ -21,7 +21,7 @@
                     </small>
                 @endif
                 @slot('subtitle')
-                    {{ $client->type->label() }}
+                    {{ $customer->type->label() }}
                 @endslot
             @endcomponent
         </div>
@@ -29,11 +29,11 @@
         <div class="col-sm-6">
             @component('appshell::widgets.card_with_icon', ['icon' => 'time-countdown'])
                 {{ __('Last purchase') }}
-                <span title="This is fake right now">{{ $client->updated_at->diffForHumans() }}</span>
+                <span title="This is fake right now">{{ $customer->updated_at->diffForHumans() }}</span>
 
                 @slot('subtitle')
-                    {{ __('Client since') }}
-                    {{ $client->created_at->format(__('Y-m-d H:i')) }}
+                    {{ __('Customer since') }}
+                    {{ $customer->created_at->format(__('Y-m-d H:i')) }}
                 @endslot
             @endcomponent
         </div>
@@ -42,16 +42,16 @@
 
     <div class="card">
         <div class="card-block">
-            @can('edit clients')
-            <a href="{{ route('appshell.client.edit', $client) }}" class="btn btn-outline-primary">{{ __('Edit client')
+            @can('edit customers')
+            <a href="{{ route('appshell.customer.edit', $customer) }}" class="btn btn-outline-primary">{{ __('Edit customer')
             }}</a>
             @endcan
 
-            @can('delete clients')
-                {!! Form::open(['route' => ['appshell.client.destroy', $client], 'method' => 'DELETE', 'class' =>
+            @can('delete customers')
+                {!! Form::open(['route' => ['appshell.customer.destroy', $customer], 'method' => 'DELETE', 'class' =>
                 "float-right"]) !!}
                 <button class="btn btn-outline-danger">
-                    {{ __('Delete client') }}
+                    {{ __('Delete customer') }}
                 </button>
                 {!! Form::close() !!}
             @endcan

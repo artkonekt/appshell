@@ -17,7 +17,7 @@
     "require": {
         "php": ">=7.0.0",
         "konekt/concord": "dev-master",
-        "konekt/client": ">=0.9.2",
+        "konekt/customer": ">=0.9.3",
         "konekt/user": "dev-master",
         "konekt/acl": "dev-master",
         "konekt/menu": "dev-master",

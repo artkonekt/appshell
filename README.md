@@ -8,7 +8,7 @@ Incorporates the basics for:
 - User impersonation
 - Authentication, authorization (acl)
 - Locations (countries, provinces, addresses)
-- Clients
+- Customers
 - Extensible Admin Interface
 - Menu handling
 

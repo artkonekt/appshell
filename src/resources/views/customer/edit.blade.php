@@ -1,7 +1,7 @@
 @extends('appshell::layouts.default')
 
 @section('title')
-    {{ __('Editing') }} {{ $client->name() }}
+    {{ __('Editing') }} {{ $customer->name() }}
 @stop
 
 @section('content')
@@ -11,27 +11,27 @@
         <div class="col-xl-9">
             <div class="card card-accent-secondary">
                 <div class="card-header">
-                    {{ __('Client Details') }}
+                    {{ __('Customer Details') }}
                 </div>
                 <div class="card-block">
 
-                    {!! Form::model($client, ['route' => ['appshell.client.update', $client], 'method' => 'PUT']) !!}
+                    {!! Form::model($customer, ['route' => ['appshell.customer.update', $customer], 'method' => 'PUT']) !!}
 
-                    @include('appshell::client._form')
+                    @include('appshell::customer._form')
 
                     <hr>
                     <div class="form-group">
                         <button class="btn btn-primary">{{ __('Save') }}</button>
-                        <a href="{{ route('appshell.client.index') }}" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
+                        <a href="{{ route('appshell.customer.index') }}" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
                     </div>
 
                     {!! Form::close() !!}
                 </div>
                 <div class="card-footer">
-                    @can('delete clients')
-                        {!! Form::open(['route' => ['appshell.client.destroy', $client], 'method' => 'DELETE']) !!}
+                    @can('delete customers')
+                        {!! Form::open(['route' => ['appshell.customer.destroy', $customer], 'method' => 'DELETE']) !!}
                         <button class="btn btn-outline-danger float-right">
-                            {{ __('Delete client') }}
+                            {{ __('Delete customer') }}
                         </button>
                         {!! Form::close() !!}
                     @endcan
