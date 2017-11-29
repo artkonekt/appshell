@@ -2,10 +2,11 @@
 
 ## 0.9
 
-### Unreleased
-##### 2017-11-XX
+### 0.9.1
+##### 2017-11-29
 
 - Konekt Client library has been replaced with konekt/customer
+- Default route prefix is /appshell => /admin
 
 ### 0.9.0
 ##### 2017-11-24
