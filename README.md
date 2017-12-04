@@ -21,7 +21,8 @@ composer create-project laravel/laravel myapp
 # Wait 1-4 minutes to complete ...
 cd myapp
 composer config minimum-stability dev
-composer require --prefer-source konekt/appshell:dev-master
+composer config prefer-stable true
+composer require --prefer-source konekt/appshell:^0.9.1
 touch config/concord.php
 ```
 
@@ -57,11 +58,15 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 | #  | Name                | Kind | Version | Id               | Namespace       |
 +----+---------------------+------+---------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 0.1.0   | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 0.9.1   | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 
-After configuring `.env`, run the migrations:
+> **TIP:** Try `php artisan concord:modules` to see ALL modules
+
+Configure `.env`, along with a database.
+
+Afterwards run the migrations:
 
 ```bash
 php artisan migrate
@@ -74,12 +79,6 @@ AppShell contains ~10-15 migrations out of the box
 > `sudo chown -R .www-data storage/`
 >
 > `sudo chmod -R g+w storage/`
-
-### Create An Initial Super User
-
-Run command `php artisan appshell:super`.
-
-This will ask a several questions and create a proper superuser that you can start working with.
 
 ## Laravel Auth Support
 
@@ -102,14 +101,24 @@ Another approach is to keep `App\User` but modify the class to extend AppShell's
 ```php
 namespace App;
 
-class User extends Konekt\AppShell\Models\User {}
+// No need to use Laravel default traits and properties as
+// they're already present in the base class
+
+class User extends \Konekt\AppShell\Models\User {}
 ```
 
 And add this to you `AppServiceProviders`'s boot method:
 
 ```php
-   $this->app->concord->registerModel(Konekt\User\Contracts\User::class, \App\User::class);
+   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
 ```
+
+### Create An Initial Super User
+
+Run command `php artisan appshell:super`.
+
+This will ask a several questions and create a proper superuser that you can start working with.
+
 
 ## Use AppShell's Admin Layout
 
@@ -135,14 +144,44 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell.sass', 'public/css');
 ```
 
-and the compile the assets with mix: `npm run dev`
+Remove the omnipresent Vue instance from Laravel's default app.js file:
 
-> **TIP:** In case you get errors with mix, this may help (ubuntu/debian & derivatives):
+`resources/assets/js/app.js`:
+
+```javascript
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+// REMOVE/COMMENT THIS LINE:
+require('./bootstrap');
+// ADD THIS LINE (jquery is needed):
+window.$ = window.jQuery = require('jquery');
+
+window.Vue = require('vue');
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+// REMOVE/COMMENT THESE 3 LINES:
+const app = new Vue({
+    el: '#app'
+});
+```
+
+and the compile the assets with mix: `yarn run dev`
+
+> **TIP:** You may need to [install yarn](https://yarnpkg.com/en/docs/install)
+> and run:
 ```bash
-sudo npm install -g npm
-sudo npm install -g n
-sudo n stable
-npm rebuild node-sass --force
+yarn install
 ```
 
 
