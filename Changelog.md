@@ -2,9 +2,10 @@
 
 ## 0.9
 
-## Unreleased
-##### 2017-12-XX
+## 0.9.2
+##### 2017-12-08
 
+- Concord min version is 0.9.9
 - Documentation fixes
 
 ### 0.9.1
