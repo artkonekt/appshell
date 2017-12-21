@@ -49,7 +49,7 @@
             {{ __('Addresses') }}
             <div class="card-actionbar">
                 @can('edit customers')
-                    <a href="{{ route('appshell.customer.create') }}" class="btn btn-sm btn-outline-success float-right">
+                    <a href="{{ route('appshell.address.create') }}?for=customer&forId={{ $customer->id }}" class="btn btn-sm btn-outline-success float-right">
                         <i class="zmdi zmdi-plus"></i>
                         {{ __('New Address') }}
                     </a>

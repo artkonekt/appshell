@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the CustomerAddressController class.
+ * Contains the CreateAddress interface.
  *
  * @copyright   Copyright (c) 2017 Attila Fulop
  * @author      Attila Fulop
@@ -10,10 +10,10 @@
  */
 
 
-namespace Konekt\AppShell\Http\Controllers;
+namespace Konekt\AppShell\Contracts\Requests;
 
 
-class CustomerAddressController extends BaseController
+interface CreateAddress extends BaseRequest
 {
 
 }
