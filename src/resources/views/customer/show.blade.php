@@ -38,7 +38,57 @@
             @endcomponent
         </div>
 
+        @yield('widgets')
+
     </div>
+
+    @yield('cards')
+
+    <div class="card">
+        <div class="card-header">
+            {{ __('Addresses') }}
+            <div class="card-actionbar">
+                @can('edit customers')
+                    <a href="{{ route('appshell.customer.create') }}" class="btn btn-sm btn-outline-success float-right">
+                        <i class="zmdi zmdi-plus"></i>
+                        {{ __('New Address') }}
+                    </a>
+                @endcan
+            </div>
+        </div>
+        <div class="card-block">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{{ __('Name') }}</th>
+                        <th>{{ __('Type') }}</th>
+                        <th>{{ __('Phone') }}</th>
+                        <th>{{ __('Address') }}</th>
+                        <th>{{ __('Country') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @forelse($customer->addresses as $address)
+                    <tr>
+                        <td>{{ $address->name }}</td>
+                        <td>{{ $address->type->label() }}</td>
+                        <td>{{ $address->phone }}</td>
+                        <td>
+                            @component('appshell::widgets.address.short_table_row', ['address' => $address])
+                            @endcomponent
+                        </td>
+                        <td>{{ $address->country->name }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td class="text-center">{{ __('Customer has no addresses yet') }}</td>
+                    </tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 
     <div class="card">
         <div class="card-block">
@@ -46,6 +96,8 @@
             <a href="{{ route('appshell.customer.edit', $customer) }}" class="btn btn-outline-primary">{{ __('Edit customer')
             }}</a>
             @endcan
+
+            @yield('actions')
 
             @can('delete customers')
                 {!! Form::open(['route' => ['appshell.customer.destroy', $customer], 'method' => 'DELETE', 'class' =>
