@@ -81,7 +81,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td class="text-center">{{ __('Customer has no addresses yet') }}</td>
+                        <td colspan="5" class="text-center">{{ __('Customer has no addresses yet') }}</td>
                     </tr>
                 @endforelse
                 </tbody>

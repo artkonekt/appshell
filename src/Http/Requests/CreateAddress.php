@@ -15,6 +15,7 @@ namespace Konekt\AppShell\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Konekt\AppShell\Contracts\Requests\CreateAddress as CreateAddressContract;
+use Konekt\Customer\Models\CustomerProxy;
 
 class CreateAddress extends FormRequest implements CreateAddressContract
 {
@@ -44,6 +45,10 @@ class CreateAddress extends FormRequest implements CreateAddressContract
      */
     public function getFor()
     {
+        if ($id = $this->get('forId')) {
+            return CustomerProxy::find($id);
+        }
+
         return null;
     }
 
