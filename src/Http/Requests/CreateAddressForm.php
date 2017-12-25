@@ -14,10 +14,10 @@ namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Konekt\AppShell\Contracts\Requests\CreateAddress as CreateAddressContract;
+use Konekt\AppShell\Contracts\Requests\CreateAddressForm as CreateAddressFormContract;
 use Konekt\Customer\Models\CustomerProxy;
 
-class CreateAddress extends FormRequest implements CreateAddressContract
+class CreateAddressForm extends FormRequest implements CreateAddressFormContract
 {
     use HasPermissions;
 

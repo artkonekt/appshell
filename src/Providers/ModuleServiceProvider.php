@@ -20,7 +20,7 @@ use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
-use Konekt\AppShell\Http\Requests\CreateAddress;
+use Konekt\AppShell\Http\Requests\CreateAddressForm;
 use Konekt\AppShell\Http\Requests\CreateCustomer;
 use Konekt\AppShell\Http\Requests\CreateRole;
 use Konekt\AppShell\Http\Requests\CreateUser;
@@ -45,7 +45,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateRole::class,
         CreateCustomer::class,
         UpdateCustomer::class,
-        CreateAddress::class
+        CreateAddressForm::class
     ];
 
     public function register()

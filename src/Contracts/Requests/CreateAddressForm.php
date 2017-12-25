@@ -13,7 +13,7 @@
 namespace Konekt\AppShell\Contracts\Requests;
 
 
-interface CreateAddress extends BaseRequest
+interface CreateAddressForm extends BaseRequest
 {
 
 }

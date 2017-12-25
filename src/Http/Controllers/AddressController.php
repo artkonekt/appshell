@@ -18,11 +18,11 @@ use Konekt\Address\Contracts\Address;
 use Konekt\Address\Models\AddressProxy;
 use Konekt\Address\Models\AddressTypeProxy;
 use Konekt\Address\Models\CountryProxy;
-use Konekt\AppShell\Contracts\Requests\CreateAddress;
+use Konekt\AppShell\Contracts\Requests\CreateAddressForm;
 
 class AddressController extends BaseController
 {
-    public function create(CreateAddress $request)
+    public function create(CreateAddressForm $request)
     {
         $address = app(Address::class);
 
