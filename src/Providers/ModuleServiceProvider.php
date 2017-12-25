@@ -16,10 +16,12 @@ namespace Konekt\AppShell\Providers;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
+use Konekt\Address\Contracts\Address as AddressContract;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
+use Konekt\AppShell\Http\Requests\CreateAddress;
 use Konekt\AppShell\Http\Requests\CreateAddressForm;
 use Konekt\AppShell\Http\Requests\CreateCustomer;
 use Konekt\AppShell\Http\Requests\CreateRole;
@@ -29,6 +31,7 @@ use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Icons\EnumIconMapper;
 use Konekt\AppShell\Icons\ZmdiAppShellIcons;
+use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
@@ -45,7 +48,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateRole::class,
         CreateCustomer::class,
         UpdateCustomer::class,
-        CreateAddressForm::class
+        CreateAddressForm::class,
+        CreateAddress::class
     ];
 
     public function register()
@@ -69,6 +73,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         // Use the User model that's extended with Acl
         $this->concord->registerModel(UserContract::class, User::class);
+        // Use the Address model that's extended with Customers
+        $this->concord->registerModel(AddressContract::class, Address::class);
 
         Route::aliasMiddleware('acl', AclMiddleware::class);
 

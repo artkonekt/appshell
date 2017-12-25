@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the CreateAddress interface.
+ * Contains the CreateAddressForm interface.
  *
  * @copyright   Copyright (c) 2017 Attila Fulop
  * @author      Attila Fulop
@@ -12,8 +12,15 @@
 
 namespace Konekt\AppShell\Contracts\Requests;
 
+use Illuminate\Database\Eloquent\Model;
 
 interface CreateAddressForm extends BaseRequest
 {
+    /**
+     * Returns the entity the address needs to be created for
+     *
+     * @return null|Model
+     */
+    public function getFor();
 
 }

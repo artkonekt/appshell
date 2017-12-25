@@ -1,23 +1,24 @@
 <?php
 /**
- * Contains the CreateAddressForm request class.
+ * Contains the CreateAddress request class.
  *
  * @copyright   Copyright (c) 2017 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2017-12-21
+ * @since       2017-12-25
  *
  */
 
 
 namespace Konekt\AppShell\Http\Requests;
 
+
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Konekt\AppShell\Contracts\Requests\CreateAddressForm as CreateAddressFormContract;
+use Konekt\AppShell\Contracts\Requests\CreateAddress as CreateAddressContract;
 use Konekt\Customer\Models\CustomerProxy;
 
-class CreateAddressForm extends FormRequest implements CreateAddressFormContract
+class CreateAddress extends FormRequest implements CreateAddressContract
 {
     use HasPermissions;
 
@@ -45,7 +46,7 @@ class CreateAddressForm extends FormRequest implements CreateAddressFormContract
      */
     public function getFor()
     {
-        if ($id = $this->query('forId')) {
+        if ($id = $this->input('forId')) {
             return CustomerProxy::find($id);
         }
 
