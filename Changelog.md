@@ -2,6 +2,12 @@
 
 ## 0.9
 
+## 0.9.4
+##### 2018-01-10
+
+- NEW FEATURE: Customer address editing
+- Sidebar: security menu has been renamed to settings
+
 ## 0.9.3
 ##### 2017-12-11
 
