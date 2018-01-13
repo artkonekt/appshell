@@ -4,10 +4,11 @@
   // Cards with color accent
   @each $color, $value in $theme-colors {
     &.bg-#{$color} {
-      border-color: darken($value, 12.5%);
+      //border-color: darken($value, 12.5%);
       .card-header {
         background-color: darken($value, 3%);
-        border-color: darken($value, 12.5%);
+        //border-color: darken($value, 12.5%);
+        //box-shadow: 0 1px 3px 0 rgba($value, .27);
       }
     }
   }
