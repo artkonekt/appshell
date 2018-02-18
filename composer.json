@@ -19,7 +19,7 @@
         "konekt/concord": ">=0.9.10",
         "konekt/customer": ">=0.9.4",
         "konekt/user": ">=0.9.0",
-        "konekt/acl": ">=0.9.0",
+        "konekt/acl": "~1.0",
         "konekt/menu": "~1.0",
         "laravelcollective/html": "~5.4",
         "laracasts/flash": "~3.0",
