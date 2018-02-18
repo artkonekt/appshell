@@ -2,8 +2,14 @@
 
 ## 0.9
 
+## 0.9.6
+##### 2018-02-19
+
+- Using konekt/acl v1.0 (for Laravel 5.6 support)
+- Restored broken Laravel 5.4 compatibility
+
 ## 0.9.5
-##### 2018-02-17
+##### 2018-02-18
 
 - Laravel 5.6 compatible
 - UI improvements
