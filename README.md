@@ -1,6 +1,7 @@
 # Konekt AppShell
 
-Konekt AppShell is a [Concord box](https://github.com/artkonekt/concord/blob/master/docs/boxes.md) (thus a Laravel Extension) that serves as a foundation for Laravel business applications.
+Konekt AppShell is a Laravel Extension that serves as a foundation for Laravel business applications.
+It is also a [Concord box](https://github.com/artkonekt/concord/blob/master/docs/boxes.md).
 
 Incorporates the basics for:
 
@@ -58,7 +59,7 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 | #  | Name                | Kind | Version | Id               | Namespace       |
 +----+---------------------+------+---------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 0.9.1   | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 0.9.5   | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 

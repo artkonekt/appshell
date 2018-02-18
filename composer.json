@@ -23,7 +23,7 @@
         "konekt/menu": "~1.0",
         "laravelcollective/html": "~5.4",
         "laracasts/flash": "~3.0",
-        "davejamesmiller/laravel-breadcrumbs": "^3.0.2|~4.0",
+        "davejamesmiller/laravel-breadcrumbs": "3.0.2 - 5",
         "cviebrock/eloquent-sluggable": "~4.3"
     },
     "autoload": {
