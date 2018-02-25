@@ -3,6 +3,7 @@
     "description": "AppShell is a Concord box that serves as a foundation for Laravel business application",
     "type": "library",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "keywords": ["laravel", "concord", "concord-box"],
     "license": "MIT",
     "authors": [
@@ -26,10 +27,20 @@
         "davejamesmiller/laravel-breadcrumbs": "3.0.2 - 5.0",
         "cviebrock/eloquent-sluggable": "~4.2"
     },
+    "require-dev": {
+        "ext-sqlite3": "*",
+        "phpunit/phpunit": "6.2 - 7.0",
+        "orchestra/testbench": "^3.4.2"
+    },
     "autoload": {
         "psr-4": { "Konekt\\AppShell\\": "src"},
         "files": [
             "src/Support/helpers.php"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Konekt\\AppShell\\Tests\\": "tests/"
+        }
     }
 }

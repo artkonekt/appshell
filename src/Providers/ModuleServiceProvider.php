@@ -32,6 +32,7 @@ use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Icons\EnumIconMapper;
 use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
+use Konekt\AppShell\Models\SettingScope;
 use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
@@ -50,6 +51,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateCustomer::class,
         CreateAddressForm::class,
         CreateAddress::class
+    ];
+
+    protected $enums = [
+        SettingScope::class
     ];
 
     public function register()
