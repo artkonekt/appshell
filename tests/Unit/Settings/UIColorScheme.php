@@ -2,7 +2,7 @@
 /**
  * Contains the UIColorScheme class.
  *
- * @copyright   Copyright (c) 2017 Attila Fulop
+ * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
  * @since       2018-02-25
@@ -26,6 +26,11 @@ class UIColorScheme implements Setting
         return \Konekt\AppShell\Models\SettingScope::USER();
     }
 
+    public function default()
+    {
+        return 'red';
+    }
+
     public function permission()
     {
         return null;
@@ -39,5 +44,10 @@ class UIColorScheme implements Setting
     public function options()
     {
         return ['red' => 'Red', 'blue' => 'Blue'];
+    }
+
+    public function syncWithConfig()
+    {
+        return false;
     }
 }

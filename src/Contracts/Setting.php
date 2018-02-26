@@ -2,7 +2,7 @@
 /**
  * Contains the Setting interface.
  *
- * @copyright   Copyright (c) 2017 Attila Fulop
+ * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
  * @since       2018-02-25
@@ -31,6 +31,12 @@ interface Setting
      */
     public function scope() : SettingScope;
 
+    /**
+     * Returns the default value of the setting
+     *
+     * @return mixed
+     */
+    public function default();
 
     /**
      * Returns the permission name required to change the setting
@@ -59,5 +65,17 @@ interface Setting
      * @return null|Collection|array
      */
     public function options();
+
+    /**
+     * Returns whether or not the setting should be synchronized with
+     * configuration (Laravel's built in facility).
+     *
+     * Synchronization means, the setting's value will be set as config value
+     * using the same key. This assignment is runtime only, values are not
+     * being saved to configuration files, but resumed from the setting
+     *
+     * @return bool
+     */
+    public function syncWithConfig();
 
 }

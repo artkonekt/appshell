@@ -2,7 +2,7 @@
 /**
  * Contains the MailchimpApiKey setting test class.
  *
- * @copyright   Copyright (c) 2017 Attila Fulop
+ * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
  * @since       2018-02-25
@@ -35,6 +35,12 @@ class MailchimpApiKey implements Setting
         return $this->scope;
     }
 
+    public function default()
+    {
+        return null;
+    }
+
+
     public function permission()
     {
         return null;
@@ -50,5 +56,8 @@ class MailchimpApiKey implements Setting
         return null;
     }
 
-
+    public function syncWithConfig()
+    {
+        return true;
+    }
 }
