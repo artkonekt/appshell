@@ -19,11 +19,13 @@ use Konekt\AppShell\Models\SettingScope;
 
 class MailchimpApiKey implements Setting
 {
+    const KEY = 'mailchimp.api_key';
+
     private $scope;
 
     public function key()
     {
-        return 'mailchimp.api_key';
+        return self::KEY;
     }
 
     public function scope(): SettingScopeContract

@@ -72,4 +72,16 @@ class AvailableSettings
             return $item->scope()->equals($scope);
         });
     }
+
+    /**
+     * Returns one setting by it's key
+     *
+     * @param string $key
+     *
+     * @return Setting|null
+     */
+    public function getByKey($key)
+    {
+        return $this->items->get($key);
+    }
 }

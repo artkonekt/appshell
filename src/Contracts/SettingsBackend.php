@@ -28,22 +28,22 @@ interface SettingsBackend
     /**
      * Returns the value for a specific setting
      *
-     * @param Setting       $setting
-     * @param null|User|int $user
+     * @param Setting|string $setting
+     * @param null|User|int  $user
      *
      * @return mixed
      */
-    public function get(Setting $setting, $user = null);
+    public function get($setting, $user = null);
 
     /**
      * Sets the value for a specific setting
      *
-     * @param Setting       $setting
-     * @param mixed         $value
-     * @param null|User|int $user
+     * @param Setting|string $setting
+     * @param mixed          $value
+     * @param null|User|int  $user
      *
      * @return mixed
      */
-    public function set(Setting $setting, $value, $user = null);
+    public function set($setting, $value, $user = null);
 
 }

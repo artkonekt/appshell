@@ -15,11 +15,8 @@ namespace Konekt\AppShell\Settings\Backends;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Konekt\AppShell\Contracts\Setting;
-use Konekt\AppShell\Contracts\SettingsBackend;
-use Konekt\User\Contracts\User;
 
-class Database implements SettingsBackend
+class Database extends BaseBackend
 {
     const TABLE_NAME = 'settings';
 
@@ -28,35 +25,37 @@ class Database implements SettingsBackend
      */
     public function all(): Collection
     {
-        return DB::table(self::TABLE_NAME)->get();
+        return DB::table(self::TABLE_NAME)->get()->keyBy(function($item) {
+            return $item->key . ($item->user_id ? self::USER_KEY_SEPARATOR . $item->user_id : '');
+        });
     }
 
     /**
      * @inheritDoc
      */
-    public function get(Setting $setting, $user = null)
+    public function get($setting, $user = null)
     {
         $query = DB::table(self::TABLE_NAME)
                    ->select('value')
-                   ->where('key', $setting->key()
+                   ->where('key', $this->getKey($setting)
                    );
 
         if ($user) {
             $query->where('user_id', $this->getUserId($user));
         }
 
-        $result = $query->get();
+        $result = $query->first();
 
-        return $result->value;
+        return $result ? $result->value : null;
     }
 
     /**
      * @inheritDoc
      */
-    public function set(Setting $setting, $value, $user = null)
+    public function set($setting, $value, $user = null)
     {
         $lookup = [
-            'key' => $setting->key()
+            'key' => $this->getKey($setting)
         ];
 
         if ($user) {
@@ -67,18 +66,4 @@ class Database implements SettingsBackend
             'value' => $value
         ]);
     }
-
-    /**
-     * Returns the user id based on dynamic user parameter
-     *
-     * @param User|int|null $user
-     *
-     * @return int|null
-     */
-    private function getUserId($user)
-    {
-        return $user instanceof User ? $user->id : $user;
-    }
-
-
 }
