@@ -10,6 +10,7 @@ Incorporates the basics for:
 - Authentication, authorization (acl)
 - Locations (countries, provinces, addresses)
 - Customers
+- User settings
 - Extensible Admin Interface
 - Menu handling
 
@@ -21,9 +22,7 @@ The user/auth part is built on top of the Laravel facilities in a compatible man
 composer create-project laravel/laravel myapp
 # Wait 1-4 minutes to complete ...
 cd myapp
-composer config minimum-stability dev
-composer config prefer-stable true
-composer require --prefer-source konekt/appshell:^0.9.1
+composer require konekt/appshell
 touch config/concord.php
 ```
 
@@ -39,9 +38,11 @@ return [
 ];
 ```
 
+### Register The Service Provider (Laravel 5.4 Only)
+
 Edit `config/app.php` and add this line to the `providers` array (below 'Package Service Providers', always above 'Application Service Providers')
 
-(_Below tinker, as of v5.4_)
+(_Recommended line: just below tinker's service provider_)
 
 ```php
 Konekt\Concord\ConcordServiceProvider::class,
@@ -150,27 +151,6 @@ Remove the omnipresent Vue instance from Laravel's default app.js file:
 `resources/assets/js/app.js`:
 
 ```javascript
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-// REMOVE/COMMENT THIS LINE:
-require('./bootstrap');
-// ADD THIS LINE (jquery is needed):
-window.$ = window.jQuery = require('jquery');
-
-window.Vue = require('vue');
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
 // REMOVE/COMMENT THESE 3 LINES:
 const app = new Vue({
     el: '#app'

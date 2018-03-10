@@ -34,6 +34,9 @@ use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\SettingScope;
 use Konekt\AppShell\Models\User;
+use Konekt\AppShell\Settings\AvailableSettings;
+use Konekt\AppShell\Settings\Backends\Database;
+use Konekt\AppShell\Settings\SettingsManager;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
 use Menu;
@@ -65,6 +68,12 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerThirdPartyProviders();
         $this->registerCommands();
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
+        $this->app->singleton('appshell.settings', function () {
+            return new SettingsManager(
+                new AvailableSettings(),
+                new Database() // Temporary hardcoded the single available variant, change to config()
+            );
+        });
     }
 
     public function boot()
@@ -73,6 +82,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         (new ZmdiAppShellIcons($this->app->make('appshell.icon')))->registerIcons();
 
+        $this->registerSettings();
         $this->initUiData();
         $this->loadBreadcrumbs();
 
@@ -135,18 +145,19 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             Menu::create($name, $config);
         }
 
-        // Add default menu items to sidbar
+        // Add default menu items to sidebar
         if ($appshellMenu = Menu::get('appshell')) {
             // CRM Group
-            $crm = $appshellMenu->addItem('crm', __('CRM'));
+            $crm = $appshellMenu->addItem('crm_group', __('CRM'));
 
             $crm->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])->data('icon', 'accounts-list');
 
             // Settings Group
-            $settings = $appshellMenu->addItem('settings', __('Settings'));
+            $settings = $appshellMenu->addItem('settings_group', __('Settings'));
 
             $settings->addSubItem('users', __('Users'), ['route' => 'appshell.user.index'])->data('icon', 'accounts');
             $settings->addSubItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])->data('icon', 'shield-security');
+            $settings->addSubItem('settings', __('Settings'), ['route' => 'appshell.setting.index'])->data('icon', 'settings');
         }
     }
 
@@ -219,6 +230,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 $this->app['config']['breadcrumbs'] ?: [] // current
             )
         );
+    }
+
+    private function registerSettings()
+    {
+        //$this->
     }
 
 

@@ -16,3 +16,4 @@ Route::post('user/{$user}/inactivate', 'UserController@inactivate');
 Route::resource('role', 'RoleController');
 Route::resource('customer', 'CustomerController');
 Route::resource('address', 'AddressController');
+Route::resource('setting', 'SettingsController');
