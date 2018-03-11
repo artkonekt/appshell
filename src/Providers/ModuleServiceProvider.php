@@ -70,7 +70,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
         $this->app->singleton('appshell.settings', function () {
             return new SettingsManager(
-                new AvailableSettings(),
+                new AvailableSettings($this->config('settings', [])),
                 new Database() // Temporary hardcoded the single available variant, change to config()
             );
         });
@@ -82,7 +82,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         (new ZmdiAppShellIcons($this->app->make('appshell.icon')))->registerIcons();
 
-        $this->registerSettings();
         $this->initUiData();
         $this->loadBreadcrumbs();
 
@@ -231,11 +230,4 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             )
         );
     }
-
-    private function registerSettings()
-    {
-        //$this->
-    }
-
-
 }

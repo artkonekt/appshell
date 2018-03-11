@@ -13,6 +13,7 @@
 namespace Konekt\AppShell\Settings;
 
 
+use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Setting;
 use Konekt\AppShell\Contracts\SettingsBackend;
 use Konekt\User\Contracts\User;
@@ -61,6 +62,26 @@ class SettingsManager
         $setting = $this->availableSettings->getByKey($setting);
 
         return $setting ? $setting->default() : null;
+    }
+
+    /**
+     * Returns the collection of available setting objects
+     *
+     * @return Collection
+     */
+    public function available()
+    {
+        return $this->availableSettings->all();
+    }
+
+    /**
+     * Register one or more setting(s) with the system
+     *
+     * @param Setting|string|array $setting
+     */
+    public function register($setting)
+    {
+        $this->availableSettings->register($setting);
     }
 
 }

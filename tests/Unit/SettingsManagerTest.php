@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Konekt\AppShell\Settings\AvailableSettings;
 use Konekt\AppShell\Settings\Backends\Database;
 use Konekt\AppShell\Settings\SettingsManager;
+use Konekt\AppShell\Tests\TestCase;
 use Konekt\AppShell\Tests\Unit\Settings\MailchimpApiKey;
 use Konekt\AppShell\Tests\Unit\Settings\UIColorScheme;
 

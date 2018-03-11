@@ -12,12 +12,16 @@
 
 namespace Konekt\AppShell\Facades;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
+use Konekt\AppShell\Contracts\Setting;
 
 /**
  * @method static mixed get($setting, $user = null)
+ * @method static Collection available()
+ * @method static void register(Setting|string|array $setting)
  */
-class Cart extends Facade
+class Settings extends Facade
 {
     /**
      * Get the registered name of the component.

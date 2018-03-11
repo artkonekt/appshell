@@ -25,29 +25,41 @@ class AvailableSettings
     /** @var Collection */
     protected $items;
 
-    public function __construct()
+    /**
+     * @param array $listOfSettings  An array of setting classes (string) or setting objects
+     */
+    public function __construct($listOfSettings = [])
     {
         $this->items = new Collection();
+
+        $this->register($listOfSettings);
     }
 
     /**
      * Register one or more setting with the system
      *
-     * @param Setting|array $setting
+     * @param Setting|string|array $setting
      */
     public function register($setting)
     {
 
-        if ($setting instanceof Setting) {
-            $setting = [$setting];
-        }
+        $settings = is_array($setting) ? $setting : [$setting];
 
-        foreach ($setting as $item) {
-            if ( ! $item instanceof Setting) {
-                throw new \InvalidArgumentException('Setting type can not be registered' . gettype($setting));
+        foreach ($settings as $setting) {
+            if (is_string($setting) && class_exists($setting)) {
+                $setting = new $setting();
             }
 
-            $this->items->put($item->key(), $item);
+            if ( ! $setting instanceof Setting) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Setting type (%s) can not be registered',
+                        is_object($setting) ? get_class($setting) : gettype($setting)
+                    )
+                );
+            }
+
+            $this->items->put($setting->key(), $setting);
         }
     }
 

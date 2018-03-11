@@ -15,6 +15,7 @@ namespace Konekt\AppShell\Tests\Unit;
 
 use Konekt\AppShell\Contracts\SettingsBackend;
 use Konekt\AppShell\Settings\Backends\Database as DatabaseBackend;
+use Konekt\AppShell\Tests\TestCase;
 use Konekt\AppShell\Tests\Unit\Settings\MailchimpApiKey;
 use Konekt\AppShell\Tests\Unit\Settings\UIColorScheme;
 

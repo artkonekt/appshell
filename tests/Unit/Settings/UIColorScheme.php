@@ -16,6 +16,8 @@ use Konekt\AppShell\Contracts\SettingScope;
 
 class UIColorScheme implements Setting
 {
+    const DEFAULT = 'red';
+
     public function key()
     {
         return 'ui.color_scheme';
@@ -28,7 +30,7 @@ class UIColorScheme implements Setting
 
     public function default()
     {
-        return 'red';
+        return self::DEFAULT;
     }
 
     public function permission()
