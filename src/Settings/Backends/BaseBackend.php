@@ -21,6 +21,7 @@ use Konekt\User\Contracts\User;
 abstract class BaseBackend implements SettingsBackend
 {
     const USER_KEY_SEPARATOR = '@';
+
     /**
      * @inheritDoc
      */

@@ -39,7 +39,7 @@ class SettingsConfigurationTest extends TestCase
     {
         parent::resolveApplicationConfiguration($app);
 
-        $app['config']->set('konekt.app_shell.settings', [
+        $app['config']->set('konekt.app_shell.settings.settings', [
             UIColorScheme::class,
             MailchimpApiKey::class
         ]);

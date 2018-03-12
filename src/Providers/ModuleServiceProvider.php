@@ -35,7 +35,7 @@ use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\SettingScope;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Settings\AvailableSettings;
-use Konekt\AppShell\Settings\Backends\Database;
+use Konekt\AppShell\Settings\BackendFactory;
 use Konekt\AppShell\Settings\SettingsManager;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
@@ -44,6 +44,8 @@ use Menu;
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
     use HasBreadcrumbs;
+
+    const DEFAULT_SETTINGS_DRIVER = 'database';
 
     protected $requests = [
         CreateUser::class,
@@ -70,8 +72,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
         $this->app->singleton('appshell.settings', function () {
             return new SettingsManager(
-                new AvailableSettings($this->config('settings', [])),
-                new Database() // Temporary hardcoded the single available variant, change to config()
+                new AvailableSettings($this->config('settings.settings', [])),
+                BackendFactory::create($this->config('settings.driver', self::DEFAULT_SETTINGS_DRIVER))
             );
         });
     }
