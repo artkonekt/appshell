@@ -13,6 +13,8 @@
 namespace Konekt\AppShell\Http\Controllers;
 
 
+use Konekt\AppShell\Facades\Settings;
+
 class SettingsController extends BaseController
 {
     /**
@@ -21,8 +23,7 @@ class SettingsController extends BaseController
     public function index()
     {
         return $this->appShellView('settings.index', [
-
+            'settings' => Settings::forApplication()
         ]);
     }
-
 }

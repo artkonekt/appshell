@@ -47,6 +47,28 @@ class SettingsManagerTest extends TestCase
         $this->assertEquals('fghjkl', $manager->get(MailchimpApiKey::KEY));
     }
 
+    /**
+     * @test
+     * @dataProvider managerProvider
+     */
+    public function it_returns_settings_with_application_scope(SettingsManager $manager)
+    {
+        $this->assertCount(1, $manager->forApplication());
+
+        $this->assertInstanceOf(MailchimpApiKey::class, $manager->forApplication()->first());
+    }
+
+    /**
+     * @test
+     * @dataProvider managerProvider
+     */
+    public function it_returns_settings_with_user_scope(SettingsManager $manager)
+    {
+        $this->assertCount(1, $manager->forUser());
+
+        $this->assertInstanceOf(UIColorScheme::class, $manager->forUser()->first());
+    }
+
     public function managerProvider()
     {
         return [
@@ -64,5 +86,4 @@ class SettingsManagerTest extends TestCase
 
         return $this->availableSettings;
     }
-
 }

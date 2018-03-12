@@ -20,6 +20,8 @@ use Konekt\AppShell\Contracts\Setting;
  * @method static mixed get($setting, $user = null)
  * @method static Collection available()
  * @method static void register(Setting|string|array $setting)
+ * @method static Collection forApplication()
+ * @method static Collection forUser()
  */
 class Settings extends Facade
 {

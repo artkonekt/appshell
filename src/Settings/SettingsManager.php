@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Settings;
 use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Setting;
 use Konekt\AppShell\Contracts\SettingsBackend;
+use Konekt\AppShell\Models\SettingScopeProxy;
 use Konekt\User\Contracts\User;
 
 class SettingsManager
@@ -84,4 +85,23 @@ class SettingsManager
         $this->availableSettings->register($setting);
     }
 
+    /**
+     * Returns the collection of available application-scoped settings
+     *
+     * @return Collection
+     */
+    public function forApplication()
+    {
+        return $this->availableSettings->byScope(SettingScopeProxy::APPLICATION());
+    }
+
+    /**
+     * Returns the collection of available user-scoped settings
+     *
+     * @return Collection
+     */
+    public function forUser()
+    {
+        return $this->availableSettings->byScope(SettingScopeProxy::USER());
+    }
 }
