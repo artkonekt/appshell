@@ -25,6 +25,13 @@ interface Setting
     public function key();
 
     /**
+     * The label of the setting (to be displayed on UI)
+     *
+     * @return string
+     */
+    public function label();
+
+    /**
      * Returns the scope of the setting
      *
      * @return SettingScope

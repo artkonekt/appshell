@@ -23,7 +23,7 @@ class SettingsController extends BaseController
     public function index()
     {
         return $this->appShellView('settings.index', [
-            'settings' => Settings::forApplication()
+            'tabs' => Settings::tabs()
         ]);
     }
 }

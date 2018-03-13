@@ -16,25 +16,26 @@ namespace Konekt\AppShell\Settings;
 use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Setting;
 use Konekt\AppShell\Contracts\SettingsBackend;
+use Konekt\AppShell\Contracts\SettingsTab;
 use Konekt\AppShell\Models\SettingScopeProxy;
 use Konekt\User\Contracts\User;
 
 class SettingsManager
 {
-    /**
-     * @var AvailableSettings
-     */
+    /**@var AvailableSettings */
     private $availableSettings;
 
-    /**
-     * @var SettingsBackend
-     */
+    /** @var SettingsBackend */
     private $backend;
+
+    /** @var Collection */
+    private $tabs;
 
     public function __construct(AvailableSettings $availableSettings, SettingsBackend $backend)
     {
         $this->availableSettings = $availableSettings;
         $this->backend           = $backend;
+        $this->tabs              = collect();
     }
 
     /**
@@ -66,6 +67,24 @@ class SettingsManager
     }
 
     /**
+     * Registers a settings tab
+     *
+     * @param SettingsTab $tab
+     */
+    public function registerTab(SettingsTab $tab)
+    {
+        $this->tabs->put($tab->id(), $tab);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function tabs()
+    {
+        return $this->tabs;
+    }
+
+    /**
      * Returns the collection of available setting objects
      *
      * @return Collection
@@ -78,9 +97,11 @@ class SettingsManager
     /**
      * Register one or more setting(s) with the system
      *
-     * @param Setting|string|array $setting
+     * @param Setting|string|array    $setting
+     * @param null|string|SettingsTab $tab
+     * @param null                    $group
      */
-    public function register($setting)
+    public function register($setting, $tab = null, $group = null)
     {
         $this->availableSettings->register($setting);
     }

@@ -9,7 +9,7 @@
  *
  */
 
-namespace Konekt\AppShell\Settings\AppShell\Ui;
+namespace Konekt\AppShell\Settings\BuiltIn;
 
 use Konekt\AppShell\Contracts\Setting;
 use Konekt\AppShell\Contracts\SettingScope;
@@ -32,6 +32,15 @@ class AppName implements Setting
     {
         return 'appshell.ui.app_name';
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function label()
+    {
+        return __('Name of the application');
+    }
+
 
     /**
      * @inheritDoc

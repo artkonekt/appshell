@@ -34,9 +34,11 @@ use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\SettingScope;
 use Konekt\AppShell\Models\User;
+use Konekt\AppShell\Settings\BuiltIn\AppName;
 use Konekt\AppShell\Settings\AvailableSettings;
 use Konekt\AppShell\Settings\BackendFactory;
 use Konekt\AppShell\Settings\SettingsManager;
+use Konekt\AppShell\Settings\Tab;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
 use Menu;
@@ -70,12 +72,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerThirdPartyProviders();
         $this->registerCommands();
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
-        $this->app->singleton('appshell.settings', function () {
-            return new SettingsManager(
-                new AvailableSettings($this->config('settings.settings', [])),
-                BackendFactory::create($this->config('settings.driver', self::DEFAULT_SETTINGS_DRIVER))
-            );
-        });
+        $this->registerSettings();
     }
 
     public function boot()
@@ -84,6 +81,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         (new ZmdiAppShellIcons($this->app->make('appshell.icon')))->registerIcons();
 
+        $this->bootSettings();
         $this->initUiData();
         $this->loadBreadcrumbs();
 
@@ -231,5 +229,32 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 $this->app['config']['breadcrumbs'] ?: [] // current
             )
         );
+    }
+
+    /**
+     * Registers the settings service singleton that
+     * is the real service behind Settings facade
+     * and can be extended via appshell config
+     */
+    private function registerSettings()
+    {
+        $this->app->singleton('appshell.settings', function () {
+
+            $availableSettings = array_merge(
+                $this->config('settings.settings', []), [
+                    new AppName()
+            ]);
+
+            return new SettingsManager(
+                new AvailableSettings($availableSettings),
+                BackendFactory::create($this->config('settings.driver', self::DEFAULT_SETTINGS_DRIVER))
+            );
+        });
+    }
+
+    private function bootSettings()
+    {
+        $settings = $this->app->get('appshell.settings');
+        $settings->registerTab(new Tab('general_settings', __('General Settings'), 10));
     }
 }
