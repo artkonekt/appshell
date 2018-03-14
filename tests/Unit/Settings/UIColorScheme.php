@@ -33,6 +33,14 @@ class UIColorScheme implements Setting
         return self::DEFAULT;
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function label()
+    {
+        return 'Color Scheme';
+    }
+
     public function permission()
     {
         return null;

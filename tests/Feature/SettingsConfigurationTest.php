@@ -28,7 +28,8 @@ class SettingsConfigurationTest extends TestCase
         /** @var SettingsManager $settingsService */
         $settingsService = $this->app->make('appshell.settings');
 
-        $this->assertCount(2, $settingsService->available());
+        // 3 because AppShell has 1 built-in setting
+        $this->assertCount(3, $settingsService->available());
         $this->assertEquals(UIColorScheme::DEFAULT, $settingsService->get('ui.color_scheme'));
     }
 

@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Settings;
 use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Setting;
 use Konekt\AppShell\Contracts\SettingsBackend;
+use Konekt\AppShell\Contracts\SettingsGroup;
 use Konekt\AppShell\Contracts\SettingsTab;
 use Konekt\AppShell\Models\SettingScopeProxy;
 use Konekt\User\Contracts\User;
@@ -23,13 +24,13 @@ use Konekt\User\Contracts\User;
 class SettingsManager
 {
     /**@var AvailableSettings */
-    private $availableSettings;
+    protected $availableSettings;
 
     /** @var SettingsBackend */
-    private $backend;
+    protected $backend;
 
     /** @var Collection */
-    private $tabs;
+    protected $tabs;
 
     public function __construct(AvailableSettings $availableSettings, SettingsBackend $backend)
     {
@@ -85,6 +86,25 @@ class SettingsManager
     }
 
     /**
+     * Register a settings group
+     *
+     * @param SettingsGroup           $group
+     * @param SettingsTab|string|null $tab The tab object or id to add the group to.
+     *                                     If null, the group will be added to the
+     *                                     very first tab
+     */
+    public function registerGroup(SettingsGroup $group, $tab = null)
+    {
+        $tab = $this->findOrFirstTab($tab);
+
+        if (!$tab) {
+            throw new \InvalidArgumentException('Could not find a tab for the group');
+        }
+
+        $tab->groups()->put($group->id(), $group);
+    }
+
+    /**
      * Returns the collection of available setting objects
      *
      * @return Collection
@@ -97,13 +117,18 @@ class SettingsManager
     /**
      * Register one or more setting(s) with the system
      *
-     * @param Setting|string|array    $setting
-     * @param null|string|SettingsTab $tab
-     * @param null                    $group
+     * @param Setting|string|array      $setting
+     * @param SettingsGroup|string|null $group
      */
-    public function register($setting, $tab = null, $group = null)
+    public function register($setting, $group = null)
     {
-        $this->availableSettings->register($setting);
+        $registeredSettings = $this->availableSettings->register($setting);
+
+        if ($group = $this->findOrFirstGroup($group)) {
+            foreach ($registeredSettings as $setting) {
+                $group->settings()->put($setting->key(), $setting);
+            }
+        }
     }
 
     /**
@@ -124,5 +149,60 @@ class SettingsManager
     public function forUser()
     {
         return $this->availableSettings->byScope(SettingScopeProxy::USER());
+    }
+
+    /**
+     * Finds a tab based on object/string. If null given, the first tab is returned
+     *
+     * @param SettingsTab|string|null $tab
+     *
+     * @return SettingsTab|null
+     */
+    protected function findOrFirstTab($tab)
+    {
+        if (! $tab instanceof SettingsTab || ! is_string($tab) || ! is_null($tab)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Don't know how to get a settings tab from type `%s`",
+                    is_object($tab) ? get_class($tab) : gettype($tab)
+                )
+            );
+        }
+
+        return $this->tabs->get(is_object($tab) ? $tab->id() : $tab, $this->tabs->first());
+    }
+
+    /**
+     * Finds a group based on object/string. If null given, the first group is returned
+     *
+     * @param SettingsGroup|string|null $group
+     *
+     * @return SettingsGroup|null
+     */
+    protected function findOrFirstGroup($group)
+    {
+        if (! $group instanceof SettingsGroup || ! is_string($group) || ! is_null($group)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Don't know how to get a setting group from type `%s`",
+                    is_object($group) ? get_class($group) : gettype($group)
+                )
+            );
+        }
+
+        $groupId = is_object($group) ? $group->id() : $group;
+        foreach ($this->tabs as $tab) {
+            if ($tab->groups()->has($groupId)) {
+                return $tab->groups()->get($groupId);
+            }
+        }
+
+        /** Fallback to first tab's first group */
+        $firstTab = $this->tabs->first();
+        if ($firstTab) {
+            return $firstTab->groups()->first();
+        }
+
+        return null;
     }
 }

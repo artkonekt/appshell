@@ -1,11 +1,11 @@
 <?php
 /**
- * Contains the Tab class.
+ * Contains the Group class.
  *
  * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2018-03-13
+ * @since       2018-03-14
  *
  */
 
@@ -14,14 +14,14 @@ namespace Konekt\AppShell\Settings;
 
 
 use Illuminate\Support\Collection;
-use Konekt\AppShell\Contracts\SettingsTab;
+use Konekt\AppShell\Contracts\SettingsGroup;
 
-class Tab extends BaseSlice implements SettingsTab
+class Group extends BaseSlice implements SettingsGroup
 {
     /**
      * @inheritDoc
      */
-    public function groups(): Collection
+    public function settings(): Collection
     {
         return $this->children->sortBy('order');
     }

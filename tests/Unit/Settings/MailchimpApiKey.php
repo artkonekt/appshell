@@ -42,6 +42,13 @@ class MailchimpApiKey implements Setting
         return null;
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function label()
+    {
+        return 'Mailchimp API key';
+    }
 
     public function permission()
     {

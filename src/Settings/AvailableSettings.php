@@ -39,11 +39,13 @@ class AvailableSettings
      * Register one or more setting with the system
      *
      * @param Setting|string|array $setting
+     *
+     * @return Setting[] Returns the array of setting objects registered
      */
     public function register($setting)
     {
-
         $settings = is_array($setting) ? $setting : [$setting];
+        $result = [];
 
         foreach ($settings as $setting) {
             if (is_string($setting) && class_exists($setting)) {
@@ -60,7 +62,10 @@ class AvailableSettings
             }
 
             $this->items->put($setting->key(), $setting);
+            $result[] = $setting;
         }
+
+        return $result;
     }
 
     /**

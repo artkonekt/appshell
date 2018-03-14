@@ -1,11 +1,11 @@
 <?php
 /**
- * Contains the SettingsTab interface.
+ * Contains the SettingsGroup interface.
  *
  * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2018-03-13
+ * @since       2018-03-14
  *
  */
 
@@ -15,12 +15,12 @@ namespace Konekt\AppShell\Contracts;
 
 use Illuminate\Support\Collection;
 
-interface SettingsTab extends SettingsSlice
+interface SettingsGroup extends SettingsSlice
 {
     /**
-     * The setting groups within the tab
+     * The setting items within the group
      *
      * @return Collection
      */
-    public function groups() : Collection;
+    public function settings() : Collection;
 }
