@@ -15,11 +15,16 @@ namespace Konekt\AppShell\Facades;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 use Konekt\AppShell\Contracts\Setting;
+use Konekt\AppShell\Contracts\SettingsGroup;
+use Konekt\AppShell\Contracts\SettingsTab;
 
 /**
  * @method static mixed get($setting, $user = null)
  * @method static Collection available()
- * @method static void register(Setting|string|array $setting)
+ * @method static Collection tabs()
+ * @method static void registerTab(SettingsTab $tab)
+ * @method static void registerGroup(SettingsGroup $group, $tab = null)
+ * @method static void registerSetting(Setting|string|array $setting)
  * @method static Collection forApplication()
  * @method static Collection forUser()
  */

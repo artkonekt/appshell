@@ -14,6 +14,7 @@ namespace Konekt\AppShell\Settings;
 
 
 use Illuminate\Support\Collection;
+use Konekt\AppShell\Contracts\SettingsGroup;
 use Konekt\AppShell\Contracts\SettingsTab;
 
 class Tab extends BaseSlice implements SettingsTab
@@ -24,6 +25,11 @@ class Tab extends BaseSlice implements SettingsTab
     public function groups(): Collection
     {
         return $this->children->sortBy('order');
+    }
+
+    public function addGroup(SettingsGroup $group)
+    {
+        $this->children->put($group->id(), $group);
     }
 
     /**

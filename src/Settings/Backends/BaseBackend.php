@@ -25,17 +25,32 @@ abstract class BaseBackend implements SettingsBackend
     /**
      * @inheritDoc
      */
-    abstract public function all(): Collection;
+    abstract public function allSettings(): Collection;
 
     /**
      * @inheritDoc
      */
-    abstract public function get($setting, $user = null);
+    abstract public function allPreferences($user): Collection;
 
     /**
      * @inheritDoc
      */
-    abstract public function set($setting, $value, $user = null);
+    abstract public function getSetting($setting);
+
+    /**
+     * @inheritDoc
+     */
+    abstract public function getPreference($setting, $user);
+
+    /**
+     * @inheritDoc
+     */
+    abstract public function setSetting($setting, $value);
+
+    /**
+     * @inheritDoc
+     */
+    abstract public function setPreference($setting, $value, $user);
 
     /**
      * @param Setting|string $setting

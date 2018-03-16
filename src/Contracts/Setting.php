@@ -9,9 +9,7 @@
  *
  */
 
-
 namespace Konekt\AppShell\Contracts;
-
 
 use Illuminate\Support\Collection;
 
@@ -22,7 +20,7 @@ interface Setting
      *
      * @return string
      */
-    public function key();
+    public static function key();
 
     /**
      * The label of the setting (to be displayed on UI)
@@ -30,13 +28,6 @@ interface Setting
      * @return string
      */
     public function label();
-
-    /**
-     * Returns the scope of the setting
-     *
-     * @return SettingScope
-     */
-    public function scope() : SettingScope;
 
     /**
      * Returns the default value of the setting

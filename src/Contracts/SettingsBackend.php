@@ -23,27 +23,54 @@ interface SettingsBackend
      *
      * @return Collection
      */
-    public function all() : Collection;
+    public function allSettings() : Collection;
+
+    /**
+     * Returns all the saved preferences for a user
+     *
+     * @param User|int  $user
+     *
+     * @return Collection
+     */
+    public function allPreferences($user) : Collection;
 
     /**
      * Returns the value for a specific setting
      *
      * @param Setting|string $setting
-     * @param null|User|int  $user
      *
      * @return mixed
      */
-    public function get($setting, $user = null);
+    public function getSetting($setting);
+
+    /**
+     * Returns the value of a specific preference for a user
+     *
+     * @param Setting|string $setting
+     * @param User|int       $user
+     *
+     * @return mixed
+     */
+    public function getPreference($setting, $user);
 
     /**
      * Sets the value for a specific setting
      *
      * @param Setting|string $setting
      * @param mixed          $value
-     * @param null|User|int  $user
      *
      * @return mixed
      */
-    public function set($setting, $value, $user = null);
+    public function setSetting($setting, $value);
 
+    /**
+     * Sets the value for a specific setting
+     *
+     * @param Setting|string $setting
+     * @param mixed          $value
+     * @param User|int       $user
+     *
+     * @return mixed
+     */
+    public function setPreference($setting, $value, $user);
 }

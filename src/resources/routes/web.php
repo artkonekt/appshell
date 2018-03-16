@@ -11,9 +11,25 @@
 */
 
 Route::resource('user', 'UserController');
-Route::post('user/{$user}/activate', 'UserController@activate');
-Route::post('user/{$user}/inactivate', 'UserController@inactivate');
+Route::post('user/{$user}/activate', [
+    'uses' => 'UserController@activate',
+    'as'   => 'user.activate'
+]);
+Route::post('user/{$user}/inactivate', [
+    'uses' => 'UserController@inactivate',
+    'as'   => 'user.inactivate'
+]);
+
 Route::resource('role', 'RoleController');
 Route::resource('customer', 'CustomerController');
 Route::resource('address', 'AddressController');
-Route::resource('setting', 'SettingsController');
+
+Route::get('settings', [
+    'uses' => 'SettingsController@index',
+    'as'   => 'settings.index'
+]);
+Route::put('settings', [
+    'uses' => 'SettingsController@update',
+    'as'   => 'settings.update'
+]);
+

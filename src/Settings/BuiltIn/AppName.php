@@ -12,25 +12,15 @@
 namespace Konekt\AppShell\Settings\BuiltIn;
 
 use Konekt\AppShell\Contracts\Setting;
-use Konekt\AppShell\Contracts\SettingScope;
-use Konekt\AppShell\Models\SettingScopeProxy;
 
 class AppName implements Setting
 {
-    /** @var SettingScope */
-    private $scope;
-
-    public function __construct()
-    {
-        $this->scope = SettingScopeProxy::APPLICATION();
-    }
-
     /**
      * @inheritDoc
      */
-    public function key()
+    public static function key()
     {
-        return 'appshell.ui.app_name';
+        return 'konekt.app_shell.ui.name';
     }
 
     /**
@@ -39,15 +29,6 @@ class AppName implements Setting
     public function label()
     {
         return __('Name of the application');
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function scope(): SettingScope
-    {
-        return $this->scope;
     }
 
     /**
@@ -87,8 +68,6 @@ class AppName implements Setting
      */
     public function syncWithConfig()
     {
-        return false;
+        return true;
     }
-
-
 }

@@ -32,3 +32,28 @@ function any_key_exists(array $haystack, array $needles)
 {
     return count(array_intersect(array_keys($haystack), $needles)) > 0;
 }
+
+/**
+ * Returns the value of a setting
+ *
+ * @param \Konekt\AppShell\Contracts\Setting|string $setting
+ *
+ * @return mixed
+ */
+function setting($setting)
+{
+    return \Konekt\AppShell\Facades\Settings::get($setting);
+}
+
+/**
+ * Returns the value of a preference
+ *
+ * @param \Konekt\AppShell\Contracts\Preference|string $preference
+ *
+ * @param @param \Konekt\User\Contracts\User|int  $user
+ * @return mixed
+ */
+function preference($preference, $user = null)
+{
+    return \Konekt\AppShell\Facades\Settings::get($preference, $user);
+}

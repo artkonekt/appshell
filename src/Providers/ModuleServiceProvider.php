@@ -32,11 +32,10 @@ use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Icons\EnumIconMapper;
 use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
-use Konekt\AppShell\Models\SettingScope;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Settings\BuiltIn\AppName;
-use Konekt\AppShell\Settings\AvailableSettings;
 use Konekt\AppShell\Settings\BackendFactory;
+use Konekt\AppShell\Settings\Group;
 use Konekt\AppShell\Settings\SettingsManager;
 use Konekt\AppShell\Settings\Tab;
 use Konekt\Concord\BaseBoxServiceProvider;
@@ -58,10 +57,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         UpdateCustomer::class,
         CreateAddressForm::class,
         CreateAddress::class
-    ];
-
-    protected $enums = [
-        SettingScope::class
     ];
 
     public function register()
@@ -156,7 +151,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
             $settings->addSubItem('users', __('Users'), ['route' => 'appshell.user.index'])->data('icon', 'accounts');
             $settings->addSubItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])->data('icon', 'shield-security');
-            $settings->addSubItem('settings', __('Settings'), ['route' => 'appshell.setting.index'])->data('icon', 'settings');
+            $settings->addSubItem('settings', __('Settings'), ['route' => 'appshell.settings.index'])->data('icon', 'settings');
         }
     }
 
@@ -239,14 +234,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     private function registerSettings()
     {
         $this->app->singleton('appshell.settings', function () {
-
-            $availableSettings = array_merge(
-                $this->config('settings.settings', []), [
-                    new AppName()
-            ]);
-
             return new SettingsManager(
-                new AvailableSettings($availableSettings),
                 BackendFactory::create($this->config('settings.driver', self::DEFAULT_SETTINGS_DRIVER))
             );
         });
@@ -255,6 +243,16 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     private function bootSettings()
     {
         $settings = $this->app->get('appshell.settings');
-        $settings->registerTab(new Tab('general_settings', __('General Settings'), 10));
+
+//        $initialSettings = array_merge(
+//            $this->config('settings.settings', []), [
+//            //new AppName()
+//        ]);
+
+        $generalTab = new Tab('general', __('General Settings'));
+        $settings->registerTab($generalTab);
+        $appShellGroup = new Group('general.appshell', 'AppShell');
+        $generalTab->addGroup($appShellGroup);
+        $appShellGroup->addSetting(new AppName());
     }
 }

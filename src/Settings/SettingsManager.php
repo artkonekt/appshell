@@ -16,14 +16,16 @@ namespace Konekt\AppShell\Settings;
 use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Setting;
 use Konekt\AppShell\Contracts\SettingsBackend;
+use Konekt\AppShell\Contracts\SettingScope;
 use Konekt\AppShell\Contracts\SettingsGroup;
 use Konekt\AppShell\Contracts\SettingsTab;
+use Konekt\AppShell\Exceptions\SettingsTabNotFoundException;
 use Konekt\AppShell\Models\SettingScopeProxy;
 use Konekt\User\Contracts\User;
 
 class SettingsManager
 {
-    /**@var AvailableSettings */
+    /**@var Collection */
     protected $availableSettings;
 
     /** @var SettingsBackend */
@@ -32,9 +34,9 @@ class SettingsManager
     /** @var Collection */
     protected $tabs;
 
-    public function __construct(AvailableSettings $availableSettings, SettingsBackend $backend)
+    public function __construct(SettingsBackend $backend)
     {
-        $this->availableSettings = $availableSettings;
+        $this->availableSettings = collect();
         $this->backend           = $backend;
         $this->tabs              = collect();
     }
@@ -49,7 +51,8 @@ class SettingsManager
      */
     public function get($setting, $user = null)
     {
-        $result = $this->backend->get($setting, $user);
+        // @todo decide based on user if setting/preference
+        $result = $this->backend->getSetting($setting);
 
         // Optimal case, we have a result from backend
         if (!is_null($result)) {
@@ -62,9 +65,21 @@ class SettingsManager
         }
 
         // We have received a setting key, so need to fetch the object
-        $setting = $this->availableSettings->getByKey($setting);
+        $setting = $this->availableSettings->get($setting);
 
         return $setting ? $setting->default() : null;
+    }
+
+    public function set($setting, $value, $user = null)
+    {
+        $this->backend->setSetting($setting, $value);
+    }
+
+    public function save(array $settings)
+    {
+        foreach ($settings as $key => $value) {
+            $this->set($key, $value);
+        }
     }
 
     /**
@@ -92,13 +107,15 @@ class SettingsManager
      * @param SettingsTab|string|null $tab The tab object or id to add the group to.
      *                                     If null, the group will be added to the
      *                                     very first tab
+     *
+     * @throws SettingsTabNotFoundException
      */
     public function registerGroup(SettingsGroup $group, $tab = null)
     {
         $tab = $this->findOrFirstTab($tab);
 
         if (!$tab) {
-            throw new \InvalidArgumentException('Could not find a tab for the group');
+            throw new SettingsTabNotFoundException('Could not find a tab for the group');
         }
 
         $tab->groups()->put($group->id(), $group);
@@ -111,7 +128,7 @@ class SettingsManager
      */
     public function available()
     {
-        return $this->availableSettings->all();
+        return $this->availableSettings;
     }
 
     /**
@@ -120,9 +137,9 @@ class SettingsManager
      * @param Setting|string|array      $setting
      * @param SettingsGroup|string|null $group
      */
-    public function register($setting, $group = null)
+    public function registerSetting($setting, $group = null)
     {
-        $registeredSettings = $this->availableSettings->register($setting);
+        $registeredSettings = $this->register($setting);
 
         if ($group = $this->findOrFirstGroup($group)) {
             foreach ($registeredSettings as $setting) {
@@ -149,6 +166,20 @@ class SettingsManager
     public function forUser()
     {
         return $this->availableSettings->byScope(SettingScopeProxy::USER());
+    }
+
+    /**
+     * Returns the available settings filtered by scope
+     *
+     * @param SettingScope $scope
+     *
+     * @return Collection
+     */
+    public function byScope(SettingScope $scope)
+    {
+        return $this->availableSettings->filter(function(Setting $item) use ($scope) {
+            return $item->scope()->equals($scope);
+        });
     }
 
     /**
@@ -204,5 +235,38 @@ class SettingsManager
         }
 
         return null;
+    }
+
+    /**
+     * Register one or more setting with the system
+     *
+     * @param Setting|string|array $setting
+     *
+     * @return Setting[] Returns the array of setting objects registered
+     */
+    protected function register($setting)
+    {
+        $settings = is_array($setting) ? $setting : [$setting];
+        $result = [];
+
+        foreach ($settings as $setting) {
+            if (is_string($setting) && class_exists($setting)) {
+                $setting = new $setting();
+            }
+
+            if ( ! $setting instanceof Setting) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'Setting type (%s) can not be registered',
+                        is_object($setting) ? get_class($setting) : gettype($setting)
+                    )
+                );
+            }
+
+            $this->availableSettings->put($setting->key(), $setting);
+            $result[] = $setting;
+        }
+
+        return $result;
     }
 }

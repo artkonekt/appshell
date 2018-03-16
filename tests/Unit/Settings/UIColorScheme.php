@@ -11,21 +11,16 @@
 
 namespace Konekt\AppShell\Tests\Unit\Settings;
 
-use Konekt\AppShell\Contracts\Setting;
+use Konekt\AppShell\Contracts\Preference;
 use Konekt\AppShell\Contracts\SettingScope;
 
-class UIColorScheme implements Setting
+class UIColorScheme implements Preference
 {
     const DEFAULT = 'red';
 
-    public function key()
+    public static function key()
     {
         return 'ui.color_scheme';
-    }
-
-    public function scope(): SettingScope
-    {
-        return \Konekt\AppShell\Models\SettingScope::USER();
     }
 
     public function default()

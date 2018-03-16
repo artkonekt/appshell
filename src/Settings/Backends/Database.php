@@ -23,17 +23,56 @@ class Database extends BaseBackend
     /**
      * @inheritDoc
      */
-    public function all(): Collection
+    public function allSettings(): Collection
     {
-        return DB::table(self::TABLE_NAME)->get()->keyBy(function($item) {
-            return $item->key . ($item->user_id ? self::USER_KEY_SEPARATOR . $item->user_id : '');
-        });
+        return DB::table(self::TABLE_NAME)
+                 ->whereNull('user_id')
+                 ->keyBy('key');
     }
 
     /**
      * @inheritDoc
      */
-    public function get($setting, $user = null)
+    public function allPreferences($user): Collection
+    {
+        return DB::table(self::TABLE_NAME)
+                 ->where(['user_id' => $this->getUserId($user)])
+                 ->keyBy('key');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSetting($setting)
+    {
+        return $this->get($setting);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPreference($setting, $user)
+    {
+        return $this->get($setting, $user);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setSetting($setting, $value)
+    {
+        $this->set($setting, $value);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setPreference($setting, $value, $user)
+    {
+        $this->set($setting, $value, $user);
+    }
+
+    protected function get($setting, $user = null)
     {
         $query = DB::table(self::TABLE_NAME)
                    ->select('value')
@@ -49,10 +88,7 @@ class Database extends BaseBackend
         return $result ? $result->value : null;
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function set($setting, $value, $user = null)
+    protected function set($setting, $value, $user = null)
     {
         $lookup = [
             'key' => $this->getKey($setting)

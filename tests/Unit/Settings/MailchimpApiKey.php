@@ -14,28 +14,16 @@ namespace Konekt\AppShell\Tests\Unit\Settings;
 
 
 use Konekt\AppShell\Contracts\Setting;
-use Konekt\AppShell\Contracts\SettingScope as SettingScopeContract;
-use Konekt\AppShell\Models\SettingScope;
 
 class MailchimpApiKey implements Setting
 {
     const KEY = 'mailchimp.api_key';
 
-    private $scope;
-
-    public function key()
+    public static function key()
     {
         return self::KEY;
     }
 
-    public function scope(): SettingScopeContract
-    {
-        if (is_null($this->scope)) {
-            $this->scope = SettingScope::APPLICATION();
-        }
-
-        return $this->scope;
-    }
 
     public function default()
     {
