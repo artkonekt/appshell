@@ -64,7 +64,7 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 
-> **TIP:** Try `php artisan concord:modules` to see ALL modules
+> **TIP:** Try `php artisan concord:modules -a` to see ALL modules
 
 Configure `.env`, along with a database.
 
@@ -164,25 +164,6 @@ and the compile the assets with mix: `yarn run dev`
 ```bash
 yarn install
 ```
-
-
-### Configure PhpStorm For Properly Editing Sources In Vendor
-
-You can set up PhpStorm to directly edit the source files in vendor, and have full IDE support.
-
-#### Source Folders
-First mark these folders as source folders, in PhpStorm's **Settings->Directories**.
-
-![Source Folders](docs/phpstorm-source-folders.jpg)
-
-Also add their namespace prefixes by clicking that small 'p' with the caret, and ticking [] for generated sources. Refer the Package prefix (namespace) on the screenshot above.
-
-#### Git, Our Friend
-
-Go to PhpStorm->**Settings->Version Control** and add the package folders you want to modify locally and push back to the repo:
-
-![Source Folders](docs/phpstorm-vcs-folders.jpg)
-
 
 ## Built-in Facilities
 
