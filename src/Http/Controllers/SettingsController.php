@@ -12,15 +12,14 @@
 namespace Konekt\AppShell\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Konekt\AppShell\Contracts\SettingsTree;
 use Konekt\Gears\Facades\Settings;
 
 class SettingsController extends BaseController
 {
-    public function index(SettingsTree $settingsTree)
+    public function index()
     {
         return $this->appShellView('settings.index', [
-            'tree' => $settingsTree
+            'tree' => app('appshell.settings_tree')
         ]);
     }
 

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') &middot; {{ $appshell->name }}</title>
+    <title>@yield('title') &middot; {{ setting('appshell.ui.name') }}</title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -50,7 +50,7 @@
             <nav class="appshell-logo">
                 <a href="{{ $appshell->url }}">
                     <img src="/images/appshell/logo.svg" class="appshell-logo-img" />
-                    <h4 class="appshell-logo-text">{{ $appshell->name }}</h4>
+                    <h4 class="appshell-logo-text">{{ setting('appshell.ui.name') }}</h4>
                 </a>
             </nav>
             <nav class="sidebar-nav">
@@ -74,7 +74,7 @@
 
     <footer class="app-footer">
         @section('footer')
-        &copy; {{ date('Y') }}&nbsp;<a href="{{ $appshell->url }}">{{ $appshell->name }}</a>
+        &copy; {{ date('Y') }}&nbsp;<a href="{{ $appshell->url }}">{{ setting('appshell.ui.name') }}</a>
         @endsection
         @yield('footer')
     </footer>

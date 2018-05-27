@@ -70,7 +70,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->singleton('appshell.settings_tree_builder', function($app) {
             return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
         });
-        $this->app->bind(SettingsTree::class, function($app) {
+        $this->app->bind('appshell.settings_tree', function($app) {
             $this->buildSettingsTree();
             return $app['appshell.settings_tree_builder']->getTree();
         });

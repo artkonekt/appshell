@@ -22,7 +22,7 @@
         "konekt/user": ">=0.9.0",
         "konekt/acl": "~1.0",
         "konekt/menu": "~1.0",
-        "konekt/gears": ">=0.9.0",
+        "konekt/gears": ">=0.9.1",
         "laravelcollective/html": "~5.4",
         "laracasts/flash": "~3.0",
         "davejamesmiller/laravel-breadcrumbs": "3.0.2 - 5.0",

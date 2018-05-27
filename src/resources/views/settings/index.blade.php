@@ -19,14 +19,14 @@
     <div class="tab-content">
         @foreach($tree->nodes() as $tab)
             <div id="{{ $tab->id() }}" class="tab-pane{{ $loop->first ? ' active show' : '' }}" role="tabpanel">
-                @foreach($tabs->children() as $group)
+                @foreach($tab->children() as $group)
                     @component('appshell::widgets.group', ['accent' => 'secondary'])
                         @slot('title'){{ $group->label() }}@endslot
                         @foreach($group->items() as $item)
-                                @component('appshell::widgets.form' . $item->getWidget()->component(),
+                                @component('appshell::widgets.form.' . $item->getWidget()->component(),
                                     array_merge([
                                         'name'  => sprintf('settings[%s]', $item->getKey()),
-                                        'value' => setting($setting)
+                                        'value' => $item->getValue()
                                     ], $item->getWidget()->attributes())
                                 )
                                 @endcomponent
