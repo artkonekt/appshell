@@ -9,12 +9,9 @@
  *
  */
 
-
 namespace Konekt\AppShell\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use Konekt\AppShell\Facades\Settings;
 
 class SettingsController extends BaseController
 {
@@ -24,13 +21,13 @@ class SettingsController extends BaseController
     public function index()
     {
         return $this->appShellView('settings.index', [
-            'tabs' => Settings::tabs()
+            'tabs' => []
         ]);
     }
 
     public function update(Request $request)
     {
-        Settings::save($request->get('settings'));
+        //Settings::save($request->get('settings'));
 
         flash()->success(__('Settings have been saved'));
 

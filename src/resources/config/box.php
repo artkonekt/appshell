@@ -33,9 +33,5 @@ return [
     'ui' => [
         'name' => 'AppShell',
         'url'  => '/appshell/dashboard'
-    ],
-    'settings' => [
-        'driver'   => 'database',
-        'settings' => []
     ]
 ];

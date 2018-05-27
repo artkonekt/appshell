@@ -9,9 +9,7 @@
  *
  */
 
-
 namespace Konekt\AppShell\Providers;
-
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -33,11 +31,6 @@ use Konekt\AppShell\Icons\EnumIconMapper;
 use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\User;
-use Konekt\AppShell\Settings\BuiltIn\AppName;
-use Konekt\AppShell\Settings\BackendFactory;
-use Konekt\AppShell\Settings\Group;
-use Konekt\AppShell\Settings\SettingsManager;
-use Konekt\AppShell\Settings\Tab;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\User as UserContract;
 use Menu;
@@ -67,7 +60,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerThirdPartyProviders();
         $this->registerCommands();
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
-        $this->registerSettings();
     }
 
     public function boot()
@@ -226,33 +218,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         );
     }
 
-    /**
-     * Registers the settings service singleton that
-     * is the real service behind Settings facade
-     * and can be extended via appshell config
-     */
-    private function registerSettings()
-    {
-        $this->app->singleton('appshell.settings', function () {
-            return new SettingsManager(
-                BackendFactory::create($this->config('settings.driver', self::DEFAULT_SETTINGS_DRIVER))
-            );
-        });
-    }
-
     private function bootSettings()
     {
-        $settings = $this->app->get('appshell.settings');
-
-//        $initialSettings = array_merge(
-//            $this->config('settings.settings', []), [
-//            //new AppName()
-//        ]);
-
-        $generalTab = new Tab('general', __('General Settings'));
-        $settings->registerTab($generalTab);
-        $appShellGroup = new Group('general.appshell', 'AppShell');
-        $generalTab->addGroup($appShellGroup);
-        $appShellGroup->addSetting(new AppName());
+        // Add AppShell's built in settings to the gears registry here
     }
 }

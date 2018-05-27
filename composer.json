@@ -42,12 +42,5 @@
         "psr-4": {
             "Konekt\\AppShell\\Tests\\": "tests/"
         }
-    },
-    "extra": {
-        "laravel": {
-            "aliases": {
-                "Settings": "Konekt\\AppShell\\Facades\\Settings"
-            }
-        }
     }
 }
