@@ -9,11 +9,10 @@
  *
  */
 
-
 namespace Konekt\AppShell\Contracts\Requests;
 
+use Konekt\Concord\Contracts\BaseRequest;
 
 interface CreateCustomer extends BaseRequest
 {
-
 }

@@ -9,11 +9,8 @@
  *
  */
 
-
 namespace Konekt\AppShell\Contracts\Requests;
-
 
 interface CreateAddress extends CreateAddressForm
 {
-
 }

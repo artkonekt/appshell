@@ -9,9 +9,9 @@
  *
  */
 
-
 namespace Konekt\AppShell\Contracts\Requests;
 
+use Konekt\Concord\Contracts\BaseRequest;
 
 interface UpdateRole extends BaseRequest
 {
@@ -21,5 +21,4 @@ interface UpdateRole extends BaseRequest
      * @return array
      */
     public function permissions();
-
 }

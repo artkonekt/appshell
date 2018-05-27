@@ -1,6 +1,6 @@
 {
     "name": "konekt/appshell",
-    "description": "AppShell is a Concord box that serves as a foundation for Laravel business application",
+    "description": "Foundation for Laravel business applications",
     "type": "library",
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -17,11 +17,12 @@
     },
     "require": {
         "php": ">=7.0.0",
-        "konekt/concord": ">=0.9.10",
+        "konekt/concord": "~1.1",
         "konekt/customer": ">=0.9.4",
         "konekt/user": ">=0.9.0",
         "konekt/acl": "~1.0",
         "konekt/menu": "~1.0",
+        "konekt/gears": ">=0.9.0",
         "laravelcollective/html": "~5.4",
         "laracasts/flash": "~3.0",
         "davejamesmiller/laravel-breadcrumbs": "3.0.2 - 5.0",

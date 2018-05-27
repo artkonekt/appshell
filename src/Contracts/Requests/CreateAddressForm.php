@@ -9,10 +9,10 @@
  *
  */
 
-
 namespace Konekt\AppShell\Contracts\Requests;
 
 use Illuminate\Database\Eloquent\Model;
+use Konekt\Concord\Contracts\BaseRequest;
 
 interface CreateAddressForm extends BaseRequest
 {

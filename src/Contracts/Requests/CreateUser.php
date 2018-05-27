@@ -9,9 +9,9 @@
  *
  */
 
-
 namespace Konekt\AppShell\Contracts\Requests;
 
+use Konekt\Concord\Contracts\BaseRequest;
 
 interface CreateUser extends BaseRequest
 {
@@ -21,5 +21,4 @@ interface CreateUser extends BaseRequest
      * @return array
      */
     public function roles();
-
 }
