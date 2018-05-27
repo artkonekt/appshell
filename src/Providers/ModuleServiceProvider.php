@@ -18,6 +18,7 @@ use Konekt\Address\Contracts\Address as AddressContract;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
+use Konekt\AppShell\Contracts\SettingsTree;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateAddress;
 use Konekt\AppShell\Http\Requests\CreateAddressForm;
@@ -32,6 +33,9 @@ use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
+use Konekt\Gears\Defaults\SimpleSetting;
+use Konekt\Gears\Registry\SettingsRegistry;
+use Konekt\Gears\UI\TreeBuilder;
 use Konekt\User\Contracts\User as UserContract;
 use Menu;
 
@@ -40,6 +44,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     use HasBreadcrumbs;
 
     const DEFAULT_SETTINGS_DRIVER = 'database';
+
+    private $settingsTreeIsBuilt =  false;
 
     protected $requests = [
         CreateUser::class,
@@ -60,6 +66,14 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerThirdPartyProviders();
         $this->registerCommands();
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
+
+        $this->app->singleton('appshell.settings_tree_builder', function($app) {
+            return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+        });
+        $this->app->bind(SettingsTree::class, function($app) {
+            $this->buildSettingsTree();
+            return $app['appshell.settings_tree_builder']->getTree();
+        });
     }
 
     public function boot()
@@ -220,6 +234,25 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
     private function bootSettings()
     {
-        // Add AppShell's built in settings to the gears registry here
+        /** @var SettingsRegistry $settingsRegistry */
+        $settingsRegistry = $this->app['gears.settings_registry'];
+
+        $settingsRegistry->add(new SimpleSetting('appshell.ui.name', $this->config('ui.name')));
+    }
+
+    private function buildSettingsTree()
+    {
+        if ($this->settingsTreeIsBuilt) {
+            return;
+        }
+
+        /** @var TreeBuilder $settingsTreeBuilder */
+        $settingsTreeBuilder = $this->app['appshell.settings_tree_builder'];
+
+        $settingsTreeBuilder->addRootNode('general', __('General Settings'))
+            ->addChildNode('general', 'general_app', __('Application'))
+            ->addSettingItem('general_app', ['text', ['label' => __('Name')]], 'appshell.ui.name');
+
+        $this->settingsTreeIsBuilt = true;
     }
 }

@@ -8,35 +8,32 @@
 
     {!! Form::open(['route' => 'appshell.settings.update', 'method' => 'PUT']) !!}
     <ul class="nav nav-tabs" role="tablist">
-        @foreach($tabs as $tab)
-            @if ($tab->allowed())
+        @foreach($tree->nodes() as $tab)
             <li class="nav-item">
                 <a class="nav-link{{ $loop->first ? ' active show' : '' }}" data-toggle="tab" href="#{{ $tab->id() }}" role="tab"
                    aria-controls="{{ $tab->id() }}" aria-selected="true">{{ $tab->label() }}</a>
             </li>
-            @endif
         @endforeach
     </ul>
 
     <div class="tab-content">
-        @foreach($tabs as $tab)
-            @if ($tab->allowed())
+        @foreach($tree->nodes() as $tab)
             <div id="{{ $tab->id() }}" class="tab-pane{{ $loop->first ? ' active show' : '' }}" role="tabpanel">
-                @foreach($tab->groups() as $group)
+                @foreach($tabs->children() as $group)
                     @component('appshell::widgets.group', ['accent' => 'secondary'])
                         @slot('title'){{ $group->label() }}@endslot
-                        @foreach($group->settings() as $setting)
-                                @component('appshell::widgets.form.text', [
-                                    'name'  => sprintf('settings[%s]', $setting->key()),
-                                    'label' => $setting->label(),
-                                    'value' => setting($setting)
-                                ])
+                        @foreach($group->items() as $item)
+                                @component('appshell::widgets.form' . $item->getWidget()->component(),
+                                    array_merge([
+                                        'name'  => sprintf('settings[%s]', $item->getKey()),
+                                        'value' => setting($setting)
+                                    ], $item->getWidget()->attributes())
+                                )
                                 @endcomponent
                         @endforeach
                     @endcomponent
                 @endforeach
             </div>
-            @endif
         @endforeach
     </div>
 

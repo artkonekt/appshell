@@ -9,14 +9,12 @@
  *
  */
 
-
 namespace Konekt\AppShell\Tests;
 
-
 use Illuminate\Database\Schema\Blueprint;
-use Konekt\AppShell\Facades\Settings;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
 use Konekt\Concord\ConcordServiceProvider;
+use Konekt\Gears\Providers\GearsServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
@@ -36,17 +34,10 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            ConcordServiceProvider::class
+            ConcordServiceProvider::class,
+            GearsServiceProvider::class
         ];
     }
-
-    protected function getPackageAliases($app)
-    {
-        return [
-            'Settings' => Settings::class
-        ];
-    }
-
 
     /**
      * Set up the environment.
