@@ -2,6 +2,13 @@
 
 ## 0.9
 
+## 0.9.7
+##### 2018-05-27
+
+- Settings support available (using gears 0.9.1)
+- Minimum Concord version is 1.1
+
+
 ## 0.9.6
 ##### 2018-02-19
 
