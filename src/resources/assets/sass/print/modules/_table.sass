@@ -1,0 +1,32 @@
+.table
+    width: 100%
+    max-width: 100%
+    border-collapse: collapse
+    border-spacing: 0
+    font-size: $font-size-base
+    tr
+        page-break-inside: avoid
+        page-break-after: auto
+        &.table-dark
+            background-color: $cl-dark-bg
+    th, td
+        text-align: left
+    > tbody > tr > td,
+    > tbody > tr > th,
+    > thead > tr > th
+        vertical-align: top
+        border-top: 1px solid $cl-separator
+        padding: 0.25em 0.15em
+        line-height: 1.15
+        font-size: $font-size-base
+    > thead
+        &:first-child > tr:first-child > th
+            border-top: 0
+        > tr > th
+            vertical-align: bottom
+            border-bottom: 1px solid $cl-separator
+    > tfoot
+        display: table-row-group
+
+.table-striped > tbody > tr:nth-child(odd) > td
+    background-color: $cl-table-stripe-bg
