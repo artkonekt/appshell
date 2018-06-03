@@ -11,3 +11,12 @@ p, td, th, ul, ol, blockquote
 h1, h2, h3, h4
     color: $cl-text-heading
     font-family: $font-heading
+    font-weight: $headings-font-weight
+
+@media screen
+    body
+        &.has-toolbar
+            margin-top: 75px
+@media print
+    .noprint
+        visibility: hidden

@@ -1,0 +1,63 @@
+@import "../../bootstrap/functions"
+
+=btn-color($bgcolor)
+    +color-yiq($bgcolor)
+    background-color: $bgcolor
+    border-color: $bgcolor
+
+=btn-size($padding-vertical, $padding-horizontal, $font-size, $line-height, $border-radius)
+    padding: $padding-vertical $padding-horizontal
+    font-size: $font-size
+    line-height: $line-height
+    border-radius: $border-radius
+
+.btn
+    display: inline-block
+    margin-bottom: 0
+    font-family: $font-btn
+    text-align: center
+    vertical-align: middle
+    touch-action: manipulation
+    cursor: pointer
+    background-image: none
+    // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent
+    white-space: nowrap
+    +btn-size(0.25rem, 0.5rem, 14px, 1.5, 3px)
+    +btn-color($cl-control-bg)
+    &[disabled]
+        opacity: .65
+
+a
+    &.btn
+        text-decoration: none
+
+.btn-primary
+    +btn-color(theme-color(primary))
+
+.btn-dark
+    +btn-color(theme-color(dark))
+
+.btn-link
+    background-color: transparent
+    border: none
+    &:hover
+        box-shadow: none
+        text-decoration: underline
+
+//
+// Block button
+//
+
+.btn-block
+    display: block
+    width: 100%
+    box-sizing: border-box
+
+.btn
+    + .btn
+        margin-left: 0.35em
+        //to prevent from sticking
+        &.pull-right
+            margin-left: inherit
+        margin-right: 0.35em
