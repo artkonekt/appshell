@@ -1,0 +1,29 @@
+.form-inline .select2
+    width: 100% !important
+    +media-breakpoint-up(md)
+        width: auto !important
+
+.select2
+    min-width: 200px
+    .select2-selection
+        min-height: 26px !important
+        .select2-search__field
+            height: 26px !important
+    .select2-selection__choice
+        font-size: 12px
+        font-weight: 400
+        padding: 0
+        margin: 3px 0 0 6px !important
+    .select2-selection__clear
+        margin-top: 4px !important
+    .select2-search__field
+        &::-moz-placeholder
+            font-size: 12px !important
+        &:-moz-placeholder
+            font-size: 12px !important
+        &:-ms-input-placeholder
+            font-size: 12px !important
+        &::-ms-input-placeholder
+            font-size: 12px !important
+        &::-webkit-input-placeholder
+            font-size: 12px !important
