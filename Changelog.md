@@ -2,6 +2,12 @@
 
 ## 0.9
 
+## 0.9.8
+##### Unreleased
+
+- A print stylesheet has been added
+- Gears version bumped to 1.0+
+
 ## 0.9.7
 ##### 2018-05-27
 
