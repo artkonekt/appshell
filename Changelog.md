@@ -2,6 +2,12 @@
 
 ## 0.9
 
+## 0.9.9
+##### 2018-07-23
+
+- Menu items are authorized (based on ACL)
+- Menu version bumped to 1.2
+
 ## 0.9.8
 ##### 2018-06-09
 
