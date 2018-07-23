@@ -150,14 +150,26 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             // CRM Group
             $crm = $appshellMenu->addItem('crm_group', __('CRM'));
 
-            $crm->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])->data('icon', 'accounts-list');
+            $crm
+                ->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])
+                ->data('icon', 'accounts-list')
+                ->allowIfUserCan('list customers');
 
             // Settings Group
             $settings = $appshellMenu->addItem('settings_group', __('Settings'));
 
-            $settings->addSubItem('users', __('Users'), ['route' => 'appshell.user.index'])->data('icon', 'accounts');
-            $settings->addSubItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])->data('icon', 'shield-security');
-            $settings->addSubItem('settings', __('Settings'), ['route' => 'appshell.settings.index'])->data('icon', 'settings');
+            $settings
+                ->addSubItem('users', __('Users'), ['route' => 'appshell.user.index'])
+                ->data('icon', 'accounts')
+                ->allowIfUserCan('list users');
+            $settings
+                ->addSubItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])
+                ->data('icon', 'shield-security')
+                ->allowIfUserCan('list roles');
+            $settings
+                ->addSubItem('settings', __('Settings'), ['route' => 'appshell.settings.index'])
+                ->data('icon', 'settings')
+                ->allowIfUserCan('list settings');
         }
     }
 
