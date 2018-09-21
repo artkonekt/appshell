@@ -60,7 +60,7 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 | #  | Name                | Kind | Version | Id               | Namespace       |
 +----+---------------------+------+---------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 0.9.5   | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 0.9.9   | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 
@@ -171,5 +171,5 @@ yarn install
 
 The menu functionality is built on top of [Konekt Menu Component](https://github.com/artkonekt/menu). The component is automatically loaded, is fully available (incl. the `Menu` facade).
 
-AppShell creates a menu named **appshellMenu** which is the main menu component, and is available in views as `$appshellMenu`.
+AppShell creates a menu named **appshell** which is the main menu component, and is available in views as `$appshellMenu`.
 
