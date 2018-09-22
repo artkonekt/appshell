@@ -81,7 +81,7 @@
 
 <!-- Scripts -->
 @include('appshell::layouts.default._scripts')
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/appshell.js') }}"></script>
 @yield('scripts')
 </body>
 </html>
