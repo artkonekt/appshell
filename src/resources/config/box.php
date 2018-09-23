@@ -32,6 +32,11 @@ return [
     ],
     'ui' => [
         'name' => 'AppShell',
-        'url'  => '/appshell/dashboard'
+        'url'  => '/admin/customer'
+    ],
+    'avatar' => [
+        'gravatar' => [
+            'default' => \Konekt\AppShell\Models\GravatarDefault::defaultValue()
+        ]
     ]
 ];

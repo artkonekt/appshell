@@ -26,10 +26,11 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>{{ __('E-mail') }}</th>
+                    <th>&nbsp;</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Registered') }}</th>
-                    <th>{{ __('Last login') }}</th>
+                    <th>{{ __('Role') }}</th>
+                    <th>{{ __('Status') }}</th>
                     <th style="width: 10%">&nbsp;</th>
                 </tr>
                 </thead>
@@ -38,15 +39,45 @@
                 @foreach($users as $user)
                     <tr>
                         <td>
-                            @can('view users')
-                            <a href="{{ route('appshell.user.show', $user) }}">{{ $user->email }}</a>
-                            @else
-                                {{ $user->email }}
-                            @endcan
+                            <img src="{{ avatar_image_url($user, 100) }}" class="img-avatar img-avatar-50">
                         </td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->created_at->diffForHumans() }}</td>
-                        <td>{{ $user->last_login_at ? $user->last_login_at->diffForHumans() : __('never') }}</td>
+                        <td>
+                            <span class="font-lg mb-3 font-weight-bold">
+                                @can('view users')
+                                    <a href="{{ route('appshell.user.show', $user) }}">{{ $user->name }}</a>
+                                @else
+                                    {{ $user->name }}
+                                @endcan
+                            </span>
+                            <div class="text-muted">
+                                {{ $user->email }}
+                            </div>
+                        </td>
+                        <td>
+                            <span class="mb-3">
+                                {{ $user->created_at->diffForHumans() }}
+                            </span>
+                            <div class="text-muted">
+                                {{ __('Last login') }}
+                                {{ $user->last_login_at ? $user->last_login_at->diffForHumans() : __('never') }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mt-2">
+                                @foreach($user->roles as $role)
+                                    <span class="badge badge-pill badge-dark">{{ $role->name }}</span>
+                                @endforeach
+                            </div>
+                        </td>
+                        <td>
+                            <div class="mt-2">
+                                @if($user->is_active)
+                                    <span class="badge badge-pill badge-success">{{ __('active') }}</span>
+                                @else
+                                    <span class="badge badge-pill badge-secondary">{{ __('inactive') }}</span>
+                                @endif
+                            </div>
+                        </td>
                         <td>
                             @can('edit users')
                                 <a href="{{ route('appshell.user.edit', $user) }}"

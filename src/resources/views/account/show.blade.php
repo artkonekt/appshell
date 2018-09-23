@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="card-body">
-                    <img src="{{ avatar_image_url(Auth::user(), 100) }}" class="img-avatar">
+                    <img src="{{ avatar_image_url($user, 200) }}" class="img-avatar img-avatar-100">
                 </div>
 
                 <div class="card-footer">

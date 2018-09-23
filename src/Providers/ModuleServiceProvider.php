@@ -32,6 +32,7 @@ use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Icons\EnumIconMapper;
 use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
+use Konekt\AppShell\Models\GravatarDefault;
 use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\Gears\Defaults\SimpleSetting;
@@ -58,6 +59,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateAddressForm::class,
         CreateAddress::class,
         SaveAccount::class
+    ];
+
+    protected $enums = [
+        GravatarDefault::class
     ];
 
     public function register()
