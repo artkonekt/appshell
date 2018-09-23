@@ -10,13 +10,13 @@
         <div class="col-md-6 col-lg-5 dropdown text-right">
             <a class="btn btn-none dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                id="account-dropdown-link">
-                <img src="https://www.gravatar.com/avatar/{{ md5(Auth::user()->email) }}.jpg?s=100" class="img-avatar">
+                <img src="{{ avatar_image_url(Auth::user(), 100) }}" class="img-avatar">
                 <div class="appshell-header-user">
                     <h4>{{ Auth::user()->name }}</h4>
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account-dropdown-link">
-                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item" href="{{ route('appshell.account.display') }}"><i class="fa fa-user"></i> {{  __('Account') }}</a>
 
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i

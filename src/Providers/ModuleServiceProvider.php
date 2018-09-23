@@ -25,6 +25,7 @@ use Konekt\AppShell\Http\Requests\CreateAddressForm;
 use Konekt\AppShell\Http\Requests\CreateCustomer;
 use Konekt\AppShell\Http\Requests\CreateRole;
 use Konekt\AppShell\Http\Requests\CreateUser;
+use Konekt\AppShell\Http\Requests\SaveAccount;
 use Konekt\AppShell\Http\Requests\UpdateCustomer;
 use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
@@ -55,7 +56,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateCustomer::class,
         UpdateCustomer::class,
         CreateAddressForm::class,
-        CreateAddress::class
+        CreateAddress::class,
+        SaveAccount::class
     ];
 
     public function register()

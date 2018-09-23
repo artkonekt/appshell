@@ -33,3 +33,11 @@ Route::put('settings', [
     'as'   => 'settings.update'
 ]);
 
+Route::get('account', [
+    'uses' => 'AccountController@display',
+    'as'   => 'account.display'
+]);
+Route::put('account', [
+    'uses' => 'AccountController@save',
+    'as'   => 'account.save'
+]);

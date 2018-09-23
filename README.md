@@ -16,6 +16,14 @@ Incorporates the basics for:
 
 The user/auth part is built on top of the Laravel facilities in a compatible manner.
 
+## Release v1.0 Is On The Corner
+
+Left to do:
+
+- [X] Profile (incl. `avatar_url` helper)
+- [ ] Docs
+- [ ] Sortable tree component (vuejs)
+
 ## Create New AppShell Project
 
 ```bash
