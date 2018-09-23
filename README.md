@@ -21,8 +21,13 @@ The user/auth part is built on top of the Laravel facilities in a compatible man
 Left to do:
 
 - [X] Profile (incl. `avatar_url` helper)
-- [ ] Docs
+- [ ] Docs (incl. Icon helper usage)
 - [ ] Sortable tree component (vuejs)
+- [ ] Include `Person` in profile
+- [ ] Breadcrumbs on every page
+- [ ] Fix Permissions and Roles page
+- [ ] Pimp Customer list table
+- [ ] Add more provinces to seeders
 
 ## Create New AppShell Project
 
