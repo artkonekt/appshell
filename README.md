@@ -21,13 +21,13 @@ The user/auth part is built on top of the Laravel facilities in a compatible man
 Left to do:
 
 - [X] Profile (incl. `avatar_url` helper)
-- [ ] Docs (incl. Icon helper usage)
-- [ ] Sortable tree component (vuejs)
-- [ ] Include `Person` in profile
+- [.] Sortable tree component [vuejs](https://github.com/phphe/vue-draggable-nested-tree)
 - [ ] Breadcrumbs on every page
+- [ ] Docs (incl. Icon helper usage)
+- [ ] Add more provinces to seeders
+- [ ] Include `Person` in profile
 - [ ] Fix Permissions and Roles page
 - [ ] Pimp Customer list table
-- [ ] Add more provinces to seeders
 
 ## Create New AppShell Project
 
