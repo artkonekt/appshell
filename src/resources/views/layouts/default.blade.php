@@ -11,9 +11,17 @@
     <title>@yield('title') &middot; {{ setting('appshell.ui.name') }}</title>
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <link href="{{ asset('css/appshell.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+    @foreach($appshell->assets['css'] as $key => $css)
+        @if(is_numeric($key))
+            <link href="{{ asset($css) }}" rel="stylesheet">
+        @else
+            <link href="{{ asset($key) }}" rel="stylesheet"
+                @foreach($css as $attr => $value)
+                    {{ $attr }}="{{$value}}"
+                @endforeach
+            />
+        @endif
+    @endforeach
 
     <!-- Scripts -->
     <script>
@@ -81,7 +89,14 @@
 
 <!-- Scripts -->
 @include('appshell::layouts.default._scripts')
-<script src="{{ asset('js/appshell.js') }}"></script>
+
+@foreach($appshell->assets['js'] as $key => $js)
+    @if(is_numeric($key))
+        <script src="{{ asset($js) }}"></script>
+    @else
+        <script src="{{ asset($key) }}" @foreach($css as $attr => $value) {{ $attr }}="{{$value}}" @endforeach></script>
+    @endif
+@endforeach
 @yield('scripts')
 </body>
 </html>
