@@ -35,8 +35,15 @@ function any_key_exists(array $haystack, array $needles)
 
 function avatar_image_url(\Konekt\User\Contracts\User $user = null, int $size = 100)
 {
-    $email = $user ? $user->email : 'nobody';
+    if ($user) {
+        $hash = md5($user->email);
+        $default = config('konekt.app_shell.avatar.gravatar.default');
+    } else {
+        $hash = '00000000000000000000000000000000';
+        $default = \Konekt\AppShell\Models\GravatarDefault::MYSTERY_PERSON;
+    }
+
     return sprintf("https://www.gravatar.com/avatar/%s.jpg?s=%d&d=%s",
-        md5($email), $size, config('konekt.app_shell.avatar.gravatar.default')
+        $hash, $size, $default
     );
 }
