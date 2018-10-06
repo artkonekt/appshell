@@ -33,9 +33,10 @@ function any_key_exists(array $haystack, array $needles)
     return count(array_intersect(array_keys($haystack), $needles)) > 0;
 }
 
-function avatar_image_url(\Konekt\User\Contracts\User $user, int $size = 100)
+function avatar_image_url(\Konekt\User\Contracts\User $user = null, int $size = 100)
 {
+    $email = $user ? $user->email : 'nobody';
     return sprintf("https://www.gravatar.com/avatar/%s.jpg?s=%d&d=%s",
-        md5($user->email), $size, config('konekt.app_shell.avatar.gravatar.default')
+        md5($email), $size, config('konekt.app_shell.avatar.gravatar.default')
     );
 }
