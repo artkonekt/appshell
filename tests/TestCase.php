@@ -11,7 +11,8 @@
 
 namespace Konekt\AppShell\Tests;
 
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Auth;
+use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
 use Konekt\Concord\ConcordServiceProvider;
 use Konekt\Gears\Providers\GearsServiceProvider;
@@ -19,11 +20,22 @@ use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
+    protected $adminUser;
+
     public function setUp()
     {
         parent::setUp();
 
-        $this->setUpDatabase($this->app);
+        $this->loadLaravelMigrations();
+        $this->artisan('migrate')->run();
+
+        $this->adminUser = User::create([
+            'name'     => 'AppShell',
+            'email'    => 'test@gmail.com',
+            'password' => bcrypt('test')
+        ]);
+
+        $this->adminUser->assignRole('admin');
     }
 
     /**
@@ -39,38 +51,13 @@ abstract class TestCase extends Orchestra
         ];
     }
 
-    /**
-     * Set up the environment.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('database.default', 'sqlite');
-        $app['config']->set('database.connections.sqlite', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
-    }
+        parent::getEnvironmentSetUp($app);
 
-    /**
-     * Set up the database.
-     *
-     * @param \Illuminate\Foundation\Application $app
-     */
-    protected function setUpDatabase($app)
-    {
-        $app['db']->connection()->getSchemaBuilder()->create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        Auth::routes();
 
-        \Artisan::call('migrate', ['--force' => true]);
+        $app['config']->set('auth.providers.users.model', User::class);
     }
 
     /**
