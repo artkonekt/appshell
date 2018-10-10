@@ -12,6 +12,7 @@
 namespace Konekt\AppShell\Tests;
 
 use Illuminate\Support\Facades\Auth;
+use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
 use Konekt\Concord\ConcordServiceProvider;
 use Konekt\Gears\Providers\GearsServiceProvider;
@@ -28,7 +29,7 @@ abstract class TestCase extends Orchestra
         $this->loadLaravelMigrations();
         $this->artisan('migrate')->run();
 
-        $this->adminUser = TestUser::create([
+        $this->adminUser = User::create([
             'name'     => 'AppShell',
             'email'    => 'test@gmail.com',
             'password' => bcrypt('test')
@@ -55,6 +56,8 @@ abstract class TestCase extends Orchestra
         parent::getEnvironmentSetUp($app);
 
         Auth::routes();
+
+        $app['config']->set('auth.providers.users.model', User::class);
     }
 
     /**
