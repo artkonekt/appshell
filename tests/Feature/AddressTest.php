@@ -51,10 +51,15 @@ class AddressTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_address()
+    public function create_address_page_can_be_loaded()
     {
-        $response = $this->actingAs($this->adminUser)->get(route('appshell.address.create') . '?for=customer&forId=' . $this->customer->id);
+        $response = $this->actingAs($this->adminUser)
+                         ->get(
+                             route('appshell.address.create')
+                             . '?for=customer&forId=' . $this->customer->id
+                         );
 
+        $response->assertStatus(200);
         $response->assertSee('Create new address');
         $response->assertSee($this->customer->getName());
         $response->assertSee('Create address');
@@ -62,11 +67,11 @@ class AddressTest extends TestCase
     }
 
     /** @test */
-    public function it_can_store_address()
+    public function new_address_can_be_saved()
     {
-        $this->actingAs($this->adminUser)->post(route('appshell.address.store'), [
+        $response = $this->actingAs($this->adminUser)->post(route('appshell.address.store'), [
             'type'        => AddressType::BILLING,
-            'name'        => 'Billing address',
+            //'name'        => 'Billing address',
             'country_id'  => 'HU',
             'province_id' => 'BP',
             'city'        => 'Budapest',
@@ -75,6 +80,14 @@ class AddressTest extends TestCase
             'for'         => 'customer',
             'forId'       => $this->customer->id
         ]);
+
+        // @todo test if UI redirects to proper place without errors
+        // @todo test the unlucky path as well (validation errors)
+        // @todo check what's with provinces not in db
+        //$this->followingRedirects()->assert
+        //$response->content());
+
+        //$response->assertDontSeeText();
 
         $address = $this->customer->addresses->last();
 
@@ -90,7 +103,8 @@ class AddressTest extends TestCase
     /** @test */
     public function it_can_list_address()
     {
-        $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.show', $this->customer));
+        $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.show',
+            $this->customer));
 
         $response->assertSee($this->address->name);
         $response->assertSee($this->address->address);
@@ -100,7 +114,8 @@ class AddressTest extends TestCase
     /** @test */
     public function it_can_edit_customer()
     {
-        $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.edit', $this->customer));
+        $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.edit',
+            $this->customer));
 
         $response->assertSee("Editing " . $this->customer->getName());
     }
