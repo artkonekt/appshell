@@ -20,25 +20,25 @@ class AddressTest extends TestCase
     {
         parent::setUp();
 
-        $this->artisan('db:seed', ['--class' => 'Konekt\Address\Seeds\Countries'])->run();
+        $this->artisan('db:seed', ['--class' => 'Konekt\Address\Seeds\Countries']);
 
         $this->customer = Customer::create([
-            'type'            => CustomerType::ORGANIZATION,
-            'firstname'       => 'Greatest',
-            'lastname'        => 'Test',
-            'company_name'    => 'Pear',
-            'tax_nr'          => '1111',
-            'registration_nr' => '2222'
+            'type' => CustomerType::ORGANIZATION,
+            'firstname' => 'Greatest',
+            'lastname' => 'Test',
+            'company_name' => 'Pear',
+            'tax_nr' => '1111',
+            'registration_nr' => '2222',
         ]);
 
         $this->address = $this->customer->addresses()->create([
-            'type'        => AddressType::CONTRACT,
-            'name'        => 'Contract address',
-            'country_id'  => 'BE',
+            'type' => AddressType::CONTRACT,
+            'name' => 'Contract address',
+            'country_id' => 'BE',
             'province_id' => 'BR',
-            'city'        => 'Bruxelles',
-            'postalcode'  => '1047',
-            'address'     => 'Paul Henri Spaak Building, Wiertzstraat 60'
+            'city' => 'Bruxelles',
+            'postalcode' => '1047',
+            'address' => 'Paul Henri Spaak Building, Wiertzstraat 60',
         ]);
     }
 
@@ -56,7 +56,7 @@ class AddressTest extends TestCase
         $response = $this->actingAs($this->adminUser)
                          ->get(
                              route('appshell.address.create')
-                             . '?for=customer&forId=' . $this->customer->id
+                             .'?for=customer&forId='.$this->customer->id
                          );
 
         $response->assertStatus(200);
@@ -72,26 +72,23 @@ class AddressTest extends TestCase
         $response = $this->actingAs($this->adminUser)
                          //->followingRedirects()
                          ->post(route('appshell.address.store'), [
-            'type'        => AddressType::BILLING,
-            //'name'        => 'Billing address',
-            'country_id'  => 'HU',
+            'type' => AddressType::BILLING,
+            'name'        => 'Billing address',
+            'country_id' => 'HU',
             'province_id' => 'BP',
-            'city'        => 'Budapest',
-            'postalcode'  => '1111',
-            'address'     => 'Vaci utca 21',
-            'for'         => 'customer',
-            'forId'       => $this->customer->id
+            'city' => 'Budapest',
+            'postalcode' => '1111',
+            'address' => 'Vaci utca 21',
+            'for' => 'customer',
+            'forId' => $this->customer->id,
         ]);
 
         // @todo test if UI redirects to proper place without errors
         // @todo test the unlucky path as well (validation errors)
         // @todo check what's with provinces not in db
-
         //$response->assertStatus(200);
-        $response->assertRedirect('asd');
-        dd($response->getContent());
-
-        $response->assertDontSeeText('error');
+        //$response->assertRedirect('asd');
+        //$response->assertDontSeeText('error');
 
         $address = $this->customer->addresses->last();
 
@@ -114,13 +111,12 @@ class AddressTest extends TestCase
         $response->assertSee($this->address->address);
     }
 
-
     /** @test */
     public function it_can_edit_customer()
     {
         $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.edit',
             $this->customer));
 
-        $response->assertSee("Editing " . $this->customer->getName());
+        $response->assertSee('Editing '.$this->customer->getName());
     }
 }
