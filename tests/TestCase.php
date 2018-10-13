@@ -30,8 +30,8 @@ abstract class TestCase extends Orchestra
         $this->artisan('migrate');
 
         $this->adminUser = User::create([
-            'name' => 'AppShell',
-            'email' => 'test@gmail.com',
+            'name'     => 'AppShell',
+            'email'    => 'test@gmail.com',
             'password' => bcrypt('test'),
         ]);
 
