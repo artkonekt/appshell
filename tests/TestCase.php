@@ -5,8 +5,8 @@
  * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2018-02-27
  *
+ * @since       2018-02-27
  */
 
 namespace Konekt\AppShell\Tests;
@@ -27,12 +27,12 @@ abstract class TestCase extends Orchestra
         parent::setUp();
 
         $this->loadLaravelMigrations();
-        $this->artisan('migrate')->run();
+        $this->artisan('migrate');
 
         $this->adminUser = User::create([
             'name'     => 'AppShell',
             'email'    => 'test@gmail.com',
-            'password' => bcrypt('test')
+            'password' => bcrypt('test'),
         ]);
 
         $this->adminUser->assignRole('admin');
@@ -47,7 +47,7 @@ abstract class TestCase extends Orchestra
     {
         return [
             ConcordServiceProvider::class,
-            GearsServiceProvider::class
+            GearsServiceProvider::class,
         ];
     }
 
@@ -56,18 +56,19 @@ abstract class TestCase extends Orchestra
         parent::getEnvironmentSetUp($app);
 
         Auth::routes();
-        \Route::get('/home', function (){})->name('home');
+        \Route::get('/home', function () {
+        })->name('home');
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function resolveApplicationConfiguration($app)
     {
         parent::resolveApplicationConfiguration($app);
 
         $app['config']->set('concord.modules', [
-            AppShellModule::class
+            AppShellModule::class,
         ]);
 
         $app['config']->set('auth.providers.users.model', User::class);

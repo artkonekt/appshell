@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
-
 use Konekt\Address\Contracts\Address;
 use Konekt\Address\Models\AddressProxy;
 use Konekt\Address\Models\AddressTypeProxy;

@@ -36,7 +36,7 @@ class AccountController
 
         if ($request->has('password') && !empty($request->get('password'))) {
             $data['password'] = bcrypt($request->get('password'));
-            $pwChanged = true;
+            $pwChanged        = true;
         }
 
         try {
@@ -55,5 +55,4 @@ class AccountController
 
         return redirect(route('appshell.account.display'));
     }
-
 }

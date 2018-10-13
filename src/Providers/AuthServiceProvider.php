@@ -35,9 +35,8 @@ class AuthServiceProvider extends BaseAuthServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('list.users', function($user) {
+        Gate::define('list.users', function ($user) {
             return true;
         });
     }
-
 }

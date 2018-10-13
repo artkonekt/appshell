@@ -15,7 +15,6 @@ namespace Konekt\AppShell\Acl;
 use Konekt\Acl\Models\PermissionProxy;
 use Konekt\Acl\PermissionRegistrar;
 
-
 /**
  * Utility class for handling standard resource permissions
  */
@@ -70,7 +69,6 @@ class ResourcePermissions
         app(PermissionRegistrar::class)->forgetCachedPermissions();
 
         return $result;
-
     }
 
     /**
@@ -103,7 +101,6 @@ class ResourcePermissions
             default:
                 return false;
         }
-
     }
 
     /**
@@ -119,7 +116,7 @@ class ResourcePermissions
      */
     public static function permissionFor($resource, $action)
     {
-        if ( ! $verb = ResourcePermissions::permissionVerbForAction($action)) {
+        if (! $verb = ResourcePermissions::permissionVerbForAction($action)) {
             return false;
         }
 
@@ -142,5 +139,4 @@ class ResourcePermissions
 
         return $result;
     }
-
 }

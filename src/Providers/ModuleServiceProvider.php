@@ -74,10 +74,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerCommands();
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
 
-        $this->app->singleton('appshell.settings_tree_builder', function($app) {
+        $this->app->singleton('appshell.settings_tree_builder', function ($app) {
             return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
         });
-        $this->app->bind('appshell.settings_tree', function($app) {
+        $this->app->bind('appshell.settings_tree', function ($app) {
             $this->buildSettingsTree();
             return $app['appshell.settings_tree_builder']->getTree();
         });

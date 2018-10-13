@@ -41,5 +41,4 @@ class UpdateCustomer extends FormRequest implements UpdateCustomerContract
     {
         return true;
     }
-
 }

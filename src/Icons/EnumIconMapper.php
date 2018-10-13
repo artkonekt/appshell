@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Icons;
 
-
 use Konekt\Enum\Enum;
 
 class EnumIconMapper
@@ -46,5 +45,4 @@ class EnumIconMapper
             config('konekt.app_shell.icon.default', 'default')
         );
     }
-
 }

@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Konekt\AppShell\Contracts\Requests\CreateAddress as CreateAddressContract;
@@ -52,5 +51,4 @@ class CreateAddress extends FormRequest implements CreateAddressContract
 
         return null;
     }
-
 }

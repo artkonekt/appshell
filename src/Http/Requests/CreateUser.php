@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 use Konekt\AppShell\Contracts\Requests\CreateUser as CreateUserContract;
 
@@ -42,6 +41,4 @@ class CreateUser extends FormRequest implements CreateUserContract
     {
         return true;
     }
-
-
 }

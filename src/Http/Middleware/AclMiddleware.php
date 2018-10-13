@@ -59,7 +59,7 @@ class AclMiddleware
         $parts      = explode('@', $ctrlAndAction);
         $controller = $parts[0];
         $action     = end($parts);
-        $resource = strtolower(str_replace('Controller', '', $controller));
+        $resource   = strtolower(str_replace('Controller', '', $controller));
 
         return [
             'action'          => $action,

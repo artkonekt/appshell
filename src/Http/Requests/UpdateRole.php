@@ -37,5 +37,4 @@ class UpdateRole extends FormRequest implements UpdateRoleContract
     {
         return true;
     }
-
 }

@@ -51,5 +51,4 @@ class CreateAddressForm extends FormRequest implements CreateAddressFormContract
 
         return null;
     }
-
 }

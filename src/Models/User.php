@@ -12,12 +12,10 @@
 
 namespace Konekt\AppShell\Models;
 
-
 use Konekt\Acl\Traits\HasRoles;
 use Konekt\User\Models\User as BaseUser;
 
 class User extends BaseUser
 {
     use HasRoles;
-
 }

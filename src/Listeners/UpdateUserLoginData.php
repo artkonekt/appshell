@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Listeners;
 
-
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Login;
 
@@ -29,5 +28,4 @@ class UpdateUserLoginData
         $event->user->login_count += 1;
         $event->user->save();
     }
-
 }

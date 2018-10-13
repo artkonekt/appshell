@@ -19,7 +19,6 @@ use Konekt\AppShell\Acl\ResourcePermissions;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserType;
 
-
 class SuperCommand extends Command
 {
     protected $signature = 'appshell:super
@@ -32,9 +31,9 @@ class SuperCommand extends Command
     {
         $this->info("Now you're about to create a new user with all privileges");
 
-        $email = $this->askEmail();
-        $name  = $this->ask('Name');
-        $pass  = $this->secret('Password');
+        $email    = $this->askEmail();
+        $name     = $this->ask('Name');
+        $pass     = $this->secret('Password');
         $roleName = $this->ask('Role name', 'admin');
 
         $role = $this->fetchRole($roleName);
@@ -80,8 +79,8 @@ class SuperCommand extends Command
     protected function fetchRole($roleName)
     {
         $role = RoleProxy::where('name', $roleName)->first();
-        if ( ! $role) {
-            if ( ! $this->confirm("Role '$roleName' doesn't exists. Create it?")) {
+        if (! $role) {
+            if (! $this->confirm("Role '$roleName' doesn't exists. Create it?")) {
                 $this->warn('Nothing has been done.');
                 exit(1);
             }
@@ -107,5 +106,4 @@ class SuperCommand extends Command
 
         return $role;
     }
-
 }
