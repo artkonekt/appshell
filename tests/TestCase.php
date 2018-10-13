@@ -56,8 +56,7 @@ abstract class TestCase extends Orchestra
         parent::getEnvironmentSetUp($app);
 
         Auth::routes();
-
-        $app['config']->set('auth.providers.users.model', User::class);
+        \Route::get('/home', function (){})->name('home');
     }
 
     /**
@@ -70,5 +69,7 @@ abstract class TestCase extends Orchestra
         $app['config']->set('concord.modules', [
             AppShellModule::class
         ]);
+
+        $app['config']->set('auth.providers.users.model', User::class);
     }
 }
