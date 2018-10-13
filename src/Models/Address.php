@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Models;
 
-
 use Konekt\Address\Models\Address as BaseAddress;
 use Konekt\Customer\Models\CustomerProxy;
 
@@ -27,5 +26,4 @@ class Address extends BaseAddress
     {
         return $this->belongsToMany(CustomerProxy::modelClass(), 'customer_addresses');
     }
-
 }

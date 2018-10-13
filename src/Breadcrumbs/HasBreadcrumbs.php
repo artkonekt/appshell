@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Breadcrumbs;
 
-
 trait HasBreadcrumbs
 {
     /**
@@ -35,7 +34,5 @@ trait HasBreadcrumbs
         if (file_exists($file)) {
             require $file;
         }
-        
     }
-
 }

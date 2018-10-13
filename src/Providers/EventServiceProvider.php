@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Providers;
 
-
 use Illuminate\Auth\Events\Login;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Konekt\AppShell\Listeners\UpdateUserLoginData;
@@ -29,5 +28,4 @@ class EventServiceProvider extends ServiceProvider
             UpdateUserLoginData::class,
         ],
     ];
-
 }

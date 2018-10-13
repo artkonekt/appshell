@@ -41,5 +41,4 @@ class CreateCustomer extends FormRequest implements CreateCustomerContract
     {
         return true;
     }
-
 }

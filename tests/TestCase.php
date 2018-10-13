@@ -56,7 +56,8 @@ abstract class TestCase extends Orchestra
         parent::getEnvironmentSetUp($app);
 
         Auth::routes();
-        \Route::get('/home', function (){})->name('home');
+        \Route::get('/home', function () {
+        })->name('home');
     }
 
     /**

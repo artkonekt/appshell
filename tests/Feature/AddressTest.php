@@ -69,7 +69,9 @@ class AddressTest extends TestCase
     /** @test */
     public function new_address_can_be_saved()
     {
-        $response = $this->actingAs($this->adminUser)->post(route('appshell.address.store'), [
+        $response = $this->actingAs($this->adminUser)
+                         //->followingRedirects()
+                         ->post(route('appshell.address.store'), [
             'type'        => AddressType::BILLING,
             //'name'        => 'Billing address',
             'country_id'  => 'HU',
@@ -84,10 +86,12 @@ class AddressTest extends TestCase
         // @todo test if UI redirects to proper place without errors
         // @todo test the unlucky path as well (validation errors)
         // @todo check what's with provinces not in db
-        //$this->followingRedirects()->assert
-        //$response->content());
 
-        //$response->assertDontSeeText();
+        //$response->assertStatus(200);
+        $response->assertRedirect('asd');
+        dd($response->getContent());
+
+        $response->assertDontSeeText('error');
 
         $address = $this->customer->addresses->last();
 

@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Requests;
 
-
 trait HasRoles
 {
     /**
@@ -26,5 +25,4 @@ trait HasRoles
 
         return is_array($roles) ? array_keys($roles) : [];
     }
-
 }

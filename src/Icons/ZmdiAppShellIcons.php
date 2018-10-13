@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Icons;
 
-
 use Konekt\Customer\Models\CustomerType;
 use Konekt\Customer\Models\CustomerTypeProxy;
 
@@ -48,5 +47,4 @@ class ZmdiAppShellIcons
             ]
         );
     }
-
 }

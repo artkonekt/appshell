@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
-
 use Konekt\Acl\Contracts\Role;
 use Konekt\Acl\Models\PermissionProxy;
 use Konekt\Acl\Models\RoleProxy;
@@ -126,7 +125,6 @@ class RoleController extends BaseController
             $role->delete();
 
             flash()->warning(__('Role has been deleted'));
-
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
@@ -134,5 +132,4 @@ class RoleController extends BaseController
         //@todo process route prefixes based on box config
         return redirect(route('appshell.role.index'));
     }
-
 }

@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
-
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
@@ -134,7 +133,6 @@ class UserController extends BaseController
             $user->delete();
 
             flash()->warning(__('User has been deleted'));
-
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
@@ -149,7 +147,6 @@ class UserController extends BaseController
             $user->inactivate();
 
             flash()->warning(__('User has been inactivated'));
-
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
@@ -163,7 +160,6 @@ class UserController extends BaseController
             $user->activate();
 
             flash()->success(__('User has been activated'));
-
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }

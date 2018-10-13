@@ -29,5 +29,4 @@ class GravatarDefault extends Enum implements GravatarDefaultContract
     const RETRO          = 'retro';
     const ROBOHASH       = 'robohash';
     const BLANK          = 'blank';
-
 }

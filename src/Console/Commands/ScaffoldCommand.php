@@ -31,6 +31,4 @@ class ScaffoldCommand extends Command
     {
         // TODO: Implement getStub() method.
     }
-
-
 }

@@ -22,5 +22,4 @@ interface CreateAddressForm extends BaseRequest
      * @return null|Model
      */
     public function getFor();
-
 }

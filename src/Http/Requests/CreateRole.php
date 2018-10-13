@@ -37,5 +37,4 @@ class CreateRole extends FormRequest implements CreateRoleContract
     {
         return true;
     }
-
 }

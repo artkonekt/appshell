@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 use Konekt\AppShell\Contracts\Requests\UpdateUser as UpdateUserContract;
 
@@ -42,6 +41,4 @@ class UpdateUser extends FormRequest implements UpdateUserContract
     {
         return true;
     }
-
-
 }

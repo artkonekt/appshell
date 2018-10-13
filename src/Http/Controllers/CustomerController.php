@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
-
 use Konekt\AppShell\Contracts\Requests\CreateCustomer;
 use Konekt\AppShell\Contracts\Requests\UpdateCustomer;
 use Konekt\Customer\Contracts\Customer;
@@ -43,7 +42,7 @@ class CustomerController extends BaseController
 
         return $this->appShellView('customer.create', [
             'customer' => $customer,
-            'types'  => CustomerTypeProxy::choices()
+            'types'    => CustomerTypeProxy::choices()
         ]);
     }
 
@@ -93,7 +92,7 @@ class CustomerController extends BaseController
     {
         return $this->appShellView('customer.edit', [
             'customer'  => $customer,
-            'types'  => CustomerTypeProxy::choices()
+            'types'     => CustomerTypeProxy::choices()
         ]);
     }
 
@@ -133,7 +132,6 @@ class CustomerController extends BaseController
             $customer->delete();
 
             flash()->warning(__('Customer :name has been deleted', ['name' => $name]));
-
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }

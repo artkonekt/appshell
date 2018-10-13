@@ -12,7 +12,6 @@
 
 namespace Konekt\AppShell\Http\Requests;
 
-
 trait HasPermissions
 {
     /**
@@ -26,5 +25,4 @@ trait HasPermissions
 
         return is_array($perms) ? array_keys($perms) : [];
     }
-
 }
