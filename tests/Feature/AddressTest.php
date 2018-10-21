@@ -45,7 +45,7 @@ class AddressTest extends TestCase
     /** @test */
     public function guests_can_not_access_the_address_resource()
     {
-        $response = $this->get(route('appshell.address.index'));
+        $response = $this->get(route('appshell.address.create'));
 
         $response->assertStatus(302)->assertRedirect(route('login'));
     }
