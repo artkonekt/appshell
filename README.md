@@ -28,7 +28,7 @@ The user/auth part is built on top of the Laravel facilities in a compatible man
 To do list for v1.0:
 
 - [ ] Docs (incl. Icon helper usage)
-- [ ] Add more provinces to seeders
+- [X] Add more provinces to seeders (with konekt/address 0.9.7)
 - [ ] Include `Person` in profile
 - [ ] Fix Permissions and Roles page
 - [ ] Pimp Customer list table
