@@ -29,7 +29,7 @@ Left to do:
 
 - [X] Profile (incl. `avatar_url` helper)
 - [.] Sortable tree component [vuejs](https://github.com/phphe/vue-draggable-nested-tree)
-- [ ] Breadcrumbs on every page
+- [X] Breadcrumbs on every page
 - [ ] Docs (incl. Icon helper usage)
 - [ ] Add more provinces to seeders
 - [ ] Include `Person` in profile
