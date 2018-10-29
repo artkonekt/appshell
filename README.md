@@ -23,21 +23,6 @@ Incorporates the basics for:
 
 The user/auth part is built on top of the Laravel facilities in a compatible manner.
 
-## Release v1.0 Is On The Corner
-
-To do list for v1.0:
-
-- [ ] Docs (incl. Icon helper usage)
-- [X] Add more provinces to seeders (with konekt/address 0.9.7)
-- [ ] Include `Person` in profile
-- [ ] Fix Permissions and Roles page
-- [ ] Pimp Customer list table
-
-Scheduled for v1.1:
-
-- [ ] Sortable tree component [vuejs](https://github.com/phphe/vue-draggable-nested-tree)
-
-
 ## Create New AppShell Project
 
 ```bash
@@ -231,3 +216,9 @@ AppShell creates a menu named **appshell** which is the main menu component, and
 
 ### 0.9 -> 1.0
 
+## Backlog
+
+- [ ] Sortable tree component [vuejs](https://github.com/phphe/vue-draggable-nested-tree)
+- [ ] Include `Person` in profile
+- [ ] Fix Permissions and Roles page
+- [ ] Pimp Customer list table
