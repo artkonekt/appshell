@@ -71,11 +71,11 @@ return [
     'modules' => [
         Konekt\AppShell\Providers\ModuleServiceProvider::class => [
             'ui' => [
-                'name'    => 'My App',
+                'name'   => 'My App',
                 'url'    => '/admin/dashboard',
                 'assets' => [
-                    'js'    => DefaultAppShellAssets::JS,
-                    'assets'=> array_merge(DefaultAppShellAssets::CSS, ['/css/app.css'])
+                    'js' => DefaultAppShellAssets::JS,
+                    'css'=> array_merge(DefaultAppShellAssets::CSS, ['/css/app.css'])
                 ]
             ]
         ],
@@ -108,3 +108,7 @@ It is also possible to not use the default stylesheets at all, but use any other
 compatible CSS.
 
 See [Modify The Assets Of The Layout](#modify-the-assets-of-the-layout) above.
+
+---
+
+**Next**: [Extending &raquo;](extending.md)
