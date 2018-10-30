@@ -15,10 +15,11 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Konekt\Address\Contracts\Address as AddressContract;
+use Konekt\AppShell\Assets\AssetCollection;
+use Konekt\AppShell\Assets\DefaultAppShellAssets;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
-use Konekt\AppShell\Contracts\SettingsTree;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateAddress;
 use Konekt\AppShell\Http\Requests\CreateAddressForm;
@@ -183,7 +184,16 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
     protected function initUiData()
     {
-        View::share('appshell', (object) $this->config('ui'));
+        $uiConfig = $this->config('ui');
+
+        if (!isset($uiConfig['assets'])) {
+            $uiConfig['assets']['js']  = DefaultAppShellAssets::JS;
+            $uiConfig['assets']['css'] = DefaultAppShellAssets::CSS;
+        }
+
+        $uiConfig['assets'] = AssetCollection::createFromArray($uiConfig['assets']);
+
+        View::share('appshell', (object) $uiConfig);
     }
 
     /**

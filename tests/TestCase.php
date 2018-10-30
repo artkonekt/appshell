@@ -12,6 +12,7 @@
 namespace Konekt\AppShell\Tests;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
 use Konekt\Concord\ConcordServiceProvider;
@@ -56,7 +57,7 @@ abstract class TestCase extends Orchestra
         parent::getEnvironmentSetUp($app);
 
         Auth::routes();
-        \Route::get('/home', function () {
+        Route::get('/home', function () {
         })->name('home');
     }
 

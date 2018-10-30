@@ -8,5 +8,6 @@
     - [Menu Component](menu.md)
 
 - III. Customization
+    - [Customizing Admin UI](customize-admin-ui.md)
     - [Extending](extending.md)
     - [Using Custom Models](models.md)

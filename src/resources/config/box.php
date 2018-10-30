@@ -34,17 +34,8 @@ return [
         'name'   => 'AppShell',
         'url'    => '/admin/customer',
         'assets' => [
-            'js' => [
-                'js/appshell.js'
-            ],
-            'css' => [
-                'https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i',
-                'css/appshell.css',
-                'https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css' => [
-                    'integrity'   => 'sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=',
-                    'crossorigin' => 'anonymous'
-                ]
-            ]
+            'js' => \Konekt\AppShell\Assets\DefaultAppShellAssets::JS,
+            'css' => \Konekt\AppShell\Assets\DefaultAppShellAssets::CSS
         ]
     ],
     'avatar' => [

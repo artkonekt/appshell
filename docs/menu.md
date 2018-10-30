@@ -5,3 +5,7 @@ The component is automatically loaded, is fully available (incl. the `Menu` faca
 
 AppShell creates a menu named **appshell** which is the main menu
 component, and is available in views as `$appshellMenu`.
+
+---
+
+**Next**: [Customizing The Admin UI &raquo;](customize-admin-ui.md)

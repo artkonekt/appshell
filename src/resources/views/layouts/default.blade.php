@@ -11,16 +11,8 @@
     <title>@yield('title') &middot; {{ setting('appshell.ui.name') }}</title>
 
     <!-- Styles -->
-    @foreach($appshell->assets['css'] as $key => $css)
-        @if(is_numeric($key))
-            <link href="{{ asset($css) }}" rel="stylesheet">
-        @else
-            <link href="{{ asset($key) }}" rel="stylesheet"
-                @foreach($css as $attr => $value)
-                    {{ $attr }}="{{$value}}"
-                @endforeach
-            />
-        @endif
+    @foreach($appshell->assets->stylesheets() as $stylesheet)
+        {!! $stylesheet->renderHtml() !!}
     @endforeach
 
     <!-- Scripts -->
@@ -90,12 +82,8 @@
 <!-- Scripts -->
 @include('appshell::layouts.default._scripts')
 
-@foreach($appshell->assets['js'] as $key => $js)
-    @if(is_numeric($key))
-        <script src="{{ asset($js) }}"></script>
-    @else
-        <script src="{{ asset($key) }}" @foreach($css as $attr => $value) {{ $attr }}="{{$value}}" @endforeach></script>
-    @endif
+@foreach($appshell->assets->scripts() as $script)
+    {!! $script->renderHtml() !!}
 @endforeach
 @yield('scripts')
 </body>

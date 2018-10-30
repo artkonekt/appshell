@@ -34,7 +34,7 @@ class CustomerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_customer()
+    public function it_can_create_a_customer()
     {
         $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.create'));
 
@@ -45,7 +45,7 @@ class CustomerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_store_customer()
+    public function it_can_store_a_customer()
     {
         $this->actingAs($this->adminUser)->post(route('appshell.customer.store'), [
             'type'            => CustomerType::ORGANIZATION,
@@ -67,7 +67,7 @@ class CustomerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_list_customer()
+    public function it_can_list_customers()
     {
         $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.index'));
 
@@ -75,7 +75,7 @@ class CustomerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_edit_customer()
+    public function it_can_edit_a_customer()
     {
         $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.edit', $this->customer));
 
@@ -83,7 +83,7 @@ class CustomerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_update_customer()
+    public function it_can_update_a_customer()
     {
         $this->actingAs($this->adminUser)->put(route('appshell.customer.update', $this->customer), [
             'company_name' => 'Modified customer',
@@ -94,7 +94,7 @@ class CustomerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_destroy_customer()
+    public function it_can_delete_a_customer()
     {
         $this->actingAs($this->adminUser)->delete(route('appshell.customer.destroy', $this->customer));
 
