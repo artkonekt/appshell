@@ -34,7 +34,7 @@ return [
         'name'   => 'AppShell',
         'url'    => '/admin/customer',
         'assets' => [
-            'js' => \Konekt\AppShell\Assets\DefaultAppShellAssets::JS,
+            'js'  => \Konekt\AppShell\Assets\DefaultAppShellAssets::JS,
             'css' => \Konekt\AppShell\Assets\DefaultAppShellAssets::CSS
         ]
     ],
