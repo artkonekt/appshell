@@ -1,8 +1,8 @@
 # AppShell Changelog
 
-## 1.0
+# 1.0
 
-### 1.0.0
+## 1.0.0
 ##### Unreleased (2018-10-31)
 
 - Profile, password change works
@@ -12,7 +12,7 @@
 - Default layout assets are configurable
 - Documentation separated from readme. [Available here](https://artkonekt.github.io/appshell).
 
-## 0.9
+# 0.9
 
 ## 0.9.10
 ##### 2018-09-21
