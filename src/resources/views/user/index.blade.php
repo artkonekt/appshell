@@ -85,8 +85,13 @@
                             @endcan
 
                             @can('delete users')
-                                <a href="{{ route('appshell.user.destroy', $user) }}"
-                                   class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right">{{ __('Delete') }}</a>
+                                {!! Form::open(['route' => ['appshell.user.destroy', $user],
+                                            'method' => 'DELETE',
+                                            'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name])
+                                            ])
+                                    !!}
+                                <button class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right">{{ __('Delete') }}</button>
+                                {!! Form::close() !!}
                             @endcan
                         </td>
                     </tr>

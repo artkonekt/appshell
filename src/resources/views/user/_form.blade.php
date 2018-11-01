@@ -19,11 +19,21 @@
         <span class="input-group-addon">
             <i class="zmdi zmdi-email"></i>
         </span>
-        {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => __('E-mail address')]) }}
+        {{ Form::email('email', null, [
+            'class' => 'form-control',
+            'autocomplete' => 'off',
+            'placeholder' => __('E-mail address')
+            ])
+        }}
     </div>
     @if ($errors->has('email'))
         <div class="form-control-feedback">{{ $errors->first('email') }}</div>
     @endif
+</div>
+
+<div style="display: none">
+    {{-- This block is to trick browser's autocompletion detection which is extremely pushy --}}
+    <input type="text" name="{{ uniqid() }}" value="{{ uniqid() }}">
 </div>
 
 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
@@ -33,9 +43,9 @@
         </span>
         @if ($user->exists)
             {{ Form::password('password', [
-                'class' => 'form-control',
-                'autocomplete'  => 'new-password',
-                'placeholder' => __('Type new password if you want to change it')
+                'class'        => 'form-control',
+                'autocomplete' => 'new-password',
+                'placeholder'  => __('Type new password if you want to change it')
                 ])
             }}
         @else

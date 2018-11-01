@@ -12,17 +12,7 @@
             <i class="zmdi zmdi-shield-security"></i>
             @yield('title')
 
-            <span class="badge badge-default badge-pill" title="{{
-                    trans_choice(
-                        '{0} ' .
-                        __('Not assigned to any user')
-                        . '|[1] ' .
-                        __('Assigned to one user')
-                        . '|[2,*]' .
-                        __('Assigned to :n users', ['n' => $role->users->count()]),
-                        $role->users->count()
-                    )
-                }}">{{ $role->users->count() }}</span>
+            @component('appshell::role._user_count', ['count' => $role->users->count()]) @endcomponent
 
         </div>
 
@@ -45,7 +35,7 @@
 
             <?php $noperms = $permissions->diff($role->permissions); ?>
             <div class="form-group">
-                <legend>{{ __('Refuses') }}</legend>
+                <legend>{{ __('Denies') }}</legend>
                 @forelse($noperms as $permission)
                     <span class="badge badge-pill badge-danger">
                         <i class="zmdi zmdi-alert-triangle"></i>
@@ -74,8 +64,8 @@
                     <a href="javascript:;" class="btn btn-sm btn-secondary" style="margin-bottom: 5px">{{ __('No user assigned so far') }}</a>
                 @endforelse
 
-                @can('edit users')
-                        <a href="{{ route('appshell.role.create') }}"
+                @can(['edit users', 'list users'])
+                        <a href="{{ route('appshell.user.index') }}"
                            class="btn btn-sm btn-outline-success" style="margin-bottom: 5px">
                             <i class="zmdi zmdi-plus"></i>
                             {{ __('Assign to user') }}
@@ -84,13 +74,26 @@
                 @endcan
 
             </div>
+        </div>
 
+        <div class="card-footer">
             @can('edit roles')
-            <hr>
-            <div class="form-group">
                 <a href="{{ route('appshell.role.edit', $role) }}" class="btn btn-outline-primary">{{ __('Edit role') }}</a>
+            @endcan
+
                 <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Back') }}</a>
-            </div>
+
+            @can('delete roles')
+                {!! Form::open(['route' => ['appshell.role.destroy', $role],
+                                'method' => 'DELETE',
+                                'class' => 'float-right',
+                                'data-confirmation-text' => __('Are you sure to delete the :name role?', ['name' => $role->name])
+                                ])
+                !!}
+                <button class="btn btn-outline-danger">
+                    {{ __('Delete role') }}
+                </button>
+                {!! Form::close() !!}
             @endcan
         </div>
     </div>

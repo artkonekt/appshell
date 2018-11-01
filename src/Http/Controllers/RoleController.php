@@ -27,7 +27,7 @@ class RoleController extends BaseController
     {
         return $this->appShellView('role.index', [
             'permissions' => PermissionProxy::all(),
-            'roles'       => RoleProxy::all()
+            'roles'       => RoleProxy::with('users')->get()
         ]);
     }
 
@@ -68,13 +68,12 @@ class RoleController extends BaseController
             $role = RoleProxy::create($request->except('permissions'));
             $role->syncPermissions($request->permissions());
 
-            flash()->success(__('Role has been created'));
+            flash()->success(__('The :name role has been created', ['name' => $role->name]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
             return redirect()->back();
         }
 
-        //@todo process route prefixes based on box config
         return redirect(route('appshell.role.index'));
     }
 
@@ -102,14 +101,13 @@ class RoleController extends BaseController
             $role->update($request->except('permissions'));
             $role->syncPermissions($request->permissions());
 
-            flash()->success(__('Role has been updated'));
+            flash()->success(__('The :name role has been updated', ['name' => $role->name]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
             return redirect()->back();
         }
 
-        //@todo process route prefixes based on box config
-        return redirect(route('appshell.role.index'));
+        return redirect(route('appshell.role.show', $role));
     }
 
     /**
@@ -122,14 +120,14 @@ class RoleController extends BaseController
     public function destroy(Role $role)
     {
         try {
+            $name = $role->name;
             $role->delete();
 
-            flash()->warning(__('Role has been deleted'));
+            flash()->warning(__('The :name role has been deleted', ['name' => $name]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
 
-        //@todo process route prefixes based on box config
         return redirect(route('appshell.role.index'));
     }
 }

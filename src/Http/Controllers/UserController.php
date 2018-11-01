@@ -12,6 +12,7 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
@@ -116,8 +117,7 @@ class UserController extends BaseController
             return redirect()->back();
         }
 
-        //@todo process route prefixes based on box config
-        return redirect(route('appshell.user.index'));
+        return redirect(route('appshell.user.show', $user));
     }
 
     /**
@@ -129,6 +129,12 @@ class UserController extends BaseController
      */
     public function destroy(User $user)
     {
+        if ($user->id == Auth::user()->id) {
+            flash()->error(__("You can't delete your self. What's wrong dude? Do you want to talk about it?"));
+
+            return redirect()->back();
+        }
+
         try {
             $user->delete();
 
@@ -137,7 +143,6 @@ class UserController extends BaseController
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
 
-        //@todo process route prefixes based on box config
         return redirect(route('appshell.user.index'));
     }
 
