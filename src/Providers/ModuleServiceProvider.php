@@ -268,7 +268,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $settingsRegistry = $this->app['gears.settings_registry'];
 
         $settingsRegistry->add(new SimpleSetting('appshell.ui.name', $this->config('ui.name')));
-        $settingsRegistry->add(new SimpleSetting('appshell.default.country', null, function() {
+        $settingsRegistry->add(new SimpleSetting('appshell.default.country', null, function () {
             return ['' => '--'] + CountryProxy::all()->pluck('name', 'id')->all();
         }));
     }
