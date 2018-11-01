@@ -3,7 +3,7 @@
         <label class="form-control-label col-md-2">{{ __('Address for') }}:</label>
 
         <div class="col-md-10">
-            <strong>{{ $for->getName() }}</strong>
+            <strong>{{ $for->name }}</strong>
         </div>
         {{ Form::hidden('for', shorten(get_class($for))) }}
         {{ Form::hidden('forId', $for->id) }}
@@ -47,9 +47,12 @@
     <div class="col-md-6">
         <label class="form-control-label">{{ __('Country') }}</label>
         <div class="form-group{{ $errors->has('country_id') ? ' has-danger' : '' }}">
-            {{ Form::select('country_id', $countries->pluck('name', 'id'), null, [
-                    'class' => 'form-control'
-                ])
+            {{ Form::select(
+                        'country_id',
+                        $countries->pluck('name', 'id'),
+                        setting('appshell.default.country'),
+                        ['class' => 'form-control']
+                    )
             }}
 
             @if ($errors->has('country_id'))

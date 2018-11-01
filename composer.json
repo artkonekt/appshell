@@ -18,11 +18,11 @@
     "require": {
         "php": ">=7.0.0",
         "konekt/concord": "~1.1",
-        "konekt/customer": ">=0.9.4",
+        "konekt/customer": ">=0.9.6",
         "konekt/user": ">=0.9.0",
         "konekt/acl": "~1.0",
         "konekt/menu": "~1.2",
-        "konekt/gears": "~1.0",
+        "konekt/gears": "~1.1",
         "laravelcollective/html": "~5.4",
         "laracasts/flash": "~3.0",
         "davejamesmiller/laravel-breadcrumbs": "3.0.2 - 5",

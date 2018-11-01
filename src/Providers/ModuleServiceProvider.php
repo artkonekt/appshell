@@ -15,6 +15,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Konekt\Address\Contracts\Address as AddressContract;
+use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Assets\AssetCollection;
 use Konekt\AppShell\Assets\DefaultAppShellAssets;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
@@ -267,6 +268,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $settingsRegistry = $this->app['gears.settings_registry'];
 
         $settingsRegistry->add(new SimpleSetting('appshell.ui.name', $this->config('ui.name')));
+        $settingsRegistry->add(new SimpleSetting('appshell.default.country', null, function() {
+            return ['' => '--'] + CountryProxy::all()->pluck('name', 'id')->all();
+        }));
     }
 
     private function buildSettingsTree()
@@ -281,6 +285,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $settingsTreeBuilder->addRootNode('general', __('General Settings'))
             ->addChildNode('general', 'general_app', __('Application'))
             ->addSettingItem('general_app', ['text', ['label' => __('Name')]], 'appshell.ui.name');
+
+        $settingsTreeBuilder->addChildNode('general', 'defaults', __('Defaults'))
+                            ->addSettingItem('defaults', ['select', ['label' => __('Default Country')]], 'appshell.default.country');
 
         $this->settingsTreeIsBuilt = true;
     }

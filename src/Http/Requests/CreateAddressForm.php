@@ -9,13 +9,11 @@
  *
  */
 
-
 namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Konekt\AppShell\Contracts\Requests\CreateAddressForm as CreateAddressFormContract;
-use Konekt\Customer\Models\CustomerProxy;
 
 class CreateAddressForm extends FormRequest implements CreateAddressFormContract
 {
@@ -46,7 +44,10 @@ class CreateAddressForm extends FormRequest implements CreateAddressFormContract
     public function getFor()
     {
         if ($id = $this->query('forId')) {
-            return CustomerProxy::find($id);
+            // Concord Black Magic
+            $modelClass = concord()->model(concord()->short($this->query('for')));
+
+            return $modelClass::find($id);
         }
 
         return null;

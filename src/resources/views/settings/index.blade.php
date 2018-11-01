@@ -26,7 +26,8 @@
                                 @component('appshell::widgets.form.' . $item->getWidget()->component(),
                                     array_merge([
                                         'name'  => sprintf('settings[%s]', $item->getKey()),
-                                        'value' => $item->getValue()
+                                        'value' => $item->getValue(),
+                                        'options' => $item->getSetting()->options()
                                     ], $item->getWidget()->attributes())
                                 )
                                 @endcomponent

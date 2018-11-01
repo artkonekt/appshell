@@ -79,20 +79,22 @@
                             </div>
                         </td>
                         <td>
-                            @can('edit users')
-                                <a href="{{ route('appshell.user.edit', $user) }}"
-                                   class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
-                            @endcan
+                            <div class="mt-2">
+                                @can('edit users')
+                                    <a href="{{ route('appshell.user.edit', $user) }}"
+                                       class="btn btn-xs btn-outline-primary btn-show-on-tr-hover float-right">{{ __('Edit') }}</a>
+                                @endcan
 
-                            @can('delete users')
-                                {!! Form::open(['route' => ['appshell.user.destroy', $user],
-                                            'method' => 'DELETE',
-                                            'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name])
-                                            ])
-                                    !!}
-                                <button class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right">{{ __('Delete') }}</button>
-                                {!! Form::close() !!}
-                            @endcan
+                                @can('delete users')
+                                    {!! Form::open(['route' => ['appshell.user.destroy', $user],
+                                                'method' => 'DELETE',
+                                                'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name])
+                                                ])
+                                        !!}
+                                    <button class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right">{{ __('Delete') }}</button>
+                                    {!! Form::close() !!}
+                                @endcan
+                            </div>
                         </td>
                     </tr>
                 @endforeach

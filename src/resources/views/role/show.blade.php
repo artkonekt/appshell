@@ -64,7 +64,7 @@
                     <a href="javascript:;" class="btn btn-sm btn-secondary" style="margin-bottom: 5px">{{ __('No user assigned so far') }}</a>
                 @endforelse
 
-                @can(['edit users', 'list users'])
+                @can(['edit users'])
                         <a href="{{ route('appshell.user.index') }}"
                            class="btn btn-sm btn-outline-success" style="margin-bottom: 5px">
                             <i class="zmdi zmdi-plus"></i>

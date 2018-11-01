@@ -54,6 +54,26 @@
     @include('appshell::customer._organization')
 </div>
 
+<hr>
+
+<div class="form-group row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
+    <label class="form-control-label col-md-2">{{ __('Active') }}</label>
+    <div class="col-md-10">
+        {{ Form::hidden('is_active', 0) }}
+        <label class="switch switch-icon switch-pill switch-primary">
+            {{ Form::checkbox('is_active', 1, null, ['class' => 'switch-input']) }}
+            <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
+            <span class="switch-handle"></span>
+        </label>
+
+        @if ($errors->has('is_active'))
+            <div class="form-control-feedback">{{ $errors->first('is_active') }}</div>
+        @endif
+
+    </div>
+</div>
+
+
 @section('scripts')
     <script>
         new Vue({

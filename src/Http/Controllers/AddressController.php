@@ -54,6 +54,10 @@ class AddressController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        return redirect(route('appshell.customer.index'));
+        if (!$for) {
+            return redirect(config('appshell.ui.url'));
+        }
+
+        return redirect(route(sprintf('appshell.%s.show', shorten(get_class($for))), $for));
     }
 }

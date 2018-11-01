@@ -9,14 +9,12 @@
  *
  */
 
-
 namespace Konekt\AppShell\Http\Controllers;
 
 use Konekt\AppShell\Contracts\Requests\CreateCustomer;
 use Konekt\AppShell\Contracts\Requests\UpdateCustomer;
 use Konekt\Customer\Contracts\Customer;
 use Konekt\Customer\Models\CustomerProxy;
-use Konekt\Customer\Models\CustomerType;
 use Konekt\Customer\Models\CustomerTypeProxy;
 
 class CustomerController extends BaseController
@@ -54,16 +52,15 @@ class CustomerController extends BaseController
     public function store(CreateCustomer $request)
     {
         try {
-            CustomerProxy::create($request->all());
+            $customer = CustomerProxy::create($request->all());
 
-            flash()->success(__('Customer has been created'));
+            flash()->success(__(':name has been created', ['name' => $customer->getName()]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
             return redirect()->back()->withInput();
         }
 
-        //@todo process route prefixes based on box config
         return redirect(route('appshell.customer.index'));
     }
 
@@ -107,15 +104,14 @@ class CustomerController extends BaseController
         try {
             $customer->update($request->all());
 
-            flash()->success(__('Customer has been updated'));
+            flash()->success(__(':name has been updated', ['name' => $customer->getName()]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 
             return redirect()->back()->withInput();
         }
 
-        //@todo process route prefixes based on box config
-        return redirect(route('appshell.customer.index'));
+        return redirect(route('appshell.customer.show', $customer));
     }
 
     /**
@@ -136,7 +132,6 @@ class CustomerController extends BaseController
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }
 
-        //@todo process route prefixes based on box config
         return redirect(route('appshell.customer.index'));
     }
 }

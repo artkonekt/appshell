@@ -27,9 +27,12 @@
         </div>
 
         <div class="col-sm-6">
-            @component('appshell::widgets.card_with_icon', ['icon' => 'time-countdown'])
+            @component('appshell::widgets.card_with_icon', [
+                    'icon' => 'time-countdown',
+                    'type' => $customer->last_purchase_at ? 'success' : null
+            ])
                 {{ __('Last purchase') }}
-                <span title="This is fake right now">{{ $customer->updated_at->diffForHumans() }}</span>
+                <span title="{{ $customer->last_purchase_at ? $customer->last_purchase_at : '' }}">{{ $customer->last_purchase_at ? $customer->last_purchase_at->diffForHumans() : __('never') }}</span>
 
                 @slot('subtitle')
                     {{ __('Customer since') }}
@@ -44,51 +47,7 @@
 
     @yield('cards')
 
-    <div class="card">
-        <div class="card-header">
-            {{ __('Addresses') }}
-            <div class="card-actionbar">
-                @can('edit customers')
-                    <a href="{{ route('appshell.address.create') }}?for=customer&forId={{ $customer->id }}" class="btn btn-sm btn-outline-success float-right">
-                        <i class="zmdi zmdi-plus"></i>
-                        {{ __('New Address') }}
-                    </a>
-                @endcan
-            </div>
-        </div>
-        <div class="card-block">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>{{ __('Name') }}</th>
-                        <th>{{ __('Type') }}</th>
-                        <th>{{ __('Phone') }}</th>
-                        <th>{{ __('Address') }}</th>
-                        <th>{{ __('Country') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @forelse($customer->addresses as $address)
-                    <tr>
-                        <td>{{ $address->name }}</td>
-                        <td>{{ $address->type->label() }}</td>
-                        <td>{{ $address->phone }}</td>
-                        <td>
-                            @component('appshell::widgets.address.short_table_row', ['address' => $address])
-                            @endcomponent
-                        </td>
-                        <td>{{ $address->country->name }}</td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="text-center">{{ __('Customer has no addresses yet') }}</td>
-                    </tr>
-                @endforelse
-                </tbody>
-            </table>
-        </div>
-    </div>
-
+    @include('appshell::address._index', ['addresses' => $customer->addresses, 'createFor' => $customer])
 
     <div class="card">
         <div class="card-block">
@@ -100,11 +59,15 @@
             @yield('actions')
 
             @can('delete customers')
-                {!! Form::open(['route' => ['appshell.customer.destroy', $customer], 'method' => 'DELETE', 'class' =>
-                "float-right"]) !!}
-                <button class="btn btn-outline-danger">
-                    {{ __('Delete customer') }}
-                </button>
+                {!! Form::open(['route' => ['appshell.customer.destroy', $customer],
+                                            'method' => 'DELETE',
+                                            'data-confirmation-text' => __('Are you sure to delete :name?', ['name' => $customer->getName()]),
+                                            'class' => 'float-right'
+                                           ])
+                !!}
+                    <button class="btn btn-outline-danger">
+                        {{ __('Delete customer') }}
+                    </button>
                 {!! Form::close() !!}
             @endcan
 
