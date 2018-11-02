@@ -3,13 +3,18 @@
 # 1.0
 
 ## 1.0.0
-##### Unreleased (2018-10-31)
+##### 2018-11-02
 
 - Profile, password change works
-- Pimped up lists
+- Updated, standardized UI
+- Delete confirmation globally works on DELETE forms
+- Customer Address CRUD works
+- Default Country can be set
 - Improved Gravatar handling
 - Added missing breadcrumbs
 - Default layout assets are configurable
+- Gears v1.1+
+- Customer Module bumped to min. v0.9.6: customer has `last_purchase_at` field
 - Documentation separated from readme. [Available here](https://artkonekt.github.io/appshell).
 
 # 0.9

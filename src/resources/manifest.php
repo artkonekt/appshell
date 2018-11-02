@@ -2,5 +2,5 @@
 
 return [
     'name'    => 'Konekt AppShell Box',
-    'version' => '0.9.10'
+    'version' => '1.0.0'
 ];
