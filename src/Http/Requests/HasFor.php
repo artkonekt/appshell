@@ -50,10 +50,10 @@ trait HasFor
         if (!property_exists($this, 'allowedFor') || !is_array($this->allowedFor)) {
             throw new \LogicException('The allowedFor property must be an array containing the allowed entity short names');
         }
+
         return [
             'for'   => ['sometimes', Rule::in($this->allowedFor)],
             'forId' => 'required_with:for'
         ];
-
     }
 }
