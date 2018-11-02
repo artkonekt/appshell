@@ -1,17 +1,17 @@
 <?php
 /**
- * Contains the CreateAddress interface.
+ * Contains the UpdateAddress interface.
  *
- * @copyright   Copyright (c) 2017 Attila Fulop
+ * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2017-12-25
+ * @since       2018-11-02
  *
  */
 
 namespace Konekt\AppShell\Contracts\Requests;
 
-interface CreateAddress extends CreateAddressForm
+interface UpdateAddress extends EditAddressForm
 {
     public function getDataAttributes(): array;
 }

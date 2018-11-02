@@ -22,9 +22,7 @@ Route::post('user/{$user}/inactivate', [
 
 Route::resource('role', 'RoleController');
 Route::resource('customer', 'CustomerController');
-Route::resource('address', 'AddressController', [
-    'only' => ['create', 'store']
-]);
+Route::resource('address', 'AddressController');
 
 Route::get('settings', [
     'uses' => 'SettingsController@index',

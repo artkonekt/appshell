@@ -1,20 +1,20 @@
 <?php
 /**
- * Contains the CreateAddressForm request class.
+ * Contains the EditAddressForm class.
  *
- * @copyright   Copyright (c) 2017 Attila Fulop
+ * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2017-12-21
+ * @since       2018-11-02
  *
  */
 
 namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Konekt\AppShell\Contracts\Requests\CreateAddressForm as CreateAddressFormContract;
+use Konekt\AppShell\Contracts\Requests\EditAddressForm as EditAddressFormContract;
 
-class CreateAddressForm extends FormRequest implements CreateAddressFormContract
+class EditAddressForm extends FormRequest implements EditAddressFormContract
 {
     use HasPermissions, HasFor, IsAddressRequest;
 

@@ -47,7 +47,7 @@
 
     @yield('cards')
 
-    @include('appshell::address._index', ['addresses' => $customer->addresses, 'createFor' => $customer])
+    @include('appshell::address._index', ['addresses' => $customer->addresses, 'of' => $customer])
 
     <div class="card">
         <div class="card-block">

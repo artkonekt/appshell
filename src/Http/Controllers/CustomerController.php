@@ -127,7 +127,7 @@ class CustomerController extends BaseController
             $name = $customer->getName();
             $customer->delete();
 
-            flash()->warning(__('Customer :name has been deleted', ['name' => $name]));
+            flash()->info(__('Customer :name has been deleted', ['name' => $name]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }

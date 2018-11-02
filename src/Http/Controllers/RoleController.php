@@ -123,7 +123,7 @@ class RoleController extends BaseController
             $name = $role->name;
             $role->delete();
 
-            flash()->warning(__('The :name role has been deleted', ['name' => $name]));
+            flash()->info(__('The :name role has been deleted', ['name' => $name]));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }

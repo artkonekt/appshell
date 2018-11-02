@@ -145,7 +145,7 @@ class UserController extends BaseController
         try {
             $user->delete();
 
-            flash()->warning(__('User has been deleted'));
+            flash()->info(__('User has been deleted'));
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
         }

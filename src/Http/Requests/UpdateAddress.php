@@ -1,20 +1,20 @@
 <?php
 /**
- * Contains the CreateAddress request class.
+ * Contains the UpdateAddress class.
  *
- * @copyright   Copyright (c) 2017 Attila Fulop
+ * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2017-12-25
+ * @since       2018-11-02
  *
  */
 
 namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Konekt\AppShell\Contracts\Requests\CreateAddress as CreateAddressContract;
+use Konekt\AppShell\Contracts\Requests\UpdateAddress as UpdateAddressContract;
 
-class CreateAddress extends FormRequest implements CreateAddressContract
+class UpdateAddress extends FormRequest implements UpdateAddressContract
 {
     use HasPermissions, HasFor, IsAddressRequest, MutatesAddress;
 

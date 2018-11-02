@@ -1,11 +1,11 @@
 <?php
 /**
- * Contains the CreateAddressForm interface.
+ * Contains the EditAddressForm interface.
  *
- * @copyright   Copyright (c) 2017 Attila Fulop
+ * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2017-12-21
+ * @since       2018-11-02
  *
  */
 
@@ -14,7 +14,7 @@ namespace Konekt\AppShell\Contracts\Requests;
 use Illuminate\Database\Eloquent\Model;
 use Konekt\Concord\Contracts\BaseRequest;
 
-interface CreateAddressForm extends BaseRequest
+interface EditAddressForm extends BaseRequest
 {
     /**
      * Returns the entity the address needs to be created for
@@ -22,11 +22,4 @@ interface CreateAddressForm extends BaseRequest
      * @return null|Model
      */
     public function getFor();
-
-    /**
-     * Returns the eloquent relation name for the given "for" condition
-     *
-     * @return string|null
-     */
-    public function getForRelationName();
 }
