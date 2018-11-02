@@ -7,24 +7,6 @@
 @section('content')
 
     <div class="row">
-        <div class="col-sm-3">
-            <div class="card card-accent-success">
-
-                <div class="card-header">
-                    {{ __('Profile Image') }}
-                </div>
-
-                <div class="card-body">
-                    <img src="{{ avatar_image_url($user, 200) }}" class="img-avatar img-avatar-100">
-                </div>
-
-                <div class="card-footer">
-                    <a href="https://en.gravatar.com/emails" target="_blank"
-                       class="btn btn-secondary btn-sm">{{ __('Change...') }}</a>
-                </div>
-
-            </div>
-        </div>
 
         <div class="col-sm-9">
             {!! Form::model($user, [
@@ -35,7 +17,13 @@
             !!}
 
                 <div class="card-header">
-                    {{ __('Account') }}
+                    {{ __('User Account') }}
+                    <div class="card-actionbar">
+                        @can('edit users')
+                            <a href="{{ route('appshell.user.edit', $user) }}"
+                               class="btn btn-sm btn-outline-info">{{ __('Edit on users page') }}</a>
+                        @endcan
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -58,22 +46,32 @@
                 </div>
 
                 <div class="card-footer">
-                    <button class="btn btn-primary btn-sm">{{ __('Save') }}</button>
+                    <button class="btn btn-primary">{{ __('Save') }}</button>
                 </div>
 
             {!! Form::close() !!}
 
         </div>
 
-    </div>
+        <div class="col-sm-3">
+            <div class="card card-accent-success">
 
-    <div class="card">
-        <div class="card-block">
-            @can('edit users')
-                <a href="{{ route('appshell.user.edit', $user) }}"
-                   class="btn btn-outline-primary">{{ __('Edit user') }}</a>
-            @endcan
+                <div class="card-header">
+                    {{ __('Profile Image') }}
+                </div>
+
+                <div class="card-body">
+                    <img src="{{ avatar_image_url($user, 200) }}" class="img-avatar img-avatar-100">
+                </div>
+
+                <div class="card-footer">
+                    <a href="https://en.gravatar.com/emails" target="_blank"
+                       class="btn btn-secondary btn-sm">{{ __('Change...') }}</a>
+                </div>
+
+            </div>
         </div>
+
     </div>
 
 @stop
