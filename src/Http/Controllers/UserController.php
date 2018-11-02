@@ -104,16 +104,23 @@ class UserController extends BaseController
     public function update(User $user, UpdateUser $request)
     {
         $data = $request->except(['password', 'roles']);
-        if ($request->has('password')) {
-            $data['password'] = bcrypt($request->get('password'));
+        if ($request->wantsPasswordChange()) {
+            $data['password'] = bcrypt($request->getNewPassword());
         }
+
         try {
             $user->update($data);
             $user->syncRoles($request->roles());
 
-            flash()->success(__('User has been updated'));
+            $flashMessage = __(':name has been updated.', ['name' => $user->name]);
+            if ($request->wantsPasswordChange()) {
+                $flashMessage .= ' ' . __("The user's password has changed");
+            }
+
+            flash()->success($flashMessage);
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
+
             return redirect()->back();
         }
 

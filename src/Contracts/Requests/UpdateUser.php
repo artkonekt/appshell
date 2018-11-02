@@ -21,4 +21,18 @@ interface UpdateUser extends BaseRequest
      * @return array
      */
     public function roles();
+
+    /**
+     * Returns whether the password is about to be changed
+     *
+     * @return bool
+     */
+    public function wantsPasswordChange(): bool;
+
+    /**
+     * Returns the new password if it's about to be changed, null otherwise
+     *
+     * @return null|string
+     */
+    public function getNewPassword();
 }

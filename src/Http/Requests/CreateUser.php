@@ -26,7 +26,7 @@ class CreateUser extends FormRequest implements CreateUserContract
     {
         return [
             'name'      => 'required|min:2|max:255',
-            'email'     => 'required|email',
+            'email'     => 'required|email|unique:users,email',
             'password'  => 'required|min:7',
             'type'      => 'present',
             'is_active' => 'boolean',

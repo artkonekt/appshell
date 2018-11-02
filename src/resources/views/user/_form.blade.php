@@ -10,9 +10,7 @@
     @endif
 </div>
 
-
 <hr>
-
 
 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
     <div class="input-group">
@@ -33,7 +31,8 @@
 
 <div style="display: none">
     {{-- This block is to trick browser's autocompletion detection which is extremely pushy --}}
-    <input type="text" name="{{ uniqid() }}" value="{{ uniqid() }}">
+    <?php $fakeElementId = 'ooh' . uniqid(); ?>
+    <input type="text" name="{{ $fakeElementId }}" id="{{ $fakeElementId }}" value="{{ uniqid() }}" />
 </div>
 
 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
@@ -119,3 +118,14 @@
         <div class="form-control-feedback">{{ $errors->first('roles') }}</div>
     @endif
 </div>
+
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#{{ $fakeElementId }}').remove();
+        }, 470);
+    });
+</script>
+@endsection

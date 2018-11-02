@@ -12,7 +12,13 @@
         {{ __('User Account Data') }}
     </div>
 
-    {!! Form::model($user, ['route' => ['appshell.user.update', $user], 'method' => 'PUT', 'autocomplete' => 'off']) !!}
+    {!! Form::model($user, [
+                    'route' => ['appshell.user.update', $user],
+                    'method' => 'PUT',
+                    'autocomplete' => 'off',
+                    'id' => 'user-form'
+                ])
+    !!}
 
         <div class="card-block">
             @include('appshell::user._form')

@@ -37,6 +37,22 @@ class UpdateUser extends FormRequest implements UpdateUserContract
     /**
      * @inheritDoc
      */
+    public function wantsPasswordChange(): bool
+    {
+        return $this->has('password') && !empty($this->get('password'));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getNewPassword()
+    {
+        return $this->get('password');
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function authorize()
     {
         return true;
