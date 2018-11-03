@@ -68,11 +68,12 @@ Modify `webpack.mix.js` as follows:
 
 ```js
 //...
-// Change the output in the last line of the script() method from `app.js` => `appshell.js
+// Change the output file name by modifying the
+// last parameter of script() method from `app.js` => `appshell.js
 .scripts([
     'public/js/app.js',
     'vendor/konekt/appshell/src/resources/assets/js/appshell.js'
-], 'public/js/appshell.js') // <- change here
+], 'public/js/appshell.js') // <- here
 //...
 ```
 
@@ -86,7 +87,7 @@ To do so, change `webpack.mix.js` as follows:
 ```js
 mix //...
 // Add this line:
-.js('vendor/konekt/appshell/src/resources/assets/js/appshell.standalone.js', 'public/js')
+.js('vendor/konekt/appshell/src/resources/assets/js/appshell.standalone.js', 'public/js/appshell.js')
 // Most probably you can delete the following 4 lines, if they're present:
 .scripts([
         'public/js/app.js',
