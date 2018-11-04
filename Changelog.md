@@ -5,6 +5,7 @@
 
 - Custom URL function can be specified for indvidual assets (instead of default `asset()`)
 - Fixed "Default Country too pushy" bug on address form
+- Fixed bug of not-displaying "Address type" on address form
 
 ## 1.1.0
 ##### 2018-11-04

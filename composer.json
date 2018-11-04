@@ -23,6 +23,7 @@
         "konekt/acl": "~1.0",
         "konekt/menu": "~1.2",
         "konekt/gears": "~1.1",
+        "konekt/enum-eloquent": "~1.2",
         "laravelcollective/html": "~5.4",
         "laracasts/flash": "~3.0",
         "davejamesmiller/laravel-breadcrumbs": "3.0.2 - 5",

@@ -13,9 +13,12 @@ namespace Konekt\AppShell\Models;
 
 use Konekt\Address\Models\Address as BaseAddress;
 use Konekt\Customer\Models\CustomerProxy;
+use Konekt\Enum\Eloquent\EnumsAreCompatibleWithLaravelForms;
 
 class Address extends BaseAddress
 {
+    use EnumsAreCompatibleWithLaravelForms;
+
     /**
      * Relation for address' customers
      *
