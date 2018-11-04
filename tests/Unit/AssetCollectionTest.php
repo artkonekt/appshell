@@ -72,13 +72,13 @@ class AssetCollectionTest extends TestCase
         $assets = AssetCollection::createFromArray([
             'js'  => [
                 '/jquery.js' => [
-                    'what' => 'ever',
-                    'ever' => 'else',
+                    'what'          => 'ever',
+                    'ever'          => 'else',
                     'assetFunction' => 'strtoupper'
                 ]
             ],
             'css' => ['style.css' => [
-                'integrity' => 'abcedfg',
+                'integrity'     => 'abcedfg',
                 'assetFunction' => 'ucfirst'
             ]]
         ]);
