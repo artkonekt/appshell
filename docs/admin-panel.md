@@ -77,4 +77,4 @@ yarn install
 
 ---
 
-**Next**: [Menu Component &raquo;](menu.md)
+**Next**: [Authentication &raquo;](admin-authentication.md)

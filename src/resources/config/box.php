@@ -30,6 +30,9 @@ return [
             'view' => 'appshell::widgets.breadcrumbs'
         ]
     ],
+    'disable' => [
+        'login_counter' => false
+    ],
     'ui' => [
         'name'   => 'AppShell',
         'url'    => '/admin/customer',

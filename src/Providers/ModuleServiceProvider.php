@@ -106,6 +106,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         Route::aliasMiddleware('acl', AclMiddleware::class);
 
+        $this->publishes([
+            $this->getBasePath() . '/resources/views/auth/' =>
+                resource_path('views/auth/'),
+        ], 'auth-views');
+
         $this->initializeMenus();
     }
 

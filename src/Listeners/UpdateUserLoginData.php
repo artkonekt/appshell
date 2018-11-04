@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Listeners;
 
 use Carbon\Carbon;
@@ -24,6 +23,10 @@ class UpdateUserLoginData
      */
     public function handle(Login $event)
     {
+        if (config('konekt.app_shell.disable.login_counter')) {
+            return;
+        }
+
         $event->user->last_login_at = Carbon::now();
         $event->user->login_count += 1;
         $event->user->save();
