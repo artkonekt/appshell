@@ -15,6 +15,8 @@ use Illuminate\Support\Collection;
 
 class AssetCollection
 {
+    const ASSET_FUNCTION_KEY = 'assetFunction';
+
     /** @var array */
     protected $scripts = [];
 
@@ -26,19 +28,11 @@ class AssetCollection
         $result = new static();
 
         foreach ($config['js'] ?? [] as $key => $value) {
-            if (is_numeric($key)) {
-                $result->addScript(new Script($value));
-            } else {
-                $result->addScript(new Script($key, $value));
-            }
+            $result->addScript(self::makeScript($key, $value));
         }
 
         foreach ($config['css'] ?? [] as $key => $value) {
-            if (is_numeric($key)) {
-                $result->addStylesheet(new Stylesheet($value));
-            } else {
-                $result->addStylesheet(new Stylesheet($key, $value));
-            }
+            $result->addStylesheet(self::makeStylesheet($key, $value));
         }
 
         return $result;
@@ -62,5 +56,30 @@ class AssetCollection
     private function addStylesheet(Stylesheet $stylesheet)
     {
         $this->stylesheets[] = $stylesheet;
+    }
+
+    private static function makeScript($key, $value): Script
+    {
+        return self::makeAsset(Script::class, $key, $value);
+    }
+
+    private static function makeStylesheet($key, $value): Stylesheet
+    {
+        return self::makeAsset(Stylesheet::class, $key, $value);
+    }
+
+    private static function makeAsset(string $class, $key, $value): BaseAsset
+    {
+        if (is_numeric($key)) {
+            return new $class($value);
+        } elseif (array_key_exists(self::ASSET_FUNCTION_KEY, $value)) {
+            return new $class(
+                $key,
+                array_except($value, self::ASSET_FUNCTION_KEY),
+                $value[self::ASSET_FUNCTION_KEY]
+            );
+        }
+
+        return new $class($key, $value);
     }
 }

@@ -13,31 +13,44 @@ the default AppShell layout. This can be done by setting asset URLs in the modul
 
 ```php
 //config/concord.php
-return [
-    'modules' => [
-        Konekt\AppShell\Providers\ModuleServiceProvider::class => [
-            'ui' => [
-                'name'    => 'My App',
-                'url'    => '/admin/dashboard',
-                'assets' => [
-                    'js'    => ['/js/my.js', '//some-cdn.com/some-library.js'],
-                    'assets'=> [
-                        '/css/my.css',
-                        // You can specify attributes for the generated html tag:
-                        'https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css' => [
-                            'integrity'   => 'sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=',
-                            'crossorigin' => 'anonymous'
-                        ]
+'modules' => [
+    Konekt\AppShell\Providers\ModuleServiceProvider::class => [
+        'ui' => [
+            'assets' => [
+                'js'  => ['/js/my.js', '//some-cdn.com/some-library.js'],
+                'css' => [
+                    '/css/my.css',
+                    // You can specify attributes for the generated html tag:
+                    'https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css' => [
+                        'integrity'   => 'sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=',
+                        'crossorigin' => 'anonymous'
                     ]
                 ]
             ]
-        ],
-        // ...
-    ]
-];
+    // ...
 ```
 
 > AppShell's **default css/js assets** can be found in the `Konekt\AppShell\Assets\DefaultAppShellAssets` class.
+
+### Using A Custom Asset URL Function
+
+The asset URLs in the layout (js, css) by default are being passed through the Laravel
+[asset()](https://laravel.com/docs/5.7/helpers#method-asset) helper function.
+
+You can override this for each asset individually by passing a PHP function name in the
+`assetFunction` attribute:
+
+```php
+//config/concord.php
+'modules' => [
+    Konekt\AppShell\Providers\ModuleServiceProvider::class => [
+        'assets' => [
+            'js'  => [
+                '/js/my.js' => [
+                    'assetFunction' => 'mix' // Use mix() instead of asset()
+                ]
+//...
+```
 
 ## Customizing The Existing CSS
 
