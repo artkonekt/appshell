@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 1.2.0
+##### Unreleased
+
+- Custom URL function can be specified for indvidual assets (instead of default `asset()`)
+
 ## 1.1.0
 ##### 2018-11-04
 
