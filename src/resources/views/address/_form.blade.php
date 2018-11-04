@@ -50,7 +50,7 @@
             {{ Form::select(
                         'country_id',
                         $countries->pluck('name', 'id'),
-                        setting('appshell.default.country'),
+                        $address->country_id ?: setting('appshell.default.country'),
                         ['class' => 'form-control']
                     )
             }}
