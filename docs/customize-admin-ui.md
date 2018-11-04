@@ -34,6 +34,8 @@ the default AppShell layout. This can be done by setting asset URLs in the modul
 
 ### Using A Custom Asset URL Function
 
+> Available from **v1.2.0**
+
 The asset URLs in the layout (js, css) by default are being passed through the Laravel
 [asset()](https://laravel.com/docs/5.7/helpers#method-asset) helper function.
 
