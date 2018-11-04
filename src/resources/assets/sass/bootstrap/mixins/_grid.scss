@@ -45,3 +45,8 @@
   // do not appear to require this.
   max-width: percentage($size / $columns);
 }
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: $size / $columns;
+  margin-left: if($num == 0, 0, percentage($num));
+}
