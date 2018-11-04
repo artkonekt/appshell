@@ -1,6 +1,12 @@
 # AppShell Changelog
 
-# 1.0
+## 1.1.0
+##### 2018-11-04
+
+- Fixed missing bootstrap grid offset CSS classes
+- Auth layout and AppShell look&feel login, register, pw reset views have been added
+- Login counter feature can be disabled
+- Documentation updates
 
 ## 1.0.0
 ##### 2018-11-02
