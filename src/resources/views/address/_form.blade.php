@@ -32,7 +32,7 @@
 
 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
     {{ Form::text('name', null, [
-            'class' => 'form-control form-control-lg',
+            'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
             'placeholder' => __('Name')
         ])
     }}
@@ -51,7 +51,7 @@
                         'country_id',
                         $countries->pluck('name', 'id'),
                         $address->country_id ?: setting('appshell.default.country'),
-                        ['class' => 'form-control']
+                        ['class' => 'form-control' . ($errors->has('country_id') ? ' is-invalid' : '')]
                     )
             }}
 
@@ -65,7 +65,7 @@
         <label class="form-control-label">{{ __('State/Province') }}</label>
         <div class="form-group{{ $errors->has('province_id') ? ' has-danger' : '' }}">
             {{ Form::select('province_id', [], null, [
-                    'class' => 'form-control'
+                    'class' => 'form-control' . ($errors->has('province_id') ? ' is-invalid' : '')
                 ])
             }}
 
@@ -82,7 +82,7 @@
     <div class="col-md-6">
         <label class="form-control-label">{{ __('City') }}</label>
         <div class="form-group{{ $errors->has('city') ? ' has-danger' : '' }}">
-            {{ Form::text('city', null, ['class' => 'form-control']) }}
+            {{ Form::text('city', null, ['class' => 'form-control' . ($errors->has('city') ? ' is-invalid' : '')]) }}
 
             @if ($errors->has('city'))
                 <div class="form-control-feedback">{{ $errors->first('city') }}</div>
@@ -93,7 +93,7 @@
     <div class="col-md-6">
         <label class="form-control-label">{{ __('Postal/Zip Code') }}</label>
         <div class="form-group{{ $errors->has('postalcode') ? ' has-danger' : '' }}">
-            {{ Form::text('postalcode', null, ['class' => 'form-control']) }}
+            {{ Form::text('postalcode', null, ['class' => 'form-control' . ($errors->has('postalcode') ? ' is-invalid' : '')]) }}
 
             @if ($errors->has('postalcode'))
                 <div class="form-control-feedback">{{ $errors->first('postalcode') }}</div>
@@ -105,7 +105,7 @@
 
 <label class="form-control-label">{{ __('Address') }}</label>
 <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
-    {{ Form::text('address', null, ['class' => 'form-control']) }}
+    {{ Form::text('address', null, ['class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : '')]) }}
 
     @if ($errors->has('address'))
         <div class="form-control-feedback">{{ $errors->first('address') }}</div>
