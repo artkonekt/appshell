@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -31,6 +30,7 @@ class UpdateCustomer extends FormRequest implements UpdateCustomerContract
             'firstname'    => 'required_if:type,individual',
             'lastname'     => 'required_if:type,individual',
             'company_name' => 'required_if:type,organization',
+            'is_active'    => 'sometimes|bool'
         ];
     }
 

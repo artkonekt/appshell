@@ -21,29 +21,29 @@
 <div class="row">
 
     <div class="col-md-6">
-        <div class="form-group{{ $errors->has('firstname') ? ' has-danger' : '' }}">
+        <div class="form-group">
             {{ Form::text('firstname', null, [
-                    'class' => 'form-control form-control-lg',
+                    'class' => 'form-control form-control-lg' . ($errors->has('firstname') ? ' is-invalid' : ''),
                     'placeholder' => __('First name')
                 ])
             }}
 
             @if ($errors->has('firstname'))
-                <div class="form-control-feedback">{{ $errors->first('firstname') }}</div>
+                <div class="invalid-feedback">{{ $errors->first('firstname') }}</div>
             @endif
         </div>
     </div>
 
     <div class="col-md-6">
-        <div class="form-group{{ $errors->has('lastname') ? ' has-danger' : '' }}">
+        <div class="form-group">
             {{ Form::text('lastname', null, [
-                    'class' => 'form-control form-control-lg',
+                    'class' => 'form-control form-control-lg' . ($errors->has('lastname') ? ' is-invalid' : ''),
                     'placeholder' => __('Last name')
                 ])
             }}
 
             @if ($errors->has('lastname'))
-                <div class="form-control-feedback">{{ $errors->first('lastname') }}</div>
+                <div class="invalid-feedback">{{ $errors->first('lastname') }}</div>
             @endif
         </div>
     </div>
@@ -56,7 +56,7 @@
 
 <hr>
 
-<div class="form-group row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
+<div class="form-group row">
     <label class="form-control-label col-md-2">{{ __('Active') }}</label>
     <div class="col-md-10">
         {{ Form::hidden('is_active', 0) }}
@@ -67,7 +67,8 @@
         </label>
 
         @if ($errors->has('is_active'))
-            <div class="form-control-feedback">{{ $errors->first('is_active') }}</div>
+            <input type="text" hidden class="form-control is-invalid">
+            <div class="invalid-feedback">{{ $errors->first('is_active') }}</div>
         @endif
 
     </div>
