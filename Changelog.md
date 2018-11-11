@@ -8,6 +8,7 @@
 - Fixed bug of not-displaying "Address type" on address form
 - Fixed validations on all forms to be Bootstrap 4 compliant
 - Sidebar menu groups are opened when there's an active item (cheap solution)
+- Works with PHP 7.3 (RC)
 
 ## 1.1.0
 ##### 2018-11-04
