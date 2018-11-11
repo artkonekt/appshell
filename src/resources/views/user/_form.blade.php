@@ -1,32 +1,36 @@
-<div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+<div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">
             <i class="zmdi zmdi-account-circle"></i>
         </span>
-        {{ Form::text('name', null, ['class' => 'form-control form-control-lg', 'placeholder' => __('Full name')]) }}
+        {{ Form::text('name', null, [
+                'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
+                'placeholder' => __('Full name')
+            ])
+        }}
+        @if ($errors->has('name'))
+            <div class="invalid-tooltip">{{ $errors->first('name') }}</div>
+        @endif
     </div>
-    @if ($errors->has('name'))
-        <div class="form-control-feedback">{{ $errors->first('name') }}</div>
-    @endif
 </div>
 
 <hr>
 
-<div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+<div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">
             <i class="zmdi zmdi-email"></i>
         </span>
         {{ Form::email('email', null, [
-            'class' => 'form-control',
+            'class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''),
             'autocomplete' => 'off',
             'placeholder' => __('E-mail address')
             ])
         }}
+        @if ($errors->has('email'))
+            <div class="invalid-tooltip">{{ $errors->first('email') }}</div>
+        @endif
     </div>
-    @if ($errors->has('email'))
-        <div class="form-control-feedback">{{ $errors->first('email') }}</div>
-    @endif
 </div>
 
 <div style="display: none">
@@ -35,35 +39,27 @@
     <input type="text" name="{{ $fakeElementId }}" id="{{ $fakeElementId }}" value="{{ uniqid() }}" />
 </div>
 
-<div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+<div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">
             <i class="zmdi zmdi-lock"></i>
         </span>
-        @if ($user->exists)
-            {{ Form::password('password', [
-                'class'        => 'form-control',
-                'autocomplete' => 'new-password',
-                'placeholder'  => __('Type new password if you want to change it')
-                ])
-            }}
-        @else
-            {{ Form::password('password', [
-                'class' => 'form-control',
-                'autocomplete'  => 'new-password',
-                'placeholder' => __('Enter password')
-                ])
-            }}
+        <?php $passwordPlaceholderText = $user->exists ? __('Type new password if you want to change it') : __('Enter password') ?>
+        {{ Form::password('password', [
+            'class'        => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''),
+            'autocomplete' => 'new-password',
+            'placeholder'  => $passwordPlaceholderText
+            ])
+        }}
+        @if ($errors->has('password'))
+            <div class="invalid-tooltip">{{ $errors->first('password') }}</div>
         @endif
     </div>
-    @if ($errors->has('password'))
-        <div class="form-control-feedback">{{ $errors->first('password') }}</div>
-    @endif
 </div>
 
 <hr>
 
-<div class="form-group row{{ $errors->has('type') ? ' has-danger' : '' }}">
+<div class="form-group row">
     <label class="form-control-label col-md-2">{{ __('User type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)
@@ -75,12 +71,13 @@
         @endforeach
 
         @if ($errors->has('type'))
-            <div class="form-control-feedback">{{ $errors->first('type') }}</div>
+            <input type="text" hidden class="form-control is-invalid">
+            <div class="invalid-feedback">{{ $errors->first('type') }}</div>
         @endif
     </div>
 </div>
 
-<div class="form-group row{{ $errors->has('is_active') ? ' has-danger' : '' }}">
+<div class="form-group row">
     <label class="form-control-label col-md-2">{{ __('Active') }}</label>
     <div class="col-md-10">
         {{ Form::hidden('is_active', 0) }}
@@ -91,20 +88,21 @@
         </label>
 
         @if ($errors->has('is_active'))
-            <div class="form-control-feedback">{{ $errors->first('is_active') }}</div>
+            <input type="text" hidden class="form-control is-invalid">
+            <div class="invalid-feedback">{{ $errors->first('is_active') }}</div>
         @endif
 
     </div>
 </div>
 
-<div class="form-group row{{ $errors->has('roles') ? ' has-danger' : '' }}">
+<div class="form-group row">
 
     <div class="col-12">
         <legend>{{ __('Roles') }}</legend>
     </div>
 
     @foreach($roles as $role)
-        <div class="col-6 col-sm-2 @unless(($loop->index + 5) % 5)offset-sm-2 @endunless">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" style="overflow: hidden; white-space: nowrap;">
             <label class="switch switch-icon switch-pill switch-primary">
                 {{ Form::checkbox("roles[{$role->name}]", 1, $user->hasRole($role), ['class' => 'switch-input']) }}
                 <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
@@ -115,7 +113,8 @@
     @endforeach
 
     @if ($errors->has('roles'))
-        <div class="form-control-feedback">{{ $errors->first('roles') }}</div>
+        <input type="text" hidden class="form-control is-invalid">
+        <div class="invalid-feedback">{{ $errors->first('roles') }}</div>
     @endif
 </div>
 

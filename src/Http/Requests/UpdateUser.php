@@ -29,7 +29,7 @@ class UpdateUser extends FormRequest implements UpdateUserContract
             'email'     => 'required|email',
             'password'  => 'nullable|min:7',
             'type'      => 'present',
-            'is_active' => 'boolean',
+            'is_active' => 'sometimes|boolean',
             'roles'     => 'sometimes|array'
         ];
     }

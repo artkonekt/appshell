@@ -29,7 +29,7 @@ class CreateUser extends FormRequest implements CreateUserContract
             'email'     => 'required|email|unique:users,email',
             'password'  => 'required|min:7',
             'type'      => 'present',
-            'is_active' => 'boolean',
+            'is_active' => 'sometimes|boolean',
             'roles'     => 'sometimes|array'
         ];
     }

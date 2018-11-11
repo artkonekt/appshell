@@ -29,7 +29,7 @@
                     <th>&nbsp;</th>
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Registered') }}</th>
-                    <th>{{ __('Role') }}</th>
+                    <th>{{ __('Roles') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th style="width: 10%">&nbsp;</th>
                 </tr>
@@ -89,7 +89,7 @@
                                     @if(Auth::user()->id == $user->id)
                                         <button class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right" disabled="disabled"
                                                 title="{{ __("It would be quite unhealthy to delete yourself, so you can't") }}">
-                                            {{ __('Delete user') }}
+                                            {{ __('Delete') }}
                                         </button>
                                     @else
                                         {!! Form::open(['route' => ['appshell.user.destroy', $user],

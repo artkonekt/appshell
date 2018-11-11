@@ -9,7 +9,7 @@
             ])
         }}
         @if ($errors->has('company_name'))
-            <div class="invalid-feedback">{{ $errors->first('company_name') }}</div>
+            <div class="invalid-tooltip" style="width: auto">{{ $errors->first('company_name') }}</div>
         @endif
     </div>
 
