@@ -1,7 +1,7 @@
 # AppShell Changelog
 
 ## 1.2.0
-##### Unreleased
+##### 2018-11-11
 
 - Custom URL function can be specified for indvidual assets (instead of default `asset()`)
 - Fixed "Default Country too pushy" bug on address form
