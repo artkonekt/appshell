@@ -86,13 +86,20 @@
                                 @endcan
 
                                 @can('delete users')
-                                    {!! Form::open(['route' => ['appshell.user.destroy', $user],
-                                                'method' => 'DELETE',
-                                                'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name])
-                                                ])
-                                        !!}
-                                    <button class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right">{{ __('Delete') }}</button>
-                                    {!! Form::close() !!}
+                                    @if(Auth::user()->id == $user->id)
+                                        <button class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right" disabled="disabled"
+                                                title="{{ __("It would be quite unhealthy to delete yourself, so you can't") }}">
+                                            {{ __('Delete user') }}
+                                        </button>
+                                    @else
+                                        {!! Form::open(['route' => ['appshell.user.destroy', $user],
+                                                    'method' => 'DELETE',
+                                                    'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name])
+                                                    ])
+                                            !!}
+                                        <button class="btn btn-xs btn-outline-danger btn-show-on-tr-hover float-right">{{ __('Delete') }}</button>
+                                        {!! Form::close() !!}
+                                    @endif
                                 @endcan
                             </div>
                         </td>
