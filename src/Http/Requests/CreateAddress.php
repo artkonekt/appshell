@@ -24,7 +24,9 @@ class CreateAddress extends FormRequest implements CreateAddressContract
     public function rules()
     {
         return array_merge($this->getForRules(), [
-            'name' => 'required'
+            'name'       => 'required',
+            'country_id' => 'required',
+            'address'    => 'required'
         ]);
     }
 
