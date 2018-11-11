@@ -1,4 +1,4 @@
-<ul class="nav">
+<ul class="nav" id="appshell-main-menu">
     @unless(Auth::guest())
         @foreach($appshellMenu->items->roots() as $item)
             @if ($item->hasLink() && $item->isAllowed())
