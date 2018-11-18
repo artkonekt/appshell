@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Models;
 
 use Konekt\Acl\Traits\HasRoles;

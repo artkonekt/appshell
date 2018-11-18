@@ -4,3 +4,4 @@ enabled:
   - align_phpdoc
   - align_double_arrow
   - align_equals
+  - no_extra_consecutive_blank_lines
