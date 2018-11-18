@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Console\Commands;
 
 use Illuminate\Console\Command;

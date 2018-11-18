@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Providers;
 
 use Illuminate\Support\Facades\Gate;

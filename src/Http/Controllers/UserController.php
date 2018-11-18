@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;

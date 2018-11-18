@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Icons;
 
 use Konekt\Customer\Models\CustomerType;

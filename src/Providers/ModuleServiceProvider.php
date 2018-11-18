@@ -140,7 +140,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->mergeBreadCrumbsConfig();
     }
 
-
     /**
      * Register appshell's commands
      */
@@ -190,7 +189,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 ->allowIfUserCan('list settings');
         }
     }
-
 
     protected function initUiData()
     {

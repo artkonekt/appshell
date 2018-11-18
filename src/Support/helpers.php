@@ -7,7 +7,6 @@
  * @license     MIT
  */
 
-
 /**
  * Returns the icon for a specific enum (value)
  *

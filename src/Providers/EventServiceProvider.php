@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Providers;
 
 use Illuminate\Auth\Events\Login;

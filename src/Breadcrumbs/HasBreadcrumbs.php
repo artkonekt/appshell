@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Breadcrumbs;
 
 trait HasBreadcrumbs

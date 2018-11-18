@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;

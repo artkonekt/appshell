@@ -9,7 +9,6 @@
  *
  */
 
-
 namespace Konekt\AppShell\Acl;
 
 use Konekt\Acl\Models\PermissionProxy;
