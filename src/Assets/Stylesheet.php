@@ -18,4 +18,9 @@ class Stylesheet extends BaseAsset
     protected $urlAttribute = 'href';
 
     protected $defaultAttributes = ['media' => 'all', 'type' => 'text/css', 'rel' => 'stylesheet'];
+
+    public function defaultLocation(): AssetLocation
+    {
+        return AssetLocation::HEADER();
+    }
 }

@@ -12,6 +12,7 @@
 namespace Konekt\AppShell\Tests\Unit;
 
 use Konekt\AppShell\Assets\AssetCollection;
+use Konekt\AppShell\Assets\AssetLocation;
 use PHPUnit\Framework\TestCase;
 
 class AssetCollectionTest extends TestCase
@@ -96,5 +97,24 @@ class AssetCollectionTest extends TestCase
         $css = $assets->stylesheets()->first();
         $this->assertContains('href="Style.css"', $css->renderHtml());
         $this->assertEquals('abcedfg', $css->attributes()['integrity']);
+    }
+
+    /** @test */
+    public function asset_location_can_be_specified()
+    {
+        $assets = AssetCollection::createFromArray([
+            'js'  => [
+                '/vuejs.js' => [
+                    '_location' => 'header',
+                    'attribute' => 'value'
+                ],
+                '/app.js',
+                '/somethingelse.js'
+            ]
+        ]);
+
+        $this->assertCount(3, $assets->scripts());
+        $this->assertCount(1, $assets->scripts(AssetLocation::HEADER));
+        $this->assertCount(2, $assets->scripts(AssetLocation::FOOTER));
     }
 }

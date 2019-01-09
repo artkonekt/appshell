@@ -12,6 +12,7 @@
 namespace Konekt\AppShell\Contracts;
 
 use Illuminate\Support\Collection;
+use Konekt\AppShell\Assets\AssetLocation;
 
 interface Asset
 {
@@ -22,4 +23,6 @@ interface Asset
     public function attributes(): Collection;
 
     public function renderHtml(): string;
+
+    public function defaultLocation(): AssetLocation;
 }

@@ -18,4 +18,9 @@ class Script extends BaseAsset
     protected $urlAttribute = 'src';
 
     protected $selfClosing = false;
+
+    public function defaultLocation(): AssetLocation
+    {
+        return AssetLocation::FOOTER();
+    }
 }

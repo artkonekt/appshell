@@ -38,9 +38,17 @@ class AssetCollection
         return $result;
     }
 
-    public function scripts(): Collection
+    public function scripts($location = null): Collection
     {
-        return collect($this->scripts);
+        $result = collect($this->scripts);
+
+        if (null === $location) {
+            return $result;
+        }
+
+        return $result->filter(function (BaseAsset $item) use ($location) {
+            return $item; // filter location here
+        });
     }
 
     public function stylesheets(): Collection
