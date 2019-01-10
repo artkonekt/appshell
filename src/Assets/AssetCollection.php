@@ -89,7 +89,7 @@ class AssetCollection
         }
 
         $assetFunction = array_key_exists(self::ASSET_FUNCTION_KEY, $value) ? $value[self::ASSET_FUNCTION_KEY] : BaseAsset::DEFAULT_ASSET_FUNCTION;
-        $location = array_get($value, self::LOCATION_META_KEY, $class::defaultLocation()->value());
+        $location      = array_get($value, self::LOCATION_META_KEY, $class::defaultLocation()->value());
 
         return new $class(
             $key,
