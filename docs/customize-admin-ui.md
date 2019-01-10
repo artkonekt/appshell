@@ -63,7 +63,7 @@ closing `</body>` tag. CSS stylesheets are added to the top by default,
 in the `<head>` section.
 
 You can explicitly specify the rendering location by adding
-`'location' => 'header` or `'location' => 'footer'` in the asset config:
+`'_location' => 'header` or `'_location' => 'footer'` in the asset config:
 
 ```php
 //config/concord.php
