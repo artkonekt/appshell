@@ -1,7 +1,7 @@
 # AppShell Changelog
 
 ## 1.3.0
-##### Unreleased
+##### 2019-01-10
 
 - Added possibility to define header/footer location of assets
 - Removed PHP 7.0 support
