@@ -25,4 +25,10 @@ interface Asset
     public function renderHtml(): string;
 
     public function defaultLocation(): AssetLocation;
+
+    public function metadata(): Collection;
+
+    public function getMetaValue(string $key);
+
+    public function addMetaValue(string $key, $value): void;
 }

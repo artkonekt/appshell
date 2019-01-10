@@ -19,7 +19,7 @@ abstract class BaseAsset implements Asset
     /** @var string */
     protected $url;
 
-    /** @var array */
+    /** @var Collection */
     protected $attributes;
 
     /** @var array */
@@ -36,11 +36,15 @@ abstract class BaseAsset implements Asset
 
     protected $assetFunction;
 
-    public function __construct(string $url, array $attributes = [], $assetFunction = 'asset')
+    /** @var Collection Additional data that is not going to be rendered as html attribute */
+    protected $metadata;
+
+    public function __construct(string $url, array $attributes = [], $assetFunction = 'asset', array $metadata = [])
     {
         $this->url           = $url;
         $this->attributes    = collect($attributes);
         $this->assetFunction = $assetFunction;
+        $this->metadata      = collect($metadata);
     }
 
     public function url(): string
@@ -70,6 +74,21 @@ abstract class BaseAsset implements Asset
                 return $result .= sprintf(' %s="%s"', $attr['attr'], $attr['value']);
             }, '')
         );
+    }
+
+    public function metadata(): Collection
+    {
+        return $this->metadata;
+    }
+
+    public function getMetaValue(string $key)
+    {
+        return $this->metadata->get($key);
+    }
+
+    public function addMetaValue(string $key, $value): void
+    {
+        $this->metadata->put($key, $value);
     }
 
     protected function attributesSpread(): Collection

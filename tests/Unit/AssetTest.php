@@ -82,4 +82,35 @@ class AssetTest extends TestCase
         $this->assertStringEndsWith('</script>', $html);
         $this->assertContains('src="/APP.JS"', $html);
     }
+
+    /** @test */
+    public function metadata_can_be_added_via_constructor()
+    {
+        $js = new Script('some.js', [], 'asset', [
+            'location' => 'header',
+            'haveidea' => 'idont'
+        ]);
+
+        $this->assertEquals('header', $js->getMetaValue('location'));
+        $this->assertEquals('idont', $js->getMetaValue('haveidea'));
+        $this->assertCount(2, $js->metadata());
+        $this->assertArrayHasKey('location', $js->metadata()->toArray());
+        $this->assertArrayHasKey('haveidea', $js->metadata()->toArray());
+    }
+
+    /** @test */
+    public function metadata_can_be_added_after_object_was_created()
+    {
+        $js = new Script('app.js');
+
+        $this->assertCount(0, $js->metadata());
+
+        $js->addMetaValue('some', 'value');
+        $this->assertCount(1, $js->metadata());
+        $this->assertEquals('value', $js->getMetaValue('some'));
+
+        $js->addMetaValue('other', 'thing');
+        $this->assertCount(2, $js->metadata());
+        $this->assertEquals('thing', $js->getMetaValue('other'));
+    }
 }
