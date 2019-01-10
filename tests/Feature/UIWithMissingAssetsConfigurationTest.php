@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the UITestWithMissingAssetsConfiguration class.
+ * Contains the UIWithMissingAssetsConfigurationTest class.
  *
  * @copyright   Copyright (c) 2018 Attila Fulop
  * @author      Attila Fulop
@@ -14,7 +14,7 @@ namespace Konekt\AppShell\Tests\Feature;
 use Konekt\AppShell\Assets\DefaultAppShellAssets;
 use Konekt\AppShell\Tests\TestCase;
 
-class UITestWithMissingAssetsConfiguration extends TestCase
+class UIWithMissingAssetsConfigurationTest extends TestCase
 {
     /** @test */
     public function default_assets_are_rendered_in_the_layout_without_asset_configuration()

@@ -4,7 +4,7 @@ namespace Konekt\AppShell\Tests\Feature;
 
 use Konekt\AppShell\Tests\TestCase;
 
-class UITestWithCustomAssetConfiguration extends TestCase
+class UIWithCustomAssetConfigurationTest extends TestCase
 {
     /** @test */
     public function scripts_can_be_rendered_in_the_header_of_the_layout()
@@ -15,7 +15,7 @@ class UITestWithCustomAssetConfiguration extends TestCase
         $response = $this->actingAs($this->adminUser)->get(url($url));
         $response->assertStatus(200);
 
-        $response->assertSeeInOrder(['</body>', asset('/headerscript.js'), '</head>']);
+        $response->assertSeeInOrder(['<head>', asset('/headerscript.js'), '</head>']);
     }
 
     /** @test */
