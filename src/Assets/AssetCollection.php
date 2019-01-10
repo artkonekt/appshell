@@ -12,10 +12,13 @@
 namespace Konekt\AppShell\Assets;
 
 use Illuminate\Support\Collection;
+use Konekt\AppShell\Contracts\Asset;
 
 class AssetCollection
 {
     const ASSET_FUNCTION_KEY = 'assetFunction';
+
+    const LOCATION_META_KEY  = '_location';
 
     /** @var array */
     protected $scripts = [];
@@ -46,8 +49,8 @@ class AssetCollection
             return $result;
         }
 
-        return $result->filter(function (BaseAsset $item) use ($location) {
-            return $item; // filter location here
+        return $result->filter(function (Asset $item) use ($location) {
+            return $location == $item->getMetaValue(self::LOCATION_META_KEY);
         });
     }
 
@@ -76,18 +79,23 @@ class AssetCollection
         return self::makeAsset(Stylesheet::class, $key, $value);
     }
 
-    private static function makeAsset(string $class, $key, $value): BaseAsset
+    private static function makeAsset(string $class, $key, $value): Asset
     {
         if (is_numeric($key)) {
-            return new $class($value);
-        } elseif (array_key_exists(self::ASSET_FUNCTION_KEY, $value)) {
-            return new $class(
-                $key,
-                array_except($value, self::ASSET_FUNCTION_KEY),
-                $value[self::ASSET_FUNCTION_KEY]
-            );
+            $asset = new $class($value);
+            $asset->addMetaValue(self::LOCATION_META_KEY, $asset::defaultLocation()->value());
+
+            return $asset;
         }
 
-        return new $class($key, $value);
+        $assetFunction = array_key_exists(self::ASSET_FUNCTION_KEY, $value) ? $value[self::ASSET_FUNCTION_KEY] : BaseAsset::DEFAULT_ASSET_FUNCTION;
+        $location = array_get($value, self::LOCATION_META_KEY, $class::defaultLocation()->value());
+
+        return new $class(
+            $key,
+            array_except($value, [self::ASSET_FUNCTION_KEY, self::LOCATION_META_KEY]),
+            $assetFunction,
+            [self::LOCATION_META_KEY => $location]
+        );
     }
 }

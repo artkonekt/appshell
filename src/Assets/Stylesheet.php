@@ -19,7 +19,7 @@ class Stylesheet extends BaseAsset
 
     protected $defaultAttributes = ['media' => 'all', 'type' => 'text/css', 'rel' => 'stylesheet'];
 
-    public function defaultLocation(): AssetLocation
+    public static function defaultLocation(): AssetLocation
     {
         return AssetLocation::HEADER();
     }

@@ -11,7 +11,7 @@
     <title>@yield('title') &middot; {{ setting('appshell.ui.name') }}</title>
 
     <!-- Styles -->
-    @foreach($appshell->assets->stylesheets() as $stylesheet)
+    @foreach($appshell->assets->stylesheets('header') as $stylesheet)
         {!! $stylesheet->renderHtml() !!}
     @endforeach
 
@@ -21,6 +21,9 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+    @foreach($appshell->assets->scripts('header') as $script)
+        {!! $script->renderHtml() !!}
+    @endforeach
 </head>
 <!-- BODY options, add following classes to body to change options
 
@@ -79,10 +82,14 @@
         @yield('footer')
     </footer>
 
+@foreach($appshell->assets->stylesheets('footer') as $stylesheet)
+    {!! $stylesheet->renderHtml() !!}
+@endforeach
+
 <!-- Scripts -->
 @include('appshell::layouts.default._scripts')
 
-@foreach($appshell->assets->scripts() as $script)
+@foreach($appshell->assets->scripts('footer') as $script)
     {!! $script->renderHtml() !!}
 @endforeach
 @yield('scripts')

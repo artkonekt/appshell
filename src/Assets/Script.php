@@ -19,7 +19,7 @@ class Script extends BaseAsset
 
     protected $selfClosing = false;
 
-    public function defaultLocation(): AssetLocation
+    public static function defaultLocation(): AssetLocation
     {
         return AssetLocation::FOOTER();
     }

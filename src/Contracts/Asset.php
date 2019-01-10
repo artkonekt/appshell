@@ -24,7 +24,7 @@ interface Asset
 
     public function renderHtml(): string;
 
-    public function defaultLocation(): AssetLocation;
+    public static function defaultLocation(): AssetLocation;
 
     public function metadata(): Collection;
 

@@ -16,6 +16,8 @@ use Konekt\AppShell\Contracts\Asset;
 
 abstract class BaseAsset implements Asset
 {
+    const DEFAULT_ASSET_FUNCTION = 'asset';
+
     /** @var string */
     protected $url;
 
@@ -39,7 +41,7 @@ abstract class BaseAsset implements Asset
     /** @var Collection Additional data that is not going to be rendered as html attribute */
     protected $metadata;
 
-    public function __construct(string $url, array $attributes = [], $assetFunction = 'asset', array $metadata = [])
+    public function __construct(string $url, array $attributes = [], $assetFunction = self::DEFAULT_ASSET_FUNCTION, array $metadata = [])
     {
         $this->url           = $url;
         $this->attributes    = collect($attributes);

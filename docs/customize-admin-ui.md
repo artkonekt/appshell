@@ -54,6 +54,31 @@ You can override this for each asset individually by passing a PHP function name
 //...
 ```
 
+### Determine Asset Location (Header or Footer)
+
+By default scripts are being rendered at the bottom of HTML, before the
+closing `</body>` tag. CSS stylesheets are added to the top by default,
+in the `<head>` section.
+
+You can explicitly specify the rendering location by adding
+`'location' => 'header` or `'location' => 'footer'` in the asset config:
+
+```php
+//config/concord.php
+'modules' => [
+    Konekt\AppShell\Providers\ModuleServiceProvider::class => [
+        'assets' => [
+            'js'  => [
+                '/js/myheadscript.js' => [
+                    '_location' => 'header'
+                ]
+            ],
+            'css' => [
+                'myfooterstyle.css' => [
+                    '_location' => 'footer'
+            //...
+```
+
 ## Customizing The Existing CSS
 
 > Read the [Laravel Mix](https://laravel.com/docs/5.7/mix#sass) Documentation for more details about managing frontend assets in your application.
