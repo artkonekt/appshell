@@ -1,5 +1,12 @@
 # AppShell Changelog
 
+## 1.3.1
+##### 2019-01-20
+
+- Fixed can't build SASS issue (due to 'Top-level selectors may not contain the parent selector "&".')
+- Documentation fixes
+
+
 ## 1.3.0
 ##### 2019-01-10
 
