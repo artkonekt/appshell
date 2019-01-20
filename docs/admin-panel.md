@@ -20,7 +20,7 @@ Change the layout in the first line of `resources/views/home.blade.php` file to 
 **Add AppShell assets to Laravel Mix**:
 
 In this scenario, the entire application will be built on top of the AppShell UI,
-and the app's and AppShell's javascript files will be combined in a single `app.js` file.
+and the app's and AppShell's javascript files will be combined in a single `appshell.js` file.
 
 In `webpack.mix.js` change:
 ```js
@@ -30,12 +30,17 @@ In `webpack.mix.js` change:
 mix.js([
     'resources/js/app.js',
     'vendor/konekt/appshell/src/resources/assets/js/appshell.js'
-    ], 'public/js/app.js')
+    ], 'public/js/appshell.js')
    // And replace this line:
    //.sass('resources/assets/sass/app.scss', 'public/css');
    // With this one:
     .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell.sass', 'public/css');
 ```
+
+> You can use any name for the output js file instead of `appshell.js`, eg. `app.js`.
+> To do so change the second mix.js parameter from `'public/js/appshell.js'` to the desired name,
+> and change in your app's `config/concord.php` the JS filename according to
+> [Customizing Admin UI Documentation](customize-admin-ui.md).
 
 Remove the omnipresent Vue instance from Laravel's default app.js file:
 
