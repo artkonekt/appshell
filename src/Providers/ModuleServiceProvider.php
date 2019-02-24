@@ -38,6 +38,7 @@ use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\GravatarDefault;
 use Konekt\AppShell\Models\User;
+use Konekt\AppShell\Theme\DefaultAppShellTheme;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\Gears\Defaults\SimpleSetting;
 use Konekt\Gears\Registry\SettingsRegistry;
@@ -79,6 +80,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->registerThirdPartyProviders();
         $this->registerCommands();
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
+        $this->app->singleton('appshell.theme', DefaultAppShellTheme::class);
 
         $this->app->singleton('appshell.settings_tree_builder', function ($app) {
             return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);

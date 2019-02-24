@@ -19,6 +19,11 @@ function enum_icon(\Konekt\Enum\Enum $enum)
     return app('appshell.icon')->icon($enum);
 }
 
+function semantic_color_to_hex(string $color): string
+{
+    return app('appshell.theme')->semanticColorToHex($color);
+}
+
 /**
  * Returns whether the given array contains any of the keys
  *

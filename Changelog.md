@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 1.4-dev
+##### Unreleased
+
+- Theme support has been added
+
 ## 1.3.1
 ##### 2019-01-20
 
