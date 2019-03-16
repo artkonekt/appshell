@@ -21,7 +21,7 @@
         "konekt/customer": ">=0.9.6",
         "konekt/user": ">=0.9.0",
         "konekt/acl": "~1.0",
-        "konekt/menu": "~1.2",
+        "konekt/menu": "~1.3",
         "konekt/gears": "~1.1",
         "konekt/enum-eloquent": "~1.2",
         "laravelcollective/html": "~5.4",

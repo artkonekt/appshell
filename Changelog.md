@@ -5,12 +5,16 @@
 
 - Theme support has been added
 
+## 1.3.2
+##### 2019-03-17
+
+- Laravel 5.8 Compatibility fix
+
 ## 1.3.1
 ##### 2019-01-20
 
 - Fixed can't build SASS issue (due to 'Top-level selectors may not contain the parent selector "&".')
 - Documentation fixes
-
 
 ## 1.3.0
 ##### 2019-01-10
