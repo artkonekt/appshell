@@ -11,7 +11,7 @@ class CustomerTest extends TestCase
     /** @var Customer */
     private $customer;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

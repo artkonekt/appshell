@@ -16,7 +16,7 @@ class AddressTest extends TestCase
     /** @var Address */
     private $address;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
