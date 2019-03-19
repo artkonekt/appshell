@@ -34,10 +34,12 @@ class CreateAppshellPermissions extends Migration
      */
     public function down()
     {
-        $adminRole = RoleProxy::where(['name' => 'admin'])->firstOrFail();
+        $adminRole = RoleProxy::where(['name' => 'admin'])->first();
 
-        $admins = UserProxy::where(['type' => UserType::ADMIN])->get();
-        $admins->each->removeRole($adminRole);
+        if ($adminRole) {
+            $admins = UserProxy::where(['type' => UserType::ADMIN])->get();
+            $admins->each->removeRole($adminRole);
+        }
 
         ResourcePermissions::deletePermissionsForResource($this->resources);
 

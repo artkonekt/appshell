@@ -5,6 +5,11 @@
 
 - Theme support has been added
 
+## 1.3.3
+##### 2019-03-19
+
+- Bugfix: Made migrations great again for cases when the `admin` role is not present in the system.
+
 ## 1.3.2
 ##### 2019-03-17
 
