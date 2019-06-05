@@ -52,7 +52,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
     const DEFAULT_SETTINGS_DRIVER = 'database';
 
-    private $settingsTreeIsBuilt =  false;
+    private $settingsTreeIsBuilt = false;
+
+    private $preferencesTreeIsBuilt = false;
 
     protected $requests = [
         CreateUser::class,
@@ -85,9 +87,19 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->singleton('appshell.settings_tree_builder', function ($app) {
             return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
         });
+
         $this->app->bind('appshell.settings_tree', function ($app) {
             $this->buildSettingsTree();
             return $app['appshell.settings_tree_builder']->getTree();
+        });
+
+        $this->app->singleton('appshell.preferences_tree_builder', function ($app) {
+            return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+        });
+
+        $this->app->bind('appshell.preferences_tree', function ($app) {
+            $this->buildPreferencesTree();
+            return $app['appshell.preferences_tree_builder']->getTree();
         });
     }
 
@@ -299,5 +311,19 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                             ->addSettingItem('defaults', ['select', ['label' => __('Default Country')]], 'appshell.default.country');
 
         $this->settingsTreeIsBuilt = true;
+    }
+
+    private function buildPreferencesTree()
+    {
+        if ($this->preferencesTreeIsBuilt) {
+            return;
+        }
+
+        /** @var TreeBuilder $preferencesTreeBuilder */
+        $preferencesTreeBuilder = $this->app['appshell.preferences_tree_builder'];
+
+        // Add AppShell built-in items here
+
+        $this->preferencesTreeIsBuilt = true;
     }
 }

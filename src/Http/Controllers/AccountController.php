@@ -14,16 +14,10 @@ namespace Konekt\AppShell\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Konekt\AppShell\Contracts\Requests\SaveAccount;
 
-class AccountController
+class AccountController extends BaseController
 {
-    use AppShellViewAware;
-
     public function display()
     {
-        if (!Auth::check()) {
-            abort(404);
-        }
-
         return $this->appShellView('account.show', [
             'user' => Auth::user()
         ]);

@@ -18,6 +18,8 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="account-dropdown-link">
                 <a class="dropdown-item" href="{{ route('appshell.account.display') }}"><i class="fa fa-user"></i> {{  __('Account') }}</a>
 
+                <a class="dropdown-item" href="{{ route('appshell.preferences.index') }}"><i class="fa fa-user"></i> {{  __('Preferences') }}</a>
+
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                             class="fa fa-lock"></i> {{ __('Logout') }}</a>
