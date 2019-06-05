@@ -31,5 +31,4 @@ class PreferencesController extends BaseController
 
         return redirect()->route('appshell.preferences.index');
     }
-
 }
