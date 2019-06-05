@@ -19,10 +19,18 @@ return [
         'namespace' => 'appshell'
     ],
     'routes' => [
-        'prefix'     => 'admin',
-        'as'         => 'appshell.',
-        'middleware' => ['web', 'auth', 'acl'],
-        'files'      => ['web']
+        [
+            'prefix'     => 'admin',
+            'as'         => 'appshell.',
+            'middleware' => ['web', 'auth', 'acl'],
+            'files'      => ['acl']
+        ],
+        [
+            'prefix'     => 'admin',
+            'as'         => 'appshell.',
+            'middleware' => ['web', 'auth'],
+            'files'      => ['nonacl']
+        ],
     ],
     'breadcrumbs' => true,
     'components'  => [
