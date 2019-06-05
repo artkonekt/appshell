@@ -1,9 +1,10 @@
 # AppShell Changelog
 
-## 1.4-dev
-##### Unreleased
+## 1.4.0
+##### 2019-06-06
 
-- Theme support has been added
+- Minimalist Theme support has been added
+- User preferences have been added (extensible, no defaults)
 
 ## 1.3.3
 ##### 2019-03-19
