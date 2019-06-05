@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 1.4.1
+##### 2019-06-06
+
+- Improved print CSS
+
 ## 1.4.0
 ##### 2019-06-06
 
