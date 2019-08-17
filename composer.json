@@ -18,7 +18,7 @@
     "require": {
         "php": ">=7.1.3",
         "konekt/concord": "~1.3",
-        "konekt/customer": ">=0.9.6",
+        "konekt/customer": "~1.0",
         "konekt/user": "~1.1",
         "konekt/acl": "~1.0",
         "konekt/menu": "~1.3",
