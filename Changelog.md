@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2019-11-XX
+## 1.5.0
+##### 2019-11-24
 
 - Added Laravel 6 support
 - Dropped Laravel 5.4 Support
