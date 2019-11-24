@@ -1,5 +1,12 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2019-11-XX
+
+- Added Laravel 6 support
+- Dropped Laravel 5.4 Support
+- Concord 1.4+ is required
+
 ## 1.4.1
 ##### 2019-06-06
 
