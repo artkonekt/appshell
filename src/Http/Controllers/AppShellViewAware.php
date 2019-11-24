@@ -11,6 +11,8 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
+use Illuminate\Support\Str;
+
 trait AppShellViewAware
 {
     /** @var  string The namespace of the views */
@@ -33,10 +35,10 @@ trait AppShellViewAware
             $this->viewNS = config('konekt.app_shell.views.namespace');
         }
 
-        if (!str_contains($view, '::')) {
+        if (!Str::contains($view, '::')) {
             $view = sprintf('%s::%s', $this->viewNS, $view);
-        } elseif (starts_with($view, 'appshell::')) {
-            $view = str_replace_first('appshell::', $this->viewNS . '::', $view);
+        } elseif (Str::startsWith($view, 'appshell::')) {
+            $view = Str::replaceFirst('appshell::', $this->viewNS . '::', $view);
         }
 
         return view($view, $data, $mergeData);

@@ -11,6 +11,7 @@
 
 namespace Konekt\AppShell\Assets;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Asset;
 
@@ -89,11 +90,11 @@ class AssetCollection
         }
 
         $assetFunction = array_key_exists(self::ASSET_FUNCTION_KEY, $value) ? $value[self::ASSET_FUNCTION_KEY] : BaseAsset::DEFAULT_ASSET_FUNCTION;
-        $location      = array_get($value, self::LOCATION_META_KEY, $class::defaultLocation()->value());
+        $location      = Arr::get($value, self::LOCATION_META_KEY, $class::defaultLocation()->value());
 
         return new $class(
             $key,
-            array_except($value, [self::ASSET_FUNCTION_KEY, self::LOCATION_META_KEY]),
+            Arr::except($value, [self::ASSET_FUNCTION_KEY, self::LOCATION_META_KEY]),
             $assetFunction,
             [self::LOCATION_META_KEY => $location]
         );

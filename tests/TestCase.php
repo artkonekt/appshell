@@ -17,6 +17,7 @@ use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
 use Konekt\Concord\ConcordServiceProvider;
 use Konekt\Gears\Providers\GearsServiceProvider;
+use Konekt\LaravelMigrationCompatibility\LaravelMigrationCompatibilityProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
@@ -49,6 +50,7 @@ abstract class TestCase extends Orchestra
         return [
             ConcordServiceProvider::class,
             GearsServiceProvider::class,
+            LaravelMigrationCompatibilityProvider::class
         ];
     }
 
@@ -57,8 +59,23 @@ abstract class TestCase extends Orchestra
         parent::getEnvironmentSetUp($app);
 
         Auth::routes();
-        Route::get('/home', function () {
-        })->name('home');
+        Route::get('/home', function () {})->name('home');
+
+        $engine = env('TEST_DB_ENGINE', 'sqlite');
+
+        $app['config']->set('database.default', $engine);
+        $app['config']->set('database.connections.' . $engine, [
+            'driver'   => $engine,
+            'database' => 'sqlite' == $engine ? ':memory:' : 'appshell_test',
+            'prefix'   => '',
+            'host'     => '127.0.0.1',
+            'username' => env('TEST_DB_USERNAME', 'pgsql' === $engine ? 'postgres' : 'root'),
+            'password' => env('TEST_DB_PASSWORD', ''),
+        ]);
+
+        if ('pgsql' === $engine) {
+            $app['config']->set("database.connections.{$engine}.charset", 'utf8');
+        }
     }
 
     /**

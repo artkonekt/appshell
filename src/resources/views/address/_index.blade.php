@@ -2,8 +2,8 @@
     <div class="card-header">
         {{ __('Addresses') }}
         <?php
-            $for = shorten(get_class($of));
-            $editTheParent = 'edit ' . str_plural($for);
+        $for = shorten(get_class($of));
+            $editTheParent = 'edit ' . Illuminate\Support\Str::plural($for);
         ?>
         <div class="card-actionbar">
             @can($editTheParent)

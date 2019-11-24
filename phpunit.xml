@@ -3,7 +3,9 @@
     phpunit -c phpunit.xml
 -->
 <phpunit colors="true"
-         bootstrap="./vendor/autoload.php">
+         bootstrap="./vendor/autoload.php"
+         convertWarningsToExceptions="false"
+>
     <testsuites>
         <testsuite name="AppShell Test Suite">
             <directory suffix="Test.php">./tests</directory>
@@ -11,6 +13,5 @@
     </testsuites>
     <php>
         <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
-        <env name="DB_CONNECTION" value="testing"/>
     </php>
 </phpunit>

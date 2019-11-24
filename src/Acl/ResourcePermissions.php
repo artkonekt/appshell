@@ -11,6 +11,7 @@
 
 namespace Konekt\AppShell\Acl;
 
+use Illuminate\Support\Str;
 use Konekt\Acl\Models\PermissionProxy;
 use Konekt\Acl\PermissionRegistrar;
 
@@ -119,7 +120,7 @@ class ResourcePermissions
             return false;
         }
 
-        return sprintf('%s %s', $verb, str_plural($resource));
+        return sprintf('%s %s', $verb, Str::plural($resource));
     }
 
     /**
@@ -133,7 +134,7 @@ class ResourcePermissions
     {
         $result = [];
         foreach (static::$permissions as $permission) {
-            $result[] = sprintf('%s %s', $permission, str_plural($resource));
+            $result[] = sprintf('%s %s', $permission, Str::plural($resource));
         }
 
         return $result;

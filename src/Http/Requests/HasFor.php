@@ -11,6 +11,7 @@
 
 namespace Konekt\AppShell\Http\Requests;
 
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 trait HasFor
@@ -39,7 +40,7 @@ trait HasFor
     {
         $for = $this->for;
         if ($for) {
-            return camel_case(str_plural($for));
+            return Str::camel(Str::plural($for));
         }
 
         return null;

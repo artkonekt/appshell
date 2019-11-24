@@ -11,6 +11,7 @@
 
 namespace Konekt\AppShell\Icons;
 
+use Illuminate\Support\Arr;
 use Konekt\Enum\Enum;
 
 class EnumIconMapper
@@ -38,7 +39,7 @@ class EnumIconMapper
      */
     public function icon(Enum $enum)
     {
-        return array_get(
+        return Arr::get(
             $this->map,
             sprintf('%s.%s', shorten(get_class($enum)), $enum->value()),
             config('konekt.app_shell.icon.default', 'default')
