@@ -24,10 +24,10 @@
         "konekt/menu": "~1.4",
         "konekt/gears": "~1.2",
         "konekt/enum-eloquent": "^1.4.1",
-        "laravelcollective/html": "~5.4 - 6.*",
+        "laravelcollective/html": "5.4 - 6",
         "laracasts/flash": "~3.0",
-        "davejamesmiller/laravel-breadcrumbs": "4.* - 5.*",
-        "cviebrock/eloquent-sluggable": "4.3 - 6.*"
+        "davejamesmiller/laravel-breadcrumbs": "4 - 5",
+        "cviebrock/eloquent-sluggable": "4.3 - 6"
     },
     "require-dev": {
         "ext-sqlite3": "*",
