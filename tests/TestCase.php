@@ -59,7 +59,8 @@ abstract class TestCase extends Orchestra
         parent::getEnvironmentSetUp($app);
 
         Auth::routes();
-        Route::get('/home', function () {})->name('home');
+        Route::get('/home', function () {
+        })->name('home');
 
         $engine = env('TEST_DB_ENGINE', 'sqlite');
 
