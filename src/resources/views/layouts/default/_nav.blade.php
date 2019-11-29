@@ -36,7 +36,7 @@
                         </ul>
                     </li>
                     @endif
-                @else
+                @elseif ($item->isAllowed())
                     <li class="nav-title">
                         @if($item->data('icon'))
                             <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
