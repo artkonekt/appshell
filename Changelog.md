@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 1.5.1
+##### 2019-11-29
+
+- Fixed displaying disallowed top level items on side menu
+
 ## 1.5.0
 ##### 2019-11-24
 
