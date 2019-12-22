@@ -153,4 +153,4 @@ See [Modify The Assets Of The Layout](#modify-the-assets-of-the-layout) above.
 
 ---
 
-**Next**: [Extending &raquo;](extending.md)
+**Next**: [Change Admin URL Prefix &raquo;](change-url-prefix.md)

@@ -15,12 +15,12 @@ Konekt AppShell is a Laravel Extension that serves as foundation for Laravel bus
 - Breadcrumbs
 - Customers
 - Addresses, countries, provinces
-- User managable settings
+- User manageable settings
 - Icon themes
 
 The user/auth part is built on top of the Laravel facilities in a compatible manner.
 
-AppShell is built on top of [Concord](https://artkonekt.github.io/concord/#/overview)
-so this package is also a [Concord box](https://artkonekt.github.io/concord/#/boxes).
+AppShell is built on top of [Concord](https://konekt.dev/concord/1.4/overview)
+so this package is also a [Concord box](https://konekt.dev/concord/1.4/boxes).
 
-Refer to the [Documentation](https://artkonekt.github.io/appshell) for more details.
+Refer to the [Documentation](https://konekt.dev/appshell/docs) for more details.

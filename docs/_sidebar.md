@@ -10,5 +10,5 @@
 
 - III. Customization
     - [Customizing Admin UI](customize-admin-ui.md)
-    - [Extending](extending.md)
+    - [Change Admin URL Prefix](change-url-prefix.md)
     - [Using Custom Models](models.md)
