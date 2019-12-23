@@ -58,7 +58,7 @@ These views have a plain Bootstrap4 look. AppShell provides the very same forms 
 To get these views in your app, use this command:
 
 ```bash
-php artisan vendor:publish --provider='Konekt\AppShell\Providers\ModuleServiceProvider' --tag=auth-views
+php artisan vendor:publish --provider='Konekt\\AppShell\\Providers\\ModuleServiceProvider' --tag=auth-views
 ```
 
 > The command will not overwrite existing files, unless you pass the *--force* flag to it.
