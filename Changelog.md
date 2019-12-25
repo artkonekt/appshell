@@ -1,5 +1,12 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2019-12-XX
+
+- Added PHP 7.4 Support
+- Dropped PHP 7.1 Support
+- Concord 1.5+ is required
+
 ## 1.5.1
 ##### 2019-11-29
 
