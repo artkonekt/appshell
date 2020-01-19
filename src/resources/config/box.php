@@ -43,7 +43,7 @@ return [
     ],
     'ui' => [
         'name'   => 'AppShell',
-        'url'    => '/admin/customer',
+        'url'    => 'appshell.customer.index',
         'assets' => [
             'js'  => \Konekt\AppShell\Assets\DefaultAppShellAssets::JS,
             'css' => \Konekt\AppShell\Assets\DefaultAppShellAssets::CSS
