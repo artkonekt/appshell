@@ -51,7 +51,7 @@
     <div class="app-body" id="app">
         <div class="sidebar">
             <nav class="appshell-logo">
-                <a href="{{ $appshell->url }}">
+                <a href="{{ route($appshell->url) }}">
                     <img src="{{ asset('images/appshell/logo.svg') }}" class="appshell-logo-img" />
                     <h4 class="appshell-logo-text">{{ setting('appshell.ui.name') }}</h4>
                 </a>
