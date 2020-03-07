@@ -13,7 +13,7 @@
             @else
                 @if($item->hasChildren())
                     @if($item->childrenAllowed()->count())
-                    <li class="nav-item nav-dropdown">
+                    <li class="nav-item nav-dropdown open">
                         <a href="#" class="nav-link nav-dropdown-toggle">
                             @if($item->data('icon'))
                                 <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
