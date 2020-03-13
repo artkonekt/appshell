@@ -87,7 +87,7 @@ class AssetCollectionTest extends TestCase
         $this->assertCount(1, $assets->scripts());
 
         $jquery = $assets->scripts()->first();
-        $this->assertContains('src="/JQUERY.JS"', $jquery->renderHtml());
+        $this->assertStringContainsString('src="/JQUERY.JS"', $jquery->renderHtml());
         $this->assertCount(2, $jquery->attributes());
         $this->assertEquals('ever', $jquery->attributes()['what']);
         $this->assertEquals('else', $jquery->attributes()['ever']);
@@ -95,7 +95,7 @@ class AssetCollectionTest extends TestCase
         $this->assertCount(1, $assets->stylesheets());
 
         $css = $assets->stylesheets()->first();
-        $this->assertContains('href="Style.css"', $css->renderHtml());
+        $this->assertStringContainsString('href="Style.css"', $css->renderHtml());
         $this->assertEquals('abcedfg', $css->attributes()['integrity']);
     }
 
