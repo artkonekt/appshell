@@ -13,10 +13,13 @@ namespace Konekt\AppShell\Tests\Unit;
 
 use Konekt\AppShell\Assets\Script;
 use Konekt\AppShell\Assets\Stylesheet;
+use Konekt\AppShell\Tests\Compatibility\PhpUnit6Compatible;
 use PHPUnit\Framework\TestCase;
 
 class AssetTest extends TestCase
 {
+    use PhpUnit6Compatible;
+
     /** @test */
     public function stylesheet_without_attributes_renders_properly()
     {
@@ -26,7 +29,7 @@ class AssetTest extends TestCase
 
         $this->assertStringStartsWith('<link ', $html);
         $this->assertStringEndsWith(' />', $html);
-        $this->assertContains('href="/style.css"', $html);
+        $this->assertStringContainsString('href="/style.css"', $html);
     }
 
     /** @test */
@@ -38,8 +41,8 @@ class AssetTest extends TestCase
 
         $this->assertStringStartsWith('<link ', $html);
         $this->assertStringEndsWith(' />', $html);
-        $this->assertContains('href="/style.css"', $html);
-        $this->assertContains('crossorigin="anonymous"', $html);
+        $this->assertStringContainsString('href="/style.css"', $html);
+        $this->assertStringContainsString('crossorigin="anonymous"', $html);
     }
 
     /** @test */
@@ -51,7 +54,7 @@ class AssetTest extends TestCase
 
         $this->assertStringStartsWith('<script ', $html);
         $this->assertStringEndsWith('</script>', $html);
-        $this->assertContains('src="js/appshell.js"', $html);
+        $this->assertStringContainsString('src="js/appshell.js"', $html);
     }
 
     /** @test */
@@ -66,9 +69,9 @@ class AssetTest extends TestCase
 
         $this->assertStringStartsWith('<script ', $html);
         $this->assertStringEndsWith('</script>', $html);
-        $this->assertContains('src="//cdn.example.com/js/chunk-vendors.725265d6.js"', $html);
-        $this->assertContains('crossorigin="anonymous"', $html);
-        $this->assertContains('integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"', $html);
+        $this->assertStringContainsString('src="//cdn.example.com/js/chunk-vendors.725265d6.js"', $html);
+        $this->assertStringContainsString('crossorigin="anonymous"', $html);
+        $this->assertStringContainsString('integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"', $html);
     }
 
     /** @test */
@@ -80,7 +83,7 @@ class AssetTest extends TestCase
 
         $this->assertStringStartsWith('<script ', $html);
         $this->assertStringEndsWith('</script>', $html);
-        $this->assertContains('src="/APP.JS"', $html);
+        $this->assertStringContainsString('src="/APP.JS"', $html);
     }
 
     /** @test */
