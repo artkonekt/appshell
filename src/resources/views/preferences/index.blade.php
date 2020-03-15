@@ -41,7 +41,7 @@
     <p>&nbsp;</p>
 
     <div class="card">
-        <div class="card-block">
+        <div class="card-body">
             <button class="btn btn-primary">{{ __('Save preferences') }}</button>
             <a class="btn btn-link" href="javascript:history.go(-1);">{{ __('Back without saving') }}</a>
         </div>

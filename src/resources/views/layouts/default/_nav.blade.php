@@ -1,50 +1,48 @@
-<ul class="nav" id="appshell-main-menu">
-    @unless(Auth::guest())
-        @foreach($appshellMenu->items->roots() as $item)
-            @if ($item->hasLink() && $item->isAllowed())
-                <li class="nav-item {{ $item->attr('class') }}">
-                    <a class="nav-link {{ $item->link->attr('class') }}" href="{!! $item->url() !!}">
-                        @if($item->data('icon'))
-                            <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
-                        @endif
-                        {!! $item->title !!}
-                    </a>
-                </li>
-            @else
-                @if($item->hasChildren())
-                    @if($item->childrenAllowed()->count())
-                    <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
+@unless(Auth::guest())
+    @foreach($appshellMenu->items->roots() as $item)
+        @if ($item->hasLink() && $item->isAllowed())
+            <a class="nav-item {{ $item->attr('class') }}">
+                <a class="nav-link {{ $item->link->attr('class') }}" href="{!! $item->url() !!}">
+                    @if($item->data('icon'))
+                        <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
+                    @endif
+                    {!! $item->title !!}
+                </a>
+            </a>
+        @else
+            @if($item->hasChildren())
+                @if($item->childrenAllowed()->count())
+                    <span class="nav-item nav-dropdown{{ $item->hasActiveChild() ? ' open' : '' }}">
+                        <a href="#sidebar-submenu-{{$item->name}}" class="nav-link nav-dropdown-toggle" data-toggle="collapse" aria-expanded="{{ $item->hasActiveChild() ? 'true' : 'false' }}">
                             @if($item->data('icon'))
                                 <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
                             @endif
                             {!! $item->title !!}
                         </a>
-                        <ul class="nav-dropdown-items">
+                        <div class="nav-dropdown-items collapse{{ $item->hasActiveChild() ? ' show' : '' }}" id="sidebar-submenu-{{$item->name}}">
                             @foreach($item->children() as $childItem)
                                 @if($childItem->isAllowed())
-                                    <li class="nav-item {{ $childItem->attr('class') }}">
+                                    <span class="nav-item {{ $childItem->attr('class') }}">
                                         <a class="nav-link {{ $childItem->link->attr('class') }}" href="{!! $childItem->url() !!}">
                                             @if($childItem->data('icon'))
                                                 <i class="zmdi zmdi-{{ $childItem->data('icon') }} zmdi-hc-fw"></i>
                                             @endif
                                             {!! $childItem->title !!}
                                         </a>
-                                    </li>
+                                    </span>
                                 @endif
                             @endforeach
-                        </ul>
-                    </li>
-                    @endif
-                @elseif ($item->isAllowed())
-                    <li class="nav-title">
-                        @if($item->data('icon'))
-                            <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
-                        @endif
-                        {!! $item->title !!}
-                    </li>
+                        </div>
+                    </span>
                 @endif
+            @elseif ($item->isAllowed())
+                <a class="nav-title">
+                    @if($item->data('icon'))
+                        <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
+                    @endif
+                    {!! $item->title !!}
+                </a>
             @endif
-        @endforeach
-    @endunless
-</ul>
+        @endif
+    @endforeach
+@endunless

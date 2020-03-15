@@ -13,7 +13,7 @@
 
     {!! Form::model($role, ['route' => ['appshell.role.update', $role], 'method' => 'PUT']) !!}
 
-        <div class="card-block">
+        <div class="card-body">
             @include('appshell::role._form')
         </div>
 

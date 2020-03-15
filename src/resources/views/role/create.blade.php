@@ -14,7 +14,7 @@
 
     {!! Form::open(['route' => 'appshell.role.store']) !!}
 
-        <div class="card-block">
+        <div class="card-body">
             @include('appshell::role._form')
         </div>
 

@@ -20,7 +20,7 @@
                 ])
     !!}
 
-        <div class="card-block">
+        <div class="card-body">
             @include('appshell::user._form')
         </div>
 

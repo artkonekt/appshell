@@ -1,8 +1,10 @@
 <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">
-            <i class="zmdi zmdi-account-circle"></i>
-        </span>
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="zmdi zmdi-account-circle"></i>
+            </span>
+        </div>
         {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Full name')
@@ -18,9 +20,11 @@
 
 <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">
-            <i class="zmdi zmdi-email"></i>
-        </span>
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="zmdi zmdi-email"></i>
+            </span>
+        </div>
         {{ Form::email('email', null, [
             'class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''),
             'autocomplete' => 'off',
@@ -41,9 +45,11 @@
 
 <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">
-            <i class="zmdi zmdi-lock"></i>
-        </span>
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="zmdi zmdi-lock"></i>
+            </span>
+        </div>
         <?php $passwordPlaceholderText = $user->exists ? __('Type new password if you want to change it') : __('Enter password') ?>
         {{ Form::password('password', [
             'class'        => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''),

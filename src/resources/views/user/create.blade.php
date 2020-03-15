@@ -12,7 +12,7 @@
 
     {!! Form::open(['route' => 'appshell.user.store', 'autocomplete' => 'off']) !!}
 
-        <div class="card-block">
+        <div class="card-body">
             @include('appshell::user._form')
         </div>
 

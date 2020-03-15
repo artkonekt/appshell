@@ -13,7 +13,7 @@
 
     {!! Form::model($customer, ['route' => 'appshell.customer.store', 'autocomplete' => 'off']) !!}
 
-        <div class="card-block">
+        <div class="card-body">
             @include('appshell::customer._form')
         </div>
 

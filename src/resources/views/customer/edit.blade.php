@@ -12,7 +12,7 @@
 
     {!! Form::model($customer, ['route' => ['appshell.customer.update', $customer], 'method' => 'PUT']) !!}
 
-    <div class="card-block">
+    <div class="card-body">
             @include('appshell::customer._form')
         </div>
 

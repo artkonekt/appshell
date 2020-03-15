@@ -1,8 +1,10 @@
 <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">
-            <i class="zmdi zmdi-group-work"></i>
-        </span>
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="zmdi zmdi-group-work"></i>
+            </span>
+        </div>
         {{ Form::text('company_name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('company_name') ? ' is-invalid' : ''),
                 'placeholder' => __('Company name')
@@ -17,9 +19,11 @@
 
 <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">
-            <i class="zmdi zmdi-toll"></i>
-        </span>
+        <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="zmdi zmdi-toll"></i>
+            </span>
+        </div>
         {{ Form::text('tax_nr', null, [
                 'class' => 'form-control' . ($errors->has('tax_nr') ? ' is-invalid' : ''),
                 'placeholder' => __('Tax no.')

@@ -42,8 +42,9 @@ return [
         'login_counter' => false
     ],
     'ui' => [
-        'name'   => 'AppShell',
-        'url'    => '/admin/customer',
+        'name'     => 'AppShell',
+        'url'      => '/admin/customer',
+        'logo_uri' => '/images/appshell/logo.svg',
         'assets' => [
             'js'  => \Konekt\AppShell\Assets\DefaultAppShellAssets::JS,
             'css' => \Konekt\AppShell\Assets\DefaultAppShellAssets::CSS

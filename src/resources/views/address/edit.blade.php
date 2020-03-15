@@ -13,7 +13,7 @@
 
     {!! Form::model($address, ['route' => ['appshell.address.update', $address], 'method' => 'PUT', 'autocomplete' => 'off']) !!}
 
-        <div class="card-block">
+        <div class="card-body">
             @include('appshell::address._form')
         </div>
 

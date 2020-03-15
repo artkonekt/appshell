@@ -16,7 +16,7 @@
             @endcan
         </div>
     </div>
-    <div class="card-block">
+    <div class="card-body">
         <table class="table">
             <thead>
             <tr>

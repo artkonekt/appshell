@@ -182,6 +182,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             $crm
                 ->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])
                 ->data('icon', 'accounts-list')
+                ->activateOnUrls($this->routeWildcard('appshell.customer.index'))
                 ->allowIfUserCan('list customers');
 
             // Settings Group
@@ -190,10 +191,12 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             $settings
                 ->addSubItem('users', __('Users'), ['route' => 'appshell.user.index'])
                 ->data('icon', 'accounts')
+                ->activateOnUrls($this->routeWildcard('appshell.user.index'))
                 ->allowIfUserCan('list users');
             $settings
                 ->addSubItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])
                 ->data('icon', 'shield-security')
+                ->activateOnUrls($this->routeWildcard('appshell.role.index'))
                 ->allowIfUserCan('list roles');
             $settings
                 ->addSubItem('settings', __('Settings'), ['route' => 'appshell.settings.index'])
@@ -214,6 +217,19 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $uiConfig['assets'] = AssetCollection::createFromArray($uiConfig['assets']);
 
         View::share('appshell', (object) $uiConfig);
+    }
+
+    private function routeWildcard(string $route): string
+    {
+        if (0 === strlen($path = parse_url(route($route), PHP_URL_PATH))) {
+            return '';
+        }
+
+        if ('/' === $path[0]) {
+            $path = substr($path, 1);
+        }
+
+        return "$path*";
     }
 
     /**
@@ -287,6 +303,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $settingsRegistry = $this->app['gears.settings_registry'];
 
         $settingsRegistry->add(new SimpleSetting('appshell.ui.name', $this->config('ui.name')));
+        $settingsRegistry->add(new SimpleSetting('appshell.ui.logo_uri', $this->config('ui.logo_uri')));
         $settingsRegistry->add(new SimpleSetting('appshell.default.country', null, function () {
             return ['' => '--'] + CountryProxy::all()->pluck('name', 'id')->all();
         }));

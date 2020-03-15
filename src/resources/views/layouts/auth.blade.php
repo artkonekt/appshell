@@ -31,7 +31,7 @@
 
         <div class="col-md-6 offset-md-3 text-center p-4">
             <div>
-                <img src="/images/appshell/logo.svg" class="w-25" />
+                <img src="{{ setting('appshell.ui.logo_uri') }}" class="w-25" />
             </div>
             <h4 class="text-center text-uppercase text-white mt-4"
                 style="font-weight: 300; letter-spacing: 2px">{{ setting('appshell.ui.name') }}</h4>

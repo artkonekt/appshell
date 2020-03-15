@@ -23,7 +23,7 @@
 
         </div>
 
-        <div class="card-block">
+        <div class="card-body">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -77,7 +77,7 @@
             <i class="zmdi zmdi-info text-info" title="{{ __("Permissions can not be edited, they are defined by System Modules") }}"></i>
         </div>
 
-        <div class="card-block">
+        <div class="card-body">
             @foreach($permissions as $permission)
                 <span class="badge badge-success badge-pill">{{ $permission->name }}</span>
             @endforeach

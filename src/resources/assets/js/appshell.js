@@ -13,12 +13,5 @@ $(document).ready(function () {
                 e.preventDefault();
             }
         });
-
-    // Poor man's solution for opened sidebar group if there's an active child
-    $('#appshell-main-menu .nav-dropdown').each(function () {
-        if ($(this).find('.active').length) {
-            $(this).addClass('open');
-        }
-    })
 });
 

@@ -16,7 +16,7 @@
 
         </div>
 
-        <div class="card-block">
+        <div class="card-body">
 
             <div class="form-group">
                 <legend>{{ __('Allows') }}</legend>
