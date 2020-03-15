@@ -1,6 +1,7 @@
 - I. Introduction
     - [Overview](README.md)
     - [Installation](installation.md)
+    - [Application Prerequisites](prerequisites.md)
     - [Upgrade](upgrade.md)
 
 - II. How To Use

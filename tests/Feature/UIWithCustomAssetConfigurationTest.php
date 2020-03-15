@@ -18,7 +18,7 @@ class UIWithCustomAssetConfigurationTest extends TestCase
 
         $valuesInOrder = ['<head>', asset('/headerscript.js'), '</head>'];
         if (method_exists($response, 'assertSeeInOrder')) {
-            $response->assertSeeInOrder($valuesInOrder);
+            $response->assertSeeInOrder($valuesInOrder, false);
         } else {
             $this->assertThat($valuesInOrder, new SeeInOrder($response->getContent()));
         }
@@ -35,7 +35,7 @@ class UIWithCustomAssetConfigurationTest extends TestCase
 
         $valuesInOrder = ['</head>', asset('/footerstyle.css'), '</body>'];
         if (method_exists($response, 'assertSeeInOrder')) {
-            $response->assertSeeInOrder($valuesInOrder);
+            $response->assertSeeInOrder($valuesInOrder, false);
         } else {
             $this->assertThat($valuesInOrder, new SeeInOrder($response->getContent()));
         }

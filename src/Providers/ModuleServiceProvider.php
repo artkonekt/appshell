@@ -19,7 +19,6 @@ use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Assets\AssetCollection;
 use Konekt\AppShell\Assets\DefaultAppShellAssets;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
-use Konekt\AppShell\Console\Commands\ScaffoldCommand;
 use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateAddress;
@@ -161,7 +160,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                ScaffoldCommand::class,
                 SuperCommand::class
             ]);
         }

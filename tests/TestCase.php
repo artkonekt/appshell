@@ -58,9 +58,7 @@ abstract class TestCase extends Orchestra
     {
         parent::getEnvironmentSetUp($app);
 
-        Auth::routes();
-        Route::get('/home', function () {
-        })->name('home');
+        $this->predefinedRoutes();
 
         $engine = env('TEST_DB_ENGINE', 'sqlite');
 
@@ -91,5 +89,15 @@ abstract class TestCase extends Orchestra
         ]);
 
         $app['config']->set('auth.providers.users.model', User::class);
+    }
+
+    private function predefinedRoutes()
+    {
+        Route::get('/home', function () {
+        })->name('home');
+        Route::get('/login', function () {
+        })->name('login');
+        Route::get('/logout', function () {
+        })->name('logout');
     }
 }

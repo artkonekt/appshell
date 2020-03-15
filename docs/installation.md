@@ -109,4 +109,4 @@ This will ask a several questions and create a proper superuser that you can sta
 
 ---
 
-**Next**: [Admin Panel &raquo;](admin-panel.md)
+**Next**: [Application Prerequisites &raquo;](prerequisites.md)

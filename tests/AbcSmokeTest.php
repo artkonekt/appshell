@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 class AbcSmokeTest extends TestCase
 {
-    const MIN_PHP_VERSION = '7.0.0';
+    const MIN_PHP_VERSION = '7.2.0';
 
     /**
      * Very Basic smoke test case for testing against parse errors, etc
