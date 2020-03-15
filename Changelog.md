@@ -1,8 +1,9 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2019-12-XX
+## 1.6.0
+##### 2020-03-15
 
+- Added Laravel 7 Support
 - Added PHP 7.4 Support
 - Dropped PHP 7.1 Support
 - Concord 1.5+ is required
