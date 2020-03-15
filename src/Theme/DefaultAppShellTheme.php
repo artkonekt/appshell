@@ -24,7 +24,7 @@ class DefaultAppShellTheme implements Theme
     {
         switch ($semanticColor) {
             case 'success':
-                return '#4fb286';
+                return '#23a38b';
                 break;
             case 'danger':
                 return '#f24236';
@@ -33,16 +33,16 @@ class DefaultAppShellTheme implements Theme
                 return '#e8c547';
                 break;
             case 'info':
-                return '#47949f';
+                return '#0c9bd3';
                 break;
             case 'primary':
-                return '#026c7c';
+                return '#385170';
                 break;
             case 'secondary':
                 return '#becdcf';
                 break;
         }
 
-        return '#444'; //
+        return '#607375';
     }
 }

@@ -28,12 +28,12 @@ Refer to the [Documentation](https://konekt.dev/appshell/docs) for more details.
 ## Changes in 2.0
 
 - [ ] Remove hardcoded dependency on `home` `login` and `logout` routes
-- [ ] Drop Core UI
-- [ ] Use factory Bootstrap classes only
+- [X] Drop Core UI
+- [X] Use proper Bootstrap 4.3/4.4 classes
 - [ ] Proper Theme Support
     - [ ] list of available themes
     - [ ] theme colors
     - [ ] theme assets
     - [ ] theme saved as preference
-- [ ] Fix UI url and home route (in breadcrumbs) abiguity
+- [ ] Fix UI url and home route (in breadcrumbs) ambiguity
 - [ ] Secondary menus
