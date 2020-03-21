@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
+use Konekt\AppShell\Tests\Dummies\MemoryOnlyGearsBackend;
 use Konekt\Concord\ConcordServiceProvider;
 use Konekt\Gears\Providers\GearsServiceProvider;
 use Konekt\LaravelMigrationCompatibility\LaravelMigrationCompatibilityProvider;
@@ -59,6 +60,8 @@ abstract class TestCase extends Orchestra
         parent::getEnvironmentSetUp($app);
 
         $this->predefinedRoutes();
+
+        $app['config']->set('gears.driver', MemoryOnlyGearsBackend::class);
 
         $engine = env('TEST_DB_ENGINE', 'sqlite');
 
