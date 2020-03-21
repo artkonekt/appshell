@@ -13,7 +13,9 @@ namespace Konekt\AppShell\Contracts;
 
 interface Theme
 {
-    public function getName(): string;
+    public static function getName(): string;
 
     public function semanticColorToHex(string $semanticColor): string;
+
+    public function layout(string $variant);
 }

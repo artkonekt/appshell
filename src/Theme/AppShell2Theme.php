@@ -1,11 +1,11 @@
 <?php
 /**
- * Contains the DefaultAppShellTheme class.
+ * Contains the AppShell2Theme class.
  *
- * @copyright   Copyright (c) 2019 Attila Fulop
+ * @copyright   Copyright (c) 2020 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2019-02-24
+ * @since       2020-03-21
  *
  */
 
@@ -14,20 +14,20 @@ namespace Konekt\AppShell\Theme;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Exceptions\UnknownLayoutException;
 
-class DefaultAppShellTheme implements Theme
+class AppShell2Theme implements Theme
 {
-    public const ID = 'appshell.default';
+    public const ID = 'appshell.2';
 
     public static function getName(): string
     {
-        return 'AppShell Default';
+        return 'AppShell 2';
     }
 
     public function layout(string $variant)
     {
         switch ($variant) {
-            case 'private': return 'appshell::layouts.default.private';
-            case 'public': return 'appshell::layouts.default.public';
+            case 'private': return 'appshell::layouts.v2.private';
+            case 'public': return 'appshell::layouts.v2.public';
         }
 
         throw new UnknownLayoutException(
@@ -64,4 +64,5 @@ class DefaultAppShellTheme implements Theme
 
         return '#607375';
     }
+
 }

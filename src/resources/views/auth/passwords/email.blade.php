@@ -1,4 +1,4 @@
-@extends('appshell::layouts.auth')
+@extends('appshell::layouts.public')
 
 @section('title'){{ __('Reset Password') }}@stop
 

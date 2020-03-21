@@ -45,6 +45,7 @@ return [
         'name'     => 'AppShell',
         'url'      => '/admin/customer',
         'logo_uri' => '/images/appshell/logo.svg',
+        'theme'    => 'appshell.default',
         'assets'   => [
             'js'  => \Konekt\AppShell\Assets\DefaultAppShellAssets::JS,
             'css' => \Konekt\AppShell\Assets\DefaultAppShellAssets::CSS

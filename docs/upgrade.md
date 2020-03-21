@@ -1,5 +1,17 @@
 # Upgrading
 
+## 1.x -> 2.0
+
+Due to comprehensive theming support, the layouts have changed, thus you have to replace the
+followings in your application views:
+
+1. Change `@extends('appshell::layouts.default')` to => `@extends('appshell::layouts.private')` 
+2. Change `@extends('appshell::layouts.auth')` to => `@extends('appshell::layouts.public')` 
+
+### Themes
+
+- The `getName` method in the Theme interface is now static
+
 ## 0.9 -> 1.0
 
 ## AppShell Scripts

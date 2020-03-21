@@ -37,9 +37,12 @@ use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\GravatarDefault;
 use Konekt\AppShell\Models\User;
+use Konekt\AppShell\Theme\AppShell2Theme;
 use Konekt\AppShell\Theme\DefaultAppShellTheme;
+use Konekt\AppShell\Themes;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\Gears\Defaults\SimpleSetting;
+use Konekt\Gears\Facades\Settings;
 use Konekt\Gears\Registry\SettingsRegistry;
 use Konekt\Gears\UI\TreeBuilder;
 use Konekt\User\Contracts\User as UserContract;
@@ -78,10 +81,14 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         parent::register();
 
         $this->app->register(AuthServiceProvider::class);
+        Themes::add(DefaultAppShellTheme::ID, DefaultAppShellTheme::class);
+        Themes::add(AppShell2Theme::ID, AppShell2Theme::class);
         $this->registerThirdPartyProviders();
         $this->registerCommands();
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
-        $this->app->singleton('appshell.theme', DefaultAppShellTheme::class);
+        $this->app->singleton('appshell.theme', function () {
+            return Themes::make(Settings::get('appshell.ui.theme'));
+        });
 
         $this->app->singleton('appshell.settings_tree_builder', function ($app) {
             return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
@@ -217,6 +224,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $uiConfig['assets'] = AssetCollection::createFromArray($uiConfig['assets']);
 
         View::share('appshell', (object) $uiConfig);
+        View::share('theme', $this->app->get('appshell.theme'));
     }
 
     private function routeWildcard(string $route): string
@@ -307,6 +315,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $settingsRegistry->add(new SimpleSetting('appshell.default.country', null, function () {
             return ['' => '--'] + CountryProxy::all()->pluck('name', 'id')->all();
         }));
+        $settingsRegistry->add(new SimpleSetting('appshell.ui.theme',
+            $this->config('ui.theme', DefaultAppShellTheme::ID), function () {
+                return Themes::choices();
+            }));
     }
 
     private function buildSettingsTree()
@@ -320,7 +332,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         $settingsTreeBuilder->addRootNode('general', __('General Settings'))
             ->addChildNode('general', 'general_app', __('Application'))
-            ->addSettingItem('general_app', ['text', ['label' => __('Name')]], 'appshell.ui.name');
+            ->addSettingItem('general_app', ['text', ['label' => __('Name')]], 'appshell.ui.name')
+            ->addSettingItem('general_app', ['select', ['label' => __('UI Theme')]], 'appshell.ui.theme');
+
 
         $settingsTreeBuilder->addChildNode('general', 'defaults', __('Defaults'))
                             ->addSettingItem('defaults', ['select', ['label' => __('Default Country')]], 'appshell.default.country');
