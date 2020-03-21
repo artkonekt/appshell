@@ -11,11 +11,11 @@
 */
 
 Route::resource('user', 'UserController');
-Route::post('user/{$user}/activate', [
+Route::post('user/{user}/activate', [
     'uses' => 'UserController@activate',
     'as'   => 'user.activate'
 ]);
-Route::post('user/{$user}/inactivate', [
+Route::post('user/{user}/inactivate', [
     'uses' => 'UserController@inactivate',
     'as'   => 'user.inactivate'
 ]);
