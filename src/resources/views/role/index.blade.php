@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="card card-accent-secondary" id="roles">
+    <div class="card card-accent-secondary mb-3" id="roles">
 
         <div class="card-header">
             {{ __('Roles') }}
@@ -71,7 +71,7 @@
         </div>
     </div>
 
-    <div class="card card-accent-secondary" id="permissions">
+    <div class="card card-accent-secondary mb-3" id="permissions">
 
         <div class="card-header">{{ __('Permissions') }}
             <i class="zmdi zmdi-info text-info" title="{{ __("Permissions can not be edited, they are defined by System Modules") }}"></i>
