@@ -13,7 +13,7 @@ env:
     - LARAVEL=6.0
     - LARAVEL=6.18
     - LARAVEL=7.0
-    - LARAVEL=7.1
+    - LARAVEL=7.2
 
 script:
 - vendor/bin/phpunit

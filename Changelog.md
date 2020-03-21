@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 1.6.1
+##### 2020-03-21
+
+- Fixed buggy route definition for user activate/deactive
+
 ## 1.6.0
 ##### 2020-03-15
 
