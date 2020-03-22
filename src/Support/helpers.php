@@ -51,3 +51,22 @@ function avatar_image_url(\Konekt\User\Contracts\User $user = null, int $size = 
         $hash, $size, $default
     );
 }
+
+function lumdiff($r1, $g1, $b1, $r2, $g2, $b2)
+{
+    $l1 = 0.2126 * pow($r1 / 255, 2.2) +
+        0.7152 * pow($g1 / 255, 2.2) +
+        0.0722 * pow($b1 / 255, 2.2);
+
+    $l2 = 0.2126 * pow($r2 / 255, 2.2) +
+        0.7152 * pow($g2 / 255, 2.2) +
+        0.0722 * pow($b2 / 255, 2.2);
+
+    if ($l1 > $l2) {
+        return ($l1 + 0.05) / ($l2 + 0.05);
+    }
+
+    return ($l2 + 0.05) / ($l1 + 0.05);
+}
+
+
