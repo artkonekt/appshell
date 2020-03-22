@@ -21,7 +21,7 @@ function enum_icon(\Konekt\Enum\Enum $enum)
 
 function semantic_color_to_hex(string $color): string
 {
-    return app('appshell.theme')->semanticColorToHex($color);
+    return app('appshell.theme')->themeColorToHex($color);
 }
 
 /**
