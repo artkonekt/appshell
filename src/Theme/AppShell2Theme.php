@@ -64,5 +64,4 @@ class AppShell2Theme implements Theme
 
         return '#607375';
     }
-
 }
