@@ -12,56 +12,29 @@
 namespace Konekt\AppShell\Theme;
 
 use Konekt\AppShell\Contracts\Theme;
-use Konekt\AppShell\Exceptions\UnknownLayoutException;
 
-class DefaultAppShellTheme implements Theme
+final class DefaultAppShellTheme implements Theme
 {
+    use IsGenericTheme;
+
     public const ID = 'appshell.default';
 
-    public static function getName(): string
-    {
-        return 'AppShell Default';
-    }
+    private static $name = 'AppShell Default';
 
-    public function layout(string $variant)
-    {
-        switch ($variant) {
-            case 'private': return 'appshell::layouts.default.private';
-            case 'public': return 'appshell::layouts.default.public';
-        }
+    private $layouts = [
+        'private' => 'appshell::layouts.default.private',
+        'public'  => 'appshell::layouts.default.public',
+    ];
 
-        throw new UnknownLayoutException(
-            sprintf(
-                'Layout variant %s does not exist within the %s theme',
-                $variant,
-                $this->getName()
-            )
-        );
-    }
-
-    public function semanticColorToHex(string $semanticColor): string
-    {
-        switch ($semanticColor) {
-            case 'success':
-                return '#23a38b';
-                break;
-            case 'danger':
-                return '#f24236';
-                break;
-            case 'warning':
-                return '#e8c547';
-                break;
-            case 'info':
-                return '#0c9bd3';
-                break;
-            case 'primary':
-                return '#385170';
-                break;
-            case 'secondary':
-                return '#becdcf';
-                break;
-        }
-
-        return '#607375';
-    }
+    private $themeColors = [
+        'primary'   => '#385170',
+        'secondary' => '#becdcf',
+        'info'      => '#0c9bd3',
+        'success'   => '#23a38b',
+        'warning'   => '#e8c547',
+        'danger'    => '#f24236',
+        'text'      => '#444',
+        'dark'      => '#607375',
+        'light'     => '#f1f3f3',
+    ];
 }

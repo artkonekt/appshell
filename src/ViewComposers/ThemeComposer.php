@@ -23,21 +23,6 @@ class ThemeComposer
         $view->with('theme', $this->theme());
     }
 
-//    public function getName(): string
-//    {
-//        $this->theme()->getName();
-//    }
-//
-//    public function color(string $semanticColorName): string
-//    {
-//        return $this->theme()->semanticColorToHex($semanticColorName);
-//    }
-//
-//    public function layout(string $variant): string
-//    {
-//        return $this->theme()->layout($variant);
-//    }
-
     private function theme(): Theme
     {
         if (null === $this->theme) {

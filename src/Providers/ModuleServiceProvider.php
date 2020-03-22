@@ -20,6 +20,7 @@ use Konekt\AppShell\Assets\AssetCollection;
 use Konekt\AppShell\Assets\DefaultAppShellAssets;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\SuperCommand;
+use Konekt\AppShell\Helpers\ColorHelper;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateAddress;
 use Konekt\AppShell\Http\Requests\CreateAddressForm;
@@ -82,6 +83,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(ViewServiceProvider::class);
+        $this->concord->registerHelper('color', ColorHelper::class);
         Themes::add(DefaultAppShellTheme::ID, DefaultAppShellTheme::class);
         Themes::add(AppShell2Theme::ID, AppShell2Theme::class);
         $this->registerThirdPartyProviders();
