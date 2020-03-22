@@ -224,7 +224,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $uiConfig['assets'] = AssetCollection::createFromArray($uiConfig['assets']);
 
         View::share('appshell', (object) $uiConfig);
-        View::share('theme', $this->app->get('appshell.theme'));
+        View::share('theme', function() {
+            $this->app->get('appshell.theme');
+        });
     }
 
     private function routeWildcard(string $route): string
