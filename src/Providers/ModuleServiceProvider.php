@@ -81,6 +81,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         parent::register();
 
         $this->app->register(AuthServiceProvider::class);
+        $this->app->register(ViewServiceProvider::class);
         Themes::add(DefaultAppShellTheme::ID, DefaultAppShellTheme::class);
         Themes::add(AppShell2Theme::ID, AppShell2Theme::class);
         $this->registerThirdPartyProviders();
@@ -224,9 +225,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $uiConfig['assets'] = AssetCollection::createFromArray($uiConfig['assets']);
 
         View::share('appshell', (object) $uiConfig);
-        View::share('theme', function () {
-            return $this->app->get('appshell.theme');
-        });
     }
 
     private function routeWildcard(string $route): string
