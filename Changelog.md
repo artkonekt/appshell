@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2020-XX-YY
+
+- Added option to override default plurals for Resource permission generator
+
 ## 1.6.1
 ##### 2020-03-21
 
