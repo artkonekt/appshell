@@ -20,7 +20,7 @@ use Konekt\Acl\PermissionRegistrar;
  */
 class ResourcePermissions
 {
-    public static  $permissions = ['list', 'create', 'view', 'edit', 'delete'];
+    public static $permissions = ['list', 'create', 'view', 'edit', 'delete'];
 
     private static $customPluralForms = [];
 
