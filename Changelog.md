@@ -10,6 +10,11 @@
 - Improved Menu item activation (js workaround has been removed)
 - AppShell logo uri can be set in config/settings
 
+## 1.7.0
+##### 2020-05-24
+
+- Added option to override default plurals for Resource permission generator
+
 ## 1.6.1
 ##### 2020-03-21
 

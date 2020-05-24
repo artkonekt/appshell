@@ -22,6 +22,8 @@ class ResourcePermissions
 {
     public static $permissions = ['list', 'create', 'view', 'edit', 'delete'];
 
+    private static $customPluralForms = [];
+
     /**
      * Creates the resource permissions for the given resource(s)
      * Eg: resource: 'user' creates 'list users', 'create users', ... etc
@@ -120,7 +122,7 @@ class ResourcePermissions
             return false;
         }
 
-        return sprintf('%s %s', $verb, Str::plural($resource));
+        return sprintf('%s %s', $verb, self::plural($resource));
     }
 
     /**
@@ -134,9 +136,19 @@ class ResourcePermissions
     {
         $result = [];
         foreach (static::$permissions as $permission) {
-            $result[] = sprintf('%s %s', $permission, Str::plural($resource));
+            $result[] = sprintf('%s %s', $permission, self::plural($resource));
         }
 
         return $result;
+    }
+
+    public static function overrideResourcePlural(string $resource, string $pluralForm)
+    {
+        self::$customPluralForms[$resource] = $pluralForm;
+    }
+
+    private static function plural(string $word): string
+    {
+        return self::$customPluralForms[$word] ?? Str::plural($word);
     }
 }
