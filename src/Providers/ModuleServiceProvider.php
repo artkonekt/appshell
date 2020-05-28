@@ -337,7 +337,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             ->addSettingItem('general_app', ['text', ['label' => __('Name')]], 'appshell.ui.name')
             ->addSettingItem('general_app', ['select', ['label' => __('UI Theme')]], 'appshell.ui.theme');
 
-
         $settingsTreeBuilder->addChildNode('general', 'defaults', __('Defaults'))
                             ->addSettingItem('defaults', ['select', ['label' => __('Default Country')]], 'appshell.default.country');
 
