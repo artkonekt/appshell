@@ -7,6 +7,9 @@ return [
         Konekt\User\Providers\ModuleServiceProvider::class     => [],
         Konekt\Acl\Providers\ModuleServiceProvider::class      => []
     ],
+    'acl' => [
+        'allow_action_as_verb' => false
+    ],
     'event_listeners' => true,
     'menu'            => [
         'appshell' => [

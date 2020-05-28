@@ -101,7 +101,7 @@ class ResourcePermissions
                 return 'delete';
                 break;
             default:
-                return false;
+                return config('konekt.app_shell.acl.allow_action_as_verb', false) ? $action : false;
         }
     }
 

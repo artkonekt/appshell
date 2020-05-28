@@ -9,6 +9,7 @@
 - Dropped Laravel 5 Support
 - Improved Menu item activation (js workaround has been removed)
 - AppShell logo uri can be set in config/settings
+- Added config option `acl.allow_action_as_verb` to allow non-standard actions to be guarded by ACL
 
 ## 1.7.0
 ##### 2020-05-24

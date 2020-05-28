@@ -97,4 +97,20 @@ class AclResourcePermissionTest extends TestCase
             ResourcePermissions::permissionFor('taxon', 'create')
         );
     }
+
+    /** @test */
+    public function it_returns_false_by_default_for_non_standard_actions()
+    {
+        $this->assertFalse(ResourcePermissions::permissionFor('review', 'reply'));
+    }
+
+    /** @test */
+    public function it_returns_the_action_as_verb_for_non_standard_actions_if_enabled_in_config()
+    {
+        config(['konekt.app_shell.acl.allow_action_as_verb' => true]);
+
+        $this->assertEquals('reply reviews',
+            ResourcePermissions::permissionFor('review', 'reply')
+        );
+    }
 }
