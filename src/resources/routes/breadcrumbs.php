@@ -1,7 +1,7 @@
 <?php
 
 Breadcrumbs::register('home', function ($breadcrumbs) {
-    $breadcrumbs->push(__('Home'), route('home'));
+    $breadcrumbs->push(__('Home'), url(config('konekt.app_shell.ui.url')));
 });
 
 Breadcrumbs::register('appshell.user.index', function ($breadcrumbs) {
