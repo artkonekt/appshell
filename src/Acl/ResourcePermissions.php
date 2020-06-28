@@ -30,17 +30,22 @@ class ResourcePermissions
      *
      * @param string|array $resources One or more resources to create resource permissions for
      *                                Eg. ('product' or ['product', 'category'])
+     * @param string|null  $guard     The guard name to use. Leave empty for using the default guard
+     *                                (usually `web`)
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function createPermissionsForResource($resources)
+    public static function createPermissionsForResource($resources, string $guard = null)
     {
         $resources = is_array($resources) ? $resources : [$resources];
         $result    = collect();
 
         foreach ($resources as $resource) {
             foreach (static::allPermissionsFor($resource) as $name) {
-                $result->put($name, PermissionProxy::create(['name' => $name]));
+                $result->put($name, PermissionProxy::create([
+                    'name' => $name,
+                    'guard_name' => $guard
+                ]));
             }
         }
 
