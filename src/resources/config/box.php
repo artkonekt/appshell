@@ -52,6 +52,10 @@ return [
         'assets'   => [
             'js'  => \Konekt\AppShell\Assets\DefaultAppShellAssets::JS,
             'css' => \Konekt\AppShell\Assets\DefaultAppShellAssets::CSS
+        ],
+        'routes' => [
+            'login' => 'login',
+            'logout' => 'logout',
         ]
     ],
     'avatar' => [

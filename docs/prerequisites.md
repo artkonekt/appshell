@@ -4,8 +4,6 @@ AppShell's default views require the following named routes to exist:
 
 | Route Name           | HTTP Method | Description                        | Used By                                   |
 |:---------------------|:------------|:-----------------------------------|:------------------------------------------|
-| **login**            | `GET`       | The app's login URL                | - login.blade.php<br>- register.blade.php |
-| **logout**           | `POST`      | The app's logout URL               | - _header.blade.php                       |
 | **password.request** | `GET`       | Displays the password reset page   | - login.blade.php                         |
 | **password.email**   | `GET`       | Sends the password reset link      | - email.blade.php                         |
 | **password.request** | `POST`      | Submits the password reset request | - reset.blade.php                         |

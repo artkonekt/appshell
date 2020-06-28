@@ -5,7 +5,7 @@
 @section('content')
 <div class="col-md-8 col-lg-6">
     <div class="card">
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route($appshell->routes->login) }}">
             @csrf
             <div class="card-body">
                 <h2 class="text-center">{{ __('Login') }}</h2>

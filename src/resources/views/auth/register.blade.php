@@ -67,7 +67,7 @@
                 <button type="submit" class="btn btn-primary btn-block">{{ __('Register') }}</button>
                 <hr>
                 <div class="text-right">
-                    <a class="btn btn-link" href="{{ route('login') }}">
+                    <a class="btn btn-link" href="{{ route($appshell->routes->login) }}">
                         {{ __('Or Try Login') }}
                     </a>
                 </div>
