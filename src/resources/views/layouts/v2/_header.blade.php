@@ -20,11 +20,11 @@
 
                 <a class="dropdown-item" href="{{ route('appshell.preferences.index') }}"><i class="fa fa-user"></i> {{  __('Preferences') }}</a>
 
-                <a class="dropdown-item" href="{{ route($appshell->routes->logout) }}"
+                <a class="dropdown-item" href="{{ route($appshell->routes['logout']) }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                             class="fa fa-lock"></i> {{ __('Logout') }}</a>
 
-                <form id="logout-form" action="{{ route($appshell->routes->logout) }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route($appshell->routes['logout']) }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
 
