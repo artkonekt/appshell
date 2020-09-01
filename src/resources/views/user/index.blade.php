@@ -59,7 +59,7 @@
                             </span>
                             <div class="text-muted">
                                 {{ __('Last login') }}
-                                {{ $user->last_login_at ? $user->last_login_at->diffForHumans() : __('never') }}
+                                {{ $user->last_login_at instanceOf DateTime ? $user->last_login_at->diffForHumans() : __('never') }}
                             </div>
                         </td>
                         <td>
