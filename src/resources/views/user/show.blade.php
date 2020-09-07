@@ -49,7 +49,7 @@
             {{ $user->login_count }} {{ __('logins') }}
 
             @slot('subtitle')
-                @if ($user->last_login_at)
+                @if ($user->last_login_at instanceOf DateTime)
                     {{ __('Last login') }}
                     {{ $user->last_login_at->diffForHumans() }}
                 @else
