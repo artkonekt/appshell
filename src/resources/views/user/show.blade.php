@@ -21,7 +21,7 @@
             @endif
             @slot('subtitle')
                 {{ __('Member since') }}
-                {{ $user->created_at->format(__('Y-m-d H:i')) }}
+                {{ show_date($user->created_at) }}
             @endslot
         @endcomponent
 
@@ -49,9 +49,9 @@
             {{ $user->login_count }} {{ __('logins') }}
 
             @slot('subtitle')
-                @if ($user->last_login_at instanceOf DateTime)
+                @if ($user->last_login_at)
                     {{ __('Last login') }}
-                    {{ $user->last_login_at->diffForHumans() }}
+                    {{ show_datetime($user->last_login_at) }}
                 @else
                     {{ __('never logged in') }}
                 @endif

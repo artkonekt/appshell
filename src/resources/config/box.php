@@ -58,6 +58,43 @@ return [
             'logout' => 'logout',
         ]
     ],
+    'formats'   => [
+        'date' => [
+            'default' => 'Y-m-d',
+            'options' => [
+                'Y-m-d',
+                'd.m.Y',
+                'm/d/Y',
+                'M j, Y',
+                'diff'
+            ]
+        ],
+        'datetime' => [
+            'default' => 'Y-m-d H:i',
+            'options' => [
+                'Y-m-d H:i',
+                'd.m.Y H:i',
+                'd.m.Y h:iA',
+                'm/d/Y H:i',
+                'm/d/Y h:ia',
+                'M j, Y H:i',
+                'M j, Y h:ia',
+                'diff'
+            ]
+        ],
+        'time'=> [
+            'default' => 'H:i',
+            'options' => [
+                'H:i',
+                'G:i',
+                'h:iA',
+                'h:ia',
+                'g:iA',
+                'g:ia',
+                'diff'
+            ]
+        ],
+    ],
     'avatar' => [
         'gravatar' => [
             'default' => \Konekt\AppShell\Models\GravatarDefault::defaultValue()

@@ -55,11 +55,11 @@
                         </td>
                         <td>
                             <span class="mb-3">
-                                {{ $user->created_at->diffForHumans() }}
+                                {{ show_date($user->created_at) }}
                             </span>
                             <div class="text-muted">
                                 {{ __('Last login') }}
-                                {{ $user->last_login_at instanceOf DateTime ? $user->last_login_at->diffForHumans() : __('never') }}
+                                {{ show_datetime($user->last_login_at, __('never')) }}
                             </div>
                         </td>
                         <td>

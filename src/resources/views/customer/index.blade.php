@@ -54,11 +54,11 @@
                         </td>
                         <td>
                             <span class="mb-3">
-                                {{ $customer->created_at->diffForHumans() }}
+                                {{ show_date($customer->created_at) }}
                             </span>
                             <div class="text-muted">
                                 {{ __('Last purchase') }}
-                                {{ $customer->last_purchase_at ? $customer->last_purchase_at->diffForHumans() : __('never') }}
+                                {{ show_datetime($customer->last_purchase_at, __('never')) }}
                             </div>
                         </td>
                         <td>

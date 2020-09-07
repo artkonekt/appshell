@@ -44,7 +44,7 @@
                                 {{ $role->name }}
                             @endcan
                         </td>
-                        <td>{{ $role->updated_at->diffForHumans() }}</td>
+                        <td>{{ show_datetime($role->updated_at) }}</td>
                         <td class="text-right">@component('appshell::role._user_count', ['count' => $role->users->count()]) @endcomponent</td>
                         <td>
                             @can('edit roles')

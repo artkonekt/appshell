@@ -10,6 +10,8 @@
 - Improved Menu item activation (js workaround has been removed)
 - AppShell logo uri can be set in config/settings
 - Added config option `acl.allow_action_as_verb` to allow non-standard actions to be guarded by ACL
+- Added possibility to configure the login/logout URLs
+- Added Datetime format preferences and corresponding view helper functions (`show_date()`, `show_datetime()`, `show_time()`) 
 
 ## 1.7.0
 ##### 2020-05-24

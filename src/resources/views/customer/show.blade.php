@@ -29,11 +29,11 @@
                 'type' => $customer->last_purchase_at ? 'success' : null
         ])
             {{ __('Last purchase') }}
-            <span title="{{ $customer->last_purchase_at ? $customer->last_purchase_at : '' }}">{{ $customer->last_purchase_at ? $customer->last_purchase_at->diffForHumans() : __('never') }}</span>
+            <span title="{{ show_datetime($customer->last_purchase_at, '', 'Y-m-d H:i') }}">{{ show_datetime($customer->last_purchase_at, __('never')) }}</span>
 
             @slot('subtitle')
                 {{ __('Customer since') }}
-                {{ $customer->created_at->format(__('Y-m-d H:i')) }}
+                {{ show_date($customer->created_at) }}
             @endslot
         @endcomponent
 

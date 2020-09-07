@@ -15,12 +15,12 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Konekt\Address\Contracts\Address as AddressContract;
-use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Assets\AssetCollection;
 use Konekt\AppShell\Assets\DefaultAppShellAssets;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Helpers\ColorHelper;
+use Konekt\AppShell\Helpers\DateHelper;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateAddress;
 use Konekt\AppShell\Http\Requests\CreateAddressForm;
@@ -42,22 +42,13 @@ use Konekt\AppShell\Theme\AppShell2Theme;
 use Konekt\AppShell\Theme\DefaultAppShellTheme;
 use Konekt\AppShell\Themes;
 use Konekt\Concord\BaseBoxServiceProvider;
-use Konekt\Gears\Defaults\SimpleSetting;
 use Konekt\Gears\Facades\Settings;
-use Konekt\Gears\Registry\SettingsRegistry;
-use Konekt\Gears\UI\TreeBuilder;
 use Konekt\User\Contracts\User as UserContract;
 use Menu;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
     use HasBreadcrumbs;
-
-    const DEFAULT_SETTINGS_DRIVER = 'database';
-
-    private $settingsTreeIsBuilt = false;
-
-    private $preferencesTreeIsBuilt = false;
 
     protected $requests = [
         CreateUser::class,
@@ -83,7 +74,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         $this->app->register(AuthServiceProvider::class);
         $this->app->register(ViewServiceProvider::class);
+        $this->app->register(SettingsProvider::class);
+        $this->app->register(PreferencesProvider::class);
         $this->concord->registerHelper('color', ColorHelper::class);
+        $this->concord->registerHelper('date', DateHelper::class);
         Themes::add(DefaultAppShellTheme::ID, DefaultAppShellTheme::class);
         Themes::add(AppShell2Theme::ID, AppShell2Theme::class);
         $this->registerThirdPartyProviders();
@@ -91,24 +85,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
         $this->app->singleton('appshell.theme', function () {
             return Themes::make(Settings::get('appshell.ui.theme'));
-        });
-
-        $this->app->singleton('appshell.settings_tree_builder', function ($app) {
-            return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
-        });
-
-        $this->app->bind('appshell.settings_tree', function ($app) {
-            $this->buildSettingsTree();
-            return $app['appshell.settings_tree_builder']->getTree();
-        });
-
-        $this->app->singleton('appshell.preferences_tree_builder', function ($app) {
-            return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
-        });
-
-        $this->app->bind('appshell.preferences_tree', function ($app) {
-            $this->buildPreferencesTree();
-            return $app['appshell.preferences_tree_builder']->getTree();
         });
     }
 
@@ -118,7 +94,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         (new ZmdiAppShellIcons($this->app->make('appshell.icon')))->registerIcons();
 
-        $this->bootSettings();
         $this->initUiData();
         $this->loadBreadcrumbs();
 
@@ -226,7 +201,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         $uiConfig['assets'] = AssetCollection::createFromArray($uiConfig['assets']);
 
-        View::share('appshell', (object) $uiConfig);
+        View::share('appshell', (object)$uiConfig);
     }
 
     private function routeWildcard(string $route): string
@@ -277,10 +252,12 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         // Register The Breadcrumbs Component
         if (class_exists('\\DaveJamesMiller\\Breadcrumbs\\ServiceProvider')) { // Breadcrumbs v3.x - Laravel 5.4
             $this->app->register(\DaveJamesMiller\Breadcrumbs\ServiceProvider::class);
-            $this->concord->registerAlias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facade::class);
+            $this->concord->registerAlias('Breadcrumbs',
+                \DaveJamesMiller\Breadcrumbs\Facade::class);
         } else { // Breadcrumbs v4.x, v5.x - Laravel 5.5+
             $this->app->register(\DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class);
-            $this->concord->registerAlias('Breadcrumbs', \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class);
+            $this->concord->registerAlias('Breadcrumbs',
+                \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class);
         }
     }
 
@@ -305,55 +282,5 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
                 $this->app['config']['breadcrumbs'] ?: [] // current
             )
         );
-    }
-
-    private function bootSettings()
-    {
-        /** @var SettingsRegistry $settingsRegistry */
-        $settingsRegistry = $this->app['gears.settings_registry'];
-
-        $settingsRegistry->add(new SimpleSetting('appshell.ui.name', $this->config('ui.name')));
-        $settingsRegistry->add(new SimpleSetting('appshell.ui.logo_uri', $this->config('ui.logo_uri')));
-        $settingsRegistry->add(new SimpleSetting('appshell.default.country', null, function () {
-            return ['' => '--'] + CountryProxy::all()->pluck('name', 'id')->all();
-        }));
-        $settingsRegistry->add(new SimpleSetting('appshell.ui.theme',
-            $this->config('ui.theme', DefaultAppShellTheme::ID), function () {
-                return Themes::choices();
-            }));
-    }
-
-    private function buildSettingsTree()
-    {
-        if ($this->settingsTreeIsBuilt) {
-            return;
-        }
-
-        /** @var TreeBuilder $settingsTreeBuilder */
-        $settingsTreeBuilder = $this->app['appshell.settings_tree_builder'];
-
-        $settingsTreeBuilder->addRootNode('general', __('General Settings'))
-            ->addChildNode('general', 'general_app', __('Application'))
-            ->addSettingItem('general_app', ['text', ['label' => __('Name')]], 'appshell.ui.name')
-            ->addSettingItem('general_app', ['select', ['label' => __('UI Theme')]], 'appshell.ui.theme');
-
-        $settingsTreeBuilder->addChildNode('general', 'defaults', __('Defaults'))
-                            ->addSettingItem('defaults', ['select', ['label' => __('Default Country')]], 'appshell.default.country');
-
-        $this->settingsTreeIsBuilt = true;
-    }
-
-    private function buildPreferencesTree()
-    {
-        if ($this->preferencesTreeIsBuilt) {
-            return;
-        }
-
-        /** @var TreeBuilder $preferencesTreeBuilder */
-        $preferencesTreeBuilder = $this->app['appshell.preferences_tree_builder'];
-
-        // Add AppShell built-in items here
-
-        $this->preferencesTreeIsBuilt = true;
     }
 }
