@@ -199,6 +199,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             $uiConfig['assets']['css'] = DefaultAppShellAssets::CSS;
         }
 
+        if (!isset($uiConfig['routes'])) {
+            $uiConfig['routes']['login']  = 'login';
+            $uiConfig['routes']['logout'] = 'logout';
+        }
+
         $uiConfig['assets'] = AssetCollection::createFromArray($uiConfig['assets']);
 
         View::share('appshell', (object)$uiConfig);
