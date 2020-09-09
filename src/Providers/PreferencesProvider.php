@@ -14,6 +14,7 @@ namespace Konekt\AppShell\Providers;
 use Carbon\Laravel\ServiceProvider;
 use Konekt\AppShell\Preferences\DateFormatPreference;
 use Konekt\AppShell\Preferences\DateTimeFormatPreference;
+use Konekt\AppShell\Preferences\QuickLinksPreference;
 use Konekt\AppShell\Preferences\TimeFormatPreference;
 use Konekt\Gears\Registry\PreferencesRegistry;
 use Konekt\Gears\UI\TreeBuilder;
@@ -51,6 +52,7 @@ class PreferencesProvider extends ServiceProvider
         $this->preferencesRegistry->add(new DateFormatPreference());
         $this->preferencesRegistry->add(new DateTimeFormatPreference());
         $this->preferencesRegistry->add(new TimeFormatPreference());
+        $this->preferencesRegistry->add(new QuickLinksPreference());
     }
 
     protected function buildPreferencesTree()

@@ -56,6 +56,9 @@ return [
         'routes' => [
             'login' => 'login',
             'logout' => 'logout',
+        ],
+        'quick_links' => [
+            'enabled' => true
         ]
     ],
     'formats'   => [

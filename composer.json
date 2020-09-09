@@ -17,6 +17,7 @@
     },
     "require": {
         "php": "^7.2",
+        "ext-json": "*",
         "konekt/concord": "~1.5",
         "konekt/customer": "~1.2",
         "konekt/address": "^1.2.1",

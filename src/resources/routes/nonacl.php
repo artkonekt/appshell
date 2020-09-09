@@ -27,3 +27,12 @@ Route::put('account', [
     'uses' => 'AccountController@save',
     'as'   => 'account.save'
 ]);
+
+Route::get('quicklinks', [
+    'uses' => 'QuickLinkController@index',
+    'as'   => 'quicklinks.index'
+]);
+Route::put('quicklinks', [
+    'uses' => 'QuickLinkController@update',
+    'as'   => 'quicklinks.update'
+]);

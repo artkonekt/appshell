@@ -27,12 +27,12 @@
 </head>
 <body>
     <div class="container-fluid app-body" id="app">
-        @include('appshell::layouts.default._sidebar')
+        @include('appshell::layouts.v2._sidebar')
 
         <!-- Main content -->
         <main class="main">
-            @include('appshell::layouts.default._header')
-            @include('appshell::layouts.default._breadcrumbs')
+            @include('appshell::layouts.v2._header')
+            @include('appshell::layouts.v2._breadcrumbs')
 
             <div class="container-fluid">
                 @include('flash::message')
@@ -55,7 +55,7 @@
 @endforeach
 
 <!-- Scripts -->
-@include('appshell::layouts.default._scripts')
+@include('appshell::layouts.v2._scripts')
 
 @foreach($appshell->assets->scripts('footer') as $script)
     {!! $script->renderHtml() !!}

@@ -21,6 +21,7 @@ use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
 use Konekt\AppShell\Console\Commands\SuperCommand;
 use Konekt\AppShell\Helpers\ColorHelper;
 use Konekt\AppShell\Helpers\DateHelper;
+use Konekt\AppShell\Helpers\QuickLinkHelper;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\CreateAddress;
 use Konekt\AppShell\Http\Requests\CreateAddressForm;
@@ -78,6 +79,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->register(PreferencesProvider::class);
         $this->concord->registerHelper('color', ColorHelper::class);
         $this->concord->registerHelper('date', DateHelper::class);
+        $this->concord->registerHelper('quickLinks', QuickLinkHelper::class);
         Themes::add(DefaultAppShellTheme::ID, DefaultAppShellTheme::class);
         Themes::add(AppShell2Theme::ID, AppShell2Theme::class);
         $this->registerThirdPartyProviders();
@@ -202,6 +204,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         if (!isset($uiConfig['routes'])) {
             $uiConfig['routes']['login']  = 'login';
             $uiConfig['routes']['logout'] = 'logout';
+        }
+
+        if (!isset($uiConfig['quick_links'])) {
+            $uiConfig['quick_links']['enabled'] = true;
         }
 
         $uiConfig['assets'] = AssetCollection::createFromArray($uiConfig['assets']);
