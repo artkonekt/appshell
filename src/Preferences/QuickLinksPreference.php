@@ -24,7 +24,7 @@ class QuickLinksPreference implements Preference
 
     public function default()
     {
-        return [];
+        return json_encode([]);
     }
 
     public function isAllowed()
