@@ -29,12 +29,12 @@
         "laravelcollective/html": "~6.0",
         "laracasts/flash": "~3.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
-        "cviebrock/eloquent-sluggable": "~6.0 | ~7.0"
+        "cviebrock/eloquent-sluggable": "6 - 8"
     },
     "require-dev": {
         "ext-sqlite3": "*",
         "phpunit/phpunit": "^8.3 || ^9.0",
-        "orchestra/testbench": "~4.0|~5.0",
+        "orchestra/testbench": "~4.0|~5.0|~6.0",
         "mockery/mockery": "~1.2.3 || ^1.3.1"
     },
     "autoload": {

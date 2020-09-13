@@ -13,6 +13,11 @@
 - Added possibility to configure the login/logout URLs
 - Added Datetime format preferences and corresponding view helper functions (`show_date()`, `show_datetime()`, `show_time()`) 
 
+## 1.8.0
+##### 2020-09-13
+
+- Added Laravel 8 Support
+
 ## 1.7.0
 ##### 2020-05-24
 
