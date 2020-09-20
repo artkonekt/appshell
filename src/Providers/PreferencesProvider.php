@@ -67,11 +67,11 @@ class PreferencesProvider extends ServiceProvider
         $ui->addRootNode('general', __('General Settings'), 100)
            ->addChildNode('general', 'defaults', __('Defaults'))
            ->addPreferenceItem('defaults', ['select', ['label' => __('Date Format')]],
-               'appshell.ui.date_format')
+               DateTimeFormatPreference::KEY)
            ->addPreferenceItem('defaults', ['select', ['label' => __('DateTime Format')]],
-               'appshell.ui.datetime_format')
+               DateTimeFormatPreference::KEY)
            ->addPreferenceItem('defaults', ['select', ['label' => __('Time Format')]],
-               'appshell.ui.time_format');
+               TimeFormatPreference::KEY);
 
         $this->preferencesTreeIsBuilt = true;
     }
