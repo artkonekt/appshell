@@ -104,8 +104,10 @@ class AddressTest extends TestCase
     /** @test */
     public function it_can_list_address()
     {
-        $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.show',
-            $this->customer));
+        $response = $this->actingAs($this->adminUser)->get(route(
+            'appshell.customer.show',
+            $this->customer
+        ));
 
         $response->assertSee($this->address->name);
         $response->assertSee($this->address->address);
@@ -114,8 +116,10 @@ class AddressTest extends TestCase
     /** @test */
     public function it_can_edit_customer()
     {
-        $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.edit',
-            $this->customer));
+        $response = $this->actingAs($this->adminUser)->get(route(
+            'appshell.customer.edit',
+            $this->customer
+        ));
 
         $response->assertSee('Editing '.$this->customer->getName());
     }

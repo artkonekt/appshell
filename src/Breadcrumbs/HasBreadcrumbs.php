@@ -24,7 +24,8 @@ trait HasBreadcrumbs
             return false;
         }
 
-        $file = sprintf('%s/%s/%s',
+        $file = sprintf(
+            '%s/%s/%s',
             $this->basePath,
             $this->convention->routesFolder(),
             'breadcrumbs.php'

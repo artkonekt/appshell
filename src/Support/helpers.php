@@ -47,7 +47,10 @@ function avatar_image_url(\Konekt\User\Contracts\User $user = null, int $size = 
         $default = \Konekt\AppShell\Models\GravatarDefault::MYSTERY_PERSON;
     }
 
-    return sprintf("https://www.gravatar.com/avatar/%s.jpg?s=%d&d=%s",
-        $hash, $size, $default
+    return sprintf(
+        "https://www.gravatar.com/avatar/%s.jpg?s=%d&d=%s",
+        $hash,
+        $size,
+        $default
     );
 }

@@ -68,7 +68,8 @@ abstract class BaseAsset implements Asset
     {
         $template = $this->selfClosing ? '<%1$s %2$s="%3$s"%4$s />' : '<%1$s %2$s="%3$s"%4$s></%1$s>';
 
-        return sprintf($template,
+        return sprintf(
+            $template,
             $this->tag(),
             $this->urlAttribute,
             $this->asset($this->url()),

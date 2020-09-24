@@ -19,7 +19,8 @@ class AclResourcePermissionTest extends TestCase
     /** @test */
     public function it_returns_list_resource_for_index()
     {
-        $this->assertEquals('list users',
+        $this->assertEquals(
+            'list users',
             ResourcePermissions::permissionFor('user', 'index')
         );
     }
@@ -27,7 +28,8 @@ class AclResourcePermissionTest extends TestCase
     /** @test */
     public function it_returns_view_resource_for_show()
     {
-        $this->assertEquals('view users',
+        $this->assertEquals(
+            'view users',
             ResourcePermissions::permissionFor('user', 'show')
         );
     }
@@ -35,7 +37,8 @@ class AclResourcePermissionTest extends TestCase
     /** @test */
     public function it_returns_create_resource_for_create()
     {
-        $this->assertEquals('create users',
+        $this->assertEquals(
+            'create users',
             ResourcePermissions::permissionFor('user', 'create')
         );
     }
@@ -43,7 +46,8 @@ class AclResourcePermissionTest extends TestCase
     /** @test */
     public function it_returns_create_resource_for_store()
     {
-        $this->assertEquals('create users',
+        $this->assertEquals(
+            'create users',
             ResourcePermissions::permissionFor('user', 'store')
         );
     }
@@ -51,7 +55,8 @@ class AclResourcePermissionTest extends TestCase
     /** @test */
     public function it_returns_edit_resource_for_edit()
     {
-        $this->assertEquals('edit users',
+        $this->assertEquals(
+            'edit users',
             ResourcePermissions::permissionFor('user', 'edit')
         );
     }
@@ -59,7 +64,8 @@ class AclResourcePermissionTest extends TestCase
     /** @test */
     public function it_returns_edit_resource_for_update()
     {
-        $this->assertEquals('edit users',
+        $this->assertEquals(
+            'edit users',
             ResourcePermissions::permissionFor('user', 'update')
         );
     }
@@ -67,7 +73,8 @@ class AclResourcePermissionTest extends TestCase
     /** @test */
     public function it_returns_delete_resource_for_destroy()
     {
-        $this->assertEquals('delete users',
+        $this->assertEquals(
+            'delete users',
             ResourcePermissions::permissionFor('user', 'destroy')
         );
     }
@@ -77,7 +84,8 @@ class AclResourcePermissionTest extends TestCase
     {
         ResourcePermissions::overrideResourcePlural('user', 'enjoyers');
 
-        $this->assertEquals([
+        $this->assertEquals(
+            [
                 'list enjoyers',
                 'create enjoyers',
                 'view enjoyers',
@@ -93,7 +101,8 @@ class AclResourcePermissionTest extends TestCase
     {
         ResourcePermissions::overrideResourcePlural('taxon', 'taxons');
 
-        $this->assertEquals('create taxons',
+        $this->assertEquals(
+            'create taxons',
             ResourcePermissions::permissionFor('taxon', 'create')
         );
     }
