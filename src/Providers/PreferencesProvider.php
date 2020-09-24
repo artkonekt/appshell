@@ -31,12 +31,13 @@ class PreferencesProvider extends ServiceProvider
         parent::register();
 
         $this->app->singleton('appshell.preferences_tree_builder', function ($app) {
-            return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+            $instance = new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+            $this->buildPreferencesTree($instance);
+
+            return $instance;
         });
 
         $this->app->bind('appshell.preferences_tree', function ($app) {
-            $this->buildPreferencesTree();
-
             return $app['appshell.preferences_tree_builder']->getTree();
         });
     }
@@ -55,14 +56,11 @@ class PreferencesProvider extends ServiceProvider
         $this->preferencesRegistry->add(new QuickLinksPreference());
     }
 
-    protected function buildPreferencesTree()
+    protected function buildPreferencesTree(TreeBuilder $ui)
     {
         if ($this->preferencesTreeIsBuilt) {
             return;
         }
-
-        /** @var TreeBuilder $ui */
-        $ui = $this->app['appshell.preferences_tree_builder'];
 
         $ui->addRootNode('general', __('General Settings'), 100)
            ->addChildNode('general', 'defaults', __('Defaults'))
