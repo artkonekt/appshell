@@ -11,11 +11,9 @@ class SettingsTest extends TestCase
     public function guests_can_not_access_the_settings_resource()
     {
         $response = $this->get(route('appshell.settings.index'));
-
         $response->assertStatus(302)->assertRedirect(route('login'));
 
         $response = $this->put(route('appshell.settings.update'));
-
         $response->assertStatus(302)->assertRedirect(route('login'));
     }
 
