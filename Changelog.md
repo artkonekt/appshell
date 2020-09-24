@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 1.8.1
+##### 2020-09-24
+
+- Fixed lazy loading issue with AppShell's default settings UI Tree. Thanks [majka brisova](https://github.com/briska)!
+
 ## 1.8.0
 ##### 2020-09-13
 
