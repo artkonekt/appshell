@@ -64,12 +64,21 @@ class PreferencesProvider extends ServiceProvider
 
         $ui->addRootNode('general', __('General Settings'), 100)
            ->addChildNode('general', 'defaults', __('Defaults'))
-           ->addPreferenceItem('defaults', ['select', ['label' => __('Date Format')]],
-               DateTimeFormatPreference::KEY)
-           ->addPreferenceItem('defaults', ['select', ['label' => __('DateTime Format')]],
-               DateTimeFormatPreference::KEY)
-           ->addPreferenceItem('defaults', ['select', ['label' => __('Time Format')]],
-               TimeFormatPreference::KEY);
+           ->addPreferenceItem(
+               'defaults',
+               ['select', ['label' => __('Date Format')]],
+               DateTimeFormatPreference::KEY
+           )
+           ->addPreferenceItem(
+               'defaults',
+               ['select', ['label' => __('DateTime Format')]],
+               DateTimeFormatPreference::KEY
+           )
+           ->addPreferenceItem(
+               'defaults',
+               ['select', ['label' => __('Time Format')]],
+               TimeFormatPreference::KEY
+           );
 
         $this->preferencesTreeIsBuilt = true;
     }

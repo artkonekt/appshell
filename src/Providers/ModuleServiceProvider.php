@@ -263,12 +263,16 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         // Register The Breadcrumbs Component
         if (class_exists('\\DaveJamesMiller\\Breadcrumbs\\ServiceProvider')) { // Breadcrumbs v3.x - Laravel 5.4
             $this->app->register(\DaveJamesMiller\Breadcrumbs\ServiceProvider::class);
-            $this->concord->registerAlias('Breadcrumbs',
-                \DaveJamesMiller\Breadcrumbs\Facade::class);
+            $this->concord->registerAlias(
+                'Breadcrumbs',
+                \DaveJamesMiller\Breadcrumbs\Facade::class
+            );
         } else { // Breadcrumbs v4.x, v5.x - Laravel 5.5+
             $this->app->register(\DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class);
-            $this->concord->registerAlias('Breadcrumbs',
-                \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class);
+            $this->concord->registerAlias(
+                'Breadcrumbs',
+                \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class
+            );
         }
     }
 

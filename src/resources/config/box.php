@@ -54,7 +54,7 @@ return [
             'css' => \Konekt\AppShell\Assets\DefaultAppShellAssets::CSS
         ],
         'routes' => [
-            'login' => 'login',
+            'login'  => 'login',
             'logout' => 'logout',
         ],
         'quick_links' => [

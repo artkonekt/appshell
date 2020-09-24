@@ -40,7 +40,6 @@ class DateHelper
         }
 
         return $carbon->format($format);
-
     }
 
     /**
@@ -65,7 +64,6 @@ class DateHelper
         }
 
         return $carbon->format($format);
-
     }
 
     /**
@@ -90,7 +88,6 @@ class DateHelper
         }
 
         return $carbon->format($format);
-
     }
 
     private function getDateDiff(Carbon $date): string

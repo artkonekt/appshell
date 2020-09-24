@@ -29,8 +29,12 @@ class ColorHelper
     public function lumDiff(string $color1, string $color2): float
     {
         return $this->luminosityDifference(
-            $this->red($color1), $this->green($color1), $this->blue($color1),
-            $this->red($color2), $this->green($color2), $this->blue($color2)
+            $this->red($color1),
+            $this->green($color1),
+            $this->blue($color1),
+            $this->red($color2),
+            $this->green($color2),
+            $this->blue($color2)
         );
     }
 

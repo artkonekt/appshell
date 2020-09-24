@@ -18,7 +18,7 @@ class DateFormatPreference implements Preference
 {
     use AccessesAppShellConfig, GeneratesSampleDateTimeOptions;
 
-    const KEY = 'appshell.ui.date_format';
+    const KEY     = 'appshell.ui.date_format';
     const DEFAULT = 'Y-m-d';
 
     /** @var array|null */

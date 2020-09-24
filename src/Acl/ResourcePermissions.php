@@ -43,7 +43,7 @@ class ResourcePermissions
         foreach ($resources as $resource) {
             foreach (static::allPermissionsFor($resource) as $name) {
                 $result->put($name, PermissionProxy::create([
-                    'name' => $name,
+                    'name'       => $name,
                     'guard_name' => $guard
                 ]));
             }

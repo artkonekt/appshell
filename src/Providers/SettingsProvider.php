@@ -54,24 +54,35 @@ class SettingsProvider extends ServiceProvider
 
     protected function bootUISettings()
     {
-        $this->settingsRegistry->add(new SimpleSetting('appshell.ui.name',
-            $this->config('ui.name')));
-        $this->settingsRegistry->add(new SimpleSetting('appshell.ui.logo_uri',
-            $this->config('ui.logo_uri')));
+        $this->settingsRegistry->add(new SimpleSetting(
+            'appshell.ui.name',
+            $this->config('ui.name')
+        ));
+        $this->settingsRegistry->add(new SimpleSetting(
+            'appshell.ui.logo_uri',
+            $this->config('ui.logo_uri')
+        ));
 
-        $this->settingsRegistry->add(new SimpleSetting('appshell.ui.theme',
-                $this->config('ui.theme', DefaultAppShellTheme::ID), function () {
+        $this->settingsRegistry->add(
+            new SimpleSetting(
+            'appshell.ui.theme',
+            $this->config('ui.theme', DefaultAppShellTheme::ID),
+            function () {
                     return Themes::choices();
-                })
+                }
+        )
         );
     }
 
     protected function bootDefaults()
     {
-        $this->settingsRegistry->add(new SimpleSetting('appshell.default.country', null,
+        $this->settingsRegistry->add(new SimpleSetting(
+            'appshell.default.country',
+            null,
             function () {
                 return ['' => '--'] + CountryProxy::all()->pluck('name', 'id')->all();
-            }));
+            }
+        ));
     }
 
     protected function buildSettingsTree(TreeBuilder $ui)
@@ -82,15 +93,23 @@ class SettingsProvider extends ServiceProvider
 
         $ui->addRootNode('general', __('General Settings'))
            ->addChildNode('general', 'general_app', __('Application'))
-           ->addSettingItem('general_app', ['text', ['label' => __('Name')]],
-               'appshell.ui.name')
-           ->addSettingItem('general_app', ['select', ['label' => __('UI Theme')]],
-               'appshell.ui.theme');
+           ->addSettingItem(
+               'general_app',
+               ['text', ['label' => __('Name')]],
+               'appshell.ui.name'
+           )
+           ->addSettingItem(
+               'general_app',
+               ['select', ['label' => __('UI Theme')]],
+               'appshell.ui.theme'
+           );
 
         $ui->addChildNode('general', 'defaults', __('Defaults'))
-           ->addSettingItem('defaults',
+           ->addSettingItem(
+               'defaults',
                ['select', ['label' => __('Default Country')]],
-               'appshell.default.country');
+               'appshell.default.country'
+           );
 
         $this->settingsTreeIsBuilt = true;
     }

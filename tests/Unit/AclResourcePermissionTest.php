@@ -118,7 +118,8 @@ class AclResourcePermissionTest extends TestCase
     {
         config(['konekt.app_shell.acl.allow_action_as_verb' => true]);
 
-        $this->assertEquals('reply reviews',
+        $this->assertEquals(
+            'reply reviews',
             ResourcePermissions::permissionFor('review', 'reply')
         );
     }
