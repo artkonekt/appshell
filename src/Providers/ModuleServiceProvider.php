@@ -84,20 +84,24 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->singleton('appshell.theme', DefaultAppShellTheme::class);
 
         $this->app->singleton('appshell.settings_tree_builder', function ($app) {
-            return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+            $instance = new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+            $this->buildSettingsTree($instance);
+
+            return $instance;
         });
 
         $this->app->bind('appshell.settings_tree', function ($app) {
-            $this->buildSettingsTree();
             return $app['appshell.settings_tree_builder']->getTree();
         });
 
         $this->app->singleton('appshell.preferences_tree_builder', function ($app) {
-            return new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+            $instance = new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+            $this->buildPreferencesTree($instance);
+
+            return $instance;
         });
 
         $this->app->bind('appshell.preferences_tree', function ($app) {
-            $this->buildPreferencesTree();
             return $app['appshell.preferences_tree_builder']->getTree();
         });
     }
@@ -292,14 +296,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         }));
     }
 
-    private function buildSettingsTree()
+    private function buildSettingsTree(TreeBuilder $settingsTreeBuilder)
     {
         if ($this->settingsTreeIsBuilt) {
             return;
         }
-
-        /** @var TreeBuilder $settingsTreeBuilder */
-        $settingsTreeBuilder = $this->app['appshell.settings_tree_builder'];
 
         $settingsTreeBuilder->addRootNode('general', __('General Settings'))
             ->addChildNode('general', 'general_app', __('Application'))
@@ -311,15 +312,11 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->settingsTreeIsBuilt = true;
     }
 
-    private function buildPreferencesTree()
+    private function buildPreferencesTree(TreeBuilder $preferencesTreeBuilder)
     {
         if ($this->preferencesTreeIsBuilt) {
             return;
         }
-
-        /** @var TreeBuilder $preferencesTreeBuilder */
-        $preferencesTreeBuilder = $this->app['appshell.preferences_tree_builder'];
-
         // Add AppShell built-in items here
 
         $this->preferencesTreeIsBuilt = true;

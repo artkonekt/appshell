@@ -15,9 +15,7 @@ use Konekt\Acl\Models\RoleProxy;
 
 class ServiceProviderTest extends TestCase
 {
-    /**
-     * @test
-     */
+    /** @test */
     public function admin_role_has_been_created()
     {
         $this->assertCount(1, RoleProxy::where(['name' => 'admin'])->get());
