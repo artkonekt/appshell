@@ -11,7 +11,6 @@
 
 namespace Konekt\AppShell\Tests;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
@@ -19,11 +18,16 @@ use Konekt\AppShell\Tests\Dummies\MemoryOnlyGearsBackend;
 use Konekt\Concord\ConcordServiceProvider;
 use Konekt\Gears\Providers\GearsServiceProvider;
 use Konekt\LaravelMigrationCompatibility\LaravelMigrationCompatibilityProvider;
+use Konekt\User\Models\UserType;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
+    /** @var User */
     protected $adminUser;
+
+    /** @var User */
+    protected $normalUser;
 
     public function setUp(): void
     {
@@ -33,12 +37,20 @@ abstract class TestCase extends Orchestra
         $this->artisan('migrate');
 
         $this->adminUser = User::create([
-            'name'     => 'AppShell',
+            'name'     => 'AppShell Admin',
             'email'    => 'test@gmail.com',
+            'type'     => UserType::ADMIN,
             'password' => bcrypt('test'),
         ]);
 
         $this->adminUser->assignRole('admin');
+
+        $this->normalUser = User::create([
+            'name'     => 'AppShell Client',
+            'email'    => 'test_client@gmail.com',
+            'type'     => UserType::CLIENT,
+            'password' => bcrypt('test'),
+        ]);
     }
 
     /**

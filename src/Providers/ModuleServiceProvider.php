@@ -287,7 +287,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
      */
     private function mergeBreadCrumbsConfig()
     {
-        $this->app['config']->set('breadcrumbs',
+        $this->app['config']->set(
+            'breadcrumbs',
             array_merge(
                 $this->config('components.breadcrumbs') ?: [],  // key within box config
                 $this->app['config']['breadcrumbs'] ?: [] // current

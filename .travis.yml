@@ -14,7 +14,14 @@ env:
   - LARAVEL=7.0
   - LARAVEL=7.28
   - LARAVEL=8.0
-  - LARAVEL=8.1
+  - LARAVEL=8.6
+
+matrix:
+  exclude:
+    - php: '7.2'
+      env: 'LARAVEL=8.0'
+    - php: '7.2'
+      env: 'LARAVEL=8.6'
 
 script:
   - vendor/bin/phpunit
