@@ -13,13 +13,10 @@ namespace Konekt\AppShell\Tests\Unit;
 
 use Konekt\AppShell\Assets\Script;
 use Konekt\AppShell\Assets\Stylesheet;
-use Konekt\AppShell\Tests\Compatibility\PhpUnit6Compatible;
 use PHPUnit\Framework\TestCase;
 
 class AssetTest extends TestCase
 {
-    use PhpUnit6Compatible;
-
     /** @test */
     public function stylesheet_without_attributes_renders_properly()
     {

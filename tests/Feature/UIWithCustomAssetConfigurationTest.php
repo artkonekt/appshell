@@ -2,7 +2,6 @@
 
 namespace Konekt\AppShell\Tests\Feature;
 
-use Konekt\AppShell\Tests\Compatibility\SeeInOrder;
 use Konekt\AppShell\Tests\TestCase;
 
 class UIWithCustomAssetConfigurationTest extends TestCase
@@ -17,11 +16,7 @@ class UIWithCustomAssetConfigurationTest extends TestCase
         $response->assertStatus(200);
 
         $valuesInOrder = ['<head>', asset('/headerscript.js'), '</head>'];
-        if (method_exists($response, 'assertSeeInOrder')) {
-            $response->assertSeeInOrder($valuesInOrder, false);
-        } else {
-            $this->assertThat($valuesInOrder, new SeeInOrder($response->getContent()));
-        }
+        $response->assertSeeInOrder($valuesInOrder, false);
     }
 
     /** @test */
@@ -34,11 +29,7 @@ class UIWithCustomAssetConfigurationTest extends TestCase
         $response->assertStatus(200);
 
         $valuesInOrder = ['</head>', asset('/footerstyle.css'), '</body>'];
-        if (method_exists($response, 'assertSeeInOrder')) {
-            $response->assertSeeInOrder($valuesInOrder, false);
-        } else {
-            $this->assertThat($valuesInOrder, new SeeInOrder($response->getContent()));
-        }
+        $response->assertSeeInOrder($valuesInOrder, false);
     }
 
     protected function resolveApplicationConfiguration($app)

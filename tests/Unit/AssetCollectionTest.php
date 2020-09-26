@@ -13,13 +13,10 @@ namespace Konekt\AppShell\Tests\Unit;
 
 use Konekt\AppShell\Assets\AssetCollection;
 use Konekt\AppShell\Assets\AssetLocation;
-use Konekt\AppShell\Tests\Compatibility\PhpUnit6Compatible;
 use PHPUnit\Framework\TestCase;
 
 class AssetCollectionTest extends TestCase
 {
-    use PhpUnit6Compatible;
-
     /** @test */
     public function it_can_be_created_from_an_array()
     {
