@@ -65,12 +65,12 @@ class SettingsProvider extends ServiceProvider
 
         $this->settingsRegistry->add(
             new SimpleSetting(
-            'appshell.ui.theme',
-            $this->config('ui.theme', DefaultAppShellTheme::ID),
-            function () {
-                    return Themes::choices();
-                }
-        )
+                'appshell.ui.theme',
+                $this->config('ui.theme', DefaultAppShellTheme::ID),
+                function () {
+                return Themes::choices();
+            }
+            )
         );
     }
 

@@ -19,14 +19,14 @@ use Konekt\Enum\Enum;
  */
 class GravatarDefault extends Enum implements GravatarDefaultContract
 {
-    const __default = self::RETRO;
+    public const __default = self::RETRO;
 
-    const HTTP404        = '404';
-    const MYSTERY_PERSON = 'mp';
-    const IDENTICON      = 'identicon';
-    const MONSTERID      = 'monsterid';
-    const WAVATAR        = 'wavatar';
-    const RETRO          = 'retro';
-    const ROBOHASH       = 'robohash';
-    const BLANK          = 'blank';
+    public const HTTP404        = '404';
+    public const MYSTERY_PERSON = 'mp';
+    public const IDENTICON      = 'identicon';
+    public const MONSTERID      = 'monsterid';
+    public const WAVATAR        = 'wavatar';
+    public const RETRO          = 'retro';
+    public const ROBOHASH       = 'robohash';
+    public const BLANK          = 'blank';
 }

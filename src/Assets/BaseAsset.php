@@ -16,7 +16,7 @@ use Konekt\AppShell\Contracts\Asset;
 
 abstract class BaseAsset implements Asset
 {
-    const DEFAULT_ASSET_FUNCTION = 'asset';
+    public const DEFAULT_ASSET_FUNCTION = 'asset';
 
     /** @var string */
     protected $url;

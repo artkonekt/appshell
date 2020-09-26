@@ -62,8 +62,8 @@ class AclMiddleware
         $resource   = strtolower(str_replace('Controller', '', $controller));
 
         return [
-            'action'          => $action,
-            'resource'        => $resource
+            'action'   => $action,
+            'resource' => $resource
         ];
     }
 }

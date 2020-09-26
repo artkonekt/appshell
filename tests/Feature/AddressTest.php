@@ -56,7 +56,7 @@ class AddressTest extends TestCase
         $response = $this->actingAs($this->adminUser)
                          ->get(
                              route('appshell.address.create')
-                             .'?for=customer&forId='.$this->customer->id
+                             . '?for=customer&forId=' . $this->customer->id
                          );
 
         $response->assertStatus(200);
@@ -121,6 +121,6 @@ class AddressTest extends TestCase
             $this->customer
         ));
 
-        $response->assertSee('Editing '.$this->customer->getName());
+        $response->assertSee('Editing ' . $this->customer->getName());
     }
 }

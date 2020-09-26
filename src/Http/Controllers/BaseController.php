@@ -11,10 +11,10 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller;
 
 /**
  * Common base controller class for all appshell controllers
@@ -23,5 +23,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
  */
 abstract class BaseController extends Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, AppShellViewAware;
+    use AuthorizesRequests;
+    use DispatchesJobs;
+    use ValidatesRequests;
+    use AppShellViewAware;
 }

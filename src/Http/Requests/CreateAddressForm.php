@@ -16,7 +16,9 @@ use Konekt\AppShell\Contracts\Requests\CreateAddressForm as CreateAddressFormCon
 
 class CreateAddressForm extends FormRequest implements CreateAddressFormContract
 {
-    use HasPermissions, HasFor, IsAddressRequest;
+    use HasPermissions;
+    use HasFor;
+    use IsAddressRequest;
 
     /**
      * @inheritDoc

@@ -15,14 +15,14 @@ use Konekt\Enum\Enum;
 
 class ThemeColor extends Enum
 {
-    const __default = self::PRIMARY;
+    public const __default = self::PRIMARY;
 
-    const PRIMARY   = 'primary';
-    const SECONDARY = 'secondary';
-    const INFO      = 'info';
-    const SUCCESS   = 'success';
-    const WARNING   = 'warning';
-    const DANGER    = 'danger';
-    const DARK      = 'dark';
-    const LIGHT     = 'light';
+    public const PRIMARY   = 'primary';
+    public const SECONDARY = 'secondary';
+    public const INFO      = 'info';
+    public const SUCCESS   = 'success';
+    public const WARNING   = 'warning';
+    public const DANGER    = 'danger';
+    public const DARK      = 'dark';
+    public const LIGHT     = 'light';
 }

@@ -11,8 +11,8 @@
 
 namespace Konekt\AppShell\Providers;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as BaseAuthServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends BaseAuthServiceProvider
 {

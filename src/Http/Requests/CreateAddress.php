@@ -16,7 +16,10 @@ use Konekt\AppShell\Contracts\Requests\CreateAddress as CreateAddressContract;
 
 class CreateAddress extends FormRequest implements CreateAddressContract
 {
-    use HasPermissions, HasFor, IsAddressRequest, MutatesAddress;
+    use HasPermissions;
+    use HasFor;
+    use IsAddressRequest;
+    use MutatesAddress;
 
     /**
      * @inheritDoc

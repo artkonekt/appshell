@@ -16,10 +16,11 @@ use Konekt\Gears\Contracts\Preference;
 
 class DateTimeFormatPreference implements Preference
 {
-    use AccessesAppShellConfig, GeneratesSampleDateTimeOptions;
+    use AccessesAppShellConfig;
+    use GeneratesSampleDateTimeOptions;
 
-    const KEY     = 'appshell.ui.datetime_format';
-    const DEFAULT = 'Y-m-d H:i';
+    public const KEY     = 'appshell.ui.datetime_format';
+    public const DEFAULT = 'Y-m-d H:i';
 
     /** @var array|null */
     private $options;

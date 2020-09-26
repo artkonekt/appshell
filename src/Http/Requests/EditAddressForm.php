@@ -16,7 +16,9 @@ use Konekt\AppShell\Contracts\Requests\EditAddressForm as EditAddressFormContrac
 
 class EditAddressForm extends FormRequest implements EditAddressFormContract
 {
-    use HasPermissions, HasFor, IsAddressRequest;
+    use HasPermissions;
+    use HasFor;
+    use IsAddressRequest;
 
     /**
      * @inheritDoc

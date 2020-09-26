@@ -17,9 +17,9 @@ use Konekt\AppShell\Contracts\Asset;
 
 class AssetCollection
 {
-    const ASSET_FUNCTION_KEY = 'assetFunction';
+    public const ASSET_FUNCTION_KEY = 'assetFunction';
 
-    const LOCATION_META_KEY  = '_location';
+    public const LOCATION_META_KEY  = '_location';
 
     /** @var array */
     protected $scripts = [];

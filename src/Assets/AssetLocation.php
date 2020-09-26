@@ -15,6 +15,6 @@ use Konekt\Enum\Enum;
 
 class AssetLocation extends Enum
 {
-    const HEADER = 'header';
-    const FOOTER = 'footer';
+    public const HEADER = 'header';
+    public const FOOTER = 'footer';
 }

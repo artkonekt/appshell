@@ -16,7 +16,10 @@ use Konekt\AppShell\Contracts\Requests\UpdateAddress as UpdateAddressContract;
 
 class UpdateAddress extends FormRequest implements UpdateAddressContract
 {
-    use HasPermissions, HasFor, IsAddressRequest, MutatesAddress;
+    use HasPermissions;
+    use HasFor;
+    use IsAddressRequest;
+    use MutatesAddress;
 
     /**
      * @inheritDoc
