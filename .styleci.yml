@@ -1,7 +1,7 @@
-preset: psr2
-
+preset: psr12
+risky: true
 enabled:
   - align_phpdoc
-  - align_double_arrow
-  - align_equals
+  - alpha_ordered_imports
+  - no_extra_block_blank_lines
   - no_extra_consecutive_blank_lines
