@@ -14,8 +14,10 @@ This can be done in two typical ways:
 Change the layout in the first line of `resources/views/home.blade.php` file to be:
 
 ```blade
-@extends('appshell::layouts.default')
+@extends('appshell::layouts.private')
 ```
+
+This layout will dynamically extend the chosen theme under the hood.
 
 **Add AppShell assets to Laravel Mix**:
 
@@ -78,6 +80,27 @@ and the compile the assets with mix: `yarn run dev`
 > and run:
 ```bash
 yarn install
+```
+
+
+## Private And Public Layouts
+
+Regardless of whether you use AppShell as a Single UI or a separate Admin UI with some public
+frontend, it has two layouts:
+
+- `appshell::layouts.private`
+- `appshell::layouts.public`
+
+The private layout is the one that is available after user login, containing menus, account dropdown
+and other elements depending on the logged in users' [access level](acl.md).
+
+The public layout is for views that are accessible for unauthenticated users. These are the login,
+register and forgot password pages by default. Your application may expose additional public pages,
+like a public status page or public reports. The views of those pages should extend the public
+layout:
+
+```blade
+@extends('appshell::layouts.public')
 ```
 
 ---

@@ -198,6 +198,6 @@ mix //...
 //...
 ```
 
-### Something Else
+---
 
-To go your own way, read the [Customizing The Admin UI Guide](customize-admin-ui.md) for more details
+**Next**: [Admin Panel &raquo;](admin-panel.md)

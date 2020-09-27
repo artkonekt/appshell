@@ -34,9 +34,9 @@ Permissions are "permanent" entities in the application and not userland data, t
 - you can "hardcode" them by their names in `can()` calls;
 - they must be added to migrations and not to seeders since the code is referencing them.
 
-### Create Permission Migrations
+### Creating Permission Migrations
 
-Each module you create and has ACL protected resources need to add their permissions to a migration.
+Each module you create and has ACL protected resources needs to add its permissions to a migration.
 It's recommended to dedicate a separated migration for the permission creation:
 
 ```php
@@ -215,7 +215,7 @@ Use Laravel's `Route::resource()` helper:
 
 Route::resource('product', 'ProductController');
 //In case of multi-word resources:
-Route::resource('product-type', 'ProductController')
+Route::resource('product-type', 'ProductTypeController')
     ->parameters(['product-type' => 'productType']);// <- let the route param/variable to be properly named, ie `$productType` instead of `$product_type`
 ```
 
@@ -343,3 +343,7 @@ Examples:
 | Review   | replyTo             | reply to reviews               |
 | Absence  | requestApprovalFor  | request approval for absences  |
 | Article  | rejectPublicationOf | reject publication of articles |
+
+---
+
+**Next**: [Menu Component &raquo;](menu.md)

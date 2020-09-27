@@ -65,4 +65,4 @@ php artisan vendor:publish --provider='Konekt\AppShell\Providers\ModuleServicePr
 
 ---
 
-**Next**: [Menu Component &raquo;](menu.md)
+**Next**: [ACL &raquo;](acl.md)
