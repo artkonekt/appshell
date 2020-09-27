@@ -47,10 +47,13 @@ final class ResourcePermissionMapper
      */
     public function permissionVerbForAction(string $action): ?string
     {
-        return $this->actionVerbMap[$action] ?? (config(
-                'konekt.app_shell.acl.allow_action_as_verb',
-                false
-            ) ? $action : null);
+        $verb = $this->actionVerbMap[$action] ?? null;
+
+        if (null === $verb && config('konekt.app_shell.acl.allow_action_as_verb', false)) {
+            $verb = str_replace('_', ' ', Str::snake($action));
+        }
+
+        return $verb;
     }
 
     /**

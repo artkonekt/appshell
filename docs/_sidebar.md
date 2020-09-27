@@ -7,6 +7,7 @@
 - II. How To Use
     - [Admin Panel](admin-panel.md)
     - [Authentication](admin-authentication.md)
+    - [ACL](acl.md) 
     - [Menu Component](menu.md)
 
 - III. Customization

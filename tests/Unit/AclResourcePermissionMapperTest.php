@@ -253,4 +253,15 @@ class AclResourcePermissionMapperTest extends TestCase
             $this->mapper->permissionFor('review', 'reply')
         );
     }
+
+    /** @test */
+    public function custom_resource_verbs_are_normalized()
+    {
+        config(['konekt.app_shell.acl.allow_action_as_verb' => true]);
+
+        $this->assertEquals('reply', $this->mapper->permissionVerbForAction('reply'));
+        $this->assertEquals('reply to', $this->mapper->permissionVerbForAction('replyTo'));
+        $this->assertEquals('request approval for', $this->mapper->permissionVerbForAction('requestApprovalFor'));
+        $this->assertEquals('reject publication of', $this->mapper->permissionVerbForAction('reject_publication_of'));
+    }
 }
