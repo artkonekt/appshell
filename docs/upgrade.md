@@ -102,6 +102,44 @@ public function show (ProductType $productType) {/*...*/}
 $user->can('view product types');
 ```
 
+#### Migrate Resource Names
+
+For simple resource names like `product`, `issue` or `category` there's nothing to be done.
+If you have resources that consists of multiple words like `product type`, `issue_type`, etc you have
+to:
+
+1. Rename the permissions in the table (create migrations for that!)
+2. Rename the permission names in code occurrences
+
+**Example Migration:**
+
+```php
+class UpdatePermissionsToAppshellV2 extends Migration
+{
+    private $permissionsToMigrate = [
+        'list issue_types'   => 'list issue types',
+        'create issue_types' => 'create issue types',
+        'view issue_types'   => 'view issue types',
+        'edit issue_types'   => 'edit issue types',
+        'delete issue_types' => 'delete issue types',
+    ];
+
+    public function up()
+    {
+        foreach ($this->permissionsToMigrate as $old => $new) {
+            Permission::findByName($old)->update(['name' => $new]);
+        }
+    }
+
+    public function down()
+    {
+        foreach ($this->permissionsToMigrate as $old => $new) {
+            Permission::findByName($new)->update(['name' => $old]);
+        }
+    }
+}
+```
+
 ## 0.9 -> 1.0
 
 ## AppShell Scripts
