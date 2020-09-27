@@ -67,7 +67,7 @@ class PreferencesProvider extends ServiceProvider
            ->addPreferenceItem(
                'defaults',
                ['select', ['label' => __('Date Format')]],
-               DateTimeFormatPreference::KEY
+               DateFormatPreference::KEY
            )
            ->addPreferenceItem(
                'defaults',
