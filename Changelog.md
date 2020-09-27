@@ -8,6 +8,7 @@
 - AppShell Theme facelift
 - Dropped Laravel 5 Support
 - Dropped PHP 7.2 Support
+- Deprecated the `ResourcePermissions` static class in favour of the `ResourcePermissionMapper` singleton
 - Improved Menu item activation (js workaround has been removed)
 - AppShell logo uri can be set in config/settings
 - Added config option `acl.allow_action_as_verb` to allow non-standard actions to be guarded by ACL

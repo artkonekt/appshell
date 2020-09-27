@@ -12,6 +12,96 @@ followings in your application views:
 
 - The `getName` method in the Theme interface is now static
 
+### ACL & Resource Permissions
+
+The resource name transformation in v1 was inconsistent between the `ResourcePermissions` class and
+the ACL middleware in case the resource name consisted of two words like "issueType"/"issue_type".
+
+In such cases the difference was the following:
+
+- `ResourcePermissions` gave "list issue_types" for index action, whereas
+- `AclMiddleware` gave "list issuetypes" for index action.
+  
+The mismatch came from the fact that AclMiddleware took the controller class name, removed the
+`Controller` suffix and converted the rest of the name to lower case, ie:
+`IssueTypeController` -> `IssueType` -> `issuetype`.
+
+The `ResourcePermissions` class has been (unfortunately) widely used in migrations (bad practice).
+In order to not to break them all, the `ResourcePermissions` class has been is kept in v2 as-is,
+but it has been marked as deprecated.
+
+In v2, `ResourcePermissions` has been replaced with `ResoucePermissionMapper` interface and its
+default implementation, the `DefaultResourcePermissions` class. The ACL middleware is working with
+the actual implementation of the `ResoucePermissionMapper` interface and is more consistent.
+
+In case your code is directly using the `ResourcePermissions` class, replace it:
+
+```php
+//
+// OLD CODE:
+//
+class SomeClass
+{
+    public function someMethod()
+    {
+        return ResourcePermissions::overrideResourcePlural('taxon', 'taxons');
+    }
+}
+//
+// NEW CODE (LET THE CONTAINER TO INJECT IT):
+//
+class SomeClass
+{
+    private $resoucePermissions;
+    
+    public function __construct(ResoucePermissionMapper $resoucePermissions)
+    {
+        $this->resoucePermissions = $resoucePermissions;
+    }
+        
+    public function someMethod()
+    {
+        $this->resoucePermissions->overrideResourcePlural('taxon', 'taxons');
+    }
+}
+//
+// NEW CODE, ALTERNATIVE SOLUTION:
+//
+class SomeClass 
+{        
+    public function someMethod()
+    {
+        $resoucePermissions = app(ResoucePermissionMapper::class);
+        $resoucePermissions->overrideResourcePlural('taxon', 'taxons');
+    }
+}
+``` 
+
+The resource name transformation for permissions has changed according to the followings:
+
+| Original Resource Name | V1 Transformation                 | V2 Transformation | Compatible |
+|:-----------------------|:----------------------------------|:------------------|:-----------|
+| `product`              | `products`                        | `products`        | ✔          |
+| `Product`              | `products`                        | `products`        | ✔          |
+| `product_type`         | `product_types` or `producttypes` | `product types`   | ❌          |
+| `productType`          | `productTypes` or `producttypes`  | `product types`   | ❌          |
+| `product-type`         | `product-types` or `producttypes` | `product types`   | ❌          |
+| `ProductType`          | `ProductTypes` or `producttypes`  | `product types`   | ❌          |
+
+The conventional way of creating resources as of 2.x is:
+
+```php
+// Route Definition
+Route::resource('product-type', 'ProductTypeController')
+    ->parameters(['product-type' => 'productType']);
+
+// Controller action:
+public function show (ProductType $productType) {/*...*/}
+
+// Permission:
+$user->can('view product types');
+```
+
 ## 0.9 -> 1.0
 
 ## AppShell Scripts

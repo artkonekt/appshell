@@ -15,6 +15,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Konekt\Address\Contracts\Address as AddressContract;
+use Konekt\AppShell\Acl\ResourcePermissionMapper;
 use Konekt\AppShell\Assets\AssetCollection;
 use Konekt\AppShell\Assets\DefaultAppShellAssets;
 use Konekt\AppShell\Breadcrumbs\HasBreadcrumbs;
@@ -84,6 +85,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         Themes::add(AppShell2Theme::ID, AppShell2Theme::class);
         $this->registerThirdPartyProviders();
         $this->registerCommands();
+        $this->app->singleton(ResourcePermissionMapper::class, ResourcePermissionMapper::class);
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
         $this->app->singleton('appshell.theme', function () {
             return Themes::make(Settings::get('appshell.ui.theme'));

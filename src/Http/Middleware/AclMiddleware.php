@@ -4,10 +4,18 @@ namespace Konekt\AppShell\Http\Middleware;
 
 use Auth;
 use Closure;
-use Konekt\AppShell\Acl\ResourcePermissions;
+use Konekt\AppShell\Acl\ResourcePermissionMapper;
 
 class AclMiddleware
 {
+    /** @var ResourcePermissionMapper */
+    private $permissionMapper;
+
+    public function __construct(ResourcePermissionMapper $permissionMapper)
+    {
+        $this->permissionMapper = $permissionMapper;
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -41,7 +49,7 @@ class AclMiddleware
     {
         $parsed = $this->parseAction($action);
 
-        return ResourcePermissions::permissionFor($parsed['resource'], $parsed['action']);
+        return $this->permissionMapper->permissionFor($parsed['resource'], $parsed['action']);
     }
 
     /**
@@ -59,7 +67,7 @@ class AclMiddleware
         $parts      = explode('@', $ctrlAndAction);
         $controller = $parts[0];
         $action     = end($parts);
-        $resource   = strtolower(str_replace('Controller', '', $controller));
+        $resource   = str_replace('Controller', '', $controller);
 
         return [
             'action'   => $action,
