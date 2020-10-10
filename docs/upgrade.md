@@ -2,6 +2,8 @@
 
 ## 1.x -> 2.0
 
+- The `appshell:super` artisan command has been renamed to `make:superuser`
+
 Due to comprehensive theming support, the layouts have changed, thus you have to replace the
 followings in your application views:
 

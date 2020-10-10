@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the Super User Util Command class.
+ * Contains the Make Super User Command class.
  *
  * @copyright   Copyright (c) 2017 Attila Fulop
  * @author      Attila Fulop
@@ -14,20 +14,22 @@ namespace Konekt\AppShell\Console\Commands;
 use Illuminate\Console\Command;
 use Konekt\Acl\Contracts\Role;
 use Konekt\Acl\Models\RoleProxy;
-use Konekt\AppShell\Acl\ResourcePermissions;
+use Konekt\AppShell\Acl\ResourcePermissionMapper;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserType;
 
 class SuperCommand extends Command
 {
-    protected $signature = 'appshell:super
-                    {--views : Only scaffold the authentication views}
-                    {--force : Overwrite existing views by default}';
+    protected $signature = 'make:superuser';
 
     protected $description = 'Create a superuser (for initial setup)';
 
-    public function handle()
+    /** @var ResourcePermissionMapper */
+    private $permissionMapper;
+
+    public function handle(ResourcePermissionMapper $permissionMapper)
     {
+        $this->permissionMapper = $permissionMapper;
         $this->info("Now you're about to create a new user with all privileges");
 
         $email    = $this->askEmail();
@@ -98,10 +100,11 @@ class SuperCommand extends Command
      */
     protected function createRole($name)
     {
+        /** @var \Konekt\Acl\Models\Role $role */
         $role = RoleProxy::create(['name' => $name])->fresh();
 
-        $role->givePermissionTo(ResourcePermissions::allPermissionsFor('user'));
-        $role->givePermissionTo(ResourcePermissions::allPermissionsFor('role'));
+        $role->givePermissionTo($this->permissionMapper->allPermissionsFor('user'));
+        $role->givePermissionTo($this->permissionMapper->allPermissionsFor('role'));
 
         return $role;
     }

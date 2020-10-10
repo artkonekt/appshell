@@ -103,7 +103,7 @@ And add this to you `AppServiceProviders`'s boot method:
 
 ### Create An Initial Super User
 
-Run command `php artisan appshell:super`.
+Run command `php artisan make:superuser`.
 
 This will ask a several questions and create a proper superuser that you can start working with.
 
