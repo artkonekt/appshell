@@ -68,8 +68,8 @@ class SettingsProvider extends ServiceProvider
                 'appshell.ui.theme',
                 $this->config('ui.theme', DefaultAppShellTheme::ID),
                 function () {
-                return Themes::choices();
-            }
+                    return Themes::choices();
+                }
             )
         );
     }
