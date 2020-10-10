@@ -21,6 +21,8 @@ final class AppShell2Theme implements Theme
 
     private static $name = 'AppShell 2';
 
+    private static $breadcrumbsView = 'appshell::widgets.breadcrumbs';
+
     private $layouts = [
         'private' => 'appshell::layouts.v2.private',
         'public'  => 'appshell::layouts.v2.public',

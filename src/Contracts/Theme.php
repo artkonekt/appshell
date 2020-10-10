@@ -20,4 +20,6 @@ interface Theme
     public function hexToThemeColor(string $hexColor): ?string;
 
     public function layout(string $variant): string;
+
+    public function breadcrumbsView(): string;
 }

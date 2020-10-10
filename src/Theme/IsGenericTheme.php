@@ -55,4 +55,9 @@ trait IsGenericTheme
 
         return null;
     }
+
+    public function breadcrumbsView(): string
+    {
+        return self::$breadcrumbsView;
+    }
 }

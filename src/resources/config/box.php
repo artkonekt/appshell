@@ -36,11 +36,6 @@ return [
         ],
     ],
     'breadcrumbs' => true,
-    'components'  => [
-        'breadcrumbs' => [
-            'view' => 'appshell::widgets.breadcrumbs'
-        ]
-    ],
     'disable' => [
         'login_counter' => false
     ],

@@ -88,7 +88,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->singleton(ResourcePermissionMapper::class, ResourcePermissionMapper::class);
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
         $this->app->singleton('appshell.theme', function () {
-            return Themes::make(Settings::get('appshell.ui.theme'));
+            $theme = Themes::make(Settings::get('appshell.ui.theme'));
+            $this->app['config']->set('breadcrumbs.view', $theme->breadcrumbsView());
+
+            return $theme;
         });
     }
 
@@ -123,7 +126,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
      *  - Konekt Menu,
      *  - Laravel Collective Forms
      *  - Laracasts Flash
-     *  - DaveJamesMiller Breadcrumbs
      */
     protected function registerThirdPartyProviders()
     {
@@ -135,11 +137,8 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             $this->registerMenuComponent();
             $this->registerFormComponent();
             $this->registerFlashComponent();
-            $this->registerBreadcrumbsComponent();
             $this->registerSluggableComponent();
         }
-
-        $this->mergeBreadCrumbsConfig();
     }
 
     /**
@@ -258,47 +257,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     }
 
     /**
-     * Register the breadcrumbs component, also merge the config from within the box config
-     */
-    private function registerBreadcrumbsComponent()
-    {
-        // Register The Breadcrumbs Component
-        if (class_exists('\\DaveJamesMiller\\Breadcrumbs\\ServiceProvider')) { // Breadcrumbs v3.x - Laravel 5.4
-            $this->app->register(\DaveJamesMiller\Breadcrumbs\ServiceProvider::class);
-            $this->concord->registerAlias(
-                'Breadcrumbs',
-                \DaveJamesMiller\Breadcrumbs\Facade::class
-            );
-        } else { // Breadcrumbs v4.x, v5.x - Laravel 5.5+
-            $this->app->register(\DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class);
-            $this->concord->registerAlias(
-                'Breadcrumbs',
-                \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class
-            );
-        }
-    }
-
-    /**
      * Register the sluggable component
      */
     private function registerSluggableComponent()
     {
         $this->app->register(\Cviebrock\EloquentSluggable\ServiceProvider::class);
-    }
-
-    /**
-     * Merge component config from the box config.
-     * Note that this can still be overwritten
-     * by the app in config/breadcrumbs.php
-     */
-    private function mergeBreadCrumbsConfig()
-    {
-        $this->app['config']->set(
-            'breadcrumbs',
-            array_merge(
-                $this->config('components.breadcrumbs') ?: [],  // key within box config
-                $this->app['config']['breadcrumbs'] ?: [] // current
-            )
-        );
     }
 }

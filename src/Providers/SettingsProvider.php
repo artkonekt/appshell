@@ -102,7 +102,12 @@ class SettingsProvider extends ServiceProvider
                'general_app',
                ['select', ['label' => __('UI Theme')]],
                'appshell.ui.theme'
-           );
+           )
+           ->addSettingItem(
+                'general_app',
+                ['text', ['label' => __('Logo Image URI')]],
+                'appshell.ui.logo_uri'
+            );
 
         $ui->addChildNode('general', 'defaults', __('Defaults'))
            ->addSettingItem(
