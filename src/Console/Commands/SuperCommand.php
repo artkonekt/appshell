@@ -12,6 +12,7 @@
 namespace Konekt\AppShell\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Builder;
 use Konekt\Acl\Contracts\Role;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
@@ -64,8 +65,18 @@ class SuperCommand extends Command
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->error("'$email' is not an email address.");
             exit(2);
-        } elseif (UserProxy::where('email', $email)->first()) {
-            $this->error("User '$email' already exists");
+        }
+        /** @var Builder $query */
+        $query = UserProxy::where('email', $email);
+        if ($usesSoftDelete = method_exists(UserProxy::modelClass(), 'initializeSoftDeletes')) {
+            $query->withTrashed();
+        }
+        if ($user = $query->first()) {
+            if ($usesSoftDelete && $user->trashed()) {
+                $this->error("A deleted user '$email' already exists");
+            } else {
+                $this->error("User '$email' already exists");
+            }
             exit(3);
         }
 
