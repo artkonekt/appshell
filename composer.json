@@ -19,7 +19,7 @@
         "php": "^7.3",
         "ext-json": "*",
         "konekt/concord": "^1.5.1",
-        "konekt/customer": "^2.0",
+        "konekt/customer": "^2.0.1",
         "konekt/address": "^2.0",
         "konekt/user": "^2.0",
         "konekt/acl": "~1.3",
