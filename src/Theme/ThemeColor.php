@@ -15,7 +15,7 @@ use Konekt\Enum\Enum;
 
 class ThemeColor extends Enum
 {
-    public const __default = self::PRIMARY;
+    public const __DEFAULT = self::PRIMARY;
 
     public const PRIMARY   = 'primary';
     public const SECONDARY = 'secondary';
