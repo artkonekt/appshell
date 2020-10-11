@@ -11,6 +11,8 @@
 
 namespace Konekt\AppShell\Tests;
 
+use DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider;
+use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Providers\ModuleServiceProvider as AppShellModule;
@@ -63,7 +65,15 @@ abstract class TestCase extends Orchestra
         return [
             ConcordServiceProvider::class,
             GearsServiceProvider::class,
-            LaravelMigrationCompatibilityProvider::class
+            LaravelMigrationCompatibilityProvider::class,
+            BreadcrumbsServiceProvider::class
+        ];
+    }
+
+    protected function getPackageAliases($app)
+    {
+        return [
+            'Breadcrumbs' => Breadcrumbs::class
         ];
     }
 
