@@ -54,6 +54,25 @@ class ColorHelper
     }
 
     /**
+     * Converts a hex color to rgba
+     * @param string $hexColor eg. '#00ffff'
+     * @param int    $alpha 0.00 - 1.00
+     * @return string eg. 'rgba(0, 255, 255, 0.5)'
+     */
+    public function rgba(string $hexColor, float $alpha = 1): string
+    {
+        // fall back to 1 if out of range
+        $alpha = (0 <= $alpha) && ($alpha <= 1) ? $alpha : 1;
+        return sprintf(
+            'rgba(%d, %d, %d, %.2f',
+            $this->red($hexColor),
+            $this->green($hexColor),
+            $this->blue($hexColor),
+            $alpha
+        );
+    }
+
+    /**
      * Returns the luminosity difference between two colors.
      * Values above ~4.5 can be considered as good contrast
      *

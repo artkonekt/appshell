@@ -14,7 +14,7 @@
             {{ $customer->getName() }}
             @if (!$customer->is_active)
                 <small>
-                        <span class="badge badge-default">
+                        <span class="badge badge-secondary">
                             {{ __('inactive') }}
                         </span>
                 </small>
@@ -29,7 +29,7 @@
                 'type' => $customer->last_purchase_at ? 'success' : null
         ])
             {{ __('Last purchase') }}
-            <span title="{{ show_datetime($customer->last_purchase_at, '', 'Y-m-d H:i') }}">{{ show_datetime($customer->last_purchase_at, __('never')) }}</span>
+            {{ show_datetime($customer->last_purchase_at, __('never')) }}
 
             @slot('subtitle')
                 {{ __('Customer since') }}

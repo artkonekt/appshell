@@ -1,15 +1,16 @@
 <div class="card{{ isset($type) ? " text-white bg-$type" : '' }}">
-    <div class="card-body">
-        <div class="h1 text-muted text-right m-b-2">
+    <div class="card-body {{ $cardBodyClass ?? '' }}">
+        <div class="h1 text-muted text-right {{ $iconClass ?? '' }}">
             @if (isset($iconSlot))
                 {{ $iconSlot }}
             @elseif (isset($icon))
                 <i class="zmdi zmdi-{{ $icon }}"></i>
             @endif
         </div>
-        <div class="h4 m-b-0 text-uppercase">
+        <div class="h4 mb-0 text-uppercase {{ $titleClass ?? '' }}">
             {{ $slot }}
         </div>
         <small class="text-muted text-uppercase font-weight-bold">{{ $subtitle }}</small>
+        {{ $body ?? '' }}
     </div>
 </div>

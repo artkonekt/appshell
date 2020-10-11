@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="card"><div class="card-body">
+
     {!! Form::open(['route' => 'appshell.settings.update', 'method' => 'PUT']) !!}
     <ul class="nav nav-tabs" role="tablist">
         @foreach($tree->nodes() as $tab)
@@ -24,7 +24,7 @@
                     @component(theme_widget('group'), ['accent' => 'secondary'])
                         @slot('title'){{ $group->label() }}@endslot
                         @foreach($group->items() as $item)
-                                @component(theme_widget('form' . $item->getWidget()->component()),
+                                @component(theme_widget('form.' . $item->getWidget()->component()),
                                     array_merge([
                                         'name'  => sprintf('settings[%s]', $item->getKey()),
                                         'value' => $item->getValue(),
@@ -48,5 +48,5 @@
         </div>
     </div>
     {!! Form::close() !!}
-</div></div>
+
 @stop
