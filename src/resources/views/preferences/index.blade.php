@@ -20,10 +20,10 @@
         @foreach($tree->nodes() as $tab)
             <div id="{{ $tab->id() }}" class="tab-pane{{ $loop->first ? ' active show' : '' }}" role="tabpanel">
                 @foreach($tab->children() as $group)
-                    @component('appshell::widgets.group', ['accent' => 'secondary'])
+                    @component(theme_widget('group'), ['accent' => 'secondary'])
                         @slot('title'){{ $group->label() }}@endslot
                         @foreach($group->items() as $item)
-                                @component('appshell::widgets.form.' . $item->getWidget()->component(),
+                                @component(theme_widget('form.' . $item->getWidget()->component()),
                                     array_merge([
                                         'name'  => sprintf('preferences[%s]', $item->getKey()),
                                         'value' => $item->getValue(),

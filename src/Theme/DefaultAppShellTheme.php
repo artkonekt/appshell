@@ -21,7 +21,7 @@ final class DefaultAppShellTheme implements Theme
 
     private static $name = 'AppShell Default';
 
-    private static $breadcrumbsView = 'appshell::widgets.breadcrumbs';
+    private static $viewNamespace = 'appshell';
 
     private $layouts = [
         'private' => 'appshell::layouts.default.private',

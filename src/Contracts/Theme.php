@@ -21,5 +21,5 @@ interface Theme
 
     public function layout(string $variant): string;
 
-    public function breadcrumbsView(): string;
+    public function viewNamespace(): string;
 }

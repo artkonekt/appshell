@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="card-deck mb-3">
-        @component('appshell::widgets.card_with_icon', [
+        @component(theme_widget('card_with_icon'), [
                 'icon' => $user->is_active ? 'account-circle' : 'account-o',
                 'type' => $user->is_active ? 'success' : 'warning'
         ])
@@ -25,7 +25,7 @@
             @endslot
         @endcomponent
 
-        @component('appshell::widgets.card_with_icon', [
+        @component(theme_widget('card_with_icon'), [
                 'icon' => 'shield-security',
                 'type' => 'info'
         ])
@@ -45,7 +45,7 @@
             @endslot
         @endcomponent
 
-        @component('appshell::widgets.card_with_icon', ['icon' => 'star-circle'])
+        @component(theme_widget('card_with_icon'), ['icon' => 'star-circle'])
             {{ $user->login_count }} {{ __('logins') }}
 
             @slot('subtitle')

@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="card-deck mb-3">
-        @component('appshell::widgets.card_with_icon', [
+        @component(theme_widget('card_with_icon'), [
                 'icon' => enum_icon($customer->type),
                 'type' => $customer->is_active ? 'success' : 'warning'
         ])
@@ -24,7 +24,7 @@
             @endslot
         @endcomponent
 
-        @component('appshell::widgets.card_with_icon', [
+        @component(theme_widget('card_with_icon'), [
                 'icon' => 'time-countdown',
                 'type' => $customer->last_purchase_at ? 'success' : null
         ])

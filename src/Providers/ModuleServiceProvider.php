@@ -89,7 +89,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
         $this->app->singleton('appshell.theme', function () {
             $theme = Themes::make(Settings::get('appshell.ui.theme'));
-            $this->app['config']->set('breadcrumbs.view', $theme->breadcrumbsView());
+            $this->app['config']->set('breadcrumbs.view', $theme->viewNamespace() . '::widgets.breadcrumbs');
 
             return $theme;
         });

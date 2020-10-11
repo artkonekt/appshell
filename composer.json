@@ -40,7 +40,8 @@
     "autoload": {
         "psr-4": { "Konekt\\AppShell\\": "src"},
         "files": [
-            "src/Support/helpers.php"
+            "src/Support/helpers.php",
+            "src/Support/theme.php"
         ]
     },
     "autoload-dev": {

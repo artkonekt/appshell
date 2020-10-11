@@ -56,8 +56,8 @@ trait IsGenericTheme
         return null;
     }
 
-    public function breadcrumbsView(): string
+    public function viewNamespace(): string
     {
-        return self::$breadcrumbsView;
+        return self::$viewNamespace;
     }
 }

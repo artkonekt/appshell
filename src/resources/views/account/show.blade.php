@@ -28,7 +28,7 @@
 
                 <div class="card-body">
 
-                    @component('appshell::widgets.form.text', [
+                    @component(theme_widget('form.text'), [
                         'label' => __('Display Name'),
                         'name' => 'name',
                         'value' => old('name') ?? $user->name,
@@ -36,7 +36,7 @@
                     ])
                     @endcomponent
 
-                    @component('appshell::widgets.form.password', [
+                    @component(theme_widget('form.password'), [
                         'label' => __('New Password'),
                         'name' => 'password',
                         'placeholder' => __('Leave empty for no change')
