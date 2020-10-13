@@ -1,7 +1,6 @@
 # Customizing The Admin UI
 
-The user interface was built on top of the [Bootstrap 4.0](https://getbootstrap.com/docs/4.0)
-variant of [CoreUI](https://coreui.io/).
+The user interface was built on top of [Bootstrap 4.x](https://getbootstrap.com/docs/4.5).
 
 The SASS files can be found in the `src/resources/assets/sass/` folder, and the javascript files are
 in the `src/resources/assets/js/` folder (under `vendor/konekt/appshell`).

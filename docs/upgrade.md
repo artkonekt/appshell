@@ -148,7 +148,7 @@ class UpdatePermissionsToAppshellV2 extends Migration
 
 AppShell's default html layout after v1.0 looks for the `/js/appshell.js` script.
 
-Also beginning with v1.0 it's possible to [configure](customize-admin-ui.md)
+Also, beginning with v1.0 it's possible to [configure](customize-admin-ui.md)
 what assets (js/css) to include in the layout.
 
 Previous AppShell version layouts were looking for `/js/app.js`.
