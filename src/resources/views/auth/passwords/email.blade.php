@@ -12,7 +12,7 @@
     @endif
 
     <div class="card">
-        <form method="POST" action="{{ route('password.email') }}">
+        <form method="POST" action="{{ route($appshell->routes['password.email']) }}">
             @csrf
 
             <div class="card-body">

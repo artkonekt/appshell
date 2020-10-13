@@ -5,7 +5,7 @@
 @section('content')
 <div class="col-md-8 col-lg-6">
     <div class="card">
-        <form method="POST" action="{{ route('password.request') }}">
+        <form method="POST" action="{{ route($appshell->routes['password.request']) }}">
             @csrf
 
             <input type="hidden" name="token" value="{{ $token }}">

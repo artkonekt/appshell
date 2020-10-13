@@ -6,7 +6,7 @@
 <div class="col-md-8 col-lg-6">
     <div class="card">
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route($appshell->routes['register']) }}">
             @csrf
             <div class="card-body">
                 <h2 class="text-center">{{ __('Register') }}</h2>

@@ -2,12 +2,25 @@
 
 > For upgrading from an earlier AppShell versions refer to the [Upgrade](upgrade.md) section.
 
-## Create New AppShell Project
+## Requirements
+
+As of AppShell v2.0, the requirements are:
+
+- PHP 7.3 - 7.4
+- Laravel 6.x - 8.x
+
+## Install AppShell
+
+Either create a new Laravel project:
 
 ```bash
 composer create-project laravel/laravel myapp
-# Wait 1-4 minutes to complete ...
 cd myapp
+```
+
+.. or go to an existing Laravel 6+ application's root folder and launch these commands:
+
+```bash
 composer require konekt/appshell
 touch config/concord.php
 ```
@@ -24,17 +37,9 @@ return [
 ];
 ```
 
-### Register The Service Provider (Laravel 5.4 Only)
+> If you have multiple Concord modules, AppShell typically needs to be the very first one in the list.
 
-Edit `config/app.php` and add this line to the `providers` array (below 'Package Service Providers', always above 'Application Service Providers')
-
-(_Recommended line: just below tinker's service provider_)
-
-```php
-Konekt\Concord\ConcordServiceProvider::class,
-```
-
-Test if it works by invoking the command
+Test if it works by invoking the command:
 
 ```bash
 php artisan concord:modules
@@ -46,7 +51,7 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 | #  | Name                | Kind | Version | Id               | Namespace       |
 +----+---------------------+------+---------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 0.9.10  | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 2.0.0   | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 
@@ -60,19 +65,102 @@ Afterwards run the migrations:
 php artisan migrate
 ```
 
-AppShell contains ~10-15 migrations out of the box
-
-> If running with linux + apache/nginx these commands are useful:
->
-> `sudo chown -R .www-data storage/`
->
-> `sudo chmod -R g+w storage/`
+AppShell (with the underlying modules) contains ~20 migrations out of the box.
 
 ## Laravel Auth Support
 
-First, Run `php artisan make:auth`
+### Auth Scaffolding
 
-If the "final" user class is not going to be `App\User` then don't forget to modify model class this to your app's `config/auth.php` file:
+> Laravel, with the release of version 6 has significantly changed the way of auth scaffolding.
+> For details, refer to [Laravel Authentication Docs](https://laravel.com/docs/6.x/authentication#authentication-quickstart).
+
+If you haven't done it yet, install the Laravel UI package:
+
+```bash
+composer require laravel/ui
+php artisan ui:auth
+```
+
+### The User Model
+
+AppShell offers a pre-built `User` model, that is an extended version of the default Laravel User
+class. It's not mandatory to use this class though, it's possible to use your own models instead.
+
+To complete user setup, you have several options, see some of the variants below.
+
+#### Variant 1 - Simple
+
+Modify `App\User` so that it extends AppShell's user model:
+
+```php
+// app/User.php
+namespace App;
+
+// No need to use Laravel default traits and properties as
+// they're already present in the base class exactly as
+// they're defined in a default Laravel installation
+class User extends \Konekt\AppShell\Models\User
+{
+}
+```
+
+Add this to your `AppServiceProviders`'s boot method:
+
+```php
+   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
+```
+
+#### Variant 2 - Flexible
+
+In case you don't want to extend AppShell's User class, then it's sufficient to implement its
+interface:
+
+```php
+// app/User.php
+// ... The default User model or arbitrary code for your app
+
+// You can use any other base class eg: TCG\Voyager\Models\User
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Konekt\User\Contracts\Profile;
+use Konekt\User\Contracts\User as UserContract;
+
+class User extends Authenticatable implements UserContract
+{
+    // ...
+
+    // Implement these methods from the required Interface:
+    public function inactivate()
+    {
+        $this->is_active = false;
+        $this->save();
+    }
+
+    public function activate()
+    {
+        $this->is_active = true;
+        $this->save();
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return null;
+    }
+
+    // ...
+}
+```
+
+Add this to your `AppServiceProviders`'s boot method:
+
+```php
+   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
+```
+
+#### Variant 3 - No App\User
+
+If the "final" user class is not going to be `App\User` then don't forget to modify model the
+configuration in your app's `config/auth.php` file:
+
 ```php
     //...
     'providers' => [
@@ -83,23 +171,6 @@ If the "final" user class is not going to be `App\User` then don't forget to mod
         ],
     //...
 ```
-**OR:**
-Another approach is to keep `App\User` but modify the class to extend AppShell's user model:
-
-```php
-namespace App;
-
-// No need to use Laravel default traits and properties as
-// they're already present in the base class
-
-class User extends \Konekt\AppShell\Models\User {}
-```
-
-And add this to you `AppServiceProviders`'s boot method:
-
-```php
-   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
-```
 
 ### Create An Initial Super User
 
@@ -109,4 +180,4 @@ This will ask a several questions and create a proper superuser that you can sta
 
 ---
 
-**Next**: [Application Prerequisites &raquo;](prerequisites.md)
+**Next**: [Application Prerequisites &raquo;](configuration.md)
