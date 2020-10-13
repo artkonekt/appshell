@@ -3,16 +3,80 @@ $sidebar-nav-dropdown-indicator:      str-replace(url("data:image/svg+xml;charse
 $sidebar-nav-dropdown-indicator-hover-color:$sidebar-nav-link-hover-color
 $sidebar-nav-dropdown-indicator-hover:str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' height='42' width='42' viewBox='0 0 42 42'%3E%3Cpath overflow='visible' style='text-indent:0;text-transform:none' d='M21 0c-.5523 0-1 .44772-1 1v19H1c-.55228 0-1 .4477-1 1s.44772 1 1 1h19v19c0 .5523.4477 1 1 1s1-.4477 1-1V22h19c.55228 0 1-.4477 1-1s-.44772-1-1-1H22V1c0-.55228-.4477-1-1-1z' fill='#{$sidebar-nav-dropdown-indicator-hover-color}'/%3E%3C/svg%3E"), "#", "%23") !default
 
-.sidebar
+.main
     display: flex
-    position: fixed
-    overflow: hidden
-    top: 0
-    bottom: 0
-    left: 0
-    z-index: 9999
-    min-height: calc(100vh - 3.75rem)
+    flex-direction: column
+    min-height: 100vh
+    width: 100%
+    +media-breakpoint-up(md)
+        position: absolute
+        padding-left: calc(30px + #{$sidebar-width})
+        right: 15px
+
+.app-body
+    display: flex
     flex-direction: row
+    +media-breakpoint-up(md)
+        padding-left: 0
+        padding-right: 0
+
+#heading-container
+    display: flex
+    justify-content: space-between
+    +media-breakpoint-up(md)
+        display: block
+
+#mobile-menu
+    display: none
+    position: absolute
+    background-color: $sidebar-bg
+    background: $sidebar-gradient
+    overflow-y: auto
+    left: 0
+    margin-top: 50px
+    height: 100vh
+    height: calc(100vh - 80px)
+    width: 100%
+    padding: 30px 0
+    background-color: #122325
+    color: #fff
+    z-index: 999
+    //-webkit-transition: all .35s ease
+    //-moz-transition: all .35s ease
+    //-ms-transition: all .35s ease
+    //-o-transition: all .35s ease
+    transition: all .35s ease
+    &.show
+        display: block
+    a
+        color: $sidebar-color
+    .nav-title
+        color: $sidebar-nav-title-color
+        padding: .75rem 1rem
+        font-size: 11px
+        font-weight: 600
+        text-transform: uppercase
+        letter-spacing: 0
+
+#hamburger
+    padding-top: 10px
+    svg
+        width: 24px
+    +media-breakpoint-up(md)
+        display: none
+
+.sidebar
+    display: none
+    z-index: 9999
+    +media-breakpoint-up(md)
+        display: flex
+        flex-direction: row
+        position: fixed
+        overflow: hidden
+        top: 0
+        bottom: 0
+        left: 0
+        min-height: calc(100vh - 3.75rem)
 
 .sidebar-menu
     background-color: $sidebar-bg
@@ -79,17 +143,3 @@ $sidebar-nav-dropdown-indicator-hover:str-replace(url("data:image/svg+xml;charse
     .nav-dropdown.open
         border-left: 0
 
-.main
-    display: flex
-    flex-direction: column
-    right: 15px
-    position: absolute
-    min-height: 100vh
-    width: 100%
-    padding-left: calc(30px + #{$sidebar-width})
-
-.app-body
-    display: flex
-    flex-direction: row
-    padding-left: 0
-    padding-right: 0

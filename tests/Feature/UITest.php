@@ -25,30 +25,4 @@ class UITest extends TestCase
         $response = $this->actingAs($this->adminUser)->get(url($url));
         $response->assertStatus(200);
     }
-
-    /** @test */
-    public function default_assets_are_rendered_in_the_layout()
-    {
-        $url = config('konekt.app_shell.ui.url');
-
-        $this->assertNotEmpty($url);
-        $response = $this->actingAs($this->adminUser)->get(url($url));
-        $response->assertStatus(200);
-
-        foreach (DefaultAppShellAssets::JS as $key => $value) {
-            if (is_numeric($key)) {
-                $response->assertSee(asset($value));
-            } else {
-                $response->assertSee(asset($key));
-            }
-        }
-
-        foreach (DefaultAppShellAssets::CSS as $key => $value) {
-            if (is_numeric($key)) {
-                $response->assertSee(asset($value));
-            } else {
-                $response->assertSee(asset($key));
-            }
-        }
-    }
 }

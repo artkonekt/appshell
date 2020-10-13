@@ -7,6 +7,8 @@ in the `src/resources/assets/js/` folder (under `vendor/konekt/appshell`).
 
 ## Modify The Assets Of The Layout
 
+/** @todo Removed, update for v2 */
+
 The application author has complete control over what js and css files are included in
 the default AppShell layout. This can be done by setting asset URLs in the module configuration.
 
