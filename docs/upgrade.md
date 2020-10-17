@@ -14,6 +14,12 @@ followings in your application views:
 
 - The `getName` method in the Theme interface is now static
 
+### UI Data
+
+The `$appshell` object containing the UI config is no longer an `\stdClass` object but an instance
+of `\Konekt\AppShell\Ui\UIConfig`. You can still use it's properties like `$appshell->name` or
+`$appshell->url`.
+
 ### ACL & Resource Permissions
 
 The resource name transformation in v1 was inconsistent between the `ResourcePermissions` class and

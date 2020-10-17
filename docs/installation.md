@@ -6,7 +6,7 @@
 
 As of AppShell v2.0, the requirements are:
 
-- PHP 7.3 - 7.4
+- PHP 7.4
 - Laravel 6.x - 8.x
 
 ## Install AppShell

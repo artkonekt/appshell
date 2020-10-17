@@ -40,6 +40,7 @@ use Konekt\AppShell\Models\GravatarDefault;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Themes;
+use Konekt\AppShell\Ui\UiConfig;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\Gears\Facades\Settings;
 use Konekt\User\Contracts\User as UserContract;
@@ -195,18 +196,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
             config([$this->getId() . '.ui.theme' => AppShellTheme::ID]);
         }
 
-        $uiConfig = $this->config('ui');
-
-        if (!isset($uiConfig['routes'])) {
-            $uiConfig['routes']['login']  = 'login';
-            $uiConfig['routes']['logout'] = 'logout';
-        }
-
-        if (!isset($uiConfig['quick_links'])) {
-            $uiConfig['quick_links']['enabled'] = true;
-        }
-
-        View::share('appshell', (object)$uiConfig);
+        View::share('appshell', new UiConfig($this->config('ui')));
     }
 
     private function routeWildcard(string $route): string

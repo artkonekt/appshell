@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') &middot; {{ setting('appshell.ui.name') }}</title>
+    <title>@yield('title') &middot; {{ $appshell->name }}</title>
 
     <!-- Styles -->
     @foreach($appshell->assets->stylesheets() as $stylesheet)
@@ -31,10 +31,10 @@
 
         <div class="col-md-6 offset-md-3 text-center p-4">
             <div>
-                <img src="{{ setting('appshell.ui.logo_uri') }}" class="w-25" />
+                <img src="{{ $appshell->logoUri }}" class="w-25" />
             </div>
             <h4 class="text-center text-uppercase text-white mt-4"
-                style="font-weight: 300; letter-spacing: 2px">{{ setting('appshell.ui.name') }}</h4>
+                style="font-weight: 300; letter-spacing: 2px">{{ $appshell->name }}</h4>
         </div>
         <div class="col-md-3"></div>
 

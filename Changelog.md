@@ -7,7 +7,7 @@
 - AppShell Theme rework on top of plain Bootstrap 4
 - AppShell Theme facelift
 - Dropped Laravel 5 Support
-- Dropped PHP 7.2 Support
+- Dropped PHP 7.2 & 7.3 Support
 - Deprecated the `ResourcePermissions` static class in favour of the `ResourcePermissionMapper` singleton
 - Improved Menu item activation (js workaround has been removed)
 - AppShell logo uri can be set in config/settings

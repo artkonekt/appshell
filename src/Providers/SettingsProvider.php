@@ -13,6 +13,9 @@ namespace Konekt\AppShell\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Konekt\Address\Models\CountryProxy;
+use Konekt\AppShell\Settings\UiLogoUriSetting;
+use Konekt\AppShell\Settings\UiNameSetting;
+use Konekt\AppShell\Settings\UiThemeSetting;
 use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Themes;
 use Konekt\AppShell\Traits\AccessesAppShellConfig;
@@ -54,24 +57,9 @@ class SettingsProvider extends ServiceProvider
 
     protected function bootUISettings()
     {
-        $this->settingsRegistry->add(new SimpleSetting(
-            'appshell.ui.name',
-            $this->config('ui.name')
-        ));
-        $this->settingsRegistry->add(new SimpleSetting(
-            'appshell.ui.logo_uri',
-            $this->config('ui.logo_uri')
-        ));
-
-        $this->settingsRegistry->add(
-            new SimpleSetting(
-                'appshell.ui.theme',
-                $this->config('ui.theme', AppShellTheme::ID),
-                function () {
-                    return Themes::choices();
-                }
-            )
-        );
+        $this->settingsRegistry->add(new UiNameSetting());
+        $this->settingsRegistry->add(new UiLogoUriSetting());
+        $this->settingsRegistry->add(new UiThemeSetting());
     }
 
     protected function bootDefaults()

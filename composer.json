@@ -16,7 +16,7 @@
         "issues": "https://github.com/artkonekt/appshell"
     },
     "require": {
-        "php": "^7.3",
+        "php": "^7.4",
         "ext-json": "*",
         "konekt/concord": "^1.5.1",
         "konekt/customer": "^2.0.1",
