@@ -43,6 +43,19 @@ final class Themes
     {
         $themeClass = self::getClass($id);
 
+        if (null === $themeClass && is_string($fallBackId = config('konekt.app_shell.ui.theme'))) {
+            // Falling back to the default theme in the config
+            $themeClass = self::getClass($fallBackId);
+            if (function_exists('flash')) {
+                flash()->warning(
+                    __(
+                        'There is no theme found with id :theme_id. Falling back to default. Check your application settings.',
+                        ['theme_id' => $id]
+                    )
+                );
+            }
+        }
+
         if (null === $themeClass) {
             throw new InexistentThemeException(
                 "No theme is registered with the id `$id`."

@@ -13,7 +13,7 @@ namespace Konekt\AppShell\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Konekt\Address\Models\CountryProxy;
-use Konekt\AppShell\Theme\DefaultAppShellTheme;
+use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Themes;
 use Konekt\AppShell\Traits\AccessesAppShellConfig;
 use Konekt\Gears\Defaults\SimpleSetting;
@@ -66,7 +66,7 @@ class SettingsProvider extends ServiceProvider
         $this->settingsRegistry->add(
             new SimpleSetting(
                 'appshell.ui.theme',
-                $this->config('ui.theme', DefaultAppShellTheme::ID),
+                $this->config('ui.theme', AppShellTheme::ID),
                 function () {
                     return Themes::choices();
                 }

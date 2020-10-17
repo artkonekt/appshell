@@ -23,7 +23,6 @@
     </script>
 </head>
 <body>
-
     <div class="container-fluid app-body" id="app">
         @include('appshell::layouts.default._sidebar')
 

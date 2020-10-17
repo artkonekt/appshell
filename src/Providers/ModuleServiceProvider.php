@@ -38,8 +38,7 @@ use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\GravatarDefault;
 use Konekt\AppShell\Models\User;
-use Konekt\AppShell\Theme\AppShell2Theme;
-use Konekt\AppShell\Theme\DefaultAppShellTheme;
+use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Themes;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\Gears\Facades\Settings;
@@ -79,8 +78,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->concord->registerHelper('color', ColorHelper::class);
         $this->concord->registerHelper('date', DateHelper::class);
         $this->concord->registerHelper('quickLinks', QuickLinkHelper::class);
-        Themes::add(DefaultAppShellTheme::ID, DefaultAppShellTheme::class);
-        Themes::add(AppShell2Theme::ID, AppShell2Theme::class);
+        Themes::add(AppShellTheme::ID, AppShellTheme::class);
         $this->registerThirdPartyProviders();
         $this->registerCommands();
         $this->app->singleton(ResourcePermissionMapper::class, ResourcePermissionMapper::class);
@@ -193,6 +191,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
     protected function initUiData()
     {
+        if (!$this->config('ui.theme')) {
+            config([$this->getId() . '.ui.theme' => AppShellTheme::ID]);
+        }
+
         $uiConfig = $this->config('ui');
 
         if (!isset($uiConfig['routes'])) {

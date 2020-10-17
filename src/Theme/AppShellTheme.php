@@ -1,11 +1,11 @@
 <?php
 /**
- * Contains the AppShell2Theme class.
+ * Contains the AppShellTheme class.
  *
- * @copyright   Copyright (c) 2020 Attila Fulop
+ * @copyright   Copyright (c) 2019 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2020-03-21
+ * @since       2019-02-24
  *
  */
 
@@ -13,19 +13,19 @@ namespace Konekt\AppShell\Theme;
 
 use Konekt\AppShell\Contracts\Theme;
 
-final class AppShell2Theme implements Theme
+final class AppShellTheme implements Theme
 {
     use IsGenericTheme;
 
-    public const ID = 'appshell.2';
+    public const ID = 'appshell';
 
-    private static $name = 'AppShell 2';
+    private static $name = 'AppShell';
 
     private static $viewNamespace = 'appshell';
 
     private $layouts = [
-        'private' => 'appshell::layouts.v2.private',
-        'public'  => 'appshell::layouts.v2.public',
+        'private' => 'appshell::layouts.default.private',
+        'public'  => 'appshell::layouts.default.public',
     ];
 
     private $themeColors = [

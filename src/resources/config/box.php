@@ -43,7 +43,7 @@ return [
         'name'     => 'AppShell',
         'url'      => '/admin/customer',
         'logo_uri' => '/images/appshell/logo.svg',
-        'theme'    => 'appshell.2',
+        'theme'    => 'appshell',
         'routes' => [
             'login'            => 'login',
             'logout'           => 'logout',

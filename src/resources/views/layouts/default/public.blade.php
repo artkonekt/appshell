@@ -11,10 +11,9 @@
     <title>@yield('title') &middot; {{ setting('appshell.ui.name') }}</title>
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" media="all" type="text/css" rel="stylesheet" />
-    <link href="{{ asset('/css/appshell.css') }}" media="all" type="text/css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" media="all" type="text/css" rel="stylesheet" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
-
+    @foreach($appshell->assets->stylesheets() as $stylesheet)
+        {!! $stylesheet->renderHtml() !!}
+    @endforeach
 
     <!-- Scripts -->
     <script>
@@ -45,6 +44,9 @@
 </div>
 
 <!-- Scripts -->
+@foreach($appshell->assets->scripts() as $script)
+    {!! $script->renderHtml() !!}
+@endforeach
 @yield('scripts')
 </body>
 </html>
