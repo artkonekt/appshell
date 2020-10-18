@@ -18,7 +18,7 @@ class AccountController extends BaseController
 {
     public function display()
     {
-        return $this->appShellView('account.show', [
+        return view('appshell::account.show', [
             'user' => Auth::user()
         ]);
     }

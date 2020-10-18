@@ -15,6 +15,15 @@ return [
 ];
 ```
 
+## Disable Parts
+
+You can disable the following features, by setting their respective keys to `true`:
+
+| Feature       | Config Key                              | Effect                                                                             |
+|:--------------|:----------------------------------------|:-----------------------------------------------------------------------------------|
+| Commands      | `konekt.appshell.disable.commands`      | The AppShell console commands wont be registered with Artisan                      |
+| Login Counter | `konekt.appshell.disable.login_counter` | The `login_count` and `last_login_at` fields of the user won't be updated on login |
+
 ## Auth Route Names
 
 AppShell's default theme comes with default views for login, reset password and registration.

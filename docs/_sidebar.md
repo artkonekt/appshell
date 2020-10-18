@@ -6,6 +6,7 @@
 
 - II. How To Use
     - [Admin Panel](admin-panel.md)
+    - [Breadcrumbs](breadcrumbs.md) 
     - [Authentication](admin-authentication.md)
     - [ACL](acl.md) 
     - [Menu Component](menu.md)

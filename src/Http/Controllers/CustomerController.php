@@ -24,7 +24,7 @@ class CustomerController extends BaseController
      */
     public function index()
     {
-        return $this->appShellView('customer.index', [
+        return view('appshell::customer.index', [
             'customers' => CustomerProxy::all()
         ]);
     }
@@ -38,7 +38,7 @@ class CustomerController extends BaseController
     {
         $customer = app(Customer::class);
 
-        return $this->appShellView('customer.create', [
+        return view('appshell::customer.create', [
             'customer' => $customer,
             'types'    => CustomerTypeProxy::choices()
         ]);
@@ -73,7 +73,7 @@ class CustomerController extends BaseController
      */
     public function show(Customer $customer)
     {
-        return $this->appShellView('customer.show', [
+        return view('appshell::customer.show', [
             'customer' => $customer
         ]);
     }
@@ -87,7 +87,7 @@ class CustomerController extends BaseController
      */
     public function edit(Customer $customer)
     {
-        return $this->appShellView('customer.edit', [
+        return view('appshell::customer.edit', [
             'customer'  => $customer,
             'types'     => CustomerTypeProxy::choices()
         ]);

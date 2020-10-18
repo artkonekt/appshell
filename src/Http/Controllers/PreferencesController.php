@@ -18,7 +18,7 @@ class PreferencesController extends BaseController
 {
     public function index()
     {
-        return $this->appShellView('preferences.index', [
+        return view('appshell::preferences.index', [
             'tree' => app('appshell.preferences_tree')
         ]);
     }

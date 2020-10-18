@@ -18,7 +18,7 @@ class SettingsController extends BaseController
 {
     public function index()
     {
-        return $this->appShellView('settings.index', [
+        return view('appshell::settings.index', [
             'tree' => app('appshell.settings_tree')
         ]);
     }

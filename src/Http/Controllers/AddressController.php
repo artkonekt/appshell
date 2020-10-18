@@ -26,7 +26,7 @@ class AddressController extends BaseController
     {
         $address = app(Address::class);
 
-        return $this->appShellView('address.create', [
+        return view('appshell::address.create', [
             'address'   => $address,
             'types'     => AddressTypeProxy::choices(),
             'countries' => CountryProxy::all(),
@@ -67,7 +67,7 @@ class AddressController extends BaseController
 
     public function edit(EditAddressForm $request, Address $address)
     {
-        return $this->appShellView('address.edit', [
+        return view('appshell::address.edit', [
             'address'   => $address,
             'types'     => AddressTypeProxy::choices(),
             'countries' => CountryProxy::all(),

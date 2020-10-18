@@ -26,7 +26,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        return $this->appShellView('user.index', [
+        return view('appshell::user.index', [
             'users' => UserProxy::all()
         ]);
     }
@@ -38,7 +38,7 @@ class UserController extends BaseController
      */
     public function create()
     {
-        return $this->appShellView('user.create', [
+        return view('appshell::user.create', [
             'user'  => app(User::class),
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()
@@ -77,7 +77,7 @@ class UserController extends BaseController
      */
     public function show(User $user)
     {
-        return $this->appShellView('user.show', compact('user'));
+        return view('appshell::user.show', compact('user'));
     }
 
     /**
@@ -87,7 +87,7 @@ class UserController extends BaseController
      */
     public function edit(User $user)
     {
-        return $this->appShellView('user.edit', [
+        return view('appshell::user.edit', [
             'user'  => $user,
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()

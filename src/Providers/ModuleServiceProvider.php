@@ -143,7 +143,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
      */
     protected function registerCommands()
     {
-        if ($this->app->runningInConsole()) {
+        if ($this->app->runningInConsole() && !$this->config('disable.commands')) {
             $this->commands([
                 SuperCommand::class
             ]);

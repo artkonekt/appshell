@@ -17,14 +17,13 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 
 /**
- * Common base controller class for all appshell controllers
+ * Common base controller class for all AppShell controllers
  * Basically it's a copy of the default controller from a
- * default app/Http/Controllers/Controller +  appshell
+ * default Laravel app's `Http/Controllers/Controller`
  */
 abstract class BaseController extends Controller
 {
     use AuthorizesRequests;
     use DispatchesJobs;
     use ValidatesRequests;
-    use AppShellViewAware;
 }

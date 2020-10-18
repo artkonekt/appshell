@@ -37,7 +37,8 @@ return [
     ],
     'breadcrumbs' => true,
     'disable' => [
-        'login_counter' => false
+        'login_counter' => false,
+        'commands' => false,
     ],
     'ui' => [
         'name'     => 'AppShell',

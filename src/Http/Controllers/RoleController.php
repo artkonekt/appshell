@@ -24,7 +24,7 @@ class RoleController extends BaseController
      */
     public function index()
     {
-        return $this->appShellView('role.index', [
+        return view('appshell::role.index', [
             'permissions' => PermissionProxy::all(),
             'roles'       => RoleProxy::with('users')->get()
         ]);
@@ -40,7 +40,7 @@ class RoleController extends BaseController
     public function show(Role $role)
     {
         $permissions = PermissionProxy::all();
-        return $this->appShellView('role.show', compact('role', 'permissions'));
+        return view('appshell::role.show', compact('role', 'permissions'));
     }
 
     /**
@@ -50,7 +50,7 @@ class RoleController extends BaseController
      */
     public function create()
     {
-        return $this->appShellView('role.create', [
+        return view('appshell::role.create', [
             'role'        => app(Role::class),
             'permissions' => PermissionProxy::all()
         ]);
@@ -85,7 +85,7 @@ class RoleController extends BaseController
     {
         $permissions = PermissionProxy::all();
 
-        return $this->appShellView('role.edit', compact('role', 'permissions'));
+        return view('appshell::role.edit', compact('role', 'permissions'));
     }
 
     /**
