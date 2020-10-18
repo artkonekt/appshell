@@ -9,7 +9,7 @@
             @can($editTheParent)
                 @can('create addresses')
                     <a href="{{ route('appshell.address.create') }}?for={{$for}}&forId={{ $of->id }}" class="btn btn-sm btn-outline-success float-right">
-                        <i class="zmdi zmdi-plus"></i>
+                        {!! icon('+') !!}
                         {{ __('New Address') }}
                     </a>
                 @endcan

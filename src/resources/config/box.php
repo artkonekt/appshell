@@ -41,10 +41,11 @@ return [
         'commands' => false,
     ],
     'ui' => [
-        'name'     => 'AppShell',
-        'url'      => '/admin/customer',
-        'logo_uri' => '/images/appshell/logo.svg',
-        'theme'    => 'appshell',
+        'name'       => 'AppShell',
+        'url'        => '/admin/customer',
+        'logo_uri'   => '/images/appshell/logo.svg',
+        'theme'      => 'appshell',
+        'icon_theme' => 'zmdi',
         'routes' => [
             'login'            => 'login',
             'logout'           => 'logout',

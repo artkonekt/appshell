@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the UnknownLayoutException class.
+ * Contains the InexistentThemeException class.
  *
  * @copyright   Copyright (c) 2020 Attila Fulop
  * @author      Attila Fulop
@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Exceptions;
 
-use LogicException;
+use RuntimeException;
 
-class UnknownLayoutException extends LogicException
+class NonExistentThemeException extends RuntimeException
 {
 }

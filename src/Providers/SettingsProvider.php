@@ -13,6 +13,7 @@ namespace Konekt\AppShell\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Konekt\Address\Models\CountryProxy;
+use Konekt\AppShell\Settings\UiIconThemeSetting;
 use Konekt\AppShell\Settings\UiLogoUriSetting;
 use Konekt\AppShell\Settings\UiNameSetting;
 use Konekt\AppShell\Settings\UiThemeSetting;
@@ -36,16 +37,22 @@ class SettingsProvider extends ServiceProvider
     {
         parent::register();
 
-        $this->app->singleton('appshell.settings_tree_builder', function ($app) {
-            $instance = new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
-            $this->buildSettingsTree($instance);
+        $this->app->singleton(
+            'appshell.settings_tree_builder',
+            function ($app) {
+                $instance = new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
+                $this->buildSettingsTree($instance);
 
-            return $instance;
-        });
+                return $instance;
+            }
+        );
 
-        $this->app->bind('appshell.settings_tree', function ($app) {
-            return $app['appshell.settings_tree_builder']->getTree();
-        });
+        $this->app->bind(
+            'appshell.settings_tree',
+            function ($app) {
+                return $app['appshell.settings_tree_builder']->getTree();
+            }
+        );
     }
 
     public function boot()
@@ -60,17 +67,20 @@ class SettingsProvider extends ServiceProvider
         $this->settingsRegistry->add(new UiNameSetting());
         $this->settingsRegistry->add(new UiLogoUriSetting());
         $this->settingsRegistry->add(new UiThemeSetting());
+        $this->settingsRegistry->add(new UiIconThemeSetting());
     }
 
     protected function bootDefaults()
     {
-        $this->settingsRegistry->add(new SimpleSetting(
-            'appshell.default.country',
-            null,
-            function () {
-                return ['' => '--'] + CountryProxy::all()->pluck('name', 'id')->all();
-            }
-        ));
+        $this->settingsRegistry->add(
+            new SimpleSetting(
+                'appshell.default.country',
+                null,
+                function () {
+                    return ['' => '--'] + CountryProxy::all()->pluck('name', 'id')->all();
+                }
+            )
+        );
     }
 
     protected function buildSettingsTree(TreeBuilder $ui)
@@ -84,18 +94,23 @@ class SettingsProvider extends ServiceProvider
            ->addSettingItem(
                'general_app',
                ['text', ['label' => __('Name')]],
-               'appshell.ui.name'
+               UiNameSetting::KEY
            )
            ->addSettingItem(
                'general_app',
                ['select', ['label' => __('UI Theme')]],
-               'appshell.ui.theme'
+               UiThemeSetting::KEY
            )
            ->addSettingItem(
-                'general_app',
-                ['text', ['label' => __('Logo Image URI')]],
-                'appshell.ui.logo_uri'
-            );
+               'general_app',
+               ['select', ['label' => __('Icon Theme')]],
+               UiIconThemeSetting::KEY
+           )
+           ->addSettingItem(
+               'general_app',
+               ['text', ['label' => __('Logo Image URI')]],
+               UiLogoUriSetting::KEY
+           );
 
         $ui->addChildNode('general', 'defaults', __('Defaults'))
            ->addSettingItem(

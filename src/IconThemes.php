@@ -3,21 +3,21 @@
 declare(strict_types=1);
 
 /**
- * Contains the Themes class.
+ * Contains the IconThemes class.
  *
  * @copyright   Copyright (c) 2020 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2020-03-21
+ * @since       2020-10-18
  *
  */
 
 namespace Konekt\AppShell;
 
-use Konekt\AppShell\Contracts\Theme;
-use Konekt\AppShell\Exceptions\NonExistentThemeException;
+use Konekt\AppShell\Contracts\IconTheme;
+use Konekt\AppShell\Exceptions\NonExistentIconThemeException;
 
-final class Themes
+final class IconThemes
 {
     /** @var array */
     private static array $registry = [];
@@ -28,13 +28,13 @@ final class Themes
             return;
         }
 
-        if (!in_array(Theme::class, class_implements($class))) {
+        if (!in_array(IconTheme::class, class_implements($class))) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'The class you are trying to register (%s) as theme, ' .
+                    'The class you are trying to register (%s) as icon theme, ' .
                     'must implement the %s interface.',
                     $class,
-                    Theme::class
+                    IconTheme::class
                 )
             );
         }
@@ -42,30 +42,30 @@ final class Themes
         self::$registry[$id] = $class;
     }
 
-    public static function make(string $id): Theme
+    public static function make(string $id): IconTheme
     {
-        $themeClass = self::getClass($id);
+        $iconThemeClass = self::getClass($id);
 
-        if (null === $themeClass && is_string($fallBackId = config('konekt.app_shell.ui.theme'))) {
-            // Falling back to the default theme in the config
-            $themeClass = self::getClass($fallBackId);
+        if (null === $iconThemeClass && is_string($fallBackId = config('konekt.app_shell.ui.icon_theme'))) {
+            // Falling back to the default icon theme in the config
+            $iconThemeClass = self::getClass($fallBackId);
             if (function_exists('flash')) {
                 flash()->warning(
                     __(
-                        'There is no theme found with id :theme_id. Falling back to default. Check your application settings.',
-                        ['theme_id' => $id]
+                        'There is no icon theme found with id :icon_theme_id. Falling back to default. Check your application settings.',
+                        ['icon_theme_id' => $id]
                     )
                 );
             }
         }
 
-        if (null === $themeClass) {
-            throw new NonExistentThemeException(
-                "No theme is registered with the id `$id`."
+        if (null === $iconThemeClass) {
+            throw new NonExistentIconThemeException(
+                "No icon theme is registered with the id `$id`."
             );
         }
 
-        return app()->make($themeClass);
+        return app()->make($iconThemeClass);
     }
 
     public static function reset(): void
@@ -93,4 +93,5 @@ final class Themes
 
         return $result;
     }
+
 }

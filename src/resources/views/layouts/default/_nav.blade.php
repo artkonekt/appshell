@@ -4,7 +4,7 @@
             <a class="nav-item {{ $item->attr('class') }}">
                 <a class="nav-link {{ $item->link->attr('class') }}" href="{!! $item->url() !!}">
                     @if($item->data('icon'))
-                        <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
+                        {!! icon($item->data('icon')) !!}
                     @endif
                     {!! $item->title !!}
                 </a>
@@ -15,7 +15,7 @@
                     <span class="nav-item nav-dropdown{{ $item->hasActiveChild() ? ' open' : '' }}">
                         <a href="#sidebar-submenu-{{$item->name}}" class="nav-link nav-dropdown-toggle" data-toggle="collapse" aria-expanded="{{ $item->hasActiveChild() ? 'true' : 'false' }}">
                             @if($item->data('icon'))
-                                <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
+                                {!! icon($item->data('icon')) !!}
                             @endif
                             {!! $item->title !!}
                         </a>
@@ -25,7 +25,7 @@
                                     <span class="nav-item {{ $childItem->attr('class') }}">
                                         <a class="nav-link {{ $childItem->link->attr('class') }}" href="{!! $childItem->url() !!}">
                                             @if($childItem->data('icon'))
-                                                <i class="zmdi zmdi-{{ $childItem->data('icon') }} zmdi-hc-fw"></i>
+                                                {!! icon($childItem->data('icon')) !!}
                                             @endif
                                             {!! $childItem->title !!}
                                         </a>
@@ -38,7 +38,7 @@
             @elseif ($item->isAllowed())
                 <a class="nav-title">
                     @if($item->data('icon'))
-                        <i class="zmdi zmdi-{{ $item->data('icon') }} zmdi-hc-fw"></i>
+                        {!! icon($item->data('icon')) !!}
                     @endif
                     {!! $item->title !!}
                 </a>

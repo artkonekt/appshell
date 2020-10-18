@@ -15,7 +15,7 @@
                 @can('create roles')
                     <a href="{{ route('appshell.role.create') }}"
                        class="btn btn-sm btn-outline-success float-right">
-                        <i class="zmdi zmdi-plus"></i>
+                        {!! icon('+') !!}
                         {{ __('New Role') }}
                     </a>
                 @endcan
@@ -74,7 +74,7 @@
     <div class="card card-accent-secondary mb-3" id="permissions">
 
         <div class="card-header">{{ __('Permissions') }}
-            <i class="zmdi zmdi-info text-info" title="{{ __("Permissions can not be edited, they are defined by System Modules") }}"></i>
+            {!! icon('help', 'info', ['title' => __("Permissions can not be edited, they are defined by System Modules")]) !!}
         </div>
 
         <div class="card-body">

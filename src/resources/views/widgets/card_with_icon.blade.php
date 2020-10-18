@@ -4,7 +4,7 @@
             @if (isset($iconSlot))
                 {{ $iconSlot }}
             @elseif (isset($icon))
-                <i class="zmdi zmdi-{{ $icon }}"></i>
+                {!! icon($icon) !!}
             @endif
         </div>
         <div class="h4 mb-0 text-uppercase {{ $titleClass ?? '' }}">

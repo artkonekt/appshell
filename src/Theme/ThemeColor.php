@@ -15,8 +15,9 @@ use Konekt\Enum\Enum;
 
 class ThemeColor extends Enum
 {
-    public const __DEFAULT = self::PRIMARY;
+    public const __DEFAULT = self::NONE;
 
+    public const NONE      = null;
     public const PRIMARY   = 'primary';
     public const SECONDARY = 'secondary';
     public const INFO      = 'info';
@@ -25,4 +26,5 @@ class ThemeColor extends Enum
     public const DANGER    = 'danger';
     public const DARK      = 'dark';
     public const LIGHT     = 'light';
+    public const MUTED     = 'muted';
 }

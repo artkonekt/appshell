@@ -14,7 +14,7 @@
             <div class="card-actionbar">
                 @can('create users')
                 <a href="{{ route('appshell.user.create') }}" class="btn btn-sm btn-outline-success float-right">
-                    <i class="zmdi zmdi-plus"></i>
+                    {!! icon('+') !!}
                     {{ __('New User') }}
                 </a>
                 @endcan

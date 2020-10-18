@@ -8,7 +8,7 @@
 
     <div class="card-deck mb-3">
         @component(theme_widget('card_with_icon'), [
-                'icon' => $user->is_active ? 'account-circle' : 'account-o',
+                'icon' => $user->is_active ? 'user-active' : 'user-inactive',
                 'type' => $user->is_active ? 'success' : 'warning'
         ])
             {{ $user->name }}
@@ -26,7 +26,7 @@
         @endcomponent
 
         @component(theme_widget('card_with_icon'), [
-                'icon' => 'shield-security',
+                'icon' => 'security',
                 'type' => 'info'
         ])
             {{ $user->type }}
@@ -45,7 +45,7 @@
             @endslot
         @endcomponent
 
-        @component(theme_widget('card_with_icon'), ['icon' => 'star-circle'])
+        @component(theme_widget('card_with_icon'), ['icon' => 'star'])
             {{ $user->login_count }} {{ __('logins') }}
 
             @slot('subtitle')

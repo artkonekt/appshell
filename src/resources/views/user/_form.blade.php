@@ -2,7 +2,7 @@
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
-                <i class="zmdi zmdi-account-circle"></i>
+                {!! icon('user') !!}
             </span>
         </div>
         {{ Form::text('name', null, [
@@ -22,7 +22,7 @@
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
-                <i class="zmdi zmdi-email"></i>
+                {!! icon('email') !!}
             </span>
         </div>
         {{ Form::email('email', null, [
@@ -47,7 +47,7 @@
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
-                <i class="zmdi zmdi-lock"></i>
+                {!! icon('password') !!}
             </span>
         </div>
         <?php $passwordPlaceholderText = $user->exists ? __('Type new password if you want to change it') : __('Enter password') ?>

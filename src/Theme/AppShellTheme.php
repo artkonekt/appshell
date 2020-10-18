@@ -38,5 +38,6 @@ final class AppShellTheme implements Theme
         'text'      => '#444',
         'dark'      => '#607375',
         'light'     => '#f1f3f3',
+        'muted'     => '#87a6ab'
     ];
 }

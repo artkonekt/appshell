@@ -2,12 +2,14 @@
     @forelse ($breadcrumbs as $breadcrumb)
         @if ($breadcrumb->url && !$loop->last)
             <a class="breadcrumb-item"
-               href="{{ $breadcrumb->url }}">@isset($breadcrumb->icon)<i
-                        class="zmdi zmdi-{{ $breadcrumb->icon }}"></i>@endisset{{ $breadcrumb->title }}
+               href="{{ $breadcrumb->url }}">@isset($breadcrumb->icon)
+                    {!! icon($breadcrumb->icon) !!}
+                @endisset{{ $breadcrumb->title }}
             </a>
         @else
-            <span class="breadcrumb-item active">@isset($breadcrumb->icon)<i
-                        class="zmdi zmdi-{{ $breadcrumb->icon }}"></i>@endisset{{ $breadcrumb->title }}
+            <span class="breadcrumb-item active">@isset($breadcrumb->icon)
+                    {!! icon($breadcrumb->icon) !!}
+                @endisset{{ $breadcrumb->title }}
             </span>
         @endif
     @empty

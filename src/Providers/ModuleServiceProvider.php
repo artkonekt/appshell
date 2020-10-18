@@ -34,10 +34,17 @@ use Konekt\AppShell\Http\Requests\UpdateCustomer;
 use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Icons\EnumIconMapper;
+use Konekt\AppShell\Icons\FontAwesomeIconTheme;
+use Konekt\AppShell\Icons\LineIconsTheme;
+use Konekt\AppShell\Icons\TablerIconTheme;
 use Konekt\AppShell\Icons\ZmdiAppShellIcons;
+use Konekt\AppShell\Icons\ZmdiIconTheme;
+use Konekt\AppShell\IconThemes;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\GravatarDefault;
 use Konekt\AppShell\Models\User;
+use Konekt\AppShell\Settings\UiIconThemeSetting;
+use Konekt\AppShell\Settings\UiThemeSetting;
 use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Themes;
 use Konekt\AppShell\Ui\UiConfig;
@@ -80,12 +87,22 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->concord->registerHelper('date', DateHelper::class);
         $this->concord->registerHelper('quickLinks', QuickLinkHelper::class);
         Themes::add(AppShellTheme::ID, AppShellTheme::class);
+        IconThemes::add(ZmdiIconTheme::ID, ZmdiIconTheme::class);
+        IconThemes::add(FontAwesomeIconTheme::ID, FontAwesomeIconTheme::class);
+        IconThemes::add(LineIconsTheme::ID, LineIconsTheme::class);
+        //Tabler icons disabled until https://github.com/tabler/tabler-icons/issues/13 gets fixed
+        //IconThemes::add(TablerIconTheme::ID, TablerIconTheme::class);
         $this->registerThirdPartyProviders();
         $this->registerCommands();
         $this->app->singleton(ResourcePermissionMapper::class, ResourcePermissionMapper::class);
         $this->app->singleton('appshell.icon', EnumIconMapper::class);
+
+        $this->app->singleton('appshell.icon_theme', function () {
+            return IconThemes::make(Settings::get(UiIconThemeSetting::KEY));
+        });
+
         $this->app->singleton('appshell.theme', function () {
-            $theme = Themes::make(Settings::get('appshell.ui.theme'));
+            $theme = Themes::make(Settings::get(UiThemeSetting::KEY));
             $this->app['config']->set('breadcrumbs.view', $theme->viewNamespace() . '::widgets.breadcrumbs');
 
             return $theme;
@@ -166,7 +183,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
             $crm
                 ->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])
-                ->data('icon', 'accounts-list')
+                ->data('icon', 'customers')
                 ->activateOnUrls($this->routeWildcard('appshell.customer.index'))
                 ->allowIfUserCan('list customers');
 
@@ -175,12 +192,12 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
             $settings
                 ->addSubItem('users', __('Users'), ['route' => 'appshell.user.index'])
-                ->data('icon', 'accounts')
+                ->data('icon', 'users')
                 ->activateOnUrls($this->routeWildcard('appshell.user.index'))
                 ->allowIfUserCan('list users');
             $settings
                 ->addSubItem('roles', __('Permissions'), ['route' => 'appshell.role.index'])
-                ->data('icon', 'shield-security')
+                ->data('icon', 'security')
                 ->activateOnUrls($this->routeWildcard('appshell.role.index'))
                 ->allowIfUserCan('list roles');
             $settings

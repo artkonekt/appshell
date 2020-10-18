@@ -14,7 +14,7 @@
             <div class="card-actionbar">
                 @can('create customers')
                 <a href="{{ route('appshell.customer.create') }}" class="btn btn-sm btn-outline-success float-right">
-                    <i class="zmdi zmdi-plus"></i>
+                    {!! icon('+') !!}
                     {{ __('Create Customer') }}
                 </a>
                 @endcan
@@ -63,8 +63,7 @@
                         </td>
                         <td>
                             <div class="mt-2">
-                                <i class="zmdi zmdi-{{ enum_icon($customer->type) }}"
-                               title="{{ $customer->type->label() }}"></i>
+                                {!! icon(enum_icon($customer->type), null, ['title' => $customer->type->label()]) !!}
                             </div>
                         </td>
                         <td>

@@ -9,7 +9,7 @@
     <div class="card card card-accent-secondary">
 
         <div class="card-header">
-            <i class="zmdi zmdi-shield-security"></i>
+            {!! icon('security') !!}
             @yield('title')
 
             @component('appshell::role._user_count', ['count' => $role->users->count()]) @endcomponent
@@ -22,12 +22,12 @@
                 <legend>{{ __('Allows') }}</legend>
                 @forelse($role->permissions as $permission)
                     <span class="badge badge-pill badge-success">
-                        <i class="zmdi zmdi-check"></i>
+                        {!! icon('check') !!}
                         {{ $permission->name }}
                     </span>
                 @empty
                     <span class="badge badge-pill badge-warning">
-                        <i class="zmdi zmdi-mood-bad"></i>
+                        {!! icon(':(') !!}
                         {{ __('nothing') }}
                     </span>
                 @endforelse
@@ -38,12 +38,12 @@
                 <legend>{{ __('Denies') }}</legend>
                 @forelse($noperms as $permission)
                     <span class="badge badge-pill badge-danger">
-                        <i class="zmdi zmdi-alert-triangle"></i>
+                        {!! icon('warning') !!}
                         {{ $permission->name }}
                     </span>
                 @empty
                     <span class="badge badge-pill badge-success">
-                        <i class="zmdi zmdi-mood"></i>
+                        {!! icon(':)') !!}
                         {{ __('nothing') }}
                     </span>
                 @endforelse
@@ -58,7 +58,7 @@
                         @else
                         <button type="button" class="btn btn-secondary">{{ $user->name }}</button>
                         @endcan
-                        <button type="button" class="btn btn-secondary"><i class="zmdi zmdi-more-vert"></i></button>
+                        <button type="button" class="btn btn-secondary">{!! icon('more-items') !!}</button>
                     </div>
                 @empty
                     <a href="javascript:;" class="btn btn-sm btn-secondary" style="margin-bottom: 5px">{{ __('No user assigned so far') }}</a>
@@ -67,7 +67,7 @@
                 @can(['edit users'])
                         <a href="{{ route('appshell.user.index') }}"
                            class="btn btn-sm btn-outline-success" style="margin-bottom: 5px">
-                            <i class="zmdi zmdi-plus"></i>
+                            {!! icon('+') !!}
                             {{ __('Assign to user') }}
                         </a>
 

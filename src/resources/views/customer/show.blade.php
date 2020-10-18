@@ -25,7 +25,7 @@
         @endcomponent
 
         @component(theme_widget('card_with_icon'), [
-                'icon' => 'time-countdown',
+                'icon' => 'time',
                 'type' => $customer->last_purchase_at ? 'success' : null
         ])
             {{ __('Last purchase') }}

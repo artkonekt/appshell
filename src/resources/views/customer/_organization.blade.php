@@ -2,7 +2,7 @@
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
-                <i class="zmdi zmdi-group-work"></i>
+                {!! icon('organization') !!}
             </span>
         </div>
         {{ Form::text('company_name', null, [
@@ -21,7 +21,7 @@
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
-                <i class="zmdi zmdi-toll"></i>
+                {!! icon('tax') !!}
             </span>
         </div>
         {{ Form::text('tax_nr', null, [

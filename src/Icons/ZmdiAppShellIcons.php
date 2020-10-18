@@ -41,8 +41,8 @@ class ZmdiAppShellIcons
         $this->iconMapper->registerEnumIcons(
             CustomerTypeProxy::enumClass(),
             [
-                CustomerType::ORGANIZATION => 'city',
-                CustomerType::INDIVIDUAL   => 'account'
+                CustomerType::ORGANIZATION => 'organization',
+                CustomerType::INDIVIDUAL   => 'user'
             ]
         );
     }
