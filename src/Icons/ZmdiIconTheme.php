@@ -49,6 +49,7 @@ class ZmdiIconTheme implements IconTheme
         AppShellIcons::TIME => 'time-countdown',
         AppShellIcons::TAX => 'toll',
         AppShellIcons::QUICK_LINKS => 'toys',
+        AppShellIcons::HAMBURGER => 'menu',
     ];
 
     public static function getName(): string

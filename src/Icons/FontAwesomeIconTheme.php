@@ -49,6 +49,7 @@ class FontAwesomeIconTheme implements IconTheme
         AppShellIcons::TIME => 'history',
         AppShellIcons::TAX => 'scroll',
         AppShellIcons::QUICK_LINKS => 'bolt',
+        AppShellIcons::HAMBURGER => 'bars',
     ];
 
     public static function getName(): string

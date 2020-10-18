@@ -49,6 +49,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::TIME => 'timer',
         AppShellIcons::TAX => 'stamp',
         AppShellIcons::QUICK_LINKS => 'bolt-alt',
+        AppShellIcons::HAMBURGER => 'menu',
     ];
 
     public static function getName(): string

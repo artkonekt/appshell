@@ -49,6 +49,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::TIME => 'history',
         AppShellIcons::TAX => 'tax',
         AppShellIcons::QUICK_LINKS => 'windmill',
+        AppShellIcons::HAMBURGER => 'menu-2',
     ];
 
     public static function getName(): string
