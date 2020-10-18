@@ -48,9 +48,9 @@
     </footer>
 
 <!-- Scripts -->
-@include('appshell::layouts.default._scripts')
-
 <script src="{{ asset('/js/appshell.js') }}"></script>
+
+@include('appshell::layouts.default._scripts')
 
 @yield('scripts')
 </body>
