@@ -27,7 +27,7 @@ class FontAwesomeIconTheme implements IconTheme
     private static string $fallbackIcon = 'bookmark';
 
     private static array $icons = [
-        AppShellIcons::USERS => 'users',
+        AppShellIcons::USERS => 'user-friends',
         AppShellIcons::USER => 'user',
         AppShellIcons::USER_ACTIVE => 'user',
         AppShellIcons::USER_INACTIVE => 'user-slash',
