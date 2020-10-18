@@ -15,6 +15,8 @@
     <link href="{{ asset('/css/appshell.css') }}" media="all" type="text/css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" media="all" type="text/css" rel="stylesheet" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
 
+    @include('appshell::layouts.default._header_includes')
+
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -51,6 +53,8 @@
 <script src="{{ asset('/js/appshell.js') }}"></script>
 
 @include('appshell::layouts.default._scripts')
+
+@include('appshell::layouts.default._footer_includes')
 
 @yield('scripts')
 </body>

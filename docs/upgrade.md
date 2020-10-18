@@ -14,6 +14,16 @@ followings in your application views:
 
 - The `getName` method in the Theme interface is now static
 
+### Assets
+
+The configuration based assets feature has been removed.
+Hence, entries under the `ui.assets` AppShell configuration node are no longer detected and
+injected in the layout.
+
+Use the blade based header and footer include partials in your application instead.
+
+For more details, refer to the [Assets Documentation](assets.md). 
+
 ### UI Data
 
 The `$appshell` object containing the UI config is no longer an `\stdClass` object but an instance
