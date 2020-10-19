@@ -11,7 +11,7 @@
 
 namespace Konekt\AppShell\Providers;
 
-use Carbon\Laravel\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use Konekt\AppShell\Preferences\DateFormatPreference;
 use Konekt\AppShell\Preferences\DateTimeFormatPreference;
 use Konekt\AppShell\Preferences\QuickLinksPreference;
@@ -21,10 +21,9 @@ use Konekt\Gears\UI\TreeBuilder;
 
 class PreferencesProvider extends ServiceProvider
 {
-    /** @var PreferencesRegistry $preferencesRegistry */
-    private $preferencesRegistry;
+    private PreferencesRegistry $preferencesRegistry;
 
-    private $preferencesTreeIsBuilt = false;
+    private bool $preferencesTreeIsBuilt = false;
 
     public function register()
     {

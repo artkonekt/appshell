@@ -11,6 +11,10 @@
 
 namespace Konekt\AppShell\Tests;
 
+use Collective\Html\FormFacade;
+use Collective\Html\HtmlFacade;
+use Collective\Html\HtmlServiceProvider;
+use Cviebrock\EloquentSluggable\ServiceProvider as SluggableServiceProviderAlias;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +24,10 @@ use Konekt\AppShell\Tests\Dummies\MemoryOnlyGearsBackend;
 use Konekt\Concord\ConcordServiceProvider;
 use Konekt\Gears\Providers\GearsServiceProvider;
 use Konekt\LaravelMigrationCompatibility\LaravelMigrationCompatibilityProvider;
+use Konekt\Menu\Facades\Menu;
+use Konekt\Menu\MenuServiceProvider;
 use Konekt\User\Models\UserType;
+use Laracasts\Flash\FlashServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
@@ -66,14 +73,21 @@ abstract class TestCase extends Orchestra
             ConcordServiceProvider::class,
             GearsServiceProvider::class,
             LaravelMigrationCompatibilityProvider::class,
-            BreadcrumbsServiceProvider::class
+            BreadcrumbsServiceProvider::class,
+            MenuServiceProvider::class,
+            FlashServiceProvider::class,
+            SluggableServiceProviderAlias::class,
+            HtmlServiceProvider::class,
         ];
     }
 
     protected function getPackageAliases($app)
     {
         return [
-            'Breadcrumbs' => Breadcrumbs::class
+            'Breadcrumbs' => Breadcrumbs::class,
+            'Menu' => Menu::class,
+            'Form' => FormFacade::class,
+            'Html' => HtmlFacade::class,
         ];
     }
 

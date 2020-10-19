@@ -1,6 +1,6 @@
 <?php
 /**
- * Contains the AppShellSettingsBooter class.
+ * Contains the SettingsProvider class.
  *
  * @copyright   Copyright (c) 2020 Attila Fulop
  * @author      Attila Fulop
@@ -17,8 +17,6 @@ use Konekt\AppShell\Settings\UiIconThemeSetting;
 use Konekt\AppShell\Settings\UiLogoUriSetting;
 use Konekt\AppShell\Settings\UiNameSetting;
 use Konekt\AppShell\Settings\UiThemeSetting;
-use Konekt\AppShell\Theme\AppShellTheme;
-use Konekt\AppShell\Themes;
 use Konekt\AppShell\Traits\AccessesAppShellConfig;
 use Konekt\Gears\Defaults\SimpleSetting;
 use Konekt\Gears\Registry\SettingsRegistry;
@@ -28,15 +26,12 @@ class SettingsProvider extends ServiceProvider
 {
     use AccessesAppShellConfig;
 
-    /** @var SettingsRegistry $settingsRegistry */
-    private $settingsRegistry;
+    private SettingsRegistry $settingsRegistry;
 
-    private $settingsTreeIsBuilt = false;
+    private bool $settingsTreeIsBuilt = false;
 
     public function register()
     {
-        parent::register();
-
         $this->app->singleton(
             'appshell.settings_tree_builder',
             function ($app) {
