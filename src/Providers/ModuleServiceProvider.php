@@ -44,7 +44,7 @@ use Menu;
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
     use HasBreadcrumbs;
-    use BootsMenuServiceProvider;
+    use BootsAppShellMenu;
 
     protected $requests = [
         CreateUser::class,

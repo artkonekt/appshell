@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the BootsMenuServiceProvider trait.
+ * Contains the BootsAppShellMenu trait.
  *
  * @copyright   Copyright (c) 2020 Attila Fulop
  * @author      Attila Fulop
@@ -17,7 +17,7 @@ namespace Konekt\AppShell\Providers;
 use Konekt\AppShell\Traits\AccessesAppShellConfig;
 use Konekt\Menu\Facades\Menu;
 
-trait BootsMenuServiceProvider
+trait BootsAppShellMenu
 {
     public function bootAppShellMenus()
     {
