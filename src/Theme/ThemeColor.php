@@ -24,6 +24,7 @@ class ThemeColor extends Enum
     public const SUCCESS   = 'success';
     public const WARNING   = 'warning';
     public const DANGER    = 'danger';
+    public const TEXT      = 'text';
     public const DARK      = 'dark';
     public const LIGHT     = 'light';
     public const MUTED     = 'muted';

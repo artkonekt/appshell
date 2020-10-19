@@ -19,25 +19,26 @@ final class AppShellTheme implements Theme
 
     public const ID = 'appshell';
 
-    private static $name = 'AppShell';
+    private static string $name = 'AppShell';
 
-    private static $viewNamespace = 'appshell';
+    private static string $viewNamespace = 'appshell';
 
-    private $layouts = [
+    private array $layouts = [
         'private' => 'appshell::layouts.default.private',
         'public'  => 'appshell::layouts.default.public',
     ];
 
-    private $themeColors = [
-        'primary'   => '#385170',
-        'secondary' => '#becdcf',
-        'info'      => '#0c9bd3',
-        'success'   => '#23a38b',
-        'warning'   => '#e8c547',
-        'danger'    => '#f24236',
-        'text'      => '#444',
-        'dark'      => '#607375',
-        'light'     => '#f1f3f3',
-        'muted'     => '#87a6ab'
+    private array $themeColors = [
+        ThemeColor::PRIMARY   => '#385170',
+        ThemeColor::SECONDARY => '#becdcf',
+        ThemeColor::INFO      => '#0c9bd3',
+        ThemeColor::SUCCESS   => '#23a38b',
+        ThemeColor::WARNING   => '#e8c547',
+        ThemeColor::DANGER    => '#f24236',
+        ThemeColor::TEXT      => '#444444',
+        ThemeColor::DARK      => '#607375',
+        ThemeColor::LIGHT     => '#f1f3f3',
+        ThemeColor::MUTED     => '#87a6ab',
+        ThemeColor::NONE      => '#444444',
     ];
 }

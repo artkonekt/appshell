@@ -20,9 +20,9 @@ function theme_widget(string $widgetName): string
     return theme()->viewNamespace() . '::widgets.' . $widgetName;
 }
 
-function theme_color(string $semanticColorName): string
+function theme_color(?string $semanticColorName): string
 {
-    return theme()->themeColorToHex($semanticColorName);
+    return theme()->themeColorToHex($semanticColorName ?? '');
 }
 
 function theme(): Theme

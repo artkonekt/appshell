@@ -35,11 +35,11 @@ trait IsGenericTheme
         return $this->layouts[$variant];
     }
 
-    public function themeColorToHex(string $themeColorName): string
+    public function themeColorToHex(?string $themeColorName): string
     {
         if (!isset($this->themeColors[$themeColorName])) {
             // #777: last resort fallback. Can be read on white, black and light gray backgrounds.
-            return strtolower($this->themeColors[ThemeColor::defaultValue()]) ?? '#777';
+            return strtolower($this->themeColors[ThemeColor::defaultValue()] ?? '#777');
         }
 
         return strtolower($this->themeColors[$themeColorName]);

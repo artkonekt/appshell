@@ -15,7 +15,7 @@ interface Theme
 {
     public static function getName(): string;
 
-    public function themeColorToHex(string $themeColorName): string;
+    public function themeColorToHex(?string $themeColorName): string;
 
     public function hexToThemeColor(string $hexColor): ?string;
 
