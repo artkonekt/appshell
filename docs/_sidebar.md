@@ -13,6 +13,8 @@
 
 - III. Customization
     - [Customizing Admin UI](customize-admin-ui.md)
+    - [Themes](themes.md)
+    - [Icon Themes](icon-themes.md)
     - [Add Assets To The Layout](assets.md)
     - [Change Admin URL Prefix](change-url-prefix.md)
     - [Using Custom Models](models.md)

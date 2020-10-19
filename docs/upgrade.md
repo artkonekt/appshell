@@ -2,7 +2,7 @@
 
 ## 1.x -> 2.0
 
-## Make Superuser Command
+### Make Superuser Command
 
 - The `appshell:super` artisan command has been renamed to `make:superuser`
 
@@ -15,6 +15,50 @@ followings in your application views:
 2. Change `@extends('appshell::layouts.auth')` to => `@extends('appshell::layouts.public')` 
 
 - The `getName` method in the Theme interface is now static
+
+### Color Helper
+
+The `semantic_color_to_hex()` method has been renamed to `theme_color()`.
+
+It does the same thing, but takes the values from the current theme.
+
+### Enum Icon Mapping
+
+This was an undocumented feature, so the likelihood you'll stumble upon this are low.
+
+The service `app('appshell.icon')` no longer exists, and it's class `EnumIconMapper` has been
+converted to a static registry called `EnumIcons`.
+
+**Old code:**
+
+```php
+$this->app['appshell.icon']->registerEnumIcons(
+    IssueStatus::class,
+    [
+        IssueStatus::TODO        => 'circle-o', //with AppShell v1 icon name had to be a ZMDI icon
+        IssueStatus::IN_PROGRESS => 'spinner',
+        IssueStatus::DONE        => 'check-circle-u'
+    ]
+);
+```
+
+**New code:**
+
+```php
+EnumIcons::registerEnumIcons(
+    IssueStatus::class,
+    [
+        IssueStatus::TODO        => 'circle-o', // with AppShell v2, due to Icon Theme support,
+        IssueStatus::IN_PROGRESS => 'spinner',  // icon name has to be an abstract icon name
+        IssueStatus::DONE        => 'check-circle-u'
+    ]
+);
+```
+
+Also, the icon names have to be "abstract" icon names and not icon names specific to an icon set
+like Font Awesome, ZMDI Material Icons, Line Icons, etc.
+
+See [Icon Themes Section](icon-themes.md) for more details.
 
 ### Assets
 

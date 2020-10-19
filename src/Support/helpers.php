@@ -8,23 +8,6 @@
  */
 
 /**
- * Returns the icon for a specific enum (value)
- *
- * @param \Konekt\Enum\Enum $enum
- *
- * @return mixed
- */
-function enum_icon(\Konekt\Enum\Enum $enum)
-{
-    return app('appshell.icon')->icon($enum);
-}
-
-function semantic_color_to_hex(string $color): string
-{
-    return app('appshell.theme')->themeColorToHex($color);
-}
-
-/**
  * Returns whether the given array contains any of the keys
  *
  * @param array $haystack   The array to search for the keys
