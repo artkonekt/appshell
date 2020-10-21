@@ -64,6 +64,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::TAX => 'tax',
         AppShellIcons::QUICK_LINKS => 'windmill',
         AppShellIcons::HAMBURGER => 'menu-2',
+        AppShellIcons::LINK => 'link',
     ];
 
     public static function getName(): string

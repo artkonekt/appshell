@@ -56,4 +56,5 @@ final class AppShellIcons
     public const TAX           = 'tax';
     public const QUICK_LINKS   = 'quick-links';
     public const HAMBURGER     = 'hamburger';
+    public const LINK          = 'link';
 }
