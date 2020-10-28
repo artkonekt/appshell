@@ -32,6 +32,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::USER_ACTIVE => 'user-check',
         AppShellIcons::USER_INACTIVE => 'user-x',
         AppShellIcons::CUSTOMERS => 'id',
+        AppShellIcons::CUSTOMER => 'id',
         AppShellIcons::WARNING => 'alert-octagon',
         AppShellIcons::ACTIVE => 'arrow-right-circle',
         AppShellIcons::INACTIVE => 'circle-x',

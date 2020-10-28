@@ -32,6 +32,7 @@ class FontAwesomeIconTheme implements IconTheme
         AppShellIcons::USER_ACTIVE => 'user',
         AppShellIcons::USER_INACTIVE => 'user-slash',
         AppShellIcons::CUSTOMERS => 'address-card',
+        AppShellIcons::CUSTOMER => 'id-badge',
         AppShellIcons::WARNING => 'exclamation-triangle',
         AppShellIcons::ACTIVE => 'chevron-circle-right',
         AppShellIcons::INACTIVE => 'times-circle',

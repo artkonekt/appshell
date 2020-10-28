@@ -32,6 +32,7 @@ class ZmdiIconTheme implements IconTheme
         AppShellIcons::USER_ACTIVE => 'account-circle',
         AppShellIcons::USER_INACTIVE => 'account-o',
         AppShellIcons::CUSTOMERS => 'accounts-list',
+        AppShellIcons::CUSTOMER => 'account-box-o',
         AppShellIcons::WARNING => 'alert-triangle',
         AppShellIcons::ACTIVE => 'play-circle-outline',
         AppShellIcons::INACTIVE => 'close-circle-o',

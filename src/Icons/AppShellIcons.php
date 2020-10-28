@@ -24,6 +24,7 @@ final class AppShellIcons
     public const USER_INACTIVE = 'user-inactive';
     public const USERS         = 'users';
     public const CUSTOMERS     = 'customers';
+    public const CUSTOMER      = 'customer';
     public const WARNING       = 'warning';
     public const ACTIVE        = 'active';
     public const INACTIVE      = 'inactive';

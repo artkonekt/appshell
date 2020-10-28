@@ -32,6 +32,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::USER_ACTIVE => 'user',
         AppShellIcons::USER_INACTIVE => 'user',
         AppShellIcons::CUSTOMERS => 'consulting',
+        AppShellIcons::CUSTOMER => 'target-customer',
         AppShellIcons::WARNING => 'warning',
         AppShellIcons::ACTIVE => 'chevron-right-circle',
         AppShellIcons::INACTIVE => 'cross-circle',
