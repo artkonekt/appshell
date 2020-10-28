@@ -50,6 +50,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::SMILEY_SAD => 'mood-confuzed',
         AppShellIcons::MORE_ITEMS => 'dots-vertical',
         AppShellIcons::PLUS => 'plus',
+        AppShellIcons::MINUS => 'minus',
         AppShellIcons::EDIT => 'pencil',
         AppShellIcons::DELETE => 'x',
         AppShellIcons::TAG => 'tag',
@@ -66,6 +67,8 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::HAMBURGER => 'menu-2',
         AppShellIcons::LINK => 'link',
         AppShellIcons::IMAGE => 'photo',
+        AppShellIcons::CHEVRON_RIGHT => 'chevron-right',
+        AppShellIcons::CHEVRON_LEFT => 'chevron-left',
     ];
 
     public static function getName(): string

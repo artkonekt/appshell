@@ -42,6 +42,7 @@ final class AppShellIcons
     public const SMILEY_SAD    = ':(';
     public const MORE_ITEMS    = 'more-items';
     public const PLUS          = '+';
+    public const MINUS         = '-';
     public const EDIT          = 'edit';
     public const DELETE        = 'delete';
     public const TAG           = 'tag';
@@ -58,4 +59,6 @@ final class AppShellIcons
     public const HAMBURGER     = 'hamburger';
     public const LINK          = 'link';
     public const IMAGE         = 'image';
+    public const CHEVRON_RIGHT = '>';
+    public const CHEVRON_LEFT  = '<';
 }

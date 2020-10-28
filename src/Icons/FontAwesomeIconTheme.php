@@ -50,6 +50,7 @@ class FontAwesomeIconTheme implements IconTheme
         AppShellIcons::SMILEY_SAD => 'sad-tear',
         AppShellIcons::MORE_ITEMS => 'ellipsis-v',
         AppShellIcons::PLUS => 'plus',
+        AppShellIcons::MINUS => 'minus',
         AppShellIcons::EDIT => 'pen',
         AppShellIcons::DELETE => 'times',
         AppShellIcons::TAG => 'tag',
@@ -66,6 +67,8 @@ class FontAwesomeIconTheme implements IconTheme
         AppShellIcons::HAMBURGER => 'bars',
         AppShellIcons::LINK => 'link',
         AppShellIcons::IMAGE => 'images',
+        AppShellIcons::CHEVRON_RIGHT => 'chevron-right',
+        AppShellIcons::CHEVRON_LEFT => 'chevron-left',
     ];
 
     public static function getName(): string

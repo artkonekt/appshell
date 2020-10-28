@@ -50,6 +50,7 @@ class ZmdiIconTheme implements IconTheme
         AppShellIcons::SMILEY_SAD => 'mood-bad',
         AppShellIcons::MORE_ITEMS => 'more-vert',
         AppShellIcons::PLUS => 'plus',
+        AppShellIcons::MINUS => 'minus',
         AppShellIcons::EDIT => 'edit',
         AppShellIcons::DELETE => 'close',
         AppShellIcons::TAG => 'label',
@@ -66,6 +67,8 @@ class ZmdiIconTheme implements IconTheme
         AppShellIcons::HAMBURGER => 'menu',
         AppShellIcons::LINK => 'link',
         AppShellIcons::IMAGE => 'collection-image-o',
+        AppShellIcons::CHEVRON_RIGHT => 'chevron-right',
+        AppShellIcons::CHEVRON_LEFT => 'chevron-left',
     ];
 
     public static function getName(): string

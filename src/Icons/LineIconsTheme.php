@@ -50,6 +50,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::SMILEY_SAD => 'emoji-suspect',
         AppShellIcons::MORE_ITEMS => 'chevron-down',
         AppShellIcons::PLUS => 'plus',
+        AppShellIcons::MINUS => 'minus',
         AppShellIcons::EDIT => 'pencil',
         AppShellIcons::DELETE => 'close',
         AppShellIcons::TAG => 'tag',
@@ -66,6 +67,8 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::HAMBURGER => 'menu',
         AppShellIcons::LINK => 'link',
         AppShellIcons::IMAGE => 'image',
+        AppShellIcons::CHEVRON_RIGHT => 'chevron-right',
+        AppShellIcons::CHEVRON_LEFT => 'chevron-left',
     ];
 
     public static function getName(): string
