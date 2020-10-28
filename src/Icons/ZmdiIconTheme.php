@@ -65,6 +65,7 @@ class ZmdiIconTheme implements IconTheme
         AppShellIcons::QUICK_LINKS => 'toys',
         AppShellIcons::HAMBURGER => 'menu',
         AppShellIcons::LINK => 'link',
+        AppShellIcons::IMAGE => 'collection-image-o',
     ];
 
     public static function getName(): string
