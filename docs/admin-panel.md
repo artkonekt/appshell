@@ -82,7 +82,6 @@ and the compile the assets with mix: `yarn run dev`
 yarn install
 ```
 
-
 ## Private And Public Layouts
 
 Regardless of whether you use AppShell as a Single UI or a separate Admin UI with some public

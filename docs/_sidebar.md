@@ -6,10 +6,10 @@
 
 - II. How To Use
     - [Admin Panel](admin-panel.md)
-    - [Breadcrumbs](breadcrumbs.md) 
     - [Authentication](admin-authentication.md)
     - [ACL](acl.md) 
     - [Menu Component](menu.md)
+    - [Breadcrumbs](breadcrumbs.md) 
 
 - III. Customization
     - [Customizing Admin UI](customize-admin-ui.md)

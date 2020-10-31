@@ -38,3 +38,7 @@ Content of `resources/views/vendor/appshell/layouts/default/_footer_includes.bla
     @endauth
 @endproduction
 ```
+
+---
+
+**Next**: [Change Admin URL Prefix &raquo;](change-url-prefix.md)

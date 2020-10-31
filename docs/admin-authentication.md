@@ -1,13 +1,13 @@
 # Authentication
 
 AppShell's authentication completely relies on
-[Laravel Authentication](https://laravel.com/docs/5.7/authentication).
+[Laravel Authentication](https://laravel.com/docs/8.x/authentication).
 
 Thus there's no additional functionality implemented in this module, all the related
-[routes, controllers, middleware, etc](https://laravel.com/docs/5.7/authentication#authentication-quickstart)
+[routes, controllers, middleware, etc](https://laravel.com/docs/8.x/authentication#authentication-quickstart)
 has to be done by the host application (ie. your app).
 
-AppShell only contains very tiny extensions to the stock Laravel authencication system:
+AppShell only contains very tiny extensions to the stock Laravel authentication system:
 
 - Additional user table fields
 - Automatic login counter

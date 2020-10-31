@@ -2,6 +2,8 @@
 
 ## 1.x -> 2.0
 
+Beginning with AppShell 2.0, the minimum required PHP version is PHP 7.4, minimum Laravel is 6.18, 7.0, 8.0.
+
 ### Make Superuser Command
 
 - The `appshell:super` artisan command has been renamed to `make:superuser`
