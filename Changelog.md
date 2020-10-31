@@ -8,6 +8,14 @@
 - AppShell Theme facelift
 - Dropped Laravel 5 Support
 - Dropped PHP 7.2 & 7.3 Support
+- Renamed `appshell:super` artisan command to `make:superuser`
+- BC: `semantic_color_to_hex` helper has been renamed to `theme_color`
+- BC: ACL permission naming of resources with multipart names has been changed (eg. mapping of `userTypes`: was `user_types`/`usertypes` in 1.x, has become `user types` in 2.x)
+- BC: Removed the configuration based asset injection support
+- Added a blade based asset injection (into the default theme/layout)
+- Added proper Theme support
+- Added Icon Theme support
+- Added Lineicons 2 and Fontawesome 5 icon themes besides Material Icons (ZMDI)
 - Deprecated the `ResourcePermissions` static class in favour of the `ResourcePermissionMapper` singleton
 - Improved Menu item activation (js workaround has been removed)
 - AppShell logo uri can be set in config/settings

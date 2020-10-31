@@ -6,7 +6,6 @@
 [![Packagist downloads](https://img.shields.io/packagist/dt/konekt/appshell.svg?style=flat-square)](https://packagist.org/packages/konekt/appshell)
 [![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
-
 Konekt AppShell is a Laravel Extension that serves as foundation for Laravel business applications.
 
 - Users & their profiles
@@ -27,16 +26,16 @@ Refer to the [Documentation](https://konekt.dev/appshell/docs) for more details.
 
 ## Changes in 2.0
 
-- [ ] Remove hardcoded dependency on `home` `login` and `logout` routes
+- [X] Remove hardcoded dependency on `home` `login` and `logout` routes
     - [X] home
-    - [ ] login
-    - [ ] logout
+    - [X] login
+    - [X] logout
 - [X] Drop Core UI
 - [X] Use proper Bootstrap 4.3/4.4 classes
-- [ ] Proper Theme Support
-    - [ ] list of available themes
-    - [ ] theme colors
-    - [ ] theme assets
-    - [ ] theme saved as preference
-- [ ] Fix UI url and home route (in breadcrumbs) ambiguity
-- [ ] Secondary menus
+- [X] Proper Theme Support
+    - [X] list of available themes
+    - [X] theme colors
+    - [-] theme assets (won't do)
+    - [X] theme saved as preference
+- [X] Fix UI url and home route (in breadcrumbs) ambiguity
+- [-] Secondary menus (won't do)
