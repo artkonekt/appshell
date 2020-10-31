@@ -54,7 +54,6 @@ trait BootsAppShellMenu
                 ->data('icon', 'settings')
                 ->allowIfUserCan('list settings');
         }
-
     }
 
     private function routeWildcard(string $route): string

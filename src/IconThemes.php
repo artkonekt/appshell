@@ -93,5 +93,4 @@ final class IconThemes
 
         return $result;
     }
-
 }
