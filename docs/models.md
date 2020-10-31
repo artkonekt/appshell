@@ -1,7 +1,7 @@
 ## Using Custom Models
 
 AppShell imports several Models (entities) from underlying components like [Address](https://konekt.dev/address)
-or [Customer](https://github.com/artkonekt/customer).
+or [Customer](https://konekt.dev/customer).
 
 To see the available models use the following command:
 

@@ -2,6 +2,8 @@
 
 ## 1.x -> 2.0
 
+Beginning with AppShell 2.0, the minimum required PHP version is PHP 7.4, minimum Laravel is 6.18, 7.0, 8.0.
+
 ### Make Superuser Command
 
 - The `appshell:super` artisan command has been renamed to `make:superuser`
@@ -22,9 +24,53 @@ The `semantic_color_to_hex()` method has been renamed to `theme_color()`.
 
 It does the same thing, but takes the values from the current theme.
 
+### Icons
+
+It's not necessary, but if you want your app to use an icon theme other than
+[ZMDI](https://zavoloklom.github.io/material-design-iconic-font/icons.html) then convert your icons
+to use the `{!! icon('name') !!}` syntax in your views.
+
+```blade
+{{-- Old code --}}
+<i class="zmdi zmdi-plus"></i>
+
+{{-- New code, supporting icon themes --}}
+{!! icon('+') !!}
+``` 
+
+If you want your app to support icon themes, then use the `ExtendsIconThemes` and/or
+`RegistersEnumIcons` helper traits:
+
+```php
+// app/Providers/AppServiceProvider.php
+class AppServiceProvider extends ServiceProvider
+{
+    use ExtendsIconThemes;
+
+    // Define the $icons property in this structure:
+    private array $icons = [
+        'projects'  => [
+            ZmdiIconTheme::ID        => 'folder-star',
+            LineIconsTheme::ID       => 'folder',
+            FontAwesomeIconTheme::ID => 'folder-open'
+        ],
+        'worklogs'  => [
+            ZmdiIconTheme::ID        => 'collection-text',
+            LineIconsTheme::ID       => 'indent-increase',
+            FontAwesomeIconTheme::ID => 'receipt'
+        ],
+    ];
+    
+    public function boot()
+    {
+        $this->registerIconExtensions();
+    }
+}
+```
+
 ### Enum Icon Mapping
 
-This was an undocumented feature, so the likelihood you'll stumble upon this are low.
+This was an undocumented feature, so the likelihood you'll stumble upon this is very low.
 
 The service `app('appshell.icon')` no longer exists, and it's class `EnumIconMapper` has been
 converted to a static registry called `EnumIcons`.
@@ -48,15 +94,27 @@ $this->app['appshell.icon']->registerEnumIcons(
 EnumIcons::registerEnumIcons(
     IssueStatus::class,
     [
-        IssueStatus::TODO        => 'circle-o', // with AppShell v2, due to Icon Theme support,
-        IssueStatus::IN_PROGRESS => 'spinner',  // icon name has to be an abstract icon name
-        IssueStatus::DONE        => 'check-circle-u'
+        IssueStatus::TODO        => 'todo',    // with AppShell v2, due to Icon Theme support,
+        IssueStatus::IN_PROGRESS => 'spinner', // icon name has to be an abstract icon name
+        IssueStatus::DONE        => 'check'
     ]
 );
 ```
 
 Also, the icon names have to be "abstract" icon names and not icon names specific to an icon set
 like Font Awesome, ZMDI Material Icons, Line Icons, etc.
+
+In blade views you can continue using the `enum_icon` helper:
+
+```blade
+@component(theme_widget('card_with_icon'), [
+        'icon' => enum_icon($issue->status)
+])
+
+{{-- OR --}}
+
+{!! icon(enum_icon($worklog->state)) !!}
+```
 
 See [Icon Themes Section](icon-themes.md) for more details.
 

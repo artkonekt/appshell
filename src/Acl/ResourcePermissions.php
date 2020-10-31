@@ -19,7 +19,7 @@ use Konekt\Acl\PermissionRegistrar;
  * Utility class for handling standard resource permissions
  * @deprecated
  */
-class ResourcePermissions
+final class ResourcePermissions
 {
     public static $permissions = ['list', 'create', 'view', 'edit', 'delete'];
 
