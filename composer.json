@@ -28,8 +28,8 @@
         "konekt/enum-eloquent": "~1.5",
         "laravelcollective/html": "~6.0",
         "laracasts/flash": "~3.0",
-        "davejamesmiller/laravel-breadcrumbs": "^5.3",
-        "cviebrock/eloquent-sluggable": "6 - 8"
+        "cviebrock/eloquent-sluggable": "6 - 8",
+        "diglactic/laravel-breadcrumbs": "^6.0"
     },
     "require-dev": {
         "ext-sqlite3": "*",

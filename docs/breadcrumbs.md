@@ -8,11 +8,11 @@ package.
 Use the `Breadcrumbs` facade to define breadcrumbs:
 
 ```php
-Breadcrumbs::register('home', function ($breadcrumbs) {
+Breadcrumbs::for('home', function ($breadcrumbs) {
     $breadcrumbs->push(__('Home'), url('/'));
 });
 
-Breadcrumbs::register('app.order.index', function ($breadcrumbs) {
+Breadcrumbs::for('app.order.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
     $breadcrumbs->push(__('Orders'), route('app.order.index'));
 });
@@ -27,7 +27,7 @@ Add `breadcrumbs.php` to your module's `<module_root>/resources/routes/` folder:
 
 ```php
 // Define breadcrumbs:
-Breadcrumbs::register('app.product.index', function ($breadcrumbs) {
+Breadcrumbs::for('app.product.index', function ($breadcrumbs) {
     // 
 });
 ```
