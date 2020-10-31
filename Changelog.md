@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2020-XX-XX
+## 2.0.0
+##### 2020-10-31
 
 - Dropped Core UI
 - AppShell Theme rework on top of plain Bootstrap 4
