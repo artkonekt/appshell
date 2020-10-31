@@ -68,7 +68,6 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     {
         parent::register();
 
-        $this->app->register(AuthServiceProvider::class);
         $this->app->register(ViewServiceProvider::class);
         $this->app->register(SettingsProvider::class);
         $this->app->register(PreferencesProvider::class);
