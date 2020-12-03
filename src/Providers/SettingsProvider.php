@@ -13,6 +13,7 @@ namespace Konekt\AppShell\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Konekt\Address\Models\CountryProxy;
+use Konekt\AppShell\Settings\Email\EmailDriverSetting;
 use Konekt\AppShell\Settings\UiIconThemeSetting;
 use Konekt\AppShell\Settings\UiLogoUriSetting;
 use Konekt\AppShell\Settings\UiNameSetting;
@@ -54,7 +55,13 @@ class SettingsProvider extends ServiceProvider
     {
         $this->settingsRegistry = $this->app['gears.settings_registry'];
         $this->bootUISettings();
+        $this->bootEmailSettings();
         $this->bootDefaults();
+    }
+
+    protected function bootEmailSettings()
+    {
+        $this->settingsRegistry->add(new EmailDriverSetting());
     }
 
     protected function bootUISettings()
@@ -112,6 +119,14 @@ class SettingsProvider extends ServiceProvider
                'defaults',
                ['select', ['label' => __('Default Country')]],
                'appshell.default.country'
+           );
+
+        $ui->addRootNode('email', __('E-mail'))
+           ->addChildNode('email', 'email_config', __('Configuration'))
+           ->addSettingItem(
+               'email_config',
+               ['select', ['label' => __('Driver')]],
+               EmailDriverSetting::KEY
            );
 
         $this->settingsTreeIsBuilt = true;
