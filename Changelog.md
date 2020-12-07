@@ -4,6 +4,7 @@
 ##### 2020-XX-YY
 
 - Added PHP 8 support
+- Changed CI from Travis to Github Actions
 
 ## 2.0.0
 ##### 2020-10-31
