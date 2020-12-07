@@ -14,13 +14,13 @@ jobs:
           - php: '8.0'
             laravel: '6.0'
           - php: '8.0'
+            laravel: '6.20'
+          - php: '8.0'
             laravel: '7.0'
           - php: '8.0'
             laravel: '7.30'
           - php: '8.0'
             laravel: '8.0'
-          - php: '8.0'
-            laravel: '8.17'
     name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
     steps:
       - name: Checkout
