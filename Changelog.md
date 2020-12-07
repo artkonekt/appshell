@@ -4,6 +4,7 @@
 ##### 2020-XX-YY
 
 - Added PHP 8 support
+  - PHP 8 only works with Laravel 8, due to the Sluggable library not supporting PHP 8 + Laravel 6 or 7 
 - Changed CI from Travis to Github Actions
 
 ## 2.0.0
