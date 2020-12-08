@@ -10,7 +10,7 @@
         {{ __('Enter Account Details') }}
     </div>
 
-    {!! Form::open(['route' => 'appshell.user.store', 'autocomplete' => 'off']) !!}
+    {!! Form::model($user, ['route' => 'appshell.user.store', 'autocomplete' => 'off']) !!}
 
         <div class="card-body">
             @include('appshell::user._form')
