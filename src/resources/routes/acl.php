@@ -19,6 +19,10 @@ Route::post('user/{user}/inactivate', [
     'uses' => 'UserController@inactivate',
     'as'   => 'user.inactivate'
 ]);
+Route::prefix('user')->group(function () {
+    Route::resource('invitation', 'InvitationController');
+});
+
 
 Route::resource('role', 'RoleController');
 Route::resource('customer', 'CustomerController');

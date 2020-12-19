@@ -6,6 +6,8 @@
 
 @section('content')
 
+    @include('appshell::user._subnav', ['active' => 'users'])
+
     <div class="card card-accent-secondary">
 
         <div class="card-header">
