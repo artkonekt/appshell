@@ -10,6 +10,10 @@
 |--------------------------------------------------------------------------
 */
 
+Route::prefix('user')->group(function () {
+    Route::resource('invitation', 'InvitationController');
+});
+
 Route::resource('user', 'UserController');
 Route::post('user/{user}/activate', [
     'uses' => 'UserController@activate',
@@ -19,9 +23,6 @@ Route::post('user/{user}/inactivate', [
     'uses' => 'UserController@inactivate',
     'as'   => 'user.inactivate'
 ]);
-Route::prefix('user')->group(function () {
-    Route::resource('invitation', 'InvitationController');
-});
 
 
 Route::resource('role', 'RoleController');
