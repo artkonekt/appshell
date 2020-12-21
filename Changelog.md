@@ -1,10 +1,10 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2020-XX-YY
+## 2.1.0
+##### 2020-12-21
 
 - Added PHP 8 support 
-- Added User Invitations Feature
+- Added User Invitation Feature
 - Changed placement of role on user form: moved to a new sidebar box on the right
 - Changed CI from Travis to Github Actions
 
