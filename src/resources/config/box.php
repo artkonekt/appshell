@@ -34,6 +34,12 @@ return [
             'middleware' => ['web', 'auth'],
             'files'      => ['nonacl']
         ],
+        [
+            'prefix'     => 'pub',
+            'as'         => 'appshell.public.',
+            'middleware' => ['web'],
+            'files'      => ['public']
+        ],
     ],
     'breadcrumbs' => true,
     'disable' => [

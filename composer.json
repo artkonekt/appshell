@@ -21,7 +21,7 @@
         "konekt/concord": "^1.5.1",
         "konekt/customer": "^2.0.1",
         "konekt/address": "^2.0",
-        "konekt/user": "^2.2",
+        "konekt/user": "^2.3",
         "konekt/acl": "~1.3",
         "konekt/menu": "^1.6.2",
         "konekt/gears": "^1.6",

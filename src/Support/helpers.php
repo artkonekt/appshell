@@ -20,10 +20,10 @@ function any_key_exists(array $haystack, array $needles)
     return count(array_intersect(array_keys($haystack), $needles)) > 0;
 }
 
-function avatar_image_url(\Konekt\User\Contracts\User $user = null, int $size = 100)
+function avatar_image_url($model = null, int $size = 100)
 {
-    if ($user) {
-        $hash    = md5($user->email);
+    if (null !== $model && isset($model->email)) {
+        $hash    = md5($model->email);
         $default = config('konekt.app_shell.avatar.gravatar.default');
     } else {
         $hash    = '00000000000000000000000000000000';

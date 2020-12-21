@@ -6,6 +6,8 @@
 - Added PHP 8 support
   - PHP 8 only works with Laravel 8, due to the Sluggable library not supporting PHP 8 + Laravel 6 or 7 
 - Changed CI from Travis to Github Actions
+- Added User Invitations Feature
+- Moved user roles to a new sidebar box on the right
 
 ## 2.0.0
 ##### 2020-10-31
