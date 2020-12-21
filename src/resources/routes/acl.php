@@ -24,7 +24,6 @@ Route::post('user/{user}/inactivate', [
     'as'   => 'user.inactivate'
 ]);
 
-
 Route::resource('role', 'RoleController');
 Route::resource('customer', 'CustomerController');
 Route::resource('address', 'AddressController');

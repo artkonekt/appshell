@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Http\Controllers;
 
-use Carbon\Carbon;
 use Konekt\AppShell\Contracts\Requests\AcceptInvitation;
 use Konekt\Gears\Facades\Settings;
 use Konekt\User\Contracts\Invitation;
