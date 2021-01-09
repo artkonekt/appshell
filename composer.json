@@ -29,7 +29,8 @@
         "laravelcollective/html": "~6.0",
         "laracasts/flash": "~3.0",
         "cviebrock/eloquent-sluggable": "6 - 8",
-        "diglactic/laravel-breadcrumbs": "^6.0"
+        "diglactic/laravel-breadcrumbs": "^6.0",
+        "illuminate/view": "^6.0|^7.0|^8.0"
     },
     "require-dev": {
         "ext-sqlite3": "*",

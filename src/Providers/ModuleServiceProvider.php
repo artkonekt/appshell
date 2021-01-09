@@ -80,6 +80,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->register(SettingsProvider::class);
         $this->app->register(PreferencesProvider::class);
         $this->app->register(UiServiceProvider::class);
+        $this->app->register(WidgetServiceProvider::class);
 
         // Register Helpers:
         $this->concord->registerHelper('color', ColorHelper::class);

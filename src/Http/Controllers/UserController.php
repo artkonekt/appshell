@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
+use Konekt\AppShell\Widgets;
 use Konekt\User\Contracts\User;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserTypeProxy;
@@ -26,8 +27,48 @@ class UserController extends BaseController
      */
     public function index()
     {
-        return view('appshell::user.index', [
-            'users' => UserProxy::all()
+        $table = Widgets::make('table', [
+            'avatar' => [
+                'widget' => 'avatar',
+                'title' => '&nbsp;'
+            ],
+            'name' => [
+                'widget' => [
+                    'type' => 'multi_text',
+                    'primary' => [
+                        'text' => '$model.name',
+                        'url' => [
+                            'route' => 'appshell.user.show',
+                            'parameters' => ['$model']
+                        ]
+                    ],
+                    'secondary' => [
+                        'text' => '$model.email'
+                    ],
+                ],
+                'title' => __('Name'),
+            ],
+            'created_at' => [
+                'title' => __('Registered'),
+                'widget' => [
+                    'type' => 'show_date',
+                    'text' => '$model.created_at'
+                ]
+            ],
+            'roles' => [
+                'title' => __('Roles'),
+            ],
+            'is_active' => [
+                'title' => __('Status'),
+            ],
+            'actions' => [
+                'title' => '&nbsp;',
+            ]
+        ]);
+
+        return view('appshell::user.index_widgetized', [
+            'users' => UserProxy::all(),
+            'table' => $table,
         ]);
     }
 
