@@ -60,6 +60,11 @@ class UserController extends BaseController
             ],
             'is_active' => [
                 'title' => __('Status'),
+                'widget' => [
+                    'type' => 'badge',
+                    'color' => 'success',
+                    'text' => '$model.is_active'
+                ]
             ],
             'actions' => [
                 'title' => '&nbsp;',

@@ -29,6 +29,7 @@ class WidgetServiceProvider extends ServiceProvider
     private $builtInWidgets = [
         'text' => Widgets\Text::class,
         'link' => Widgets\Link::class,
+        'badge' => Widgets\Badge::class,
         'show_date' => Widgets\ShowDate::class,
         'show_datetime' => Widgets\ShowDateTime::class,
         'show_time' => Widgets\ShowTime::class,
