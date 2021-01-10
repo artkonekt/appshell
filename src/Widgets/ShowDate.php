@@ -33,14 +33,13 @@ class ShowDate implements Widget
 
     public static function create(Theme $theme, array $options = []): Widget
     {
-        return new static($theme, Widgets::make('text', array_merge(
-            $options,
-            [
-                'text' => function ($data, Widget $widget) use ($options) {
-                    return show_date($widget->resolveSubstitutions($options, $data));
-                }
-            ]
-        )));
+        return new static(
+            $theme,
+            Widgets::make(
+                'text',
+                array_merge($options, ['filter' => 'show_date'])
+            )
+        );
     }
 
     public function render($data = null): string

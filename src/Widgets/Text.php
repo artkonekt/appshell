@@ -33,6 +33,9 @@ class Text implements Widget
     /** @var callable */
     private $text;
 
+    /** @var callable */
+    private $filter;
+
     private ?string $wrap;
 
     private array $tagAttributes = [];
@@ -49,6 +52,10 @@ class Text implements Widget
         $text = self::makeCallable($options['text'] ?? null);
         $instance = new static($theme, $text, $options['wrap'] ?? null);
 
+        if (isset($options['filter'])) {
+            $instance->setFilter($options['filter']);
+        }
+
         foreach (self::$allowedTagAttributes as $allowedTagAttribute) {
             if (isset($options[$allowedTagAttribute])) {
                 $instance->tagAttributes[$allowedTagAttribute] = $options[$allowedTagAttribute];
@@ -63,9 +70,23 @@ class Text implements Widget
         $text = $this->text;
 
         return $this->renderViewFromTheme('text', [
-            'text' => $text($data, $this),
+            'text' => $this->filter($text($data, $this)),
             'wrap' => $this->wrap,
             'tagAttributes' => $this->tagAttributes,
         ]);
+    }
+
+    public function setFilter($filter): void
+    {
+        $this->filter = $filter;
+    }
+
+    protected function filter(string $text, $data = null): string
+    {
+        if (null === $this->filter) {
+            return $text;
+        }
+
+        return call_user_func($this->filter, $text);
     }
 }

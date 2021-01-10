@@ -102,6 +102,13 @@ class TextWidgetTest extends TestCase
         $this->assertEquals('http://localhost/tesing-users/2733', trim($text->render($user)));
     }
 
+    /** @test */
+    public function filter_can_be_passed_to_manipulate_the_output_of_the_text()
+    {
+        $text = Text::create(new AppShellTheme(), ['text' => 'giovanni gatto', 'filter' => 'ucwords']);
+        $this->assertEquals('Giovanni Gatto', trim($text->render()));
+    }
+
     public function setUp(): void
     {
         parent::setUp();
