@@ -89,4 +89,3 @@ class TableWidgetTest extends TestCase
         $this->assertStringContainsString('Mr. Fritz Teufel</a>', $html);
     }
 }
-

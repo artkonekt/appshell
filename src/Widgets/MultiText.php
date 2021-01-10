@@ -41,10 +41,10 @@ class MultiText implements Widget
     }
     public static function create(Theme $theme, array $options = []): MultiText
     {
-        $primaryOptions = self::mergeWidgetOptions(self::$primaryDefaults, $options['primary'] ?? [] );
+        $primaryOptions = self::mergeWidgetOptions(self::$primaryDefaults, $options['primary'] ?? []);
         $primary = Widgets::make(isset($primaryOptions['url']) ? 'link' : 'text', $primaryOptions, $theme);
 
-        $secondaryOptions = self::mergeWidgetOptions(self::$secondaryDefaults, $options['secondary'] ?? [] );
+        $secondaryOptions = self::mergeWidgetOptions(self::$secondaryDefaults, $options['secondary'] ?? []);
         $secondary = Widgets::make(isset($secondaryOptions['url']) ? 'link' : 'text', $secondaryOptions, $theme);
 
         return new static($theme, $primary, $secondary);
