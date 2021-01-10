@@ -96,7 +96,7 @@ class LinkWidgetTest extends TestCase
         $link = Link::create(new AppShellTheme(), [
             'text' => 'Go To Signal',
             'url' => 'https://signal.org',
-            'onlyIfCan' => 'edit users'
+            'onlyIfCan' => 'view customers'
         ]);
 
         $this->actingAs($this->normalUser);
