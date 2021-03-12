@@ -26,6 +26,7 @@ final class AppShellTheme implements Theme
     private array $layouts = [
         'private' => 'appshell::layouts.default.private',
         'public'  => 'appshell::layouts.default.public',
+        'print'   => 'appshell::layouts.default.print',
     ];
 
     private array $themeColors = [
