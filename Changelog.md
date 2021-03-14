@@ -1,9 +1,9 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2021-01-XX
+## 2.2.0
+##### 2021-03-14
 
-- 
+- Added print layout
 
 ## 2.1.0
 ##### 2020-12-21
