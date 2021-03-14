@@ -31,7 +31,7 @@ class Table implements Widget
 
     public array $options = [];
 
-    public function __construct(Theme $theme, array $columns, array $options = [])
+    public function __construct(Theme $theme, array $columns = [], array $options = [])
     {
         $this->theme = $theme;
         $this->columns = new Columns($columns);

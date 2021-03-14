@@ -36,8 +36,8 @@ class TableWidgetTest extends TestCase
         $table = new Table(new AppShellTheme(), ['id', 'name']);
         $html = $table->render();
 
-        $this->assertStringContainsString('<th>id', $html);
-        $this->assertStringContainsString('<th>name', $html);
+        $this->assertStringContainsString('<th >id', $html);
+        $this->assertStringContainsString('<th >name', $html);
     }
 
     /** @test */
@@ -46,8 +46,8 @@ class TableWidgetTest extends TestCase
         $table = new Table(new AppShellTheme(), ['id' => ['title' => '#'], 'name' => ['title' => 'Name']]);
         $html = $table->render();
 
-        $this->assertStringContainsString('<th>#', $html);
-        $this->assertStringContainsString('<th>Name', $html);
+        $this->assertStringContainsString('<th >#', $html);
+        $this->assertStringContainsString('<th >Name', $html);
     }
 
     /** @test */
