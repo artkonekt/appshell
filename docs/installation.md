@@ -4,7 +4,7 @@
 
 ## Requirements
 
-As of AppShell v2.1, the requirements are:
+As of AppShell v2.2, the requirements are:
 
 - PHP 7.4 or PHP 8.0
 - Laravel 6.x - 8.x
