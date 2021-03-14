@@ -55,7 +55,7 @@ AppShell comes with several predefined widgets:
 
 - Badge
 - Link
-- Text
+- [Text](widget-text.md)
 - MultiText
 - ShowDate
 - ShowDateTime
