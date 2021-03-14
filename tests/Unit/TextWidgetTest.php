@@ -109,6 +109,24 @@ class TextWidgetTest extends TestCase
         $this->assertEquals('Giovanni Gatto', trim($text->render()));
     }
 
+    /** @test */
+    public function filter_recognizes_registered_widget_filters()
+    {
+        $text = Text::create(new AppShellTheme(), ['text' => 'eleonora die hure', 'filter' => 'uppercase']);
+        $this->assertEquals('ELEONORA DIE HURE', trim($text->render()));
+
+        $text = Text::create(new AppShellTheme(), ['text' => 'Eleonora Die Hure', 'filter' => 'lowercase']);
+        $this->assertEquals('eleonora die hure', $text->render());
+
+        $text = Text::create(new AppShellTheme(), ['filter' => 'bool2text:ja,nein']);
+        $this->assertEquals('ja', $text->render(true));
+        $this->assertEquals('nein', $text->render(false));
+
+        $text = Text::create(new AppShellTheme(), ['filter' => 'bool2text:yes,']);
+        $this->assertEquals('yes', $text->render(1));
+        $this->assertEquals('', $text->render(null));
+    }
+
     public function setUp(): void
     {
         parent::setUp();

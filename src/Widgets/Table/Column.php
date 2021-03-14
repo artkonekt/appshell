@@ -26,6 +26,8 @@ class Column
 
     public string $id;
 
+    public ?string $width;
+
     private ?string $widget;
 
     private array $widgetOptions = [];
@@ -34,6 +36,7 @@ class Column
     {
         $this->id = $id;
         $this->title = $attributes['title'] ?? $id;
+        $this->width = $attributes['width'] ?? null;
 
         $widget = $attributes['widget'] ?? null;
         if (is_string($widget)) {
@@ -49,7 +52,7 @@ class Column
     public function render($lineData): string
     {
         if (null === $this->widget) {
-            return $this->getRawData($lineData, $this->id);
+            return (string) $this->getRawData($lineData, $this->id);
         }
 
         return Widgets::make($this->widget, $this->widgetOptions)->render($lineData);

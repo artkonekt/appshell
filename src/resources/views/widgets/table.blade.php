@@ -1,8 +1,8 @@
-<table class="table">
+<table class="table @isset($table->options['striped'])table-striped @endisset">
     <thead>
         <tr>
         @foreach($table->columns as $column)
-            <th>{!! $column->title !!}</th>
+            <th @isset($column->width)style="width: {{$column->width}};"@endisset>{!! $column->title !!}</th>
         @endforeach
         </tr>
     </thead>

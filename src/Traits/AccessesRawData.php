@@ -16,14 +16,14 @@ namespace Konekt\AppShell\Traits;
 
 trait AccessesRawData
 {
-    protected function getRawData($model, string $attribute): string
+    protected function getRawData($model, string $attribute)
     {
         if (is_array($model)) {
-            return (string) $model[$attribute] ?? '';
+            return $model[$attribute] ?? '';
         }
 
         if (is_object($model)) {
-            return (string) $model->{$attribute};
+            return $model->{$attribute};
         }
 
         return '';

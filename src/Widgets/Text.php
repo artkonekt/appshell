@@ -18,6 +18,7 @@ use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Traits\RendersThemedWidget;
 use Konekt\AppShell\Traits\ResolvesSubstitutions;
+use Konekt\AppShell\WidgetFilters;
 
 class Text implements Widget
 {
@@ -33,12 +34,18 @@ class Text implements Widget
     /** @var callable */
     private $text;
 
-    /** @var callable */
-    private $filter;
+    /** @var null|string|callable */
+    private $filter = null;
 
     private ?string $wrap;
 
     private array $tagAttributes = [];
+
+    private bool $bold = false;
+
+    private string $prefix = '';
+
+    private string $suffix = '';
 
     public function __construct(Theme $theme, callable $text, ?string $wrap = null)
     {
@@ -49,11 +56,23 @@ class Text implements Widget
 
     public static function create(Theme $theme, array $options = []): Text
     {
-        $text = self::makeCallable($options['text'] ?? null);
+        $text = self::makeCallable($options['text'] ?? '$model');
         $instance = new static($theme, $text, $options['wrap'] ?? null);
 
         if (isset($options['filter'])) {
             $instance->setFilter($options['filter']);
+        }
+
+        if (isset($options['bold'])) {
+            $instance->bold = (bool) $options['bold'];
+        }
+
+        if (isset($options['prefix'])) {
+            $instance->prefix = (string) $options['prefix'];
+        }
+
+        if (isset($options['suffix'])) {
+            $instance->suffix = (string) $options['suffix'];
         }
 
         foreach (self::$allowedTagAttributes as $allowedTagAttribute) {
@@ -70,9 +89,12 @@ class Text implements Widget
         $text = $this->text;
 
         return $this->renderViewFromTheme('text', [
-            'text' => $this->filter($text($data, $this)),
+            'text' => $this->filter((string) $text($data, $this)),
             'wrap' => $this->wrap,
             'tagAttributes' => $this->tagAttributes,
+            'bold' => $this->bold,
+            'prefix' => $this->prefix,
+            'suffix' => $this->suffix,
         ]);
     }
 
@@ -81,10 +103,14 @@ class Text implements Widget
         $this->filter = $filter;
     }
 
-    protected function filter(string $text, $data = null): string
+    protected function filter(string $text): string
     {
         if (null === $this->filter) {
             return $text;
+        }
+
+        if (is_string($this->filter) && WidgetFilters::exists($this->filter)) {
+            return WidgetFilters::make($this->filter)->handle($text);
         }
 
         return call_user_func($this->filter, $text);

@@ -21,31 +21,6 @@ trait ResolvesSubstitutions
 {
     use AccessesRawData;
 
-    private static function makeCallable($definition): callable
-    {
-        if (is_string($definition)) {
-            return function ($data, Widget $widget) use ($definition) {
-                return $widget->resolveSubstitutions($definition, $data);
-            };
-        }
-
-        if (is_array($definition)) {
-            if (array_key_exists('route', $definition)) {
-                return function ($data, Widget $widget) use ($definition) {
-                    return route($definition['route'], $widget->getParams($definition, $data));
-                };
-            } elseif (array_key_exists('path', $definition)) {
-                return function ($data, Widget $widget) use ($definition) {
-                    return url($definition['path'], $widget->getParams($definition, $data));
-                };
-            }
-        }
-
-        if (is_callable($definition)) {
-            return $definition;
-        }
-    }
-
     protected function getParams(array $definition, $data): array
     {
         $parameters = [];
@@ -70,5 +45,30 @@ trait ResolvesSubstitutions
         }
 
         return $parameter;
+    }
+
+    private static function makeCallable($definition): callable
+    {
+        if (is_string($definition)) {
+            return function ($data, Widget $widget) use ($definition) {
+                return $widget->resolveSubstitutions($definition, $data);
+            };
+        }
+
+        if (is_array($definition)) {
+            if (array_key_exists('route', $definition)) {
+                return function ($data, Widget $widget) use ($definition) {
+                    return route($definition['route'], $widget->getParams($definition, $data));
+                };
+            } elseif (array_key_exists('path', $definition)) {
+                return function ($data, Widget $widget) use ($definition) {
+                    return url($definition['path'], $widget->getParams($definition, $data));
+                };
+            }
+        }
+
+        if (is_callable($definition)) {
+            return $definition;
+        }
     }
 }

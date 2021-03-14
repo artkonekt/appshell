@@ -16,66 +16,49 @@ namespace Konekt\AppShell\Widgets;
 
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
-use Konekt\AppShell\Theme\ThemeColor;
-use Konekt\AppShell\Traits\ManipulatesColors;
-use Konekt\AppShell\Traits\RendersThemedWidget;
+use Konekt\AppShell\Traits\ResolvesSubstitutions;
 use Konekt\AppShell\Widgets;
+use Konekt\AppShell\Widgets\Concerns\CalculatesContextualColors;
 
 class Badge implements Widget
 {
-    use RendersThemedWidget;
-    use ManipulatesColors;
+    use CalculatesContextualColors;
+    use ResolvesSubstitutions;
 
-    protected Text $text;
+    protected Theme $theme;
 
-    protected static string $filterMethodName;
+    protected array $options;
 
-    public function __construct(Theme $theme, Text $text)
+    public function __construct(Theme $theme, array $options)
     {
         $this->theme = $theme;
-        $this->text = $text;
+        $this->options = $options;
     }
 
     public static function create(Theme $theme, array $options = []): Widget
     {
-        return new static(
-            $theme,
-            Widgets::make(
-                'text',
-                self::calculateAttributes($options)
-            )
-        );
+        return new static($theme, $options);
     }
 
     public function render($data = null): string
     {
-        return $this->text->render($data);
+        return Widgets::make('text', $this->calculateAttributes($this->options, $data), $this->theme)
+            ->render($data);
     }
 
-    private static function calculateAttributes(array $options): array
+    private function calculateAttributes(array $options, $data = null): array
     {
         $result = $options;
         $result['wrap'] = $options['wrap'] ?? 'span';
         $style = null;
-        $contextClass = 'badge-primary';
 
-        $bgColor = $options['color'] ?? null;
-        if (null !== $bgColor) {
-            if (self::isThemeColor($bgColor)) {
-                $contextClass = 'badge-' . $bgColor;
-            } else {
-                $contextClass = '';
-                $style = "background-color: $bgColor;";
-                if (self::needsWhiteText($bgColor)) {
-                    $style .= 'color: #FFFFFF;';
-                }
-            }
-        }
-
+        $value = $this->resolveSubstitutions($options['text'] ?? '$model', $data);
+        $bgColor = $this->parseColorDefinition($options['color'] ?? null, $value);
+        $contextClass = $bgColor->themeColor->isNone() ? '' : 'badge-' . $bgColor->themeColor->value();
         $result['class'] = "badge badge-pill $contextClass " . ($options['class'] ?? '');
 
-        if (null !== $style) {
-            $result['style'] = $style;
+        if (null !== $bgColor->style) {
+            $result['style'] = $bgColor->style;
         }
 
         return $result;

@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
@@ -28,16 +29,19 @@ class Table implements Widget
 
     public Collection $data;
 
-    public function __construct(Theme $theme, array $columns = [])
+    public array $options = [];
+
+    public function __construct(Theme $theme, array $columns, array $options = [])
     {
         $this->theme = $theme;
         $this->columns = new Columns($columns);
+        $this->options = $options;
         $this->data = collect([]);
     }
 
     public static function create(Theme $theme, array $options = []): Table
     {
-        return new static($theme, $options);
+        return new static($theme, $options['columns'] ?? [], Arr::except($options, 'columns'));
     }
 
     public function render($data = null): string

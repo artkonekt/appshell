@@ -25,7 +25,7 @@ class MultiText implements Widget
     use RendersThemedWidget;
     use ResolvesSubstitutions;
 
-    protected static array $primaryDefaults = ['text' => ['wrap' => 'span', 'class' => 'font-weight-bold']];
+    protected static array $primaryDefaults = ['text' => ['wrap' => 'span', 'bold' => true]];
 
     protected static array $secondaryDefaults = ['text' => ['wrap' => 'div', 'class' => 'text-muted']];
 
@@ -42,10 +42,12 @@ class MultiText implements Widget
     public static function create(Theme $theme, array $options = []): MultiText
     {
         $primaryOptions = self::mergeWidgetOptions(self::$primaryDefaults, $options['primary'] ?? []);
-        $primary = Widgets::make(isset($primaryOptions['url']) ? 'link' : 'text', $primaryOptions, $theme);
+        $priType = $primaryOptions['type'] ?? (isset($primaryOptions['url']) ? 'link' : 'text');
+        $primary = Widgets::make($priType, $primaryOptions, $theme);
 
         $secondaryOptions = self::mergeWidgetOptions(self::$secondaryDefaults, $options['secondary'] ?? []);
-        $secondary = Widgets::make(isset($secondaryOptions['url']) ? 'link' : 'text', $secondaryOptions, $theme);
+        $secType = $secondaryOptions['type'] ?? (isset($secondaryOptions['url']) ? 'link' : 'text');
+        $secondary = Widgets::make($secType, $secondaryOptions, $theme);
 
         return new static($theme, $primary, $secondary);
     }
