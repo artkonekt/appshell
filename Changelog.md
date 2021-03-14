@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2021-XX-YY
+
+- Added Widget based rendering
+
 ## 2.2.0
 ##### 2021-03-14
 

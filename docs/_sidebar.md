@@ -7,7 +7,7 @@
 - II. How To Use
     - [Admin Panel](admin-panel.md)
     - [Authentication](admin-authentication.md)
-    - [ACL](acl.md) 
+    - [ACL](acl.md)
     - [Menu Component](menu.md)
     - [Breadcrumbs](breadcrumbs.md) 
 
@@ -15,6 +15,7 @@
     - [Customizing Admin UI](customize-admin-ui.md)
     - [Themes](themes.md)
     - [Icon Themes](icon-themes.md)
+    - [Widgets](widgets.md)
     - [Add Assets To The Layout](assets.md)
     - [Change Admin URL Prefix](change-url-prefix.md)
     - [Using Custom Models](models.md)
