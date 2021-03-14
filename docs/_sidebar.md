@@ -11,11 +11,14 @@
     - [Menu Component](menu.md)
     - [Breadcrumbs](breadcrumbs.md) 
 
-- III. Customization
+- III. Widgets
+    - [Widgets](widgets.md)
+    - [Text](widget-text.md) 
+
+- IV. Customization
     - [Customizing Admin UI](customize-admin-ui.md)
     - [Themes](themes.md)
     - [Icon Themes](icon-themes.md)
-    - [Widgets](widgets.md)
     - [Add Assets To The Layout](assets.md)
     - [Change Admin URL Prefix](change-url-prefix.md)
     - [Using Custom Models](models.md)
