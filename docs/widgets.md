@@ -18,6 +18,37 @@ The widget will be rendered by the active theme. The backend based definition al
 opportunity for plugins to extend the predefined widget sets, with the most typical example to add
 elements to an existing form.
 
+## Data to Render
+
+Widgets expect some data that they can render. Most of the time this is an eloquent model, or a
+collection of models, but it can be an array, string, any kind of data.
+
+The data has to be injected in the views, where you render the data.
+
+**Controller**:
+
+```php
+use Konekt\AppShell\Widgets;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $tableDef = ['columns' => ['id', 'name', 'created_at']];
+        return view('user.index', [
+            'users' => User::all(),
+            'table' => Widgets::make('table', $tableDef),            
+        ]);
+    }
+}
+```
+
+**In the view**:
+
+```blade
+{!! $table->render($users) !!}
+```
+
 ## Built-in Widgets
 
 AppShell comes with several predefined widgets:

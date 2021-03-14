@@ -65,6 +65,9 @@ class Text implements Widget
 
         if (isset($options['bold'])) {
             $instance->bold = (bool) $options['bold'];
+            if ($instance->bold && null === $instance->wrap) {
+                $instance->wrap = 'span';
+            }
         }
 
         if (isset($options['prefix'])) {

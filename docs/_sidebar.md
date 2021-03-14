@@ -13,7 +13,8 @@
 
 - III. Widgets
     - [Widgets](widgets.md)
-    - [Text](widget-text.md) 
+    - [Text](widget-text.md)
+    - [Filters](widget-filters.md)
 
 - IV. Customization
     - [Customizing Admin UI](customize-admin-ui.md)
