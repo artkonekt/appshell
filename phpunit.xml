@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    phpunit -c phpunit.xml
--->
 <phpunit colors="true"
          bootstrap="./vendor/autoload.php"
          convertWarningsToExceptions="false"
          convertDeprecationsToExceptions="false"
+         convertNoticesToExceptions="false"
 >
     <testsuites>
         <testsuite name="AppShell Test Suite">

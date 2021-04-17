@@ -113,6 +113,8 @@ abstract class TestCase extends Orchestra
 
         if ('pgsql' === $engine) {
             $app['config']->set("database.connections.{$engine}.charset", 'utf8');
+        } elseif ('sqlite' === $engine) {
+            $app['config']->set("database.connections.{$engine}.foreign_key_constraints", false);
         }
     }
 
