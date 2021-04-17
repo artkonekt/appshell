@@ -6,6 +6,8 @@
 
 @section('content')
 
+@include('appshell::user._subnav', ['active' => 'users'])
+
     <div class="card-deck mb-3">
         @component(theme_widget('card_with_icon'), [
                 'icon' => $user->is_active ? 'user-active' : 'user-inactive',

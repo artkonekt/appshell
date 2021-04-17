@@ -1,5 +1,18 @@
 # AppShell Changelog
 
+## 2.2.0
+##### 2021-03-14
+
+- Added print layout
+
+## 2.1.0
+##### 2020-12-21
+
+- Added PHP 8 support 
+- Added User Invitation Feature
+- Changed placement of role on user form: moved to a new sidebar box on the right
+- Changed CI from Travis to Github Actions
+
 ## 2.0.0
 ##### 2020-10-31
 

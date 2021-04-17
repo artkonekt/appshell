@@ -25,7 +25,8 @@ Copy all the sass files from the
 ```js
 // webpack.mix.js
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/appshell.sass', 'public/css'); // <- add appshell to mix config
+   .sass('resources/sass/appshell.sass', 'public/css') // <- add appshell to mix config
+   .sass('resources/sass/print/print.sass', 'public/css'); // <- the appshell print css
 ```
 
 ## Custom Theme

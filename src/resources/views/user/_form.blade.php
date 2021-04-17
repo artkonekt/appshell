@@ -101,30 +101,6 @@
     </div>
 </div>
 
-<div class="form-group row">
-
-    <div class="col-12">
-        <legend>{{ __('Roles') }}</legend>
-    </div>
-
-    @foreach($roles as $role)
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" style="overflow: hidden; white-space: nowrap;">
-            <label class="switch switch-icon switch-pill switch-primary">
-                {{ Form::checkbox("roles[{$role->name}]", 1, $user->hasRole($role), ['class' => 'switch-input']) }}
-                <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
-                <span class="switch-handle"></span>
-            </label>
-            {{ $role->name }}
-        </div>
-    @endforeach
-
-    @if ($errors->has('roles'))
-        <input type="text" hidden class="form-control is-invalid">
-        <div class="invalid-feedback">{{ $errors->first('roles') }}</div>
-    @endif
-</div>
-
-
 @section('scripts')
 <script>
     $(document).ready(function() {

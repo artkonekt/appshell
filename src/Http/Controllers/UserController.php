@@ -64,7 +64,6 @@ class UserController extends BaseController
             return redirect()->back();
         }
 
-        //@todo process route prefixes based on box config
         return redirect(route('appshell.user.index'));
     }
 

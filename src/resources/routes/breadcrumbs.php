@@ -73,3 +73,23 @@ Breadcrumbs::for('appshell.address.create', function ($breadcrumbs) {
     $breadcrumbs->parent('appshell.customer.index');
     $breadcrumbs->push(__('Create address'));
 });
+
+Breadcrumbs::for('appshell.invitation.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('appshell.user.index');
+    $breadcrumbs->push(__('Invitations'), route('appshell.invitation.index'));
+});
+
+Breadcrumbs::for('appshell.invitation.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('appshell.invitation.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('appshell.invitation.show', function ($breadcrumbs, $invitation) {
+    $breadcrumbs->parent('appshell.invitation.index');
+    $breadcrumbs->push($invitation->email, route('appshell.invitation.show', $invitation));
+});
+
+Breadcrumbs::for('appshell.invitation.edit', function ($breadcrumbs, $invitation) {
+    $breadcrumbs->parent('appshell.invitation.show', $invitation);
+    $breadcrumbs->push(__('Edit'), route('appshell.invitation.edit', $invitation));
+});

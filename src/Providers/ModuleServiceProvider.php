@@ -23,21 +23,26 @@ use Konekt\AppShell\Helpers\ColorHelper;
 use Konekt\AppShell\Helpers\DateHelper;
 use Konekt\AppShell\Helpers\QuickLinkHelper;
 use Konekt\AppShell\Http\Middleware\AclMiddleware;
+use Konekt\AppShell\Http\Requests\AcceptInvitation;
 use Konekt\AppShell\Http\Requests\CreateAddress;
 use Konekt\AppShell\Http\Requests\CreateAddressForm;
 use Konekt\AppShell\Http\Requests\CreateCustomer;
+use Konekt\AppShell\Http\Requests\CreateInvitation;
 use Konekt\AppShell\Http\Requests\CreateRole;
 use Konekt\AppShell\Http\Requests\CreateUser;
 use Konekt\AppShell\Http\Requests\EditAddressForm;
 use Konekt\AppShell\Http\Requests\SaveAccount;
 use Konekt\AppShell\Http\Requests\UpdateAddress;
 use Konekt\AppShell\Http\Requests\UpdateCustomer;
+use Konekt\AppShell\Http\Requests\UpdateInvitation;
 use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\GravatarDefault;
+use Konekt\AppShell\Models\Invitation;
 use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
+use Konekt\User\Contracts\Invitation as InvitationContract;
 use Konekt\User\Contracts\User as UserContract;
 use Menu;
 
@@ -57,7 +62,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateAddress::class,
         EditAddressForm::class,
         UpdateAddress::class,
-        SaveAccount::class
+        SaveAccount::class,
+        CreateInvitation::class,
+        UpdateInvitation::class,
+        AcceptInvitation::class,
     ];
 
     protected $enums = [
@@ -88,8 +96,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
 
         $this->loadBreadcrumbs();
 
-        // Use the User model that's extended with Acl
+        // Use the ACL extended User and Invitation models
         $this->concord->registerModel(UserContract::class, User::class);
+        $this->concord->registerModel(InvitationContract::class, Invitation::class);
         // Use the Address model that's extended with Customers
         $this->concord->registerModel(AddressContract::class, Address::class);
 
