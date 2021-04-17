@@ -1,6 +1,6 @@
 # Konekt AppShell
 
-[![Tests](https://img.shields.io/github/workflow/status/artkonekt/appshell/tests/2.x?style=flat-square)](https://github.com/artkonekt/appshell/actions?query=workflow%3Atests)
+[![Tests](https://img.shields.io/github/workflow/status/artkonekt/appshell/tests/master?style=flat-square)](https://github.com/artkonekt/appshell/actions?query=workflow%3Atests)
 [![Packagist Stable Version](https://img.shields.io/packagist/v/konekt/appshell.svg?style=flat-square&label=stable)](https://packagist.org/packages/konekt/appshell)
 [![StyleCI](https://styleci.io/repos/74504388/shield?branch=master)](https://styleci.io/repos/74504388)
 [![Packagist downloads](https://img.shields.io/packagist/dt/konekt/appshell.svg?style=flat-square)](https://packagist.org/packages/konekt/appshell)

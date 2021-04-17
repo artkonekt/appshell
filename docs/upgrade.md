@@ -1,5 +1,12 @@
 # Upgrading
 
+## 2.x -> 3.0
+
+Beginning with AppShell 3.0, the minimum requirements are:  
+
+- PHP 8.0+
+- Laravel 8.12+
+
 ## 1.x -> 2.0
 
 Beginning with AppShell 2.0, the minimum required PHP version is PHP 7.4, minimum Laravel is 6.0.
