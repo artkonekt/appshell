@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | AppShell's NON-ACL Web Routes
@@ -12,27 +14,27 @@
 
 Route::get('preferences', [
     'uses' => 'PreferencesController@index',
-    'as'   => 'preferences.index'
+    'as' => 'preferences.index'
 ]);
 Route::put('preferences', [
     'uses' => 'PreferencesController@update',
-    'as'   => 'preferences.update'
+    'as' => 'preferences.update'
 ]);
 
 Route::get('account', [
     'uses' => 'AccountController@display',
-    'as'   => 'account.display'
+    'as' => 'account.display'
 ]);
 Route::put('account', [
     'uses' => 'AccountController@save',
-    'as'   => 'account.save'
+    'as' => 'account.save'
 ]);
 
 Route::get('quicklinks', [
     'uses' => 'QuickLinkController@index',
-    'as'   => 'quicklinks.index'
+    'as' => 'quicklinks.index'
 ]);
 Route::put('quicklinks', [
     'uses' => 'QuickLinkController@update',
-    'as'   => 'quicklinks.update'
+    'as' => 'quicklinks.update'
 ]);

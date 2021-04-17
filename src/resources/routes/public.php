@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | AppShell's Public Web Routes
@@ -12,10 +14,10 @@
 
 Route::get('invitation/{hash}', [
     'uses' => 'PublicInvitationController@show',
-    'as'   => 'invitation.show'
+    'as' => 'invitation.show'
 ])->where('hash', '[A-Za-z0-9]+');
 
 Route::post('invitation/accept', [
     'uses' => 'PublicInvitationController@accept',
-    'as'   => 'invitation.accept'
+    'as' => 'invitation.accept'
 ]);

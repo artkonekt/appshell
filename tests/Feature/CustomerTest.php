@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Konekt\AppShell\Tests\Feature;
 
 use Konekt\AppShell\Tests\TestCase;
@@ -16,11 +18,11 @@ class CustomerTest extends TestCase
         parent::setUp();
 
         $this->customer = Customer::create([
-            'type'            => CustomerType::ORGANIZATION,
-            'firstname'       => 'Test',
-            'lastname'        => 'Elek',
-            'company_name'    => 'Acme co.',
-            'tax_nr'          => '12345',
+            'type' => CustomerType::ORGANIZATION,
+            'firstname' => 'Test',
+            'lastname' => 'Elek',
+            'company_name' => 'Acme co.',
+            'tax_nr' => '12345',
             'registration_nr' => '54321'
         ]);
     }
@@ -48,11 +50,11 @@ class CustomerTest extends TestCase
     public function it_can_store_a_customer()
     {
         $this->actingAs($this->adminUser)->post(route('appshell.customer.store'), [
-            'type'            => CustomerType::ORGANIZATION,
-            'firstname'       => 'Bat',
-            'lastname'        => 'Man ',
-            'company_name'    => 'Acmeeee co.',
-            'tax_nr'          => '4444',
+            'type' => CustomerType::ORGANIZATION,
+            'firstname' => 'Bat',
+            'lastname' => 'Man ',
+            'company_name' => 'Acmeeee co.',
+            'tax_nr' => '4444',
             'registration_nr' => '5555'
         ]);
 
@@ -87,7 +89,7 @@ class CustomerTest extends TestCase
     {
         $this->actingAs($this->adminUser)->put(route('appshell.customer.update', $this->customer), [
             'company_name' => 'Modified customer',
-            'type'         => CustomerType::ORGANIZATION
+            'type' => CustomerType::ORGANIZATION
         ]);
 
         $this->assertEquals('Modified customer', $this->customer->fresh()->getName());

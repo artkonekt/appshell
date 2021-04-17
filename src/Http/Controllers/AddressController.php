@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the AddressController class.
  *
@@ -27,10 +29,10 @@ class AddressController extends BaseController
         $address = app(Address::class);
 
         return view('appshell::address.create', [
-            'address'   => $address,
-            'types'     => AddressTypeProxy::choices(),
+            'address' => $address,
+            'types' => AddressTypeProxy::choices(),
             'countries' => CountryProxy::all(),
-            'for'       => $request->getFor()
+            'for' => $request->getFor()
         ]);
     }
 
@@ -68,10 +70,10 @@ class AddressController extends BaseController
     public function edit(EditAddressForm $request, Address $address)
     {
         return view('appshell::address.edit', [
-            'address'   => $address,
-            'types'     => AddressTypeProxy::choices(),
+            'address' => $address,
+            'types' => AddressTypeProxy::choices(),
             'countries' => CountryProxy::all(),
-            'for'       => $request->getFor()
+            'for' => $request->getFor()
         ]);
     }
 

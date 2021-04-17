@@ -19,7 +19,6 @@ use Illuminate\Support\ServiceProvider;
 use Konekt\AppShell\EnumIcons;
 use Konekt\AppShell\Icons\FontAwesomeIconTheme;
 use Konekt\AppShell\Icons\LineIconsTheme;
-use Konekt\AppShell\Icons\ZmdiAppShellIcons;
 use Konekt\AppShell\Icons\ZmdiIconTheme;
 use Konekt\AppShell\IconThemes;
 use Konekt\AppShell\Settings\UiIconThemeSetting;
@@ -73,7 +72,7 @@ class UiServiceProvider extends ServiceProvider
             CustomerTypeProxy::enumClass(),
             [
                 CustomerType::ORGANIZATION => 'organization',
-                CustomerType::INDIVIDUAL   => 'user'
+                CustomerType::INDIVIDUAL => 'user'
             ]
         );
     }

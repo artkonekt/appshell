@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the UpdateUser class.
  *
@@ -24,12 +26,12 @@ class UpdateUser extends FormRequest implements UpdateUserContract
     public function rules()
     {
         return [
-            'name'      => 'required|min:2|max:255',
-            'email'     => 'required|email',
-            'password'  => 'nullable|min:7',
-            'type'      => 'present',
+            'name' => 'required|min:2|max:255',
+            'email' => 'required|email',
+            'password' => 'nullable|min:7',
+            'type' => 'present',
             'is_active' => 'sometimes|boolean',
-            'roles'     => 'sometimes|array'
+            'roles' => 'sometimes|array'
         ];
     }
 

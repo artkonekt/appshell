@@ -44,7 +44,6 @@ use Konekt\AppShell\Models\User;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\Invitation as InvitationContract;
 use Konekt\User\Contracts\User as UserContract;
-use Menu;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {

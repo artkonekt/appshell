@@ -19,6 +19,7 @@ use Konekt\AppShell\Contracts\WidgetFilter;
 class Bool2Text implements WidgetFilter
 {
     protected string $trueText;
+
     protected string $falseText;
 
     public function __construct(string $trueText, string $falseText)

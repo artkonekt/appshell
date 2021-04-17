@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the PermissionController class.
  *
@@ -26,7 +28,7 @@ class RoleController extends BaseController
     {
         return view('appshell::role.index', [
             'permissions' => PermissionProxy::all(),
-            'roles'       => RoleProxy::with('users')->get()
+            'roles' => RoleProxy::with('users')->get()
         ]);
     }
 
@@ -51,7 +53,7 @@ class RoleController extends BaseController
     public function create()
     {
         return view('appshell::role.create', [
-            'role'        => app(Role::class),
+            'role' => app(Role::class),
             'permissions' => PermissionProxy::all()
         ]);
     }

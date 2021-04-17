@@ -18,4 +18,3 @@ class ShowDate extends BaseFilteredText
 {
     protected static string $filterMethodName = 'show_date';
 }
-

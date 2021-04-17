@@ -22,6 +22,13 @@ use Konekt\AppShell\Widgets\Text;
 
 class TextWidgetTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Route::get('/tesing-users', ['as' => 'testing-users']);
+        Route::get('/tesing-users/{user}', ['as' => 'testing-user']);
+    }
     /** @test */
     public function it_can_simply_echo_the_given_text()
     {
@@ -125,13 +132,5 @@ class TextWidgetTest extends TestCase
         $text = Text::create(new AppShellTheme(), ['filter' => 'bool2text:yes,']);
         $this->assertEquals('yes', $text->render(1));
         $this->assertEquals('', $text->render(null));
-    }
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Route::get('/tesing-users', ['as' => 'testing-users']);
-        Route::get('/tesing-users/{user}', ['as' => 'testing-user']);
     }
 }

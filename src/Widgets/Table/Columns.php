@@ -15,10 +15,8 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Widgets\Table;
 
 use ArrayAccess;
-use Exception;
 use Illuminate\Support\Collection;
 use IteratorAggregate;
-use Traversable;
 
 class Columns implements ArrayAccess, IteratorAggregate
 {
@@ -39,14 +37,6 @@ class Columns implements ArrayAccess, IteratorAggregate
                 $this->addColumn($id, $definition);
             }
         }
-    }
-
-    private function addColumn(string $id, array $attributes = []): Column
-    {
-        $column = new Column($id, $attributes);
-        $this->columns->add($column);
-
-        return $column;
     }
 
     public function offsetExists($offset)
@@ -72,5 +62,13 @@ class Columns implements ArrayAccess, IteratorAggregate
     public function getIterator()
     {
         return $this->columns->getIterator();
+    }
+
+    private function addColumn(string $id, array $attributes = []): Column
+    {
+        $column = new Column($id, $attributes);
+        $this->columns->add($column);
+
+        return $column;
     }
 }

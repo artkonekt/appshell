@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the AppShellTheme class.
  *
@@ -25,21 +27,21 @@ final class AppShellTheme implements Theme
 
     private array $layouts = [
         'private' => 'appshell::layouts.default.private',
-        'public'  => 'appshell::layouts.default.public',
-        'print'   => 'appshell::layouts.default.print',
+        'public' => 'appshell::layouts.default.public',
+        'print' => 'appshell::layouts.default.print',
     ];
 
     private array $themeColors = [
-        ThemeColor::PRIMARY   => '#385170',
+        ThemeColor::PRIMARY => '#385170',
         ThemeColor::SECONDARY => '#becdcf',
-        ThemeColor::INFO      => '#0c9bd3',
-        ThemeColor::SUCCESS   => '#23a38b',
-        ThemeColor::WARNING   => '#e8c547',
-        ThemeColor::DANGER    => '#f24236',
-        ThemeColor::TEXT      => '#444444',
-        ThemeColor::DARK      => '#607375',
-        ThemeColor::LIGHT     => '#f1f3f3',
-        ThemeColor::MUTED     => '#87a6ab',
-        ThemeColor::NONE      => '#444444',
+        ThemeColor::INFO => '#0c9bd3',
+        ThemeColor::SUCCESS => '#23a38b',
+        ThemeColor::WARNING => '#e8c547',
+        ThemeColor::DANGER => '#f24236',
+        ThemeColor::TEXT => '#444444',
+        ThemeColor::DARK => '#607375',
+        ThemeColor::LIGHT => '#f1f3f3',
+        ThemeColor::MUTED => '#87a6ab',
+        ThemeColor::NONE => '#444444',
     ];
 }

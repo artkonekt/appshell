@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the base TestCase class.
  *
@@ -46,18 +48,18 @@ abstract class TestCase extends Orchestra
         $this->artisan('migrate');
 
         $this->adminUser = User::create([
-            'name'     => 'AppShell Admin',
-            'email'    => 'test@gmail.com',
-            'type'     => UserType::ADMIN,
+            'name' => 'AppShell Admin',
+            'email' => 'test@gmail.com',
+            'type' => UserType::ADMIN,
             'password' => bcrypt('test'),
         ]);
 
         $this->adminUser->assignRole('admin');
 
         $this->normalUser = User::create([
-            'name'     => 'AppShell Client',
-            'email'    => 'test_client@gmail.com',
-            'type'     => UserType::CLIENT,
+            'name' => 'AppShell Client',
+            'email' => 'test_client@gmail.com',
+            'type' => UserType::CLIENT,
             'password' => bcrypt('test'),
         ]);
     }
@@ -103,10 +105,10 @@ abstract class TestCase extends Orchestra
 
         $app['config']->set('database.default', $engine);
         $app['config']->set('database.connections.' . $engine, [
-            'driver'   => $engine,
+            'driver' => $engine,
             'database' => 'sqlite' == $engine ? ':memory:' : 'appshell_test',
-            'prefix'   => '',
-            'host'     => '127.0.0.1',
+            'prefix' => '',
+            'host' => '127.0.0.1',
             'username' => env('TEST_DB_USERNAME', 'pgsql' === $engine ? 'postgres' : 'root'),
             'password' => env('TEST_DB_PASSWORD', ''),
         ]);

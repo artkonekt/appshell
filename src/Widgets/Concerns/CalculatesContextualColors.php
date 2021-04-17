@@ -48,7 +48,7 @@ trait CalculatesContextualColors
     private function byBooleanExpression(array $definition, $value): ColorAttributes
     {
         return $this->fromColorString(
-            (bool)$value ? $definition[0] ?? null : $definition[1] ?? null
+            (bool) $value ? $definition[0] ?? null : $definition[1] ?? null
         );
     }
 

@@ -24,6 +24,7 @@ class UnknownWidget implements Widget
     use RendersThemedWidget;
 
     private array  $options;
+
     private string $widget;
 
     public function __construct(Theme $theme, string $widget, array $options = [])

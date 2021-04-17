@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Theme Helper Functions for AppShell Themes
  * They're intended for use in Blade Views

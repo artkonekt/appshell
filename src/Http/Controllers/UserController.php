@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the UserController class.
  *
@@ -124,7 +126,7 @@ class UserController extends BaseController
     public function create()
     {
         return view('appshell::user.create', [
-            'user'  => app(User::class),
+            'user' => app(User::class),
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()
         ]);
@@ -172,7 +174,7 @@ class UserController extends BaseController
     public function edit(User $user)
     {
         return view('appshell::user.edit', [
-            'user'  => $user,
+            'user' => $user,
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()
         ]);

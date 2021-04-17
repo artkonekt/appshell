@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 Breadcrumbs::for('home', function ($breadcrumbs) {
     $breadcrumbs->push(__('Home'), url(config('konekt.app_shell.ui.url')));
 });

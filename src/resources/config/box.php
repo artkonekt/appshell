@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     'modules' => [
-        Konekt\Address\Providers\ModuleServiceProvider::class  => [],
+        Konekt\Address\Providers\ModuleServiceProvider::class => [],
         Konekt\Customer\Providers\ModuleServiceProvider::class => [],
-        Konekt\User\Providers\ModuleServiceProvider::class     => [],
-        Konekt\Acl\Providers\ModuleServiceProvider::class      => []
+        Konekt\User\Providers\ModuleServiceProvider::class => [],
+        Konekt\Acl\Providers\ModuleServiceProvider::class => []
     ],
     'acl' => [
         'allow_action_as_verb' => false
     ],
     'event_listeners' => true,
-    'menu'            => [
+    'menu' => [
         'appshell' => [
-            'share'          => 'appshellMenu',
-            'cascade_data'   => false,
+            'share' => 'appshellMenu',
+            'cascade_data' => false,
             'active_element' => 'link'
         ]
     ],
@@ -23,22 +25,22 @@ return [
     ],
     'routes' => [
         [
-            'prefix'     => 'admin',
-            'as'         => 'appshell.',
+            'prefix' => 'admin',
+            'as' => 'appshell.',
             'middleware' => ['web', 'auth', 'acl'],
-            'files'      => ['acl']
+            'files' => ['acl']
         ],
         [
-            'prefix'     => 'admin',
-            'as'         => 'appshell.',
+            'prefix' => 'admin',
+            'as' => 'appshell.',
             'middleware' => ['web', 'auth'],
-            'files'      => ['nonacl']
+            'files' => ['nonacl']
         ],
         [
-            'prefix'     => 'pub',
-            'as'         => 'appshell.public.',
+            'prefix' => 'pub',
+            'as' => 'appshell.public.',
             'middleware' => ['web'],
-            'files'      => ['public']
+            'files' => ['public']
         ],
     ],
     'breadcrumbs' => true,
@@ -47,23 +49,23 @@ return [
         'commands' => false,
     ],
     'ui' => [
-        'name'       => 'AppShell',
-        'url'        => '/admin/customer',
-        'logo_uri'   => '/images/appshell/logo.svg',
-        'theme'      => 'appshell',
+        'name' => 'AppShell',
+        'url' => '/admin/customer',
+        'logo_uri' => '/images/appshell/logo.svg',
+        'theme' => 'appshell',
         'icon_theme' => 'zmdi',
         'routes' => [
-            'login'            => 'login',
-            'logout'           => 'logout',
-            'register'         => 'register',
+            'login' => 'login',
+            'logout' => 'logout',
+            'register' => 'register',
             'password.request' => 'password.request',
-            'password.email'   => 'password.email',
+            'password.email' => 'password.email',
         ],
         'quick_links' => [
             'enabled' => true
         ]
     ],
-    'formats'   => [
+    'formats' => [
         'date' => [
             'default' => 'Y-m-d',
             'options' => [
@@ -87,7 +89,7 @@ return [
                 'diff'
             ]
         ],
-        'time'=> [
+        'time' => [
             'default' => 'H:i',
             'options' => [
                 'H:i',

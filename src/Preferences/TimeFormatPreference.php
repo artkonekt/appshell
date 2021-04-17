@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the TimeFormatPreference class.
  *
@@ -19,7 +21,7 @@ class TimeFormatPreference implements Preference
     use AccessesAppShellConfig;
     use GeneratesSampleDateTimeOptions;
 
-    public const KEY     = 'appshell.ui.time_format';
+    public const KEY = 'appshell.ui.time_format';
     public const DEFAULT = 'H:i';
 
     /** @var array|null */

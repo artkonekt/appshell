@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the AccountController class.
  *
@@ -30,7 +32,7 @@ class AccountController extends BaseController
 
         if ($request->has('password') && !empty($request->get('password'))) {
             $data['password'] = bcrypt($request->get('password'));
-            $pwChanged        = true;
+            $pwChanged = true;
         }
 
         try {

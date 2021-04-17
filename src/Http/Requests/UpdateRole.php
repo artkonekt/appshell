@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the UpdateRole request class.
  *
@@ -24,7 +26,7 @@ class UpdateRole extends FormRequest implements UpdateRoleContract
     public function rules()
     {
         return [
-            'name'        => 'required|min:2|max:255',
+            'name' => 'required|min:2|max:255',
             'permissions' => 'sometimes|array'
         ];
     }

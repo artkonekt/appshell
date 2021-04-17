@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Helper functions for AppShell
  *
@@ -23,10 +25,10 @@ function any_key_exists(array $haystack, array $needles)
 function avatar_image_url($model = null, int $size = 100)
 {
     if (null !== $model && isset($model->email)) {
-        $hash    = md5($model->email);
+        $hash = md5($model->email);
         $default = config('konekt.app_shell.avatar.gravatar.default');
     } else {
-        $hash    = '00000000000000000000000000000000';
+        $hash = '00000000000000000000000000000000';
         $default = \Konekt\AppShell\Models\GravatarDefault::MYSTERY_PERSON;
     }
 

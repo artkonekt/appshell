@@ -22,6 +22,12 @@ use Konekt\AppShell\Widgets\Link;
 
 class LinkWidgetTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Route::get('/parrots-route-prefix/{parrot}', ['as' => 'pakito']);
+    }
     /** @test */
     public function it_can_generate_a_link_from_two_field_of_the_model()
     {
@@ -137,12 +143,5 @@ class LinkWidgetTest extends TestCase
 
         $html = $link->render();
         $this->assertStringContainsString('<span class="text-muted">', $html);
-    }
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Route::get('/parrots-route-prefix/{parrot}', ['as' => 'pakito']);
     }
 }

@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the UITest class.
  *
@@ -11,7 +13,6 @@
 
 namespace Konekt\AppShell\Tests\Feature;
 
-use Konekt\AppShell\Assets\DefaultAppShellAssets;
 use Konekt\AppShell\Tests\TestCase;
 
 class UITest extends TestCase

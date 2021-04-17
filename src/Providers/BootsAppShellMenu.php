@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Providers;
 
-use Konekt\AppShell\Traits\AccessesAppShellConfig;
 use Konekt\Menu\Facades\Menu;
 
 trait BootsAppShellMenu

@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the CustomerController class.
  *
@@ -40,7 +42,7 @@ class CustomerController extends BaseController
 
         return view('appshell::customer.create', [
             'customer' => $customer,
-            'types'    => CustomerTypeProxy::choices()
+            'types' => CustomerTypeProxy::choices()
         ]);
     }
 
@@ -88,8 +90,8 @@ class CustomerController extends BaseController
     public function edit(Customer $customer)
     {
         return view('appshell::customer.edit', [
-            'customer'  => $customer,
-            'types'     => CustomerTypeProxy::choices()
+            'customer' => $customer,
+            'types' => CustomerTypeProxy::choices()
         ]);
     }
 
