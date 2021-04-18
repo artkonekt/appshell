@@ -21,8 +21,6 @@ use Konekt\AppShell\Widgets;
 
 abstract class BaseDateTime extends BaseFilteredText
 {
-    abstract protected static function filterMethodName(): string;
-
     public static function create(Theme $theme, array $options = []): Widget
     {
         $filter = static::filterMethodName();
@@ -43,6 +41,7 @@ abstract class BaseDateTime extends BaseFilteredText
     {
         return parent::render($this->processDateTime($data));
     }
+    abstract protected static function filterMethodName(): string;
 
     private function processDateTime($data = null)
     {
