@@ -19,6 +19,8 @@ final class AppShellWidgets
     public const BADGE = 'badge';
     public const BADGES = 'badges';
     public const ENUM_ICON = 'enum_icon';
+    public const FILTER = 'filter';
+    public const FILTER_SET = 'filterset';
     public const LINK = 'link';
     public const MULTI_TEXT = 'multi_text';
     public const SHOW_DATE = 'show_date';
