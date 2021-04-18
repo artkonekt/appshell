@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
