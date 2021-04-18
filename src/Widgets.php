@@ -17,7 +17,7 @@ namespace Konekt\AppShell;
 use Illuminate\Support\Str;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
-use Konekt\AppShell\Exceptions\MissingUiFileException;
+use Konekt\AppShell\Exceptions\MissingWidgetFileException;
 use Konekt\AppShell\Widgets\UnknownWidget;
 
 final class Widgets
@@ -55,21 +55,21 @@ final class Widgets
         self::$registry[$id] = $class;
     }
 
-    public static function registerUiNamespace(string $namespace, string $folder): void
+    public static function registerWidgetNamespace(string $namespace, string $folder): void
     {
         self::$namespaces[$namespace] = Str::endsWith($folder, '/') ? Str::replaceLast('/', '', $folder) : $folder;
     }
 
-    public static function load(string $ui, ?Theme $theme = null): Widget
+    public static function load(string $widget, ?Theme $theme = null): Widget
     {
-        if (!isset(self::$widgetCache[$ui])) {
-            self::$widgetCache[$ui] = require self::resolveUiPath($ui);
-            if (!isset(self::$widgetCache[$ui]['options'])) {
-                self::$widgetCache[$ui]['options'] = [];
+        if (!isset(self::$widgetCache[$widget])) {
+            self::$widgetCache[$widget] = require self::resolveUiPath($widget);
+            if (!isset(self::$widgetCache[$widget]['options'])) {
+                self::$widgetCache[$widget]['options'] = [];
             }
         }
 
-        return self::make(self::$widgetCache[$ui]['type'], self::$widgetCache[$ui]['options'], $theme);
+        return self::make(self::$widgetCache[$widget]['type'], self::$widgetCache[$widget]['options'], $theme);
     }
 
     public static function make(string $type, array $options = [], ?Theme $theme = null): Widget
@@ -90,20 +90,20 @@ final class Widgets
 
     /*
      * Locate 'appshell::user.index.table' like:
-     *      -> resources/ui/vendor/appshell/user/index/table.ui.php
-     *      -> <appshell_module_root>/resources/ui/user/index/table.ui.php
+     *      -> resources/widgets/vendor/appshell/user/index/table.widget.php
+     *      -> <appshell_module_root>/resources/widgets/user/index/table.widget.php
      *   and return the first path where the file exists
      *
      * UI name without namespace, eg.: 'invoice.index.table':
-     *      -> resources/ui/invoice/index/table.ui.php
+     *      -> resources/widgets/invoice/index/table.widget.php
      */
-    private static function resolveUiPath(string $ui): string
+    private static function resolveUiPath(string $widget): string
     {
-        if (false === strpos($ui, '::')) {
+        if (false === strpos($widget, '::')) {
             $namespace = null;
-            $rawPath = $ui;
+            $rawPath = $widget;
         } else {
-            $parts = explode('::', $ui);
+            $parts = explode('::', $widget);
             // sanitize namespace
             $namespace = str_replace(
                 ['../', '..', '/', '.', ':', '\\'],
@@ -113,12 +113,12 @@ final class Widgets
             $rawPath = $parts[1];
         }
 
-        $relativePath = str_replace(['../','.'], ['', '/'], $rawPath) . '.ui.php';
+        $relativePath = str_replace(['../','.'], ['', '/'], $rawPath) . '.widget.php';
 
         if (null === $namespace) {
-            $paths[] = resource_path("ui/$relativePath");
+            $paths[] = resource_path("widgets/$relativePath");
         } else {
-            $paths[] = resource_path("ui/vendor/$namespace/$relativePath");
+            $paths[] = resource_path("widgets/vendor/$namespace/$relativePath");
             if (isset(self::$namespaces[$namespace])) {
                 $paths[] = self::$namespaces[$namespace] . "/$relativePath";
             }
@@ -130,6 +130,6 @@ final class Widgets
             }
         }
 
-        throw new MissingUiFileException($ui, $paths);
+        throw new MissingWidgetFileException($widget, $paths);
     }
 }

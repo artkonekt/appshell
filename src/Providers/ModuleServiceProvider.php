@@ -81,9 +81,9 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->register(PreferencesProvider::class);
         $this->app->register(UiServiceProvider::class);
 
-        Widgets::registerUiNamespace(
+        Widgets::registerWidgetNamespace(
             'appshell',
-            $this->basePath . '/resources/ui'
+            $this->basePath . '/resources/widgets'
         );
         $this->app->register(WidgetServiceProvider::class);
 

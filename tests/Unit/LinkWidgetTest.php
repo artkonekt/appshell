@@ -28,6 +28,7 @@ class LinkWidgetTest extends TestCase
 
         Route::get('/parrots-route-prefix/{parrot}', ['as' => 'pakito']);
     }
+
     /** @test */
     public function it_can_generate_a_link_from_two_field_of_the_model()
     {

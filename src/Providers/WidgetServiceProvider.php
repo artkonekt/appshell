@@ -17,20 +17,21 @@ namespace Konekt\AppShell\Providers;
 use Illuminate\Support\ServiceProvider;
 use Konekt\AppShell\WidgetFilters;
 use Konekt\AppShell\Widgets;
+use Konekt\AppShell\Widgets\AppShellWidgets;
 
 class WidgetServiceProvider extends ServiceProvider
 {
     private array $builtInWidgets = [
-        'text' => Widgets\Text::class,
-        'link' => Widgets\Link::class,
-        'badge' => Widgets\Badge::class,
-        'badges' => Widgets\Badges::class,
-        'show_date' => Widgets\ShowDate::class,
-        'show_datetime' => Widgets\ShowDateTime::class,
-        'show_time' => Widgets\ShowTime::class,
-        'multi_text' => Widgets\MultiText::class,
-        'table' => Widgets\Table::class,
-        'table_actions' => Widgets\Table\Actions::class,
+        AppShellWidgets::TEXT => Widgets\Text::class,
+        AppShellWidgets::LINK => Widgets\Link::class,
+        AppShellWidgets::BADGE => Widgets\Badge::class,
+        AppShellWidgets::BADGES => Widgets\Badges::class,
+        AppShellWidgets::SHOW_DATE => Widgets\ShowDate::class,
+        AppShellWidgets::SHOW_DATETIME => Widgets\ShowDateTime::class,
+        AppShellWidgets::SHOW_TIME => Widgets\ShowTime::class,
+        AppShellWidgets::MULTI_TEXT => Widgets\MultiText::class,
+        AppShellWidgets::TABLE => Widgets\Table::class,
+        AppShellWidgets::TABLE_ACTIONS => Widgets\Table\Actions::class,
     ];
 
     private array $builtInFilters = [

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the MissingUiFileException class.
+ * Contains the MissingWidgetFileException class.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
@@ -16,7 +16,7 @@ namespace Konekt\AppShell\Exceptions;
 
 use RuntimeException;
 
-class MissingUiFileException extends RuntimeException
+class MissingWidgetFileException extends RuntimeException
 {
     public function __construct(string $ui, array $paths)
     {

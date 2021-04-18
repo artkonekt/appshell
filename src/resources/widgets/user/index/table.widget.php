@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Konekt\AppShell\Widgets\Table;
+use Konekt\AppShell\Widgets\AppShellWidgets;
 
 return [
-    'type' => Table::TYPE_ID,
+    'type' => AppShellWidgets::TABLE,
     'options' => [
         'striped' => true,
         'columns' => [

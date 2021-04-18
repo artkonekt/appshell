@@ -49,15 +49,79 @@ class UserController extends Controller
 {!! $table->render($users) !!}
 ```
 
+## UI Widget Files
+
+Concrete widgets can be outsourced to files with `.widget.php`
+extension.
+
+The `.widget.php` files are plain PHP files, similar to the Laravel
+config files and they need to return an array with 2 keys:
+
+```php
+return [
+    'type' => 'table',     // the type id of the widget. mandatory
+    'options' => [/*...*/] // the definition of the widgets eg. column definitions. optional
+];
+```
+
+The code below will load the widget definition from the
+`resources/widgets/invoice/index/table.widget.php` file:
+
+```php  
+$table = Widgets::load('invoice.index.table');
+// or
+$table = widget('invoice.index.table');
+```
+
+**resources/widgets/invoice/index/table.widget.php**:
+
+```php
+use Konekt\AppShell\Widgets\AppShellWidgets;
+
+return [
+    'type' => AppShellWidgets::TABLE,
+    'options' => [
+        'columns' => [
+            'id',
+            'number',
+            'created_at',
+            'is_paid' => [
+                'title' => __('Payment'),
+                'widget' => [
+                    'type' => 'badge',
+                    'color' => ['bool' => ['success', 'secondary']],
+                    'text' => '$model.is_active',
+                    'filter' => sprintf('bool2text:%s,%s', __('paid'), __('outstanding'))
+                ]
+            ],
+        ]
+    ]
+];
+```
+
+### Overriding Package UI Widgets
+
+Similarly to [Laravel Views](https://laravel.com/docs/8.x/packages#overriding-package-views),
+the UI Widgets defined in packages can be overridden in the host
+applications.
+
+When you use the `Widgets::load` method or the `widget()` helper,
+AppShell actually checks two locations for your views: the application's
+`resources/widgets/vendor` directory and the original directory in the package.  
+
+So, using the `appshell` package as an example, AppShell will first
+check if a custom version of the widget has been placed in the
+`resources/widgets/vendor/appshell` directory by the developer. Then, if the
+widget has not been customized, AppShell will load it from the package
+UI directory.
+
 ## Built-in Widgets
 
 AppShell comes with several predefined widgets:
 
-- Badge
-- Link
 - [Text](widget-text.md)
-- MultiText
-- ShowDate
-- ShowDateTime
-- ShowTime
-- Table
+- [Link](widget-link.md)
+- [Badge(s)](widget-badge.md)
+- [MultiText](widget-multitext.md)
+- [Date & Time](widget-datetime.md)
+- [Table](widgets-table.md)
