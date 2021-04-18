@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the AppShellFilters class.
+ * Contains the AppShellWidgetModifiers class.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
-final class AppShellFilters
+final class AppShellWidgetModifiers
 {
     public const BOOL2TEXT = 'bool2text';
     public const LOWERCASE = 'lowercase';

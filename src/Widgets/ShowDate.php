@@ -16,7 +16,7 @@ namespace Konekt\AppShell\Widgets;
 
 class ShowDate extends BaseDateTime
 {
-    protected static function filterMethodName(): string
+    protected static function modifierMethodName(): string
     {
         return 'show_date';
     }

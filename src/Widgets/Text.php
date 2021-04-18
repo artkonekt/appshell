@@ -18,7 +18,7 @@ use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Traits\RendersThemedWidget;
 use Konekt\AppShell\Traits\ResolvesSubstitutions;
-use Konekt\AppShell\WidgetFilters;
+use Konekt\AppShell\WidgetModifiers;
 
 class Text implements Widget
 {
@@ -35,7 +35,7 @@ class Text implements Widget
     private $text;
 
     /** @var null|string|callable */
-    private $filter = null;
+    private $modifier = null;
 
     private ?string $wrap;
 
@@ -59,8 +59,8 @@ class Text implements Widget
         $text = self::makeCallable($options['text'] ?? '$model');
         $instance = new static($theme, $text, $options['wrap'] ?? null);
 
-        if (isset($options['filter'])) {
-            $instance->setFilter($options['filter']);
+        if (isset($options['modifier'])) {
+            $instance->setModifier($options['modifier']);
         }
 
         if (isset($options['bold'])) {
@@ -92,7 +92,7 @@ class Text implements Widget
         $text = $this->text;
 
         return $this->renderViewFromTheme('text', [
-            'text' => $this->filter((string) $text($data, $this)),
+            'text' => $this->modify((string) $text($data, $this)),
             'wrap' => $this->wrap,
             'tagAttributes' => $this->tagAttributes,
             'bold' => $this->bold,
@@ -101,21 +101,21 @@ class Text implements Widget
         ]);
     }
 
-    public function setFilter($filter): void
+    public function setModifier($modifier): void
     {
-        $this->filter = $filter;
+        $this->modifier = $modifier;
     }
 
-    protected function filter(string $text): string
+    protected function modify(string $text): string
     {
-        if (null === $this->filter) {
+        if (null === $this->modifier) {
             return $text;
         }
 
-        if (is_string($this->filter) && WidgetFilters::exists($this->filter)) {
-            return WidgetFilters::make($this->filter)->handle($text);
+        if (is_string($this->modifier) && WidgetModifiers::exists($this->modifier)) {
+            return WidgetModifiers::make($this->modifier)->handle($text);
         }
 
-        return call_user_func($this->filter, $text);
+        return call_user_func($this->modifier, $text);
     }
 }

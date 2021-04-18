@@ -146,26 +146,26 @@ class TextWidgetTest extends TestCase
     }
 
     /** @test */
-    public function filter_can_be_passed_to_manipulate_the_output_of_the_text()
+    public function a_modifier_can_be_passed_to_manipulate_the_output_of_the_text()
     {
-        $text = Text::create(new AppShellTheme(), ['text' => 'giovanni gatto', 'filter' => 'ucwords']);
+        $text = Text::create(new AppShellTheme(), ['text' => 'giovanni gatto', 'modifier' => 'ucwords']);
         $this->assertEquals('Giovanni Gatto', trim($text->render()));
     }
 
     /** @test */
-    public function filter_recognizes_registered_widget_filters()
+    public function the_modifier_recognizes_registered_widget_modifiers()
     {
-        $text = Text::create(new AppShellTheme(), ['text' => 'eleonora die hure', 'filter' => 'uppercase']);
+        $text = Text::create(new AppShellTheme(), ['text' => 'eleonora die hure', 'modifier' => 'uppercase']);
         $this->assertEquals('ELEONORA DIE HURE', trim($text->render()));
 
-        $text = Text::create(new AppShellTheme(), ['text' => 'Eleonora Die Hure', 'filter' => 'lowercase']);
+        $text = Text::create(new AppShellTheme(), ['text' => 'Eleonora Die Hure', 'modifier' => 'lowercase']);
         $this->assertEquals('eleonora die hure', $text->render());
 
-        $text = Text::create(new AppShellTheme(), ['filter' => 'bool2text:ja,nein']);
+        $text = Text::create(new AppShellTheme(), ['modifier' => 'bool2text:ja,nein']);
         $this->assertEquals('ja', $text->render(true));
         $this->assertEquals('nein', $text->render(false));
 
-        $text = Text::create(new AppShellTheme(), ['filter' => 'bool2text:yes,']);
+        $text = Text::create(new AppShellTheme(), ['modifier' => 'bool2text:yes,']);
         $this->assertEquals('yes', $text->render(1));
         $this->assertEquals('', $text->render(null));
     }

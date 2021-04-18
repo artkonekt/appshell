@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the WidgetFilter interface.
+ * Contains the WidgetModifier interface.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Contracts;
 
-interface WidgetFilter
+interface WidgetModifier
 {
     public function handle($value): string;
 
-    public static function create(array $arguments): WidgetFilter;
+    public static function create(array $arguments): WidgetModifier;
 }

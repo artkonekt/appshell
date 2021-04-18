@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the WidgetFilters class.
+ * Contains the WidgetModifiers class.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
@@ -14,10 +14,10 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell;
 
-use Konekt\AppShell\Contracts\WidgetFilter;
-use Konekt\AppShell\Exceptions\UnknownWidgetFilterException;
+use Konekt\AppShell\Contracts\WidgetModifier;
+use Konekt\AppShell\Exceptions\UnknownWidgetModifierException;
 
-final class WidgetFilters
+final class WidgetModifiers
 {
     private static array $registry = [];
 
@@ -34,13 +34,13 @@ final class WidgetFilters
 
     public static function override(string $id, string $class): void
     {
-        if (!in_array(WidgetFilter::class, class_implements($class))) {
+        if (!in_array(WidgetModifier::class, class_implements($class))) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'The class you are trying to register (%s) as a widget filter, ' .
+                    'The class you are trying to register (%s) as a widget modifier, ' .
                     'must implement the %s interface.',
                     $class,
-                    WidgetFilter::class
+                    WidgetModifier::class
                 )
             );
         }
@@ -48,14 +48,14 @@ final class WidgetFilters
         self::$registry[$id] = $class;
     }
 
-    public static function make(string $definition): WidgetFilter
+    public static function make(string $definition): WidgetModifier
     {
         $parsedDef = self::parse($definition);
         $id = (string) $parsedDef['id'];
         $class = self::getClass($id);
 
         if (null === $class) {
-            throw new UnknownWidgetFilterException("Couldn't recognize filter from `$id`");
+            throw new UnknownWidgetModifierException("Couldn't recognize modifier from `$id`");
         }
 
         return $class::create($parsedDef['args']);

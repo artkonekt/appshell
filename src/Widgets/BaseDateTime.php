@@ -19,20 +19,20 @@ use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Widgets;
 
-abstract class BaseDateTime extends BaseFilteredText
+abstract class BaseDateTime extends BaseModifiedText
 {
     public static function create(Theme $theme, array $options = []): Widget
     {
-        $filter = static::filterMethodName();
+        $modifier = static::modifierMethodName();
         if (isset($options['unknown'])) {
-            $filter .= ':' . $options['unknown'];
+            $modifier .= ':' . $options['unknown'];
         }
 
         return new static(
             $theme,
             Widgets::make(
                 'text',
-                array_merge($options, ['filter' => $filter])
+                array_merge($options, ['modifier' => $modifier])
             )
         );
     }
@@ -41,8 +41,6 @@ abstract class BaseDateTime extends BaseFilteredText
     {
         return parent::render($this->processDateTime($data));
     }
-
-    abstract protected static function filterMethodName(): string;
 
     private function processDateTime($data = null)
     {

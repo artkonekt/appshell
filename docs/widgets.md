@@ -91,7 +91,7 @@ return [
                     'type' => 'badge',
                     'color' => ['bool' => ['success', 'secondary']],
                     'text' => '$model.is_active',
-                    'filter' => sprintf('bool2text:%s,%s', __('paid'), __('outstanding'))
+                    'modifier' => sprintf('bool2text:%s,%s', __('paid'), __('outstanding'))
                 ]
             ],
         ]

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the BaseDateTimeFilter class.
+ * Contains the BaseDateTimeModifier class.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
@@ -12,11 +12,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Konekt\AppShell\Widgets\Filters;
+namespace Konekt\AppShell\Widgets\Modifiers;
 
-use Konekt\AppShell\Contracts\WidgetFilter;
+use Konekt\AppShell\Contracts\WidgetModifier;
 
-abstract class BaseDateTimeFilter
+abstract class BaseDateTimeModifier
 {
     protected string $unknownText;
 
@@ -25,7 +25,7 @@ abstract class BaseDateTimeFilter
         $this->unknownText = $unknownText;
     }
 
-    public static function create(array $arguments): WidgetFilter
+    public static function create(array $arguments): WidgetModifier
     {
         return new static($arguments[0] ?? '-');
     }

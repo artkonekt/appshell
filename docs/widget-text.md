@@ -84,23 +84,24 @@ $div->render('Hello');
 // => "<div>Hello</div>"
 ```
 
-## Filtering
+## Modifying Content
 
-To manipulate the output of the text itself, you can pass filters. There are built in filters, you
-can define your own ones, or you can pass PHP callables for simple cases
+To manipulate the output of the text itself, you can pass modifiers.
+There are built in modifiers, you can define your own ones, or you can
+pass PHP callables for simple cases.
 
-### Built-in Filters
+### Built-in Modifiers
 
 ```php
-$upper = Widgets::make('text', ['filter' => 'uppercase']);
+$upper = Widgets::make('text', ['modifier' => 'uppercase']);
 $upper->render('hello');
 // => "HELLO"
 
-$lower = Widgets::make('text', ['filter' => 'lowercase']);
+$lower = Widgets::make('text', ['modifier' => 'lowercase']);
 $lower->render('HeLLo');
 // => "hello"
 
-$bool2Text = Widgets::make('text', ['filter' => 'bool2text:yes,no']);
+$bool2Text = Widgets::make('text', ['modifier' => 'bool2text:yes,no']);
 $bool2Text->render(true);
 // => "yes"
 
@@ -114,21 +115,21 @@ $bool2Text->render(null);
 // => "no"
 ```
 
-### Callable Filters
+### Callable Modifers
 
-As long as a callable is taking a single argument and it returns a string, simple php function names
-can be used as filters:
+As long as a callable is taking a single argument, and it returns a
+string, simple php function names can be used as modifiers:
 
 ```php
-$ucText = Widgets::make('text', ['filter' => 'ucwords']);
+$ucText = Widgets::make('text', ['modifier' => 'ucwords']);
 $ucText->render('i should be a sentence.');
 // => "I Should Be A Sentence."
 ```
 
-### Extended Filters
+### Extended Modifiers
 
-You can register widget filters using the `WidgetFilters::add()` method.
-For more details see the [Widget Filters section](widget-filters.md).
+You can register widget modifiers using the `WidgetModifiers::add()` method.
+For more details see the [Widget Modifiers section](widget-modifiers.md).
 
 ## Prefix and Suffix
 

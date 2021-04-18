@@ -12,11 +12,11 @@ declare(strict_types=1);
  *
  */
 
-namespace Konekt\AppShell\Widgets\Filters;
+namespace Konekt\AppShell\Widgets\Modifiers;
 
-use Konekt\AppShell\Contracts\WidgetFilter;
+use Konekt\AppShell\Contracts\WidgetModifier;
 
-class ShowTime extends BaseDateTimeFilter implements WidgetFilter
+class ShowTime extends BaseDateTimeModifier implements WidgetModifier
 {
     public function handle($value): string
     {

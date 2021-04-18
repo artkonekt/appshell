@@ -14,7 +14,7 @@
 - III. Widgets
     - [Widgets](widgets.md)
     - [Text](widget-text.md)
-    - [Filters](widget-filters.md)
+    - [Modifiers](widget-modifiers.md)
     - [Link](widget-link.md)
     - [Badge(s)](widget-badge.md)
     - [MultiText](widget-multitext.md)

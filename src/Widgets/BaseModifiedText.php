@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the BaseFilteredText class.
+ * Contains the BaseModifiedText class.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
@@ -19,13 +19,11 @@ use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Traits\RendersThemedWidget;
 use Konekt\AppShell\Widgets;
 
-abstract class BaseFilteredText implements Widget
+abstract class BaseModifiedText implements Widget
 {
     use RendersThemedWidget;
 
     protected Text $text;
-
-    protected static string $filterMethodName;
 
     public function __construct(Theme $theme, Text $text)
     {
@@ -39,7 +37,7 @@ abstract class BaseFilteredText implements Widget
             $theme,
             Widgets::make(
                 'text',
-                array_merge($options, ['filter' => static::$filterMethodName])
+                array_merge($options, ['modifier' => static::modifierMethodName()])
             )
         );
     }
@@ -48,4 +46,6 @@ abstract class BaseFilteredText implements Widget
     {
         return $this->text->render($data);
     }
+
+    abstract protected static function modifierMethodName(): string;
 }

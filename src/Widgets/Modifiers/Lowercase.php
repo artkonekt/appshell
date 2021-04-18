@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the Uppercase class.
+ * Contains the Lowercase class.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
@@ -12,18 +12,18 @@ declare(strict_types=1);
  *
  */
 
-namespace Konekt\AppShell\Widgets\Filters;
+namespace Konekt\AppShell\Widgets\Modifiers;
 
-use Konekt\AppShell\Contracts\WidgetFilter;
+use Konekt\AppShell\Contracts\WidgetModifier;
 
-class Uppercase implements WidgetFilter
+class Lowercase implements WidgetModifier
 {
     public function handle($value): string
     {
-        return mb_strtoupper($value);
+        return mb_strtolower($value);
     }
 
-    public static function create(array $arguments): WidgetFilter
+    public static function create(array $arguments): WidgetModifier
     {
         return new static();
     }

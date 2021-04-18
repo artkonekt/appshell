@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the UnknownWidgetFilterException class.
+ * Contains the UnknownWidgetModifierException class.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
@@ -16,6 +16,6 @@ namespace Konekt\AppShell\Exceptions;
 
 use LogicException;
 
-class UnknownWidgetFilterException extends LogicException
+class UnknownWidgetModifierException extends LogicException
 {
 }

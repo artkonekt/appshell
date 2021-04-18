@@ -15,9 +15,9 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Konekt\AppShell\WidgetFilters;
+use Konekt\AppShell\WidgetModifiers;
 use Konekt\AppShell\Widgets;
-use Konekt\AppShell\Widgets\AppShellFilters;
+use Konekt\AppShell\Widgets\AppShellWidgetModifiers;
 use Konekt\AppShell\Widgets\AppShellWidgets;
 
 class WidgetServiceProvider extends ServiceProvider
@@ -36,19 +36,19 @@ class WidgetServiceProvider extends ServiceProvider
         AppShellWidgets::TABLE_ACTIONS => Widgets\Table\Actions::class,
     ];
 
-    private array $builtInFilters = [
-        AppShellFilters::UPPERCASE => Widgets\Filters\Uppercase::class,
-        AppShellFilters::LOWERCASE => Widgets\Filters\Lowercase::class,
-        AppShellFilters::BOOL2TEXT => Widgets\Filters\Bool2Text::class,
-        AppShellFilters::SHOW_DATETIME => Widgets\Filters\ShowDateTime::class,
-        AppShellFilters::SHOW_DATE => Widgets\Filters\ShowDate::class,
-        AppShellFilters::SHOW_TIME => Widgets\Filters\ShowTime::class,
+    private array $builtInModifiers = [
+        AppShellWidgetModifiers::UPPERCASE => Widgets\Modifiers\Uppercase::class,
+        AppShellWidgetModifiers::LOWERCASE => Widgets\Modifiers\Lowercase::class,
+        AppShellWidgetModifiers::BOOL2TEXT => Widgets\Modifiers\Bool2Text::class,
+        AppShellWidgetModifiers::SHOW_DATETIME => Widgets\Modifiers\ShowDateTime::class,
+        AppShellWidgetModifiers::SHOW_DATE => Widgets\Modifiers\ShowDate::class,
+        AppShellWidgetModifiers::SHOW_TIME => Widgets\Modifiers\ShowTime::class,
     ];
 
     public function register()
     {
-        foreach ($this->builtInFilters as $id => $class) {
-            WidgetFilters::add($id, $class);
+        foreach ($this->builtInModifiers as $id => $class) {
+            WidgetModifiers::add($id, $class);
         }
 
         foreach ($this->builtInWidgets as $id => $class) {
