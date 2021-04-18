@@ -94,6 +94,42 @@ class TextWidgetTest extends TestCase
     }
 
     /** @test */
+    public function it_can_render_the_result_of_a_method_of_a_model_as_text()
+    {
+        $text = Text::create(new AppShellTheme(), ['text' => '$model.getEmailForPasswordReset()']);
+        $user = new User(['email' => 'yo@hey.com']);
+
+        $this->assertEquals('yo@hey.com', trim($text->render($user)));
+    }
+
+    /** @test */
+    public function it_can_render_multiple_fields_of_the_model_as_text()
+    {
+        $text = Text::create(new AppShellTheme(), ['text' => '$model.name: $model.getEmailForPasswordReset()']);
+        $user = new User(['name' => 'Johnny', 'email' => 'johnny@macaroni.it']);
+
+        $this->assertEquals('Johnny: johnny@macaroni.it', trim($text->render($user)));
+    }
+
+    /** @test */
+    public function it_can_render_fields_containing_underscores_of_the_model_as_text()
+    {
+        $text = Text::create(new AppShellTheme(), ['text' => '$model.is_active']);
+        $user = new User(['is_active' => 'true']);
+
+        $this->assertEquals('true', trim($text->render($user)));
+    }
+
+    /** @test */
+    public function it_can_render_a_combination_of_fields_and_methods_of_the_model_as_text()
+    {
+        $text = Text::create(new AppShellTheme(), ['text' => '$model.name | $model.email']);
+        $user = new User(['name' => 'Johnny', 'email' => 'johnny@macaroni.it']);
+
+        $this->assertEquals('Johnny | johnny@macaroni.it', trim($text->render($user)));
+    }
+
+    /** @test */
     public function it_can_render_a_route_as_text()
     {
         $text = Text::create(new AppShellTheme(), ['text' => ['route' => 'testing-users']]);

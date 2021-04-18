@@ -47,6 +47,29 @@ If you don't pass anything as the `text` option, it will default to `$model` whi
 component will attempt to output the string representation of the data passed to the `render()`
 method.
 
+### Using Model Methods as Text
+
+It is also possible to invoke methods of the model to use the return
+value as text to display:
+
+```php
+$user = User::find(1);
+$name = Widgets::make('text', ['text' => '$model.getEmailForPasswordReset()']);
+$name->render($user);
+// => 'jane@roe.com"
+```
+
+### Using Multiple Model Fields as Text 
+
+It is also possible to add multiple fields/methods to the text:
+
+```php
+$user = User::find(1);
+$name = Widgets::make('text', ['text' => '$model.name has email: $model.getEmailForPasswordReset()']);
+$name->render($user);
+// => 'Jane has email: jane@roe.com"
+```
+
 ## Wrapping
 
 To wrap your text into html tags, pass the wrap option:

@@ -27,7 +27,8 @@ class CustomerController extends BaseController
     public function index()
     {
         return view('appshell::customer.index', [
-            'customers' => CustomerProxy::all()
+            'customers' => CustomerProxy::all(),
+            'table' => widget('appshell::customer.index.table')
         ]);
     }
 

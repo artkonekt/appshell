@@ -26,6 +26,7 @@ class WidgetServiceProvider extends ServiceProvider
         AppShellWidgets::LINK => Widgets\Link::class,
         AppShellWidgets::BADGE => Widgets\Badge::class,
         AppShellWidgets::BADGES => Widgets\Badges::class,
+        AppShellWidgets::ENUM_ICON => Widgets\EnumIcon::class,
         AppShellWidgets::SHOW_DATE => Widgets\ShowDate::class,
         AppShellWidgets::SHOW_DATETIME => Widgets\ShowDateTime::class,
         AppShellWidgets::SHOW_TIME => Widgets\ShowTime::class,

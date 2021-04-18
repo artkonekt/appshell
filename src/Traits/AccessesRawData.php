@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Traits;
 
+use Illuminate\Support\Str;
+
 trait AccessesRawData
 {
     protected function getRawData($model, string $attribute)
@@ -23,6 +25,9 @@ trait AccessesRawData
         }
 
         if (is_object($model)) {
+            if (Str::endsWith($attribute, '()')) {
+                return call_user_func([$model, str_replace('()', '', $attribute)]);
+            }
             return $model->{$attribute};
         }
 

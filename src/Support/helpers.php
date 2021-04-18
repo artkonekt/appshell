@@ -86,8 +86,8 @@ if (!function_exists('show_time')) {
 }
 
 if (!function_exists('widget')) {
-    function widget(string $ui): Widget
+    function widget(string $widget): Widget
     {
-        return Widgets::load($ui);
+        return Widgets::load($widget);
     }
 }

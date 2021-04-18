@@ -9,23 +9,19 @@ return [
     'options' => [
         'striped' => true,
         'columns' => [
-            'avatar' => [
-                'widget' => 'avatar',
-                'title' => '&nbsp;'
-            ],
             'name' => [
                 'widget' => [
                     'type' => 'multi_text',
                     'primary' => [
                         'text' => '$model.name',
                         'url' => [
-                            'route' => 'appshell.user.show',
+                            'route' => 'appshell.customer.show',
                             'parameters' => ['$model']
                         ],
-                        'onlyIfCan' => 'view users',
+                        'onlyIfCan' => 'view customers',
                     ],
                     'secondary' => [
-                        'text' => '$model.email'
+                        'text' => '$model.firstname $model.lastname'
                     ],
                 ],
                 'title' => __('Name'),
@@ -40,19 +36,17 @@ return [
                         'bold' => false,
                     ],
                     'secondary' => [
-                        'text' => '$model.last_login_at',
+                        'text' => '$model.last_purchase_at',
                         'type' => 'show_datetime',
-                        'prefix' => __('Last login') . ' '
+                        'prefix' => __('Last purchase') . ' '
                     ]
                 ]
             ],
-            'roles' => [
-                'title' => __('Roles'),
+            'type' => [
+                'title' => __('Type'),
                 'widget' => [
-                    'type' => 'badges',
-                    'color' => 'dark',
-                    'text' => '$model.name',
-                    'items' => '$model.roles',
+                    'type' => 'enum_icon',
+                    'value' => '$model.type'
                 ]
             ],
             'is_active' => [
@@ -71,14 +65,14 @@ return [
                     'type' => 'table_actions',
                     'actions' => [
                         'edit' => [
-                            'route' => 'appshell.user.edit',
-                            'can' => 'edit users',
+                            'route' => 'appshell.customer.edit',
+                            'can' => 'edit customers',
                         ],
                         'delete' => [
-                            'route' => 'appshell.user.destroy',
-                            'can' => 'delete users',
+                            'route' => 'appshell.customer.destroy',
+                            'can' => 'delete customers',
                             'confirm' => [
-                                'text' => 'Are you sure to delete poor :name?',
+                                'text' => 'Are you sure to delete :name?',
                                 'params' => [
                                     'name' => '$model.name'
                                 ],

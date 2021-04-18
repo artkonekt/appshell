@@ -30,7 +30,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        return view('appshell::user.index_widgetized', [
+        return view('appshell::user.index', [
             'users' => UserProxy::all(),
             'table' => widget('appshell::user.index.table'),
         ]);
