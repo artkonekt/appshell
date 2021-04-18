@@ -15,6 +15,11 @@
     - [Widgets](widgets.md)
     - [Text](widget-text.md)
     - [Filters](widget-filters.md)
+    - [Link](widget-link.md)
+    - [Badge(s)](widget-badge.md)
+    - [MultiText](widget-multitext.md)
+    - [Date & Time](widget-datetime.md)
+    - [Table](widgets-table.md)
 
 - IV. Customization
     - [Customizing Admin UI](customize-admin-ui.md)

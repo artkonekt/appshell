@@ -77,6 +77,8 @@ $link->render($data);
 The inner text of the link can be configured the same way as the
 [text widgets](widget-text.md).
 
+It is possible to define a wrapper html tag:
+
 ```php
 $link = Widgets::make('link', [
     'text' => [
