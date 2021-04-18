@@ -12,7 +12,7 @@ AppShell is no longer coupled with Bootstrap or any other frontend framework. Sp
 use any frontend framework they want as long as they implement the widgets.
 
 The structure of widgets is defined in the backend, eg.: the user edit controller defines that it
-wants to render a form that contains an text edit for the username, another for email, etc.
+wants to render a form that contains a text edit for the username, another for email, etc.
 
 The widget will be rendered by the active theme. The backend based definition also gives the
 opportunity for plugins to extend the predefined widget sets, with the most typical example to add

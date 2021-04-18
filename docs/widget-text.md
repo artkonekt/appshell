@@ -1,7 +1,5 @@
 # Text Widget
 
-!> Sidebar experiment
-
 The text widget is the most fundamental one, many other widgets are built on top of it or use it to
 render some of their parts. It does what it says, renders a simple text. As stupid as it may sound,
 actually there are lots of things you can do with such a simple widget.
