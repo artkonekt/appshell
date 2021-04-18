@@ -41,6 +41,7 @@ abstract class BaseDateTime extends BaseFilteredText
     {
         return parent::render($this->processDateTime($data));
     }
+
     abstract protected static function filterMethodName(): string;
 
     private function processDateTime($data = null)
