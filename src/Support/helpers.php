@@ -9,6 +9,9 @@ declare(strict_types=1);
  * @license     MIT
  */
 
+use Konekt\AppShell\Contracts\Widget;
+use Konekt\AppShell\Widgets;
+
 /**
  * Returns whether the given array contains any of the keys
  *
@@ -79,5 +82,12 @@ if (!function_exists('show_time')) {
     function show_time($datetime, string $unknownTimeText = '', string $format = null): string
     {
         return helper('date')->showTime($datetime, $unknownTimeText, $format);
+    }
+}
+
+if (!function_exists('widget')) {
+    function widget(string $ui): Widget
+    {
+        return Widgets::load($ui);
     }
 }

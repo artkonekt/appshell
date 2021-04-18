@@ -25,6 +25,8 @@ class Table implements Widget
 {
     use RendersThemedWidget;
 
+    public const TYPE_ID = 'table';
+
     public Columns $columns;
 
     public Collection $data;
