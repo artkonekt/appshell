@@ -42,7 +42,8 @@ return [
                     'secondary' => [
                         'text' => '$model.last_login_at',
                         'type' => 'show_datetime',
-                        'prefix' => __('Last login') . ' '
+                        'prefix' => __('Last login') . ' ',
+                        'unknown' => __('never')
                     ]
                 ]
             ],

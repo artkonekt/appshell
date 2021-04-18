@@ -38,7 +38,8 @@ return [
                     'secondary' => [
                         'text' => '$model.last_purchase_at',
                         'type' => 'show_datetime',
-                        'prefix' => __('Last purchase') . ' '
+                        'prefix' => __('Last purchase') . ' ',
+                        'unknown' => __('never')
                     ]
                 ]
             ],

@@ -114,7 +114,7 @@ class DateHelper
             return Carbon::instance($date);
         }
 
-        if (is_string($date)) {
+        if (is_string($date) && !empty($date)) {
             try {
                 return Carbon::parse($date);
             } catch (Exception $e) {

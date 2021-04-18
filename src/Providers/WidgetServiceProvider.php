@@ -17,6 +17,7 @@ namespace Konekt\AppShell\Providers;
 use Illuminate\Support\ServiceProvider;
 use Konekt\AppShell\WidgetFilters;
 use Konekt\AppShell\Widgets;
+use Konekt\AppShell\Widgets\AppShellFilters;
 use Konekt\AppShell\Widgets\AppShellWidgets;
 
 class WidgetServiceProvider extends ServiceProvider
@@ -36,9 +37,12 @@ class WidgetServiceProvider extends ServiceProvider
     ];
 
     private array $builtInFilters = [
-        'uppercase' => Widgets\Filters\Uppercase::class,
-        'lowercase' => Widgets\Filters\Lowercase::class,
-        'bool2text' => Widgets\Filters\Bool2Text::class,
+        AppShellFilters::UPPERCASE => Widgets\Filters\Uppercase::class,
+        AppShellFilters::LOWERCASE => Widgets\Filters\Lowercase::class,
+        AppShellFilters::BOOL2TEXT => Widgets\Filters\Bool2Text::class,
+        AppShellFilters::SHOW_DATETIME => Widgets\Filters\ShowDateTime::class,
+        AppShellFilters::SHOW_DATE => Widgets\Filters\ShowDate::class,
+        AppShellFilters::SHOW_TIME => Widgets\Filters\ShowTime::class,
     ];
 
     public function register()

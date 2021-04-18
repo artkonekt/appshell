@@ -14,7 +14,10 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
-class ShowTime extends BaseFilteredText
+class ShowTime extends BaseDateTime
 {
-    protected static string $filterMethodName = 'show_time';
+    protected static function filterMethodName(): string
+    {
+        return 'show_time';
+    }
 }
