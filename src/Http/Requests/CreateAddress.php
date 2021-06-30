@@ -23,16 +23,21 @@ class CreateAddress extends FormRequest implements CreateAddressContract
     use HasFor;
     use IsAddressRequest;
     use MutatesAddress;
-
+    
     /**
      * @inheritDoc
+     *
+     *
+     * @refactored sd@groundwow.com 30-06-2021
      */
     public function rules()
     {
         return array_merge($this->getForRules(), [
-            'name' => 'required',
+            'name'       => 'required',
             'country_id' => 'required',
-            'address' => 'required'
+            'address'    => 'required',
+            'type' => ['sometimes'], #TODO:: Check AddressType Enums to see if value exists
+            'postalcode' => 'sometimes',
         ]);
     }
 
