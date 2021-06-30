@@ -38,6 +38,7 @@ class CreateAddress extends FormRequest implements CreateAddressContract
             'address'    => 'required',
             'type' => ['sometimes'], #TODO:: Check AddressType Enums to see if value exists
             'postalcode' => 'sometimes',
+            'city' => 'sometimes',
         ]);
     }
 
