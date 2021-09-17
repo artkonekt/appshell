@@ -49,6 +49,7 @@ return [
             ],
             'roles' => [
                 'title' => __('Roles'),
+                'valign' => 'middle',
                 'widget' => [
                     'type' => 'badges',
                     'color' => 'dark',
@@ -58,6 +59,7 @@ return [
             ],
             'is_active' => [
                 'title' => __('Status'),
+                'valign' => 'middle',
                 'widget' => [
                     'type' => 'badge',
                     'color' => ['bool' => ['success', 'secondary']],
@@ -68,6 +70,7 @@ return [
             'actions' => [
                 'title' => '&nbsp;',
                 'width' => '10%',
+                'valign' => 'middle',
                 'widget' => [
                     'type' => 'table_actions',
                     'actions' => [

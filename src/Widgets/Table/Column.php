@@ -28,6 +28,8 @@ class Column
 
     public ?string $width;
 
+    public ?string $valign;
+
     private ?string $widget;
 
     private array $widgetOptions = [];
@@ -37,6 +39,7 @@ class Column
         $this->id = $id;
         $this->title = $attributes['title'] ?? $id;
         $this->width = $attributes['width'] ?? null;
+        $this->valign = $attributes['valign'] ?? null;
 
         $widget = $attributes['widget'] ?? null;
         if (is_string($widget)) {

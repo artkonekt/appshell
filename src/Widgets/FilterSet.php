@@ -43,8 +43,7 @@ class FilterSet implements Widget
             if (is_numeric($id) && is_string($definition)) { // We have a bare list of columns ['id', 'name']
                 $filterOptions['id'] = $definition;
             } else {
-                $filterOptions['id'] = $id;
-                $filterOptions['options'] = $definition;
+                $filterOptions = array_merge($definition, ['id' => $id]);
             }
             $filters[] = Widgets::make(AppShellWidgets::FILTER, $filterOptions, $theme);
         }

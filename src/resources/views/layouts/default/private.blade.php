@@ -56,5 +56,6 @@
 @include('appshell::layouts.default._footer_includes')
 
 @yield('scripts')
+@stack('footer-scripts')
 </body>
 </html>

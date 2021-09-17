@@ -45,6 +45,7 @@ return [
             ],
             'type' => [
                 'title' => __('Type'),
+                'valign' => 'middle',
                 'widget' => [
                     'type' => 'enum_icon',
                     'value' => '$model.type'
@@ -52,6 +53,7 @@ return [
             ],
             'is_active' => [
                 'title' => __('Status'),
+                'valign' => 'middle',
                 'widget' => [
                     'type' => 'badge',
                     'color' => ['bool' => ['success', 'secondary']],
@@ -62,6 +64,7 @@ return [
             'actions' => [
                 'title' => '&nbsp;',
                 'width' => '10%',
+                'valign' => 'middle',
                 'widget' => [
                     'type' => 'table_actions',
                     'actions' => [
