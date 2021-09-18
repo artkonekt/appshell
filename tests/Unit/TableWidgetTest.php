@@ -59,10 +59,10 @@ class TableWidgetTest extends TestCase
             ['id' => 2, 'name' => 'Mr. Fritz Teufel'],
         ]));
 
-        $this->assertStringContainsString('<td>1', $html);
-        $this->assertStringContainsString('<td>Giovanni Gatto', $html);
-        $this->assertStringContainsString('<td>2', $html);
-        $this->assertStringContainsString('<td>Mr. Fritz Teufel', $html);
+        $this->assertStringContainsString('<td >1', $html);
+        $this->assertStringContainsString('<td >Giovanni Gatto', $html);
+        $this->assertStringContainsString('<td >2', $html);
+        $this->assertStringContainsString('<td >Mr. Fritz Teufel', $html);
     }
 
     /** @test */
@@ -83,9 +83,9 @@ class TableWidgetTest extends TestCase
             ['id' => 2, 'name' => 'Mr. Fritz Teufel', 'github' => 'https://github.com/fritz-teufel'],
         ]));
 
-        $this->assertStringContainsString('<td><a href="https://github.com/giovanni-gatto"', $html);
+        $this->assertStringContainsString('<td ><a href="https://github.com/giovanni-gatto"', $html);
         $this->assertStringContainsString('>Giovanni Gatto</a>', $html);
-        $this->assertStringContainsString('<td><a href="https://github.com/fritz-teufel"', $html);
+        $this->assertStringContainsString('<td ><a href="https://github.com/fritz-teufel"', $html);
         $this->assertStringContainsString('Mr. Fritz Teufel</a>', $html);
     }
 }
