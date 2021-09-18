@@ -14,11 +14,15 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
+use Konekt\AppShell\Filters\Generic\ExactMatch;
+use Konekt\AppShell\Filters\Filters;
+use Konekt\AppShell\Filters\Generic\PartialMatch;
+use Konekt\AppShell\Filters\Specific\RolesFilter;
 use Konekt\User\Contracts\User;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserTypeProxy;
@@ -28,10 +32,19 @@ class UserController extends BaseController
     /**
      * Displays the list of users
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filters = Filters::make([
+            new PartialMatch('name', __('Name')),
+            new ExactMatch('is_active', __('Status'), [null => __('Any status'), 1 => __('Actives only'), 0 => __('Inactives only')]),
+            new RolesFilter(),
+        ]);
+
+        $filters->activateFromRequest($request);
+
+
         return view('appshell::user.index', [
-            'users' => UserProxy::all(),
+            'users' => $filters->apply(UserProxy::query())->get(),
             'table' => widget('appshell::user.index.table'),
             'filters' => widget('appshell::user.index.filters')
         ]);
