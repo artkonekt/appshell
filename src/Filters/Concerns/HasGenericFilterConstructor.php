@@ -17,7 +17,7 @@ namespace Konekt\AppShell\Filters\Concerns;
 trait HasGenericFilterConstructor
 {
     public function __construct(
-        string  $id,
+        string $id,
         ?string $label = null,
         ?array $possibleValues = null
     ) {

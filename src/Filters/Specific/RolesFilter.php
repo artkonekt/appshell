@@ -26,18 +26,13 @@ class RolesFilter implements Filter
     use AllowsMultipleValues;
 
     public function __construct(
-        string  $id = 'roles',
+        string $id = 'roles',
         ?string $label = null,
         ?string $placeholder = null
     ) {
         $this->id = $id;
         $this->label = $label ?? __('Roles');
         $this->placeholder = $placeholder;
-    }
-
-    protected function loadPossibleValues($context = null): array
-    {
-        return RoleProxy::get(['id', 'name'])->pluck('name', 'id')->toArray();
     }
 
     public function apply(Builder $query, $criteria): Builder
@@ -49,5 +44,10 @@ class RolesFilter implements Filter
                 }
             });
         });
+    }
+
+    protected function loadPossibleValues($context = null): array
+    {
+        return RoleProxy::get(['id', 'name'])->pluck('name', 'id')->toArray();
     }
 }

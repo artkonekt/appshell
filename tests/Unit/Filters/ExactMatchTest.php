@@ -96,9 +96,9 @@ class ExactMatchTest extends TestCase
         $filter->apply($query, UserType::ADMIN);
 
         $whereClause = $query->getQuery()->wheres[0];
-        $this->assertEquals('type', $whereClause['column'] );
-        $this->assertEquals('Basic', $whereClause['type'] );
-        $this->assertEquals('=', $whereClause['operator'] );
-        $this->assertEquals(UserType::ADMIN, $whereClause['value'] );
+        $this->assertEquals('type', $whereClause['column']);
+        $this->assertEquals('Basic', $whereClause['type']);
+        $this->assertEquals('=', $whereClause['operator']);
+        $this->assertEquals(UserType::ADMIN, $whereClause['value']);
     }
 }

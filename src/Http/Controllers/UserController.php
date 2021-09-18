@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
-use Konekt\AppShell\Filters\Generic\ExactMatch;
 use Konekt\AppShell\Filters\Filters;
+use Konekt\AppShell\Filters\Generic\ExactMatch;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
 use Konekt\AppShell\Filters\Specific\RolesFilter;
 use Konekt\User\Contracts\User;
@@ -41,7 +41,6 @@ class UserController extends BaseController
         ]);
 
         $filters->activateFromRequest($request);
-
 
         return view('appshell::user.index', [
             'users' => $filters->apply(UserProxy::query())->get(),

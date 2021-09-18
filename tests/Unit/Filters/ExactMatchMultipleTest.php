@@ -98,8 +98,8 @@ class ExactMatchMultipleTest extends TestCase
         $filter->apply($query, [UserType::CLIENT, UserType::API]);
 
         $whereClause = $query->getQuery()->wheres[0];
-        $this->assertEquals('type', $whereClause['column'] );
-        $this->assertEquals('In', $whereClause['type'] );
-        $this->assertEquals([UserType::CLIENT, UserType::API], $whereClause['values'] );
+        $this->assertEquals('type', $whereClause['column']);
+        $this->assertEquals('In', $whereClause['type']);
+        $this->assertEquals([UserType::CLIENT, UserType::API], $whereClause['values']);
     }
 }

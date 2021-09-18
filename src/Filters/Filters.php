@@ -46,7 +46,7 @@ class Filters implements IteratorAggregate
             } elseif (is_numeric($key)) {
                 if (is_string($value)) {
                     $instance->addFilter(self::makeFilterFromDefinition($value));
-                } elseif(is_array($value) && array_key_exists('id', $value)) {
+                } elseif (is_array($value) && array_key_exists('id', $value)) {
                     $instance->addFilter(self::makeFilterFromDefinition($value['id'], Arr::except($value, 'id')));
                 } else {
                     throw new \InvalidArgumentException('Invalid Filter Definition ' . gettype($value));

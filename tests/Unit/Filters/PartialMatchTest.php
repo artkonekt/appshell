@@ -117,6 +117,6 @@ class PartialMatchTest extends TestCase
 
         $filter->matchingPattern(PartialMatchPattern::ANYWHERE());
         $anywhereQuery = $filter->apply(User::query(), 'Gatto');
-        $this->assertEquals('%Gatto%', $anywhereQuery->getQuery()->wheres[0]['value'] );
+        $this->assertEquals('%Gatto%', $anywhereQuery->getQuery()->wheres[0]['value']);
     }
 }
