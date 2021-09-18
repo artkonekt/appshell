@@ -41,7 +41,7 @@ class SomeFilter implements Filter
         return null;
     }
 
-    public function possibleValues(): ?array
+    public function possibleValues($context = null): ?array
     {
         return null;
     }
