@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
@@ -30,6 +31,12 @@ class Filter implements Widget
     private ?iterable $options = null;
 
     private string $title;
+
+    private ?string $placeholder = null;
+
+    private bool $isActive = false;
+
+    private $criteria = null;
 
     public function __construct(Theme $theme, string $id, FilterType $type, string $title = null)
     {
@@ -63,6 +70,10 @@ class Filter implements Widget
             }
         }
 
+        $instance->placeholder = Arr::get($options, 'placeholder', '');
+        $instance->isActive = Arr::get($options, 'isActive', false);
+        $instance->criteria = Arr::get($options, 'criteria');
+
         return $instance;
     }
 
@@ -81,7 +92,10 @@ class Filter implements Widget
             'id' => $this->id,
             'title' => $this->title,
             'type' => $this->type->value(),
+            'placeholder' => $this->placeholder,
             'options' => $this->options,
+            'isActive' => $this->isActive,
+            'criteria' => $this->criteria,
         ]);
     }
 }

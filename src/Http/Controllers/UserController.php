@@ -20,9 +20,12 @@ use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
 use Konekt\AppShell\Filters\Filters;
-use Konekt\AppShell\Filters\Generic\ExactMatch;
+use Konekt\AppShell\Filters\Generic\BoolTriState;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
+use Konekt\AppShell\Filters\PartialMatchPattern;
 use Konekt\AppShell\Filters\Specific\RolesFilter;
+use Konekt\AppShell\Widgets;
+use Konekt\AppShell\Widgets\AppShellWidgets;
 use Konekt\User\Contracts\User;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserTypeProxy;
@@ -35,17 +38,20 @@ class UserController extends BaseController
     public function index(Request $request)
     {
         $filters = Filters::make([
-            new PartialMatch('name', __('Name')),
-            new ExactMatch('is_active', __('Status'), [null => __('Any status'), 1 => __('Actives only'), 0 => __('Inactives only')]),
-            new RolesFilter(),
+            (new PartialMatch('name', __('Name'), PartialMatchPattern::ANYWHERE()))->displayAsTextField(),
+            new BoolTriState('is_active', __('Actives only'), __('Inactives only'), __('Any status'), __('Status')),
+            (new RolesFilter())->displayAsMultiSelect(),
         ]);
 
         $filters->activateFromRequest($request);
 
         return view('appshell::user.index', [
-            'users' => $filters->apply(UserProxy::query())->get(),
+            'users' => $filters->apply(UserProxy::query())->with('roles')->get(),
             'table' => widget('appshell::user.index.table'),
-            'filters' => widget('appshell::user.index.filters')
+            'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
+                'route' => 'appshell.user.index',
+                'filters' => $filters,
+            ])
         ]);
     }
 

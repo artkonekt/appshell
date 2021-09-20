@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 /**
- * Contains the ExactMatch class.
+ * Contains the BoolTriState class.
  *
  * @copyright   Copyright (c) 2021 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2021-09-18
+ * @since       2021-09-20
  *
  */
 
@@ -18,17 +18,31 @@ use Illuminate\Database\Eloquent\Builder;
 use Konekt\AppShell\Contracts\Filter;
 use Konekt\AppShell\Filters\Concerns\DoesNotAllowMultipleValues;
 use Konekt\AppShell\Filters\Concerns\HasBaseFilterAttributes;
-use Konekt\AppShell\Filters\Concerns\HasGenericFilterConstructor;
 use Konekt\AppShell\Filters\Concerns\HasPlaceholderSetter;
-use Konekt\AppShell\Filters\Concerns\HasWidgetType;
 
-class ExactMatch implements Filter
+class BoolTriState implements Filter
 {
     use HasBaseFilterAttributes;
-    use HasPlaceholderSetter;
-    use HasGenericFilterConstructor;
-    use HasWidgetType;
     use DoesNotAllowMultipleValues;
+    use HasPlaceholderSetter;
+
+    public function __construct(
+        string $id,
+        string $labelTrue,
+        string $labelFalse,
+        string $labelAny,
+        string $label = null
+    ) {
+        $this->id = $id;
+        $this->placeholder = $labelAny;
+        $this->possibleValues = [0 => $labelFalse, 1 => $labelTrue];
+        $this->label = $label ?? $id;
+    }
+
+    public function widgetType(): string
+    {
+        return 'select';
+    }
 
     public function apply(Builder $query, $criteria): Builder
     {
@@ -36,6 +50,6 @@ class ExactMatch implements Filter
             return $query;
         }
 
-        return $query->where($this->id, $criteria);
+        return $query->where($this->id, (bool) $criteria);
     }
 }

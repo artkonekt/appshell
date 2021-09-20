@@ -118,9 +118,14 @@ class Filters implements IteratorAggregate
         return $this->activeFilters;
     }
 
-    public function activeOne(string $id): ActiveFilter
+    public function activeOne(string $id): ?ActiveFilter
     {
-        return $this->activeFilters[$id];
+        return $this->activeFilters[$id] ?? null;
+    }
+
+    public function isActive(string $id): bool
+    {
+        return isset($this->activeFilters[$id]);
     }
 
     public function getIterator()
@@ -137,6 +142,6 @@ class Filters implements IteratorAggregate
 
     private function exists(string $id): bool
     {
-        return (bool) ($this->items[$id] ?? false);
+        return isset($this->items[$id]);
     }
 }

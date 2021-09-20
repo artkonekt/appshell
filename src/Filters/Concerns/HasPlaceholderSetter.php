@@ -16,8 +16,10 @@ namespace Konekt\AppShell\Filters\Concerns;
 
 trait HasPlaceholderSetter
 {
-    public function setPlaceholder(?string $placeholder): void
+    public function setPlaceholder(?string $placeholder): self
     {
         $this->placeholder = $placeholder;
+
+        return $this;
     }
 }

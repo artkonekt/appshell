@@ -20,12 +20,14 @@ use Konekt\AppShell\Filters\Concerns\AllowsMultipleValues;
 use Konekt\AppShell\Filters\Concerns\HasBaseFilterAttributes;
 use Konekt\AppShell\Filters\Concerns\HasGenericFilterConstructor;
 use Konekt\AppShell\Filters\Concerns\HasPlaceholderSetter;
+use Konekt\AppShell\Filters\Concerns\HasWidgetType;
 
 class ExactMatchMultiple implements Filter
 {
     use HasBaseFilterAttributes;
     use HasPlaceholderSetter;
     use HasGenericFilterConstructor;
+    use HasWidgetType;
     use AllowsMultipleValues;
 
     public function apply(Builder $query, $criteria): Builder

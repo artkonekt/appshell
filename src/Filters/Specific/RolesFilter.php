@@ -19,11 +19,13 @@ use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Filter;
 use Konekt\AppShell\Filters\Concerns\AllowsMultipleValues;
 use Konekt\AppShell\Filters\Concerns\HasBaseFilterAttributes;
+use Konekt\AppShell\Filters\Concerns\HasWidgetType;
 
 class RolesFilter implements Filter
 {
     use HasBaseFilterAttributes;
     use AllowsMultipleValues;
+    use HasWidgetType;
 
     public function __construct(
         string $id = 'roles',
@@ -32,13 +34,14 @@ class RolesFilter implements Filter
     ) {
         $this->id = $id;
         $this->label = $label ?? __('Roles');
-        $this->placeholder = $placeholder;
+        $this->placeholder = $placeholder ?? $this->label;
     }
 
     public function apply(Builder $query, $criteria): Builder
     {
         return $query->whereHas('roles', function ($query) use ($criteria) {
             $query->where(function ($query) use ($criteria) {
+                $criteria = is_iterable($criteria) ? $criteria : [$criteria];
                 foreach ($criteria as $role) {
                     $query->orWhere('roles.id', $role);
                 }

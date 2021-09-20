@@ -42,13 +42,6 @@ class PartialMatchTest extends TestCase
     }
 
     /** @test */
-    public function possible_values_can_be_specified()
-    {
-        $filter = new PartialMatch('email', null, ['@artkonekt.com', '@vanilo.io']);
-        $this->assertEquals(['@artkonekt.com', '@vanilo.io'], $filter->possibleValues());
-    }
-
-    /** @test */
     public function the_label_defaults_to_the_id_if_unspecified()
     {
         $filter = new PartialMatch('subject');

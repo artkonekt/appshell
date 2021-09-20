@@ -41,6 +41,11 @@ class SomeFilter implements Filter
         return null;
     }
 
+    public function widgetType(): string
+    {
+        return 'select';
+    }
+
     public function possibleValues($context = null): ?array
     {
         return null;

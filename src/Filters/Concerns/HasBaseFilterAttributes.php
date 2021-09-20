@@ -18,7 +18,7 @@ trait HasBaseFilterAttributes
 {
     private string $id;
 
-    private ?array $possibleValues;
+    private ?array $possibleValues = null;
 
     private ?string $label = null;
 
