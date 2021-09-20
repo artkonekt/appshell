@@ -45,7 +45,7 @@ class FilterSetWidgetTest extends TestCase
 
         $html = $widget->render();
         $this->assertStringContainsString('<form', $html);
-        $this->assertStringContainsString('action="' . route('appshell.user.index') , $html);
+        $this->assertStringContainsString('action="' . route('appshell.user.index'), $html);
     }
 
     /** @test */
