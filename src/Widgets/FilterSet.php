@@ -28,7 +28,7 @@ class FilterSet implements Widget
 
     protected Filters $filters;
 
-    protected array $widgets;
+    protected array $widgets = [];
 
     protected string $route;
 
