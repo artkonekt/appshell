@@ -14,7 +14,7 @@
             @yield('title')
 
             <div class="card-actionbar">
-                {!! $filters->render()  !!}
+
 
                 @can('create users')
                 <a href="{{ route('appshell.user.create') }}" class="btn btn-sm btn-outline-success float-right">
@@ -22,6 +22,8 @@
                     {{ __('New User') }}
                 </a>
                 @endcan
+
+                    {!! $filters->render()  !!}
             </div>
 
         </div>

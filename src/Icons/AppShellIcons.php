@@ -62,4 +62,5 @@ final class AppShellIcons
     public const IMAGE = 'image';
     public const CHEVRON_RIGHT = '>';
     public const CHEVRON_LEFT = '<';
+    public const FILTERS = 'filters';
 }

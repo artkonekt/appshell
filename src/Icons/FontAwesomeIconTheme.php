@@ -70,6 +70,7 @@ class FontAwesomeIconTheme implements IconTheme
         AppShellIcons::IMAGE => 'images',
         AppShellIcons::CHEVRON_RIGHT => 'chevron-right',
         AppShellIcons::CHEVRON_LEFT => 'chevron-left',
+        AppShellIcons::FILTERS => 'sliders-h',
     ];
 
     public static function getName(): string

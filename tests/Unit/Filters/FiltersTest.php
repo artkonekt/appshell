@@ -42,6 +42,14 @@ class FiltersTest extends TestCase
     }
 
     /** @test */
+    public function it_can_be_counted_with_khm_dotdotdot_the_count_function()
+    {
+        $filters = new Filters(new SomeFilter());
+
+        $this->assertEquals(1, count($filters));
+    }
+
+    /** @test */
     public function it_can_be_iterated_through()
     {
         $filters = new Filters(

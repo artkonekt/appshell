@@ -7,7 +7,6 @@
 
     @case('select')
         {!! Form::select($id, $options ?? [], $criteria, ['class' => 'form-control form-control-sm', 'placeholder' => $placeholder]) !!}
-        &nbsp;
     @break
 
     @case('multiselect')
@@ -17,10 +16,8 @@
                 <option value="{{ $value }}"@if(in_array($value, $criteria ?? [])) selected @endif>{{ $label }}</option>
             @endforeach
         </select>
-        &nbsp;
     @break
 
     @default
         {!! Form::text($id, $criteria, ['class' => 'form-control form-control-sm', 'placeholder' => $placeholder]) !!}
-        &nbsp;
 @endswitch

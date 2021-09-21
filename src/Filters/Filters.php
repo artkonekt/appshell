@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Filters;
 
 use ArrayIterator;
+use Countable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -23,7 +24,7 @@ use Konekt\AppShell\Contracts\Filter;
 use Konekt\AppShell\Exceptions\NonExistentFilterException;
 use Konekt\AppShell\Filters\Generic\ExactMatch;
 
-class Filters implements IteratorAggregate
+class Filters implements IteratorAggregate, Countable
 {
     private array $items = [];
 
@@ -126,6 +127,16 @@ class Filters implements IteratorAggregate
     public function isActive(string $id): bool
     {
         return isset($this->activeFilters[$id]);
+    }
+
+    public function activeCount(): int
+    {
+        return count($this->activeFilters);
+    }
+
+    public function count()
+    {
+        return $this->getIterator()->count();
     }
 
     public function getIterator()
