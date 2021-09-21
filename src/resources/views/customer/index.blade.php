@@ -18,6 +18,9 @@
                     {{ __('Create Customer') }}
                 </a>
                 @endcan
+
+                {!! $filters->render()  !!}
+
             </div>
 
         </div>
