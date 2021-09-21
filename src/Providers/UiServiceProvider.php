@@ -19,6 +19,7 @@ use Illuminate\Support\ServiceProvider;
 use Konekt\AppShell\EnumIcons;
 use Konekt\AppShell\Icons\FontAwesomeIconTheme;
 use Konekt\AppShell\Icons\LineIconsTheme;
+use Konekt\AppShell\Icons\TablerIconTheme;
 use Konekt\AppShell\Icons\ZmdiIconTheme;
 use Konekt\AppShell\IconThemes;
 use Konekt\AppShell\Settings\UiIconThemeSetting;
@@ -41,8 +42,7 @@ class UiServiceProvider extends ServiceProvider
         IconThemes::add(ZmdiIconTheme::ID, ZmdiIconTheme::class);
         IconThemes::add(FontAwesomeIconTheme::ID, FontAwesomeIconTheme::class);
         IconThemes::add(LineIconsTheme::ID, LineIconsTheme::class);
-        //Tabler icons disabled until https://github.com/tabler/tabler-icons/issues/13 gets fixed
-        //IconThemes::add(TablerIconTheme::ID, TablerIconTheme::class);
+        IconThemes::add(TablerIconTheme::ID, TablerIconTheme::class);
 
         $this->app->singleton('appshell.icon_theme', function () {
             return IconThemes::make(Settings::get(UiIconThemeSetting::KEY));

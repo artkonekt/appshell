@@ -89,7 +89,7 @@ class TablerIconTheme implements IconTheme
             return '';
         }
 
-        return '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/1.34.0/iconfont/tabler-icons.min.css" integrity="sha512-mWpmj8VqORtX/CTiI5Mypqx75NqtF3Ddym7C94bpi8d8nVW46OlJbtdGDcGsQDZ4VJARIgMLbzm8zyN1Ies3Qw==" crossorigin="anonymous" />';
+        return '<link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">';
     }
 
     public function render(string $abstract, ThemeColor $color, array $attributes = []): string
