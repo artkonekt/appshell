@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 2.3.1
+##### 2021-09-22
+
+- Fixed "stuck" old assets by replacing `asset()` with `mix()` in AppShell layouts
+
 ## 2.3.0
 ##### 2021-09-22
 
