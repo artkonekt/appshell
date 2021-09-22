@@ -1,9 +1,12 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2021-XX-YY
+## 2.3.0
+##### 2021-09-22
 
-- Added Widget based rendering
+- Added Widgets feature
+- Added Filters feature
+- Replaced User and Customer list tables to be rendered via a table widget
+- Added (enabled the Tabler Icon theme with
 
 ## 2.2.0
 ##### 2021-03-14
