@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2021-XX-YY
+
+- Fixed rendering of custom classes on icon themes
+
 ## 2.3.1
 ##### 2021-09-22
 

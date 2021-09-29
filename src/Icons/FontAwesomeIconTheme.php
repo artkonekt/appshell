@@ -101,7 +101,7 @@ class FontAwesomeIconTheme implements IconTheme
         }
 
         if (isset($attributes['class'])) {
-            array_merge($classes, explode(' ', $attributes['class']));
+            $classes = array_merge($classes, explode(' ', $attributes['class']));
             unset($attributes['class']);
         }
 
