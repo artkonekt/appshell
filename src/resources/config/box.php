@@ -54,6 +54,7 @@ return [
         'logo_uri' => '/images/appshell/logo.svg',
         'theme' => 'appshell',
         'icon_theme' => 'zmdi',
+        'use_mix' => false,
         'routes' => [
             'login' => 'login',
             'logout' => 'logout',
