@@ -27,12 +27,12 @@ class CreateInvitation extends FormRequest implements CreateInvitationContract
     public function rules()
     {
         return [
-            'name'       => 'nullable|min:2|max:255',
-            'email'      => 'required|email|unique:users,email',
-            'type'       => ['required', Rule::in(UserTypeProxy::values())],
-            'roles'      => 'sometimes|array',
+            'name' => 'nullable|min:2|max:255',
+            'email' => 'required|email|unique:users,email',
+            'type' => ['required', Rule::in(UserTypeProxy::values())],
+            'roles' => 'sometimes|array',
             'expires_in' => 'sometimes|nullable|int|min:0|max:365',
-            'options'    => 'sometimes|array'
+            'options' => 'sometimes|array'
         ];
     }
 

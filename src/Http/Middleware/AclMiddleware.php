@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Konekt\AppShell\Http\Middleware;
 
-use Auth;
 use Closure;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
 
@@ -60,17 +61,17 @@ class AclMiddleware
     protected function parseAction($action)
     {
         // Remove namespace
-        $parts         = explode('\\', $action['uses']);
+        $parts = explode('\\', $action['uses']);
         $ctrlAndAction = end($parts);
 
         // Split controller and action
-        $parts      = explode('@', $ctrlAndAction);
+        $parts = explode('@', $ctrlAndAction);
         $controller = $parts[0];
-        $action     = end($parts);
-        $resource   = str_replace('Controller', '', $controller);
+        $action = end($parts);
+        $resource = str_replace('Controller', '', $controller);
 
         return [
-            'action'   => $action,
+            'action' => $action,
             'resource' => $resource
         ];
     }

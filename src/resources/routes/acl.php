@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | AppShell's Web Routes Governed by ACL
@@ -17,11 +19,11 @@ Route::prefix('user')->group(function () {
 Route::resource('user', 'UserController');
 Route::post('user/{user}/activate', [
     'uses' => 'UserController@activate',
-    'as'   => 'user.activate'
+    'as' => 'user.activate'
 ]);
 Route::post('user/{user}/inactivate', [
     'uses' => 'UserController@inactivate',
-    'as'   => 'user.inactivate'
+    'as' => 'user.inactivate'
 ]);
 
 Route::resource('role', 'RoleController');
@@ -30,9 +32,9 @@ Route::resource('address', 'AddressController');
 
 Route::get('settings', [
     'uses' => 'SettingsController@index',
-    'as'   => 'settings.index'
+    'as' => 'settings.index'
 ]);
 Route::put('settings', [
     'uses' => 'SettingsController@update',
-    'as'   => 'settings.update'
+    'as' => 'settings.update'
 ]);

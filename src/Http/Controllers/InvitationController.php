@@ -67,7 +67,7 @@ class InvitationController extends BaseController
         }
 
         return view('appshell::invitation.edit', [
-            'invitation'  => $invitation,
+            'invitation' => $invitation,
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()
         ]);

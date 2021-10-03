@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Konekt\AppShell\Tests\Feature;
 
 use Konekt\AppShell\Tests\TestCase;

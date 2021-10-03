@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Contains the QuickLinkController class.
  *
@@ -25,12 +28,12 @@ class QuickLinkController extends BaseController
     public function update(Request $request)
     {
         $result = [];
-        $links  = $request->get('links');
+        $links = $request->get('links');
         foreach ($request->get('labels') as $i => $label) {
             if (!empty($label) && !empty($links[$i])) {
                 $result[$i] = [
                 'label' => $label,
-                'link'  => $links[$i]
+                'link' => $links[$i]
             ];
             }
         }

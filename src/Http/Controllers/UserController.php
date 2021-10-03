@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Contains the UserController class.
  *
@@ -11,10 +14,18 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
+use Konekt\AppShell\Filters\Filters;
+use Konekt\AppShell\Filters\Generic\BoolTriState;
+use Konekt\AppShell\Filters\Generic\PartialMatch;
+use Konekt\AppShell\Filters\PartialMatchPattern;
+use Konekt\AppShell\Filters\Specific\RolesFilter;
+use Konekt\AppShell\Widgets;
+use Konekt\AppShell\Widgets\AppShellWidgets;
 use Konekt\User\Contracts\User;
 use Konekt\User\Models\UserProxy;
 use Konekt\User\Models\UserTypeProxy;
@@ -24,10 +35,23 @@ class UserController extends BaseController
     /**
      * Displays the list of users
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filters = Filters::make([
+            (new PartialMatch('name', __('Name'), PartialMatchPattern::ANYWHERE()))->displayAsTextField(),
+            new BoolTriState('is_active', __('Actives only'), __('Inactives only'), __('Any status'), __('Status')),
+            (new RolesFilter())->displayAsMultiSelect(),
+        ]);
+
+        $filters->activateFromRequest($request);
+
         return view('appshell::user.index', [
-            'users' => UserProxy::all()
+            'users' => $filters->apply(UserProxy::query())->with('roles')->get(),
+            'table' => widget('appshell::user.index.table'),
+            'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
+                'route' => 'appshell.user.index',
+                'filters' => $filters,
+            ])
         ]);
     }
 
@@ -39,7 +63,7 @@ class UserController extends BaseController
     public function create()
     {
         return view('appshell::user.create', [
-            'user'  => app(User::class),
+            'user' => app(User::class),
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()
         ]);
@@ -87,7 +111,7 @@ class UserController extends BaseController
     public function edit(User $user)
     {
         return view('appshell::user.edit', [
-            'user'  => $user,
+            'user' => $user,
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()
         ]);

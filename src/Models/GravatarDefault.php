@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the GravatarDefault enum class.
  *
@@ -21,12 +23,12 @@ class GravatarDefault extends Enum implements GravatarDefaultContract
 {
     public const __DEFAULT = self::RETRO;
 
-    public const HTTP404        = '404';
+    public const HTTP404 = '404';
     public const MYSTERY_PERSON = 'mp';
-    public const IDENTICON      = 'identicon';
-    public const MONSTERID      = 'monsterid';
-    public const WAVATAR        = 'wavatar';
-    public const RETRO          = 'retro';
-    public const ROBOHASH       = 'robohash';
-    public const BLANK          = 'blank';
+    public const IDENTICON = 'identicon';
+    public const MONSTERID = 'monsterid';
+    public const WAVATAR = 'wavatar';
+    public const RETRO = 'retro';
+    public const ROBOHASH = 'robohash';
+    public const BLANK = 'blank';
 }

@@ -7,11 +7,21 @@
 - II. How To Use
     - [Admin Panel](admin-panel.md)
     - [Authentication](admin-authentication.md)
-    - [ACL](acl.md) 
+    - [ACL](acl.md)
     - [Menu Component](menu.md)
     - [Breadcrumbs](breadcrumbs.md) 
 
-- III. Customization
+- III. Widgets
+    - [Widgets](widgets.md)
+    - [Text](widget-text.md)
+    - [Modifiers](widget-modifiers.md)
+    - [Link](widget-link.md)
+    - [Badge(s)](widget-badge.md)
+    - [MultiText](widget-multitext.md)
+    - [Date & Time](widget-datetime.md)
+    - [Table](widgets-table.md)
+
+- IV. Customization
     - [Customizing Admin UI](customize-admin-ui.md)
     - [Themes](themes.md)
     - [Icon Themes](icon-themes.md)

@@ -27,8 +27,8 @@ final class UiConfig
 {
     /** property name => Setting name */
     private static array $settingBased = [
-        'name'    => UiNameSetting::KEY,
-        'theme'   => UiThemeSetting::KEY,
+        'name' => UiNameSetting::KEY,
+        'theme' => UiThemeSetting::KEY,
         'logoUri' => UiLogoUriSetting::KEY
     ];
 
@@ -52,7 +52,7 @@ final class UiConfig
     private function fixMissingDefaults(): void
     {
         if (!isset($this->data['routes'])) {
-            $this->data['routes']['login']  = 'login';
+            $this->data['routes']['login'] = 'login';
             $this->data['routes']['logout'] = 'logout';
         }
 

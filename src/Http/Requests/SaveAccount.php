@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Contains the SaveAccount class.
  *
@@ -22,8 +25,8 @@ class SaveAccount extends FormRequest implements SaveAccountContract
     public function rules()
     {
         return [
-            'name'      => 'required|min:2|max:255',
-            'password'  => 'nullable|min:7'
+            'name' => 'required|min:2|max:255',
+            'password' => 'nullable|min:7'
         ];
     }
 

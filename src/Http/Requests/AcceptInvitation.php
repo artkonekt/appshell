@@ -24,8 +24,8 @@ class AcceptInvitation extends FormRequest implements AcceptInvitationContract
     public function rules()
     {
         return [
-            'name'     => 'required|min:2|max:255',
-            'hash'     => 'required|alpha_num|min:96',
+            'name' => 'required|min:2|max:255',
+            'hash' => 'required|alpha_num|min:96',
             'password' => 'required|min:7|confirmed',
         ];
     }

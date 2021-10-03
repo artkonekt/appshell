@@ -19,7 +19,6 @@ use Konekt\AppShell\Exceptions\NonExistentThemeException;
 
 final class Themes
 {
-    /** @var array */
     private static array $registry = [];
 
     public static function add(string $id, string $class)

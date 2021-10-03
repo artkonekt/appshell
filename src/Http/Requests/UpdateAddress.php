@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Contains the UpdateAddress class.
  *
@@ -27,9 +30,9 @@ class UpdateAddress extends FormRequest implements UpdateAddressContract
     public function rules()
     {
         return array_merge($this->getForRules(), [
-            'name'       => 'required',
+            'name' => 'required',
             'country_id' => 'required',
-            'address'    => 'required'
+            'address' => 'required'
         ]);
     }
 

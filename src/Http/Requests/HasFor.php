@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Contains the HasFor trait.
  *
@@ -21,7 +24,7 @@ trait HasFor
      */
     public function getFor()
     {
-        $id  = $this->forId;
+        $id = $this->forId;
         $for = $this->for;
 
         if ($id && $for) {
@@ -53,7 +56,7 @@ trait HasFor
         }
 
         return [
-            'for'   => ['sometimes', Rule::in($this->allowedFor)],
+            'for' => ['sometimes', Rule::in($this->allowedFor)],
             'forId' => 'required_with:for'
         ];
     }

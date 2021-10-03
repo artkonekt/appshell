@@ -41,10 +41,10 @@ use Konekt\AppShell\Models\Address;
 use Konekt\AppShell\Models\GravatarDefault;
 use Konekt\AppShell\Models\Invitation;
 use Konekt\AppShell\Models\User;
+use Konekt\AppShell\Widgets;
 use Konekt\Concord\BaseBoxServiceProvider;
 use Konekt\User\Contracts\Invitation as InvitationContract;
 use Konekt\User\Contracts\User as UserContract;
-use Menu;
 
 class ModuleServiceProvider extends BaseBoxServiceProvider
 {
@@ -80,6 +80,12 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->register(SettingsProvider::class);
         $this->app->register(PreferencesProvider::class);
         $this->app->register(UiServiceProvider::class);
+
+        Widgets::registerWidgetNamespace(
+            'appshell',
+            $this->basePath . '/resources/widgets'
+        );
+        $this->app->register(WidgetServiceProvider::class);
 
         // Register Helpers:
         $this->concord->registerHelper('color', ColorHelper::class);

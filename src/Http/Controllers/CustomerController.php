@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the CustomerController class.
  *
@@ -11,8 +13,15 @@
 
 namespace Konekt\AppShell\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Konekt\AppShell\Contracts\Requests\CreateCustomer;
 use Konekt\AppShell\Contracts\Requests\UpdateCustomer;
+use Konekt\AppShell\Filters\Filters;
+use Konekt\AppShell\Filters\Generic\BoolTriState;
+use Konekt\AppShell\Filters\Generic\PartialMatch;
+use Konekt\AppShell\Filters\PartialMatchPattern;
+use Konekt\AppShell\Widgets;
+use Konekt\AppShell\Widgets\AppShellWidgets;
 use Konekt\Customer\Contracts\Customer;
 use Konekt\Customer\Models\CustomerProxy;
 use Konekt\Customer\Models\CustomerTypeProxy;
@@ -22,10 +31,22 @@ class CustomerController extends BaseController
     /**
      * Displays the list of customers
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filters = Filters::make([
+            (new PartialMatch('company_name', __('Name'), PartialMatchPattern::ANYWHERE()))->displayAsTextField(),
+            new BoolTriState('is_active', __('Actives only'), __('Inactives only'), __('Any status'), __('Status')),
+        ]);
+
+        $filters->activateFromRequest($request);
+
         return view('appshell::customer.index', [
-            'customers' => CustomerProxy::all()
+            'customers' => $filters->apply(CustomerProxy::query())->get(),
+            'table' => widget('appshell::customer.index.table'),
+            'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
+                'route' => 'appshell.customer.index',
+                'filters' => $filters,
+            ])
         ]);
     }
 
@@ -40,7 +61,7 @@ class CustomerController extends BaseController
 
         return view('appshell::customer.create', [
             'customer' => $customer,
-            'types'    => CustomerTypeProxy::choices()
+            'types' => CustomerTypeProxy::choices()
         ]);
     }
 
@@ -88,8 +109,8 @@ class CustomerController extends BaseController
     public function edit(Customer $customer)
     {
         return view('appshell::customer.edit', [
-            'customer'  => $customer,
-            'types'     => CustomerTypeProxy::choices()
+            'customer' => $customer,
+            'types' => CustomerTypeProxy::choices()
         ]);
     }
 

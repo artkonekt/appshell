@@ -4,4 +4,8 @@
             document.getElementById('mobile-menu').classList.toggle('show');
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        @stack('onload-scripts')
+    });
 </script>

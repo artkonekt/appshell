@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the CustomSettingsTest class.
  *
@@ -27,7 +29,7 @@ class CustomSettingsTest extends TestCase
 
     protected function getPackageProviders($app)
     {
-        $providers   = parent::getPackageProviders($app);
+        $providers = parent::getPackageProviders($app);
         $providers[] = AppServiceProvider::class;
 
         return $providers;

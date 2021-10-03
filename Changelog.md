@@ -6,6 +6,24 @@
 - Dropped PHP 7.4 support (PHP 8+ only)
 - Dropped Laravel 6 & 7 Support (Laravel 8.12+ only)
 
+## 2.3.2
+##### 2021-09-29
+
+- Fixed rendering of custom classes on icon themes
+
+## 2.3.1
+##### 2021-09-22
+
+- Fixed "stuck" old assets by replacing `asset()` with `mix()` in AppShell layouts
+
+## 2.3.0
+##### 2021-09-22
+
+- Added Widgets feature
+- Added Filters feature
+- Replaced User and Customer list tables to be rendered via a table widget
+- Added (enabled the Tabler Icon theme with
+
 ## 2.2.0
 ##### 2021-03-14
 

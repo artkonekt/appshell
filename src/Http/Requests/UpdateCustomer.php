@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Contains the UpdateCustomer class.
  *
@@ -26,11 +29,11 @@ class UpdateCustomer extends FormRequest implements UpdateCustomerContract
     public function rules()
     {
         return [
-            'type'         => ['required', Rule::in(CustomerTypeProxy::values())],
-            'firstname'    => 'required_if:type,individual',
-            'lastname'     => 'required_if:type,individual',
+            'type' => ['required', Rule::in(CustomerTypeProxy::values())],
+            'firstname' => 'required_if:type,individual',
+            'lastname' => 'required_if:type,individual',
             'company_name' => 'required_if:type,organization',
-            'is_active'    => 'sometimes|boolean'
+            'is_active' => 'sometimes|boolean'
         ];
     }
 

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Contains the DateFormatPreference class.
  *
@@ -19,7 +22,7 @@ class DateFormatPreference implements Preference
     use AccessesAppShellConfig;
     use GeneratesSampleDateTimeOptions;
 
-    public const KEY     = 'appshell.ui.date_format';
+    public const KEY = 'appshell.ui.date_format';
     public const DEFAULT = 'Y-m-d';
 
     /** @var array|null */

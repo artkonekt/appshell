@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Helper functions for AppShell
  *
@@ -6,6 +8,9 @@
  * @author      Attila Fulop
  * @license     MIT
  */
+
+use Konekt\AppShell\Contracts\Widget;
+use Konekt\AppShell\Widgets;
 
 /**
  * Returns whether the given array contains any of the keys
@@ -23,10 +28,10 @@ function any_key_exists(array $haystack, array $needles)
 function avatar_image_url($model = null, int $size = 100)
 {
     if (null !== $model && isset($model->email)) {
-        $hash    = md5($model->email);
+        $hash = md5($model->email);
         $default = config('konekt.app_shell.avatar.gravatar.default');
     } else {
-        $hash    = '00000000000000000000000000000000';
+        $hash = '00000000000000000000000000000000';
         $default = \Konekt\AppShell\Models\GravatarDefault::MYSTERY_PERSON;
     }
 
@@ -77,5 +82,12 @@ if (!function_exists('show_time')) {
     function show_time($datetime, string $unknownTimeText = '', string $format = null): string
     {
         return helper('date')->showTime($datetime, $unknownTimeText, $format);
+    }
+}
+
+if (!function_exists('widget')) {
+    function widget(string $widget): Widget
+    {
+        return Widgets::load($widget);
     }
 }

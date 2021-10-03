@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * Contains the Make Super User Command class.
  *
@@ -33,18 +35,18 @@ class SuperCommand extends Command
         $this->permissionMapper = $permissionMapper;
         $this->info("Now you're about to create a new user with all privileges");
 
-        $email    = $this->askEmail();
-        $name     = $this->ask('Name');
-        $pass     = $this->secret('Password');
+        $email = $this->askEmail();
+        $name = $this->ask('Name');
+        $pass = $this->secret('Password');
         $roleName = $this->ask('Role name', 'admin');
 
         $role = $this->fetchRole($roleName);
 
         $user = UserProxy::create([
-            'email'    => $email,
-            'name'     => $name,
+            'email' => $email,
+            'name' => $name,
             'password' => bcrypt($pass),
-            'type'     => UserType::ADMIN
+            'type' => UserType::ADMIN
         ])->fresh();
 
         $this->info("User '$email' has been created (id: {$user->id})");

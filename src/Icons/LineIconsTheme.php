@@ -70,6 +70,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::IMAGE => 'image',
         AppShellIcons::CHEVRON_RIGHT => 'chevron-right',
         AppShellIcons::CHEVRON_LEFT => 'chevron-left',
+        AppShellIcons::FILTERS => 'control-panel',
     ];
 
     public static function getName(): string
@@ -100,7 +101,7 @@ class LineIconsTheme implements IconTheme
         }
 
         if (isset($attributes['class'])) {
-            array_merge($classes, explode(' ', $attributes['class']));
+            $classes = array_merge($classes, explode(' ', $attributes['class']));
             unset($attributes['class']);
         }
 

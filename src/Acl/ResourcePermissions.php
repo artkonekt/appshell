@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Contains the ResourcePermissions class.
  *
@@ -39,12 +42,12 @@ final class ResourcePermissions
     public static function createPermissionsForResource($resources, string $guard = null)
     {
         $resources = is_array($resources) ? $resources : [$resources];
-        $result    = collect();
+        $result = collect();
 
         foreach ($resources as $resource) {
             foreach (static::allPermissionsFor($resource) as $name) {
                 $result->put($name, PermissionProxy::create([
-                    'name'       => $name,
+                    'name' => $name,
                     'guard_name' => $guard
                 ]));
             }
@@ -65,7 +68,7 @@ final class ResourcePermissions
     public static function deletePermissionsForResource($resources)
     {
         $resources = is_array($resources) ? $resources : [$resources];
-        $result    = 0;
+        $result = 0;
 
         foreach ($resources as $resource) {
             foreach (static::allPermissionsFor($resource) as $name) {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Konekt\AppShell\Tests\Feature;
 
 use Konekt\AppShell\Models\User;
@@ -16,9 +18,9 @@ class UserTest extends TestCase
         parent::setUp();
 
         $this->user = User::create([
-            'type'     => UserType::CLIENT,
-            'name'     => 'Batman',
-            'email'    => 'bat@man.com',
+            'type' => UserType::CLIENT,
+            'name' => 'Batman',
+            'email' => 'bat@man.com',
             'password' => 'mustbeatleast7chars'
         ]);
     }
@@ -46,10 +48,10 @@ class UserTest extends TestCase
     public function it_can_store_user()
     {
         $this->actingAs($this->adminUser)->post(route('appshell.user.store'), [
-            'name'     => 'Spiderman',
-            'email'    => 'spider@man.com',
+            'name' => 'Spiderman',
+            'email' => 'spider@man.com',
             'password' => 'mustbeatleast7chars',
-            'type'     => UserType::ADMIN
+            'type' => UserType::ADMIN
         ]);
 
         $user = User::all()->last();
@@ -81,8 +83,8 @@ class UserTest extends TestCase
     {
         $this->actingAs($this->adminUser)->put(route('appshell.user.update', $this->user), [
             'email' => 'changed@mail.com',
-            'name'  => 'Awesome man',
-            'type'  => UserType::ADMIN
+            'name' => 'Awesome man',
+            'type' => UserType::ADMIN
         ]);
 
         $this->assertEquals('changed@mail.com', $this->user->fresh()->email);
