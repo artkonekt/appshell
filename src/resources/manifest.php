@@ -4,5 +4,5 @@ declare(strict_types=1);
 
 return [
     'name' => 'Konekt AppShell Box',
-    'version' => '2.3.2'
+    'version' => '2.4-dev'
 ];

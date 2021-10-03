@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2021-XX-YY
+
+- Added configuration (`ui.use_mix`) that allows applications to use `mix()` for AppShell Theme layout assets
+
 ## 2.3.2
 ##### 2021-09-29
 

@@ -34,9 +34,12 @@ final class UiConfig
 
     private array $data;
 
+    public bool $useMix;
+
     public function __construct(array $uiConfiguration)
     {
         $this->data = $uiConfiguration;
+        $this->useMix = (bool) $uiConfiguration['use_mix'] ?? false;
         $this->fixMissingDefaults();
     }
 
