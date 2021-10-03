@@ -25,6 +25,8 @@ use Konekt\Gears\Facades\Settings;
  */
 final class UiConfig
 {
+    public bool $useMix;
+
     /** property name => Setting name */
     private static array $settingBased = [
         'name' => UiNameSetting::KEY,
@@ -33,8 +35,6 @@ final class UiConfig
     ];
 
     private array $data;
-
-    public bool $useMix;
 
     public function __construct(array $uiConfiguration)
     {
