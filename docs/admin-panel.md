@@ -104,6 +104,8 @@ layout:
 
 ## Use Mix Asset Function
 
+> Feature added in v2.4
+
 The default AppShell theme uses the `asset()` function to inject css and js files into the layout by default.
 
 In case you want to use `mix()` instead of asset, set the `konekt.app_shell.ui.use_mix` config value to true.

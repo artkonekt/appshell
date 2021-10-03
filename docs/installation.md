@@ -4,7 +4,7 @@
 
 ## Requirements
 
-As of AppShell v2.3, the requirements are:
+As of AppShell v2.4, the requirements are:
 
 - PHP 7.4 or PHP 8.0
 - Laravel 6.x - 8.x
@@ -51,7 +51,7 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 | #  | Name                | Kind | Version | Id               | Namespace       |
 +----+---------------------+------+---------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 2.1.0   | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 2.4.0   | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 
