@@ -69,4 +69,4 @@ return [
 
 ---
 
-**Next**: [Customizing The Admin UI &raquo;](customize-admin-ui.md)
+**Next**: [Search &raquo;](search.md)

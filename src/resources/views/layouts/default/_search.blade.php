@@ -1,5 +1,5 @@
 <div class="modal" tabindex="-1" id="appshell-search-modal" aria-labelledby="appshell-search-modal-title" aria-hidden="true">
-    <form class="modal-dialog modal-lg" action="{{ route($appshell->routes['search']) }}"
+    <form class="modal-dialog modal-lg modal-dialog-centered" action="{{ route($appshell->routes['search']) }}"
           method="{{ Route::getRoutes()->getByName($appshell->routes['search'])->methods[0] ?? 'POST' }}"
     >
         <div class="modal-content">
@@ -14,8 +14,8 @@
                     <input name="q" id="appshell-search-modal-input" type="text" class="form-control form-control-lg" placeholder="{{ __('Type and hit ENTER') }}">
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
+            <div class="modal-footer justify-content-center">
+                <button type="submit" class="btn btn-lg btn-block btn-primary">{{ __('Search') }}</button>
             </div>
         </div>
     </form>

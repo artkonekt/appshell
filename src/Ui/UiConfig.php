@@ -45,7 +45,6 @@ final class UiConfig
 
     public function isSearchEnabled(): bool
     {
-        return true;
         return (bool) $this->data['routes']['search'];
     }
 
