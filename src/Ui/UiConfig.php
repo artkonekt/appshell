@@ -25,6 +25,8 @@ use Konekt\Gears\Facades\Settings;
  */
 final class UiConfig
 {
+    public bool $useMix;
+
     /** property name => Setting name */
     private static array $settingBased = [
         'name' => UiNameSetting::KEY,
@@ -37,6 +39,7 @@ final class UiConfig
     public function __construct(array $uiConfiguration)
     {
         $this->data = $uiConfiguration;
+        $this->useMix = (bool) ($uiConfiguration['use_mix'] ?? false);
         $this->fixMissingDefaults();
     }
 
@@ -49,11 +52,17 @@ final class UiConfig
         return $this->data[$name];
     }
 
+    public function isSearchEnabled(): bool
+    {
+        return (bool) $this->data['routes']['search'];
+    }
+
     private function fixMissingDefaults(): void
     {
         if (!isset($this->data['routes'])) {
             $this->data['routes']['login'] = 'login';
             $this->data['routes']['logout'] = 'logout';
+            $this->data['routes']['search'] = null;
         }
 
         if (!isset($this->data['quick_links'])) {

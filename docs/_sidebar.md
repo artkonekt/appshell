@@ -9,7 +9,8 @@
     - [Authentication](admin-authentication.md)
     - [ACL](acl.md)
     - [Menu Component](menu.md)
-    - [Breadcrumbs](breadcrumbs.md) 
+    - [Breadcrumbs](breadcrumbs.md)
+    - [Search](search.md)
 
 - III. Widgets
     - [Widgets](widgets.md)

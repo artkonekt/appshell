@@ -35,6 +35,16 @@
                     </div>
                 </div>
             @endif
+            @if ($appshell->isSearchEnabled())
+                <button class="btn btn-none float-right" type="button" data-toggle="modal"
+                        data-target="#appshell-search-modal" id="appshell-search-button"
+                        title="{{ __('Search [SHIFT SHIFT]') }}"
+                >
+                    <div class="appshell-header-user">
+                        <h4>{!! icon('search', 'muted') !!}</h4>
+                    </div>
+                </button>
+            @endif
             <div class="dropdown float-right">
                 <a class="btn btn-none dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                    id="account-dropdown-link">
@@ -65,3 +75,7 @@
     </div>
 
 </header>
+
+@if ($appshell->isSearchEnabled())
+    @include('appshell::layouts.default._search')
+@endif

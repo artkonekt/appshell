@@ -6,6 +6,12 @@
 - Dropped PHP 7.4 support (PHP 8+ only)
 - Dropped Laravel 6 & 7 Support (Laravel 8.12+ only)
 
+## 2.4.0
+##### 2021-10-04
+
+- Added configuration (`ui.use_mix`) that allows applications to use `mix()` for AppShell Theme layout assets
+- Added Search Feature
+
 ## 2.3.2
 ##### 2021-09-29
 
