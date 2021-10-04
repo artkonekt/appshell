@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 2.4.2
+##### 2021-10-04
+
+- Fixed variable typo in public/print layouts that made them unusable
+
 ## 2.4.1
 ##### 2021-10-04
 
