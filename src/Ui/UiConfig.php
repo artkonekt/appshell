@@ -43,6 +43,12 @@ final class UiConfig
         $this->fixMissingDefaults();
     }
 
+    public function isSearchEnabled(): bool
+    {
+        return true;
+        return (bool) $this->data['routes']['search'];
+    }
+
     public function __get(string $name)
     {
         if (isset(self::$settingBased[$name])) {
@@ -57,6 +63,7 @@ final class UiConfig
         if (!isset($this->data['routes'])) {
             $this->data['routes']['login'] = 'login';
             $this->data['routes']['logout'] = 'logout';
+            $this->data['routes']['search'] = null;
         }
 
         if (!isset($this->data['quick_links'])) {

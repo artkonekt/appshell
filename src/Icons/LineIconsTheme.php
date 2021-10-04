@@ -71,6 +71,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::CHEVRON_RIGHT => 'chevron-right',
         AppShellIcons::CHEVRON_LEFT => 'chevron-left',
         AppShellIcons::FILTERS => 'control-panel',
+        AppShellIcons::SEARCH => 'keyword-research',
     ];
 
     public static function getName(): string

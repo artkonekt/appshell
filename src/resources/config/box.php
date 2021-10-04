@@ -61,6 +61,7 @@ return [
             'register' => 'register',
             'password.request' => 'password.request',
             'password.email' => 'password.email',
+            'search' => null,
         ],
         'quick_links' => [
             'enabled' => true
