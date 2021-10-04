@@ -6,6 +6,11 @@
 - Dropped PHP 7.4 support (PHP 8+ only)
 - Dropped Laravel 6 & 7 Support (Laravel 8.12+ only)
 
+## 2.4.1
+##### 2021-10-04
+
+- Fixed greedy SHIFT keydown detection issue for search shortcut
+
 ## 2.4.0
 ##### 2021-10-04
 
