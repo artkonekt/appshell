@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 2.4.1
+##### 2021-10-04
+
+- Fixed greedy SHIFT keydown detection issue for search shortcut
+
 ## 2.4.0
 ##### 2021-10-04
 
