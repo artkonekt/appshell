@@ -27,7 +27,7 @@
         });
 
         document.addEventListener('keydown', function (event) {
-            if (event.shiftKey) {
+            if (event.shiftKey && event.keyCode == 16) {
                 var smodal = document.getElementById('appshell-search-modal');
                 if (smodal.getClientRects().length === 0) { // the modal isn't visible
                     if (1 == smodal.getAttribute('data-shift-triggered')) {
