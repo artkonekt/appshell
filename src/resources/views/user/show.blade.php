@@ -65,38 +65,34 @@
 
     </div>
 
-    @yield('cards')
 
-    <div class="card">
-        <div class="card-body">
-            @can('edit users')
-            <a href="{{ route('appshell.user.edit', $user) }}" class="btn btn-outline-primary">{{ __('Edit user') }}</a>
-            @endcan
+@component(theme_widget('group'))
+    @can('edit users')
+        <a href="{{ route('appshell.user.edit', $user) }}" class="btn btn-outline-primary">{{ __('Edit user') }}</a>
+    @endcan
 
-            @can('delete users')
-                @if(Auth::user()->id == $user->id)
-                    <button class="btn btn-outline-danger float-right" disabled="disabled"
-                            title="{{ __("It would be quite unhealthy to delete yourself, so you can't") }}">
-                        {{ __('Delete user') }}
-                    </button>
-                @else
-                    {!! Form::open([
-                            'route' => ['appshell.user.destroy', $user],
-                            'method' => 'DELETE',
-                            'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name]),
-                            'class' => "float-right"
-                            ])
-                    !!}
+    @can('delete users')
+        @if(Auth::user()->id == $user->id)
+            <button class="btn btn-outline-danger float-right" disabled="disabled"
+                    title="{{ __("It would be quite unhealthy to delete yourself, so you can't") }}">
+                {{ __('Delete user') }}
+            </button>
+        @else
+            {!! Form::open([
+                    'route' => ['appshell.user.destroy', $user],
+                    'method' => 'DELETE',
+                    'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name]),
+                    'class' => "float-right"
+                    ])
+            !!}
 
-                        <button class="btn btn-outline-danger">
-                            {{ __('Delete user') }}
-                        </button>
+            <button class="btn btn-outline-danger">
+                {{ __('Delete user') }}
+            </button>
 
-                    {!! Form::close() !!}
-                @endif
-            @endcan
-
-        </div>
-    </div>
+            {!! Form::close() !!}
+        @endif
+    @endcan
+@endcomponent
 
 @stop

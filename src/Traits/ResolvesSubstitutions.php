@@ -49,7 +49,7 @@ trait ResolvesSubstitutions
 
         if (Str::contains($parameter, '$model.')) {
             return preg_replace_callback(
-                '/\$model\.([a-zA-Z0-9()_]+)/',
+                '/\$model\.([a-zA-Z0-9()_\.]+)/',
                 fn ($matches) => $this->getRawData($model, $matches[1]),
                 $parameter
             );

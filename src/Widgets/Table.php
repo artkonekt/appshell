@@ -44,6 +44,11 @@ class Table implements Widget
         return new static($theme, $options['columns'] ?? [], Arr::except($options, 'columns'));
     }
 
+    public function rendersAlternativeForEmptyDataset(): bool
+    {
+        return !empty($this->options['empty']['text'] ?? '');
+    }
+
     public function render($data = null): string
     {
         if ($data instanceof Collection) {

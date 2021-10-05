@@ -1,3 +1,12 @@
+@if(0 === count($table->data) && $table->rendersAlternativeForEmptyDataset())
+    <table class="table">
+        <tbody>
+            <tr>
+                <td class="text-center">{{ $table->options['empty']['text'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+@else
 <table class="table @isset($table->options['striped'])table-striped @endisset">
     <thead>
         <tr>
@@ -17,3 +26,4 @@
 
     </tbody>
 </table>
+@endif

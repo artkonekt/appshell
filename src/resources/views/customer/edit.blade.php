@@ -5,22 +5,18 @@
 @stop
 
 @section('content')
-<div class="card card-accent-secondary">
-    <div class="card-header">
-        {{ __('Customer Details') }}
-    </div>
 
     {!! Form::model($customer, ['route' => ['appshell.customer.update', $customer], 'method' => 'PUT']) !!}
+    @component(theme_widget('group'), ['accent' => 'secondary'])
+        @slot('title'){{ __('Customer Details') }}@endslot
 
-    <div class="card-body">
-            @include('appshell::customer._form')
-        </div>
+        @include('appshell::customer._form')
 
-        <div class="card-footer">
+        @slot('footer')
             <button class="btn btn-primary">{{ __('Save') }}</button>
             <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-
+        @endslot
+    @endcomponent
     {!! Form::close() !!}
-</div>
+
 @stop

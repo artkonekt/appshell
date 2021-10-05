@@ -41,33 +41,25 @@
 
     </div>
 
-    @yield('cards')
-
     @include('appshell::address._index', ['addresses' => $customer->addresses, 'of' => $customer])
 
-    <div class="card">
-        <div class="card-body">
-            @can('edit customers')
-            <a href="{{ route('appshell.customer.edit', $customer) }}" class="btn btn-outline-primary">{{ __('Edit customer')
-            }}</a>
-            @endcan
+    @component(theme_widget('group'))
+        @can('edit customers')
+            <a href="{{ route('appshell.customer.edit', $customer) }}" class="btn btn-outline-primary">{{ __('Edit customer') }}</a>
+        @endcan
 
-            @yield('actions')
-
-            @can('delete customers')
-                {!! Form::open(['route' => ['appshell.customer.destroy', $customer],
-                                            'method' => 'DELETE',
-                                            'data-confirmation-text' => __('Are you sure to delete :name?', ['name' => $customer->getName()]),
-                                            'class' => 'float-right'
-                                           ])
-                !!}
-                    <button class="btn btn-outline-danger">
-                        {{ __('Delete customer') }}
-                    </button>
-                {!! Form::close() !!}
-            @endcan
-
-        </div>
-    </div>
+        @can('delete customers')
+            {!! Form::open(['route' => ['appshell.customer.destroy', $customer],
+                                        'method' => 'DELETE',
+                                        'data-confirmation-text' => __('Are you sure to delete :name?', ['name' => $customer->getName()]),
+                                        'class' => 'float-right'
+                                       ])
+            !!}
+            <button class="btn btn-outline-danger">
+                {{ __('Delete customer') }}
+            </button>
+            {!! Form::close() !!}
+        @endcan
+    @endcomponent
 
 @stop

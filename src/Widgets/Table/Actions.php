@@ -53,7 +53,7 @@ class Actions implements Widget
                         $actions['delete']['confirm']['params'][$name] = $this->resolveSubstitutions($value, $data);
                     }
                 }
-                $actions['delete']['confirmation_text'] = __($actions['delete']['confirm']['text'], $actions['delete']['confirm']['params']);
+                $actions['delete']['confirmation_text'] = __($actions['delete']['confirm']['text'], $actions['delete']['confirm']['params'] ?? []);
             }
             unset($actions['confirm']);//We only pass the flattened confirm_text value without all the sweat
         }

@@ -6,28 +6,22 @@
 
 @section('content')
 
-    <div class="card card-accent-secondary">
+    @component(theme_widget('group'), ['accent' => 'secondary'])
+        @slot('title')@yield('title')@endslot
 
-        <div class="card-header">
-            @yield('title')
-
-            <div class="card-actionbar">
-                @can('create customers')
+        @slot('actionbar')
+            @can('create customers')
                 <a href="{{ route('appshell.customer.create') }}" class="btn btn-sm btn-outline-success float-right">
                     {!! icon('+') !!}
                     {{ __('Create Customer') }}
                 </a>
-                @endcan
+            @endcan
 
-                {!! $filters->render()  !!}
+            {!! $filters->render()  !!}
+        @endslot
 
-            </div>
+        {!! $table->render($customers) !!}
 
-        </div>
-
-        <div class="card-body">
-            {!! $table->render($customers) !!}
-        </div>
-    </div>
+    @endcomponent
 
 @stop

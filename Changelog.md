@@ -3,7 +3,13 @@
 ## Unreleased
 ##### 2021-XX-YY
 
-- 
+- Added actionbar and footer slots to the group widget
+- Added possibility to omit the title from group widget
+- Added "empty" option to table widget to render a text instead of table on empty dataset
+- Changed customer and user show/edit/create pages to use group widget instead of hard coded Bootstrap
+- Converted address list partial to use the group widget instead of hardcoded bootstrap HTML
+- Added feature to fetch widget text from multiple model "depths" eg.: `$model.country.name`
+- Fixed Table actions widget when delete confirmation was without translations parameters
 
 ## 2.4.2
 ##### 2021-10-04

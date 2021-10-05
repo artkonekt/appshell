@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Tests\Unit;
 
+use Konekt\AppShell\Tests\Dummies\BirdCage;
 use Konekt\AppShell\Tests\TestCase;
 use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Widgets\Table;
@@ -87,5 +88,31 @@ class TableWidgetTest extends TestCase
         $this->assertStringContainsString('>Giovanni Gatto</a>', $html);
         $this->assertStringContainsString('<td ><a href="https://github.com/fritz-teufel"', $html);
         $this->assertStringContainsString('Mr. Fritz Teufel</a>', $html);
+    }
+
+
+    /** @test */
+    public function it_can_render_the_columns_subfield_as_a_text()
+    {
+        $table = new Table(new AppShellTheme(), [
+            'id',
+            'parrot' => [
+                'widget' => [
+                    'type' => 'text',
+                    'text' => '$model.parrot.name',
+                ]
+            ],
+            'link' => [
+                'widget' => [
+                    'type' => 'text',
+                    'text' => '$model.parrot.link',
+                ]
+            ],
+        ]);
+        $cages = [new BirdCage('Gyurri', 'george')];
+
+        $this->assertStringContainsString('<td >2021', $table->render($cages));
+        $this->assertStringContainsString('<td >Gyurri', $table->render($cages));
+        $this->assertStringContainsString('<td >george', $table->render($cages));
     }
 }
