@@ -90,7 +90,6 @@ class TableWidgetTest extends TestCase
         $this->assertStringContainsString('Mr. Fritz Teufel</a>', $html);
     }
 
-
     /** @test */
     public function it_can_render_the_columns_subfield_as_a_text()
     {
