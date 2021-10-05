@@ -93,6 +93,22 @@
             <a href="{{ route('appshell.invitation.edit', $invitation) }}" class="btn btn-outline-primary">{{ __('Edit invitation') }}</a>
             @endcan
 
+            <span id="__invitation_tooltip_{{ $invitation->id }}"
+                  data-toggle="tooltip"
+                  title="{{ __('Invitation link for :email has been copied to the clipboard', ['email' => $invitation->email]) }}"
+                  onclick="copyInvitationLinkToClipboard({{ $invitation->id }})"
+                  style="cursor: pointer"
+            >
+                <btn class="btn btn-outline-info" type="button" title="{{ __('Copy Invitation Link') }}">
+                    {!! icon('link', 'secondary') !!}
+                </btn>
+                <input type="text" class="invisible"
+                       style="height: 0.5rem; width: 2rem; padding: 0;"
+                       id="__invitation_link_{{ $invitation->id }}"
+                       value="{{ route('appshell.public.invitation.show', $invitation->hash) }}"
+                />
+            </span>
+
 
             @can('delete invitations')
                 {!! Form::open([
@@ -114,3 +130,27 @@
     </div>
 @endif
 @stop
+
+@once
+@push('footer-scripts')
+    <script>
+        function copyInvitationLinkToClipboard(id) {
+            var element = document.getElementById("__invitation_link_" + id);
+
+            element.classList.remove('invisible');
+            element.select();
+            element.setSelectionRange(0, 99999); /* For mobile devices */
+            document.execCommand('copy');
+            element.classList.add('invisible');
+            $('#__invitation_tooltip_' + id).tooltip('show');
+            setTimeout(function () {
+                $('#__invitation_tooltip_' + id).tooltip('hide');
+            }, 1750)
+        }
+    </script>
+@endpush
+@push('onload-scripts')
+    $('[data-toggle="tooltip"]').tooltip({trigger: 'manual', placement: 'left'})
+@endpush
+@endonce
+

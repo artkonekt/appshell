@@ -16,28 +16,24 @@
 ]) !!}
 
 <div class="col-12 col-md-6 col-lg-8 col-xl-9">
-    <div class="card card-accent-secondary">
+    @component(theme_widget('group'), ['accent' => 'secondary'])
+        @slot('title'){{ __('Invitee Details') }}@endslot
 
-        <div class="card-header">{{ __('Invitee Details') }}</div>
-        <div class="card-body">
-            @include('appshell::invitation._form')
-        </div>
+        @include('appshell::invitation._form')
 
-        <div class="card-footer">
+        @slot('footer')
             <button class="btn btn-success">{{ __('Update invitation') }}</button>
             <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-    </div>
+        @endslot
+    @endcomponent
 </div>
 
 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-    <div class="card card-accent-secondary">
+    @component(theme_widget('group'), ['accent' => 'secondary'])
+        @slot('title'){{ __('Roles') }}@endslot
 
-        <div class="card-header">{{ __('Roles') }}</div>
-        <div class="card-body">
-            @include('appshell::role._assignment', ['model' => $invitation])
-        </div>
-    </div>
+        @include('appshell::role._assignment', ['model' => $invitation])
+    @endcomponent
 </div>
 
 {!! Form::close() !!}

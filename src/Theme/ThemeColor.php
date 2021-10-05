@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the SemanticColor class.
+ * Contains the ThemeColor class.
  *
  * @copyright   Copyright (c) 2020 Attila Fulop
  * @author      Attila Fulop
@@ -16,6 +16,19 @@ namespace Konekt\AppShell\Theme;
 
 use Konekt\Enum\Enum;
 
+/**
+ * @method static ThemeColor NONE ()
+ * @method static ThemeColor PRIMARY ()
+ * @method static ThemeColor SECONDARY ()
+ * @method static ThemeColor INFO ()
+ * @method static ThemeColor SUCCESS ()
+ * @method static ThemeColor WARNING ()
+ * @method static ThemeColor DANGER ()
+ * @method static ThemeColor TEXT ()
+ * @method static ThemeColor DARK ()
+ * @method static ThemeColor LIGHT ()
+ * @method static ThemeColor MUTED ()
+ */
 class ThemeColor extends Enum
 {
     public const __DEFAULT = self::NONE;

@@ -16,60 +16,51 @@
                     )
             !!}
 
-                <div class="card-header">
-                    {{ __('User Account') }}
-                    <div class="card-actionbar">
-                        @can('edit users')
-                            <a href="{{ route('appshell.user.edit', $user) }}"
-                               class="btn btn-sm btn-outline-info">{{ __('Edit on users page') }}</a>
-                        @endcan
-                    </div>
-                </div>
+            @component(theme_widget('group'))
+                @slot('title'){{ __('User Account') }}@endslot
+                @slot('actionbar')
+                    @can('edit users')
+                        <a href="{{ route('appshell.user.edit', $user) }}"
+                           class="btn btn-sm btn-outline-info">{{ __('Edit on users page') }}</a>
+                    @endcan
+                @endslot
 
-                <div class="card-body">
-
-                    @component(theme_widget('form.text'), [
+                @component(theme_widget('form.text'), [
                         'label' => __('Display Name'),
                         'name' => 'name',
                         'value' => old('name') ?? $user->name,
                         'placeholder' => __('Your name (to be shown across the application)')
                     ])
-                    @endcomponent
+                @endcomponent
 
-                    @component(theme_widget('form.password'), [
-                        'label' => __('New Password'),
-                        'name' => 'password',
-                        'placeholder' => __('Leave empty for no change')
-                    ])
-                    @endcomponent
+                @component(theme_widget('form.password'), [
+                    'label' => __('New Password'),
+                    'name' => 'password',
+                    'placeholder' => __('Leave empty for no change')
+                ])
+                @endcomponent
 
-                </div>
-
-                <div class="card-footer">
+                @slot('footer')
                     <button class="btn btn-primary">{{ __('Save') }}</button>
-                </div>
+                @endslot
+
+            @endcomponent
 
             {!! Form::close() !!}
-
         </div>
 
         <div class="col-sm-3">
-            <div class="card card-accent-success">
+            @component(theme_widget('group'), ['accent' => 'success'])
+                @slot('title'){{ __('Profile Image') }}@endslot
+                @slot('actionbar')
+                    @can('edit users')
+                        <a href="https://en.gravatar.com/emails" target="_blank"
+                           class="btn btn-sm btn-outline-info">{{ __('Change...') }}</a>
+                    @endcan
+                @endslot
 
-                <div class="card-header">
-                    {{ __('Profile Image') }}
-                </div>
-
-                <div class="card-body">
-                    <img src="{{ avatar_image_url($user, 200) }}" class="img-avatar img-avatar-100">
-                </div>
-
-                <div class="card-footer">
-                    <a href="https://en.gravatar.com/emails" target="_blank"
-                       class="btn btn-secondary btn-sm">{{ __('Change...') }}</a>
-                </div>
-
-            </div>
+                <img src="{{ avatar_image_url($user, 200) }}" class="img-avatar img-avatar-100">
+            @endcomponent
         </div>
 
     </div>
