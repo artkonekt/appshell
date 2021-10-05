@@ -35,7 +35,7 @@ class Invitation extends BaseInvitation
 
     public function getStatusAttribute(): InvitationStatus
     {
-        if($this->isStillValid()) {
+        if ($this->isStillValid()) {
             return InvitationStatus::ACTIVE();
         } elseif ($this->isExpired()) {
             return InvitationStatus::EXPIRED();

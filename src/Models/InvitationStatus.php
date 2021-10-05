@@ -34,6 +34,15 @@ class InvitationStatus extends Enum
 
     protected static array $labels = [];
 
+    public function __get($name)
+    {
+        if ('color' === $name) {
+            return $this->color();
+        }
+
+        return parent::__get($name);
+    }
+
     public function color(): ThemeColor
     {
         switch ($this->value) {
@@ -49,15 +58,6 @@ class InvitationStatus extends Enum
             default:
                 return ThemeColor::DANGER();
         }
-    }
-
-    public function __get($name)
-    {
-        if ('color' === $name) {
-            return $this->color();
-        }
-
-        return parent::__get($name);
     }
 
     protected static function boot()
