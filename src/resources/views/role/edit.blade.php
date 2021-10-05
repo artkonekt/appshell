@@ -6,23 +6,19 @@
 
 @section('content')
 
-<div class="card card-accent-secondary">
-    <div class="card-header">
-        {{ __('Role Details') }}
-    </div>
-
     {!! Form::model($role, ['route' => ['appshell.role.update', $role], 'method' => 'PUT']) !!}
 
-        <div class="card-body">
-            @include('appshell::role._form')
-        </div>
+    @component(theme_widget('group'), ['accent' => 'secondary'])
+        @slot('title'){{ __('Role Details') }}@endslot
 
-        <div class="card-footer">
+        @include('appshell::role._form')
+
+        @slot('footer')
             <button class="btn btn-primary">{{ __('Save') }}</button>
             <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
+        @endslot
+    @endcomponent
 
     {!! Form::close() !!}
-</div>
 
 @stop

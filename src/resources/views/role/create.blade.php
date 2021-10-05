@@ -6,24 +6,19 @@
 
 @section('content')
 
-<div class="card card-accent-success">
-
-    <div class="card-header">
-        {{ __('New Role Details') }}
-    </div>
-
     {!! Form::open(['route' => 'appshell.role.store']) !!}
 
-        <div class="card-body">
-            @include('appshell::role._form')
-        </div>
+        @component(theme_widget('group'), ['accent' => 'success'])
+            @slot('title'){{ __('New Role Details') }}@endslot
 
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Create role') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
+            @include('appshell::role._form')
+
+            @slot('footer')
+                <button class="btn btn-success">{{ __('Create role') }}</button>
+                <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
+            @endslot
+        @endcomponent
 
     {!! Form::close() !!}
-</div>
 
-@stop
+@endsection

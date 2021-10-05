@@ -92,7 +92,7 @@ class Text implements Widget
         $text = $this->text;
 
         return $this->renderViewFromTheme('text', [
-            'text' => $this->modify((string) $text($data, $this)),
+            'text' => $this->modify($text($data, $this)),
             'wrap' => $this->wrap,
             'tagAttributes' => $this->tagAttributes,
             'bold' => $this->bold,
@@ -106,16 +106,16 @@ class Text implements Widget
         $this->modifier = $modifier;
     }
 
-    protected function modify(string $text): string
+    protected function modify($text): string
     {
         if (null === $this->modifier) {
-            return $text;
+            return (string) $text;
         }
 
         if (is_string($this->modifier) && WidgetModifiers::exists($this->modifier)) {
             return WidgetModifiers::make($this->modifier)->handle($text);
         }
 
-        return call_user_func($this->modifier, $text);
+        return (string) call_user_func($this->modifier, $text);
     }
 }

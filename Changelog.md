@@ -8,8 +8,10 @@
 - Added "empty" option to table widget to render a text instead of table on empty dataset
 - Added "value" option for getting a contextual color directly from the model
 - Changed customer and user show/edit/create pages to use group widget instead of hard coded Bootstrap
+- Changed widget text modifiers so that they can modify non-string field values as well
 - Converted address list partial to use the group widget instead of hardcoded bootstrap HTML
 - Converted Invitations to render widgets instead of hardcoded Bootstrap HTML
+- Converted Roles to render widgets instead of hardcoded Bootstrap HTML
 - Added feature to fetch widget text from multiple model "depths" eg.: `$model.country.name`
 - Fixed Table actions widget when delete confirmation was without translations parameters
 
