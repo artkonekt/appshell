@@ -1,4 +1,4 @@
-@if(0 === count($table->data) && $table->rendersAlternativeForEmptyDataset())
+@if($table->data->isEmpty() && $table->rendersAlternativeForEmptyDataset())
     <table class="table">
         <tbody>
             <tr>
@@ -23,7 +23,15 @@
                 @endforeach
             </tr>
         @endforeach
-
     </tbody>
+    @if($table->hasFooter())
+        <tfoot>
+        @foreach($table->columns as $column)
+            @if($table->footer->hasColumn($loop->index))
+            <td{!! $table->footer[$loop->index]->tdAttributes() !!}>{{ $table->footer[$loop->index]->render($table->data) }}</td>
+            @endif
+        @endforeach
+        </tfoot>
+    @endif
 </table>
 @endif

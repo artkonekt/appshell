@@ -114,4 +114,73 @@ class TableWidgetTest extends TestCase
         $this->assertStringContainsString('<td >Gyurri', $table->render($cages));
         $this->assertStringContainsString('<td >george', $table->render($cages));
     }
+
+    /** @test */
+    public function it_can_render_a_footer()
+    {
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' => [true, true]]);
+        $html = $table->render();
+
+        $this->assertStringContainsString('<tfoot>', $html);
+        $this->assertStringContainsString('<td></td>', $html);
+        $this->assertStringContainsString('</tfoot>', $html);
+    }
+
+    /** @test */
+    public function it_can_render_text_into_footer_columns()
+    {
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' => ['Total', 0]]);
+        $html = $table->render();
+
+        $this->assertStringContainsString('<tfoot>', $html);
+        $this->assertStringContainsString('<td>Total</td>', $html);
+        $this->assertStringContainsString('<td>0</td>', $html);
+        $this->assertStringContainsString('</tfoot>', $html);
+    }
+
+    /** @test */
+    public function it_can_render_colspan_into_footer_columns()
+    {
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' =>
+            [
+                ['text' => 'This is a final text', 'colspan' => 2],
+                false,
+            ],
+        ]);
+        $html = $table->render();
+
+        $this->assertStringContainsString('<tfoot>', $html);
+        $this->assertStringContainsString('<td colspan="2">This is a final text</td>', $html);
+        $this->assertStringContainsString('</tfoot>', $html);
+    }
+
+    /** @test */
+    public function it_can_render_a_sum_of_a_column_in_the_footer_without_widget()
+    {
+        $table = new Table(new AppShellTheme(), ['price'], ['footer' =>
+            [
+                ['text' => '$model.sum(price)'],
+            ],
+        ]);
+
+        $html = $table->render([['price' => 320], ['price' => 210], ['price' => 7]]);
+
+
+        $this->assertStringContainsString('<td>537</td>', $html);
+    }
+
+    /** @test */
+    public function it_can_render_a_sum_of_a_column_in_the_footer_using_a_widget()
+    {
+        $table = new Table(new AppShellTheme(), ['price'], ['footer' =>
+            [
+                ['text' => '$model.sum(price)', 'widget' => ['type' => 'text']],
+            ],
+        ]);
+
+        $html = $table->render([['price' => 55], ['price' => 21], ['price' => 3]]);
+
+
+        $this->assertStringContainsString('<td>79</td>', $html);
+    }
 }

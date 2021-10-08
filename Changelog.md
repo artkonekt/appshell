@@ -7,6 +7,7 @@
 - Added possibility to omit the title from group widget
 - Added "empty" option to table widget to render a text instead of table on empty dataset
 - Added "value" option for getting a contextual color directly from the model
+- Added Footer support to the table widget
 - Changed customer and user show/edit/create pages to use group widget instead of hard coded Bootstrap
 - Changed widget text modifiers so that they can modify non-string field values as well
 - Converted address list partial to use the group widget instead of hardcoded bootstrap HTML
