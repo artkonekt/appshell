@@ -47,7 +47,6 @@ class FooterColumn
             return $this->text($data);
         }
 
-
         return Widgets::make($this->widget, $this->widgetOptions)->render($data);
     }
 

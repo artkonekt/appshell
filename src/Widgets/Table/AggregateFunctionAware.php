@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets\Table;
 
-
 use Illuminate\Support\Str;
 
 trait AggregateFunctionAware
@@ -53,7 +52,7 @@ trait AggregateFunctionAware
         }
 
         $result = explode(',', $params);
-        array_walk($result, fn($param) => trim($param));
+        array_walk($result, fn ($param) => trim($param));
 
         return $result;
     }

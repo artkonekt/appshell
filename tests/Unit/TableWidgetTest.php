@@ -165,7 +165,6 @@ class TableWidgetTest extends TestCase
 
         $html = $table->render([['price' => 320], ['price' => 210], ['price' => 7]]);
 
-
         $this->assertStringContainsString('<td>537</td>', $html);
     }
 
@@ -179,7 +178,6 @@ class TableWidgetTest extends TestCase
         ]);
 
         $html = $table->render([['price' => 55], ['price' => 21], ['price' => 3]]);
-
 
         $this->assertStringContainsString('<td>79</td>', $html);
     }
