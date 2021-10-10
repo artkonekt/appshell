@@ -58,7 +58,7 @@ class MultiText implements Widget
         $instance = new static($theme, $primary, $secondary);
 
         foreach ($options['primary']['extras'] ?? [] as $extra) {
-            if(isset($extra['text'])) {
+            if (isset($extra['text'])) {
                 $instance->addExtraWidget(
                     Text::create($theme, self::mergeWidgetOptions(self::$extraDefaults, $extra))
                 );
