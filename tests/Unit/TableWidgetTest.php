@@ -60,10 +60,10 @@ class TableWidgetTest extends TestCase
             ['id' => 2, 'name' => 'Mr. Fritz Teufel'],
         ]));
 
-        $this->assertStringContainsString('<td >1', $html);
-        $this->assertStringContainsString('<td >Giovanni Gatto', $html);
-        $this->assertStringContainsString('<td >2', $html);
-        $this->assertStringContainsString('<td >Mr. Fritz Teufel', $html);
+        $this->assertStringContainsString('<td>1', $html);
+        $this->assertStringContainsString('<td>Giovanni Gatto', $html);
+        $this->assertStringContainsString('<td>2', $html);
+        $this->assertStringContainsString('<td>Mr. Fritz Teufel', $html);
     }
 
     /** @test */
@@ -84,9 +84,9 @@ class TableWidgetTest extends TestCase
             ['id' => 2, 'name' => 'Mr. Fritz Teufel', 'github' => 'https://github.com/fritz-teufel'],
         ]));
 
-        $this->assertStringContainsString('<td ><a href="https://github.com/giovanni-gatto"', $html);
+        $this->assertStringContainsString('<td><a href="https://github.com/giovanni-gatto"', $html);
         $this->assertStringContainsString('>Giovanni Gatto</a>', $html);
-        $this->assertStringContainsString('<td ><a href="https://github.com/fritz-teufel"', $html);
+        $this->assertStringContainsString('<td><a href="https://github.com/fritz-teufel"', $html);
         $this->assertStringContainsString('Mr. Fritz Teufel</a>', $html);
     }
 
@@ -110,9 +110,9 @@ class TableWidgetTest extends TestCase
         ]);
         $cages = [new BirdCage('Gyurri', 'george')];
 
-        $this->assertStringContainsString('<td >2021', $table->render($cages));
-        $this->assertStringContainsString('<td >Gyurri', $table->render($cages));
-        $this->assertStringContainsString('<td >george', $table->render($cages));
+        $this->assertStringContainsString('<td>2021', $table->render($cages));
+        $this->assertStringContainsString('<td>Gyurri', $table->render($cages));
+        $this->assertStringContainsString('<td>george', $table->render($cages));
     }
 
     /** @test */
@@ -144,7 +144,6 @@ class TableWidgetTest extends TestCase
         $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' =>
             [
                 ['text' => 'This is a final text', 'colspan' => 2],
-                false,
             ],
         ]);
         $html = $table->render();
@@ -180,5 +179,22 @@ class TableWidgetTest extends TestCase
         $html = $table->render([['price' => 55], ['price' => 21], ['price' => 3]]);
 
         $this->assertStringContainsString('<td>79</td>', $html);
+    }
+
+    /** @test */
+    public function it_can_render_multiple_footer_columns()
+    {
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' =>
+            [
+                ['text' => 'COL1'],
+                ['text' => 'COL2'],
+            ],
+        ]);
+        $html = $table->render();
+
+        $this->assertStringContainsString('<tfoot>', $html);
+        $this->assertStringContainsString('<td>COL1</td>', $html);
+        $this->assertStringContainsString('<td>COL2</td>', $html);
+        $this->assertStringContainsString('</tfoot>', $html);
     }
 }

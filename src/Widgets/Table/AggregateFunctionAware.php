@@ -44,7 +44,7 @@ trait AggregateFunctionAware
 
     private function getAggregateMethodParams(string $definition): ?array
     {
-        $params = Str::remove('$model.' . $this->getAggregateMethodName($definition) . '(', $definition);
+        $params = str_replace('$model.' . $this->getAggregateMethodName($definition) . '(', '', $definition);
         $params = trim(Str::replaceLast(')', '', $params));
 
         if (empty($params)) {

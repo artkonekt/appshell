@@ -20,7 +20,11 @@ trait HasTableCellAttributes
 
     public ?string $valign;
 
+    public ?string $align;
+
     public ?int $colspan;
+
+    private string $inlineStyle = '';
 
     public function tdAttributes(): string
     {
@@ -32,11 +36,24 @@ trait HasTableCellAttributes
         return $result;
     }
 
+    public function inlineStyle(): string
+    {
+        return $this->inlineStyle;
+    }
+
+    public function hasInlineStyle(): bool
+    {
+        return !empty($this->inlineStyle);
+    }
+
     private function parseTableCellAttributes(array $definition): void
     {
         $this->width = $definition['width'] ?? null;
         $this->valign = $definition['valign'] ?? null;
+        $this->align = $definition['align'] ?? null;
         $colspan = $definition['colspan'] ?? null;
+        $this->inlineStyle .= $this->toCssRule($definition, 'align', 'text-align');
+        $this->inlineStyle .= $this->toCssRule($definition, 'valign', 'vertical-align');
         $this->colspan = null !== $colspan ? intval($colspan) : null;
     }
 
@@ -50,5 +67,14 @@ trait HasTableCellAttributes
         }
 
         return $result;
+    }
+
+    private function toCssRule(array $def, string $key, string $cssKey = null): string
+    {
+        if (!isset($def[$key])) {
+            return '';
+        }
+
+        return ($cssKey ?? $key) . ':' . $def[$key] . ';';
     }
 }

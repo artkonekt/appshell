@@ -19,17 +19,15 @@
         @foreach($table->data as $line)
             <tr>
                 @foreach($table->columns as $column)
-                    <td @isset($column->valign)style="vertical-align: {{ $column->valign }};"@endisset>{!! $column->render($line) !!}</td>
+                    <td{!! $column->tdAttributes() !!}@if($column->hasInlineStyle())style="{{ $column->inlineStyle() }}"@endif>{!! $column->render($line) !!}</td>
                 @endforeach
             </tr>
         @endforeach
     </tbody>
     @if($table->hasFooter())
         <tfoot>
-        @foreach($table->columns as $column)
-            @if($table->footer->hasColumn($loop->index))
-            <td{!! $table->footer[$loop->index]->tdAttributes() !!}>{{ $table->footer[$loop->index]->render($table->data) }}</td>
-            @endif
+        @foreach($table->footer as $footerColumn)
+            <td{!! $footerColumn->tdAttributes() !!}@if($footerColumn->hasInlineStyle())style="{{ $footerColumn->inlineStyle() }}"@endif>{!! $footerColumn->render($table->data) !!}</td>
         @endforeach
         </tfoot>
     @endif
