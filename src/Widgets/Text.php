@@ -19,11 +19,13 @@ use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Traits\RendersThemedWidget;
 use Konekt\AppShell\Traits\ResolvesSubstitutions;
 use Konekt\AppShell\Widgets\Concerns\HasModifier;
+use Konekt\AppShell\Widgets\Concerns\SupportsConditionalRendering;
 
 class Text implements Widget
 {
     use RendersThemedWidget;
     use ResolvesSubstitutions;
+    use SupportsConditionalRendering;
     use HasModifier;
 
     protected static $allowedTagAttributes = [
@@ -82,11 +84,17 @@ class Text implements Widget
             }
         }
 
+        $instance->processRenderingConditions($options);
+
         return $instance;
     }
 
     public function render($data = null): string
     {
+        if ($this->shouldNotRender($data)) {
+            return '';
+        }
+
         $text = $this->text;
 
         return $this->renderViewFromTheme('text', [

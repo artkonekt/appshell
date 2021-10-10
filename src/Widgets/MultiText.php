@@ -71,6 +71,13 @@ class MultiText implements Widget
                 );
             } elseif (isset($extra['html'])) {
                 $instance->addExtraWidget(RawHtml::create($theme, $extra));
+            } elseif (isset($extra['badge'])) {
+                $instance->addExtraWidget(
+                    Badge::create($theme, array_merge(
+                        Arr::except($extra, ['badge']),
+                        ['text' => $extra['badge']]
+                    ))
+                );
             }
         }
 

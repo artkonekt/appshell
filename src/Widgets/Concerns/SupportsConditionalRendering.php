@@ -21,11 +21,23 @@ trait SupportsConditionalRendering
     use ResolvesSubstitutions;
 
     /** @var string|callable|null */
-    protected $renderingCondition = null;
+    private $renderingCondition = null;
 
-    protected function setRenderingCondition($condition): void
+    private $negateRenderingCondition = false;
+
+    protected function processRenderingConditions(array $definiton): void
+    {
+        if (isset($definiton['onlyIf'])) {
+            $this->setRenderingCondition($definiton['onlyIf']);
+        } elseif (isset($definiton['onlyIfNot'])) {
+            $this->setRenderingCondition($definiton['onlyIfNot'], true);
+        }
+    }
+
+    protected function setRenderingCondition($condition, bool $negate = false): void
     {
         $this->renderingCondition = $condition;
+        $this->negateRenderingCondition = $negate;
     }
 
     protected function shouldNotRender($data): bool
@@ -40,11 +52,13 @@ trait SupportsConditionalRendering
     private function evaluateRenderingConditon($data)
     {
         if (is_string($this->renderingCondition)) {
-            return $this->resolveSubstitutions($this->renderingCondition, $data);
+            $result = $this->resolveSubstitutions($this->renderingCondition, $data);
         } elseif (is_callable($this->renderingCondition)) {
-            return call_user_func($this->renderingCondition, $data);
+            $result = call_user_func($this->renderingCondition, $data);
+        } else {
+            $result = true;
         }
 
-        return true;
+        return (bool) ($this->negateRenderingCondition ? !$result : $result);
     }
 }

@@ -46,9 +46,7 @@ class RawHtml implements Widget
             $instance->setModifier($options['modifier']);
         }
 
-        if (isset($options['onlyIf'])) {
-            $instance->setRenderingCondition($options['onlyIf']);
-        }
+        $instance->processRenderingConditions($options);
 
         return $instance;
     }
