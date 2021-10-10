@@ -10,6 +10,7 @@
 - Added Footer support to the table widget
 - Added Raw HTML widget
 - Added support for conditional widget rendering
+- Added support for extra elements in multi text widget's primary row
 - Changed customer and user show/edit/create pages to use group widget instead of hard coded Bootstrap
 - Changed widget text modifiers so that they can modify non-string field values as well
 - Converted address list partial to use the group widget instead of hardcoded bootstrap HTML
