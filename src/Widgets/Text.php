@@ -18,12 +18,13 @@ use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Traits\RendersThemedWidget;
 use Konekt\AppShell\Traits\ResolvesSubstitutions;
-use Konekt\AppShell\WidgetModifiers;
+use Konekt\AppShell\Widgets\Concerns\HasModifier;
 
 class Text implements Widget
 {
     use RendersThemedWidget;
     use ResolvesSubstitutions;
+    use HasModifier;
 
     protected static $allowedTagAttributes = [
         'class',
@@ -33,9 +34,6 @@ class Text implements Widget
 
     /** @var callable */
     private $text;
-
-    /** @var null|string|callable */
-    private $modifier = null;
 
     private ?string $wrap;
 
@@ -99,23 +97,5 @@ class Text implements Widget
             'prefix' => $this->prefix,
             'suffix' => $this->suffix,
         ]);
-    }
-
-    public function setModifier($modifier): void
-    {
-        $this->modifier = $modifier;
-    }
-
-    protected function modify($text): string
-    {
-        if (null === $this->modifier) {
-            return (string) $text;
-        }
-
-        if (is_string($this->modifier) && WidgetModifiers::exists($this->modifier)) {
-            return WidgetModifiers::make($this->modifier)->handle($text);
-        }
-
-        return (string) call_user_func($this->modifier, $text);
     }
 }

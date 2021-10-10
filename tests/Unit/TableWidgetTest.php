@@ -91,6 +91,26 @@ class TableWidgetTest extends TestCase
     }
 
     /** @test */
+    public function it_can_render_a_raw_html_widget()
+    {
+        $table = new Table(new AppShellTheme(), [
+            'name' => [
+                'widget' => [
+                    'type' => 'raw_html',
+                    'html' => '<div id="user_$model.id"><a href="$model.github">$model.name</a></div>',
+                ],
+            ]
+        ]);
+        $html = $table->render(collect([
+            ['id' => 1, 'name' => 'Giovanni Gatto', 'github' => 'https://github.com/giovanni-gatto'],
+            ['id' => 2, 'name' => 'Mr. Fritz Teufel', 'github' => 'https://github.com/fritz-teufel'],
+        ]));
+
+        $this->assertStringContainsString('<td><div id="user_1"><a href="https://github.com/giovanni-gatto">Giovanni Gatto</a></div>', $html);
+        $this->assertStringContainsString('<td><div id="user_2"><a href="https://github.com/fritz-teufel">Mr. Fritz Teufel</a></div>', $html);
+    }
+
+    /** @test */
     public function it_can_render_the_columns_subfield_as_a_text()
     {
         $table = new Table(new AppShellTheme(), [
