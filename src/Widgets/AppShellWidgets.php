@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Widgets;
 
 final class AppShellWidgets
 {
+    public const AVATAR = 'avatar';
     public const BADGE = 'badge';
     public const BADGES = 'badges';
     public const ENUM_ICON = 'enum_icon';

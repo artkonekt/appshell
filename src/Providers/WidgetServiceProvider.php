@@ -25,6 +25,7 @@ class WidgetServiceProvider extends ServiceProvider
     private array $builtInWidgets = [
         AppShellWidgets::TEXT => Widgets\Text::class,
         AppShellWidgets::LINK => Widgets\Link::class,
+        AppShellWidgets::AVATAR => Widgets\Avatar::class,
         AppShellWidgets::BADGE => Widgets\Badge::class,
         AppShellWidgets::BADGES => Widgets\Badges::class,
         AppShellWidgets::ENUM_ICON => Widgets\EnumIcon::class,
