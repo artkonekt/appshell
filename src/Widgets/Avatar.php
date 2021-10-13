@@ -26,8 +26,15 @@ class Avatar implements Widget
     use ResolvesSubstitutions;
     use SupportsConditionalRendering;
 
+    private const DEFAULT_AVATAR_SIZE = 50;
+
     /** @var callable */
     private $model;
+
+    /** @var ?callable */
+    private $tooltip = null;
+
+    private ?int $size = null;
 
     public function __construct(Theme $theme, callable $model)
     {
@@ -38,8 +45,14 @@ class Avatar implements Widget
     public static function create(Theme $theme, array $options = []): Widget
     {
         $instance = new static($theme, self::makeCallable($options['model'] ?? '$model'));
-
         $instance->processRenderingConditions($options);
+        if (isset($options['tooltip'])) {
+            $instance->tooltip = self::makeCallable($options['tooltip']);
+        }
+
+        if (isset($options['size'])) {
+            $instance->size = intval($options['size']);
+        }
 
         return $instance;
     }
@@ -52,6 +65,8 @@ class Avatar implements Widget
 
         return $this->renderViewFromTheme('avatar', [
             'data' => call_user_func($this->model, $data, $this),
+            'tooltip' => null !== $this->tooltip ? call_user_func($this->tooltip, $data, $this) : null,
+            'size' => $this->size ?? self::DEFAULT_AVATAR_SIZE,
         ]);
     }
 }

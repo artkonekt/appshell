@@ -8,6 +8,7 @@
     </table>
 @else
 <table class="table @isset($table->options['striped'])table-striped @endisset">
+    @unless($table->headerIsHidden())
     <thead>
         <tr>
         @foreach($table->columns as $column)
@@ -15,6 +16,7 @@
         @endforeach
         </tr>
     </thead>
+    @endunless
     <tbody>
         @foreach($table->data as $line)
             <tr>

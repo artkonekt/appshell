@@ -58,6 +58,11 @@ class Table implements Widget
         return null !== $this->footer;
     }
 
+    public function headerIsHidden(): bool
+    {
+        return false === ($this->options['header'] ?? null);
+    }
+
     public function render($data = null): string
     {
         if ($data instanceof Collection) {
