@@ -32,11 +32,11 @@ trait AccessesRawData
                 $parts = explode('.', $attribute);
                 switch (count($parts)) {
                     case 2:
-                        return $model->{$parts[0]}->{$parts[1]};
+                        return $model->{$parts[0]}?->{$parts[1]};
                     case 3:
-                        return $model->{$parts[0]}->{$parts[1]}->{$parts[2]};
+                        return $model->{$parts[0]}?->{$parts[1]}?->{$parts[2]};
                     case 4:
-                        return $model->{$parts[0]}->{$parts[1]}->{$parts[2]}->{$parts[2]};
+                        return $model->{$parts[0]}?->{$parts[1]}?->{$parts[2]}?->{$parts[3]};
                     default:
                         return ''; // Shrug
                 }
