@@ -4,7 +4,7 @@
 ##### 2021-XX-YY
 
 - Dropped PHP 7.4 Support
-- Added PHP 8.1 Support
+- // Added PHP 8.1 Support
 - Added actionbar and footer slots to the group widget
 - Added possibility to omit the title from group widget
 - Added "empty" option to table widget to render a text instead of table on empty dataset
