@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Traits\RendersThemedWidget;
@@ -28,6 +30,8 @@ class Link implements Widget
     protected static $allowedOptions = [
         'onlyIfCan',
     ];
+
+    private static array $canCache = [];
 
     /** @var callable */
     protected $url;
@@ -65,8 +69,23 @@ class Link implements Widget
     {
         $url = $this->url;
         return $this->renderViewFromTheme('link', array_merge($this->options, [
+            'can' => $this->can(),
             'text' => $this->text->render($data),
             'url' => $url($data, $this),
         ]));
+    }
+
+    private function can(): bool
+    {
+        $permission = $this->options['onlyIfCan'] ?? null;
+        if (null === $permission) {
+            return true;
+        }
+
+        if (!isset(self::$canCache[Auth::user()->id][$permission])) {
+            self::$canCache[Auth::user()->id][$permission] = Auth::user()->can($permission);
+        }
+
+        return self::$canCache[Auth::user()->id][$permission];
     }
 }
