@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
@@ -31,14 +30,14 @@ class Link implements Widget
         'onlyIfCan',
     ];
 
-    private static array $canCache = [];
-
     /** @var callable */
     protected $url;
 
     protected Text $text;
 
     protected $options = [];
+
+    private static array $canCache = [];
 
     public function __construct(Theme $theme, Text $text, callable $url)
     {
