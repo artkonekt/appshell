@@ -1,10 +1,9 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2021-XX-YY
+## 2.5.0
+##### 2021-10-18
 
 - Dropped PHP 7.4 Support
-- // Added PHP 8.1 Support
 - Added actionbar and footer slots to the group widget
 - Added possibility to omit the title from group widget
 - Added "empty" option to table widget to render a text instead of table on empty dataset
@@ -15,12 +14,12 @@
 - Added support for conditional widget rendering
 - Added support for extra elements in multi text widget's primary row
 - Added size and tooltip rendering to Avatar widget
+- Added feature to fetch widget text from multiple model "depths" eg.: `$model.country.name`
 - Changed customer and user show/edit/create pages to use group widget instead of hard coded Bootstrap
 - Changed widget text modifiers so that they can modify non-string field values as well
 - Converted address list partial to use the group widget instead of hardcoded bootstrap HTML
 - Converted Invitations to render widgets instead of hardcoded Bootstrap HTML
 - Converted Roles to render widgets instead of hardcoded Bootstrap HTML
-- Added feature to fetch widget text from multiple model "depths" eg.: `$model.country.name`
 - Fixed Table actions widget when delete confirmation was without translations parameters
 
 ## 2.4.2
