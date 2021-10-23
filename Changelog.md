@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2021-XX-YY
+## 2.5.1
+##### 2021-10-23
 
 - Fixed bug when search route wasn't defined
 
