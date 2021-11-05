@@ -18,12 +18,15 @@ use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Traits\RendersThemedWidget;
 use Konekt\AppShell\Traits\ResolvesSubstitutions;
-use Konekt\AppShell\WidgetModifiers;
+use Konekt\AppShell\Widgets\Concerns\HasModifier;
+use Konekt\AppShell\Widgets\Concerns\SupportsConditionalRendering;
 
 class Text implements Widget
 {
     use RendersThemedWidget;
     use ResolvesSubstitutions;
+    use SupportsConditionalRendering;
+    use HasModifier;
 
     protected static $allowedTagAttributes = [
         'class',
@@ -33,9 +36,6 @@ class Text implements Widget
 
     /** @var callable */
     private $text;
-
-    /** @var null|string|callable */
-    private $modifier = null;
 
     private ?string $wrap;
 
@@ -84,38 +84,26 @@ class Text implements Widget
             }
         }
 
+        $instance->processRenderingConditions($options);
+
         return $instance;
     }
 
     public function render($data = null): string
     {
+        if ($this->shouldNotRender($data)) {
+            return '';
+        }
+
         $text = $this->text;
 
         return $this->renderViewFromTheme('text', [
-            'text' => $this->modify((string) $text($data, $this)),
+            'text' => $this->modify($text($data, $this)),
             'wrap' => $this->wrap,
             'tagAttributes' => $this->tagAttributes,
             'bold' => $this->bold,
             'prefix' => $this->prefix,
             'suffix' => $this->suffix,
         ]);
-    }
-
-    public function setModifier($modifier): void
-    {
-        $this->modifier = $modifier;
-    }
-
-    protected function modify(string $text): string
-    {
-        if (null === $this->modifier) {
-            return $text;
-        }
-
-        if (is_string($this->modifier) && WidgetModifiers::exists($this->modifier)) {
-            return WidgetModifiers::make($this->modifier)->handle($text);
-        }
-
-        return call_user_func($this->modifier, $text);
     }
 }

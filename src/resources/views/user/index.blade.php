@@ -8,29 +8,22 @@
 
     @include('appshell::user._subnav', ['active' => 'users'])
 
-    <div class="card card-accent-secondary">
+    @component(theme_widget('group'), ['accent' => 'secondary'])
+        @slot('title')@yield('title')@endslot
 
-        <div class="card-header">
-            @yield('title')
-
-            <div class="card-actionbar">
-
-
-                @can('create users')
+        @slot('actionbar')
+            @can('create users')
                 <a href="{{ route('appshell.user.create') }}" class="btn btn-sm btn-outline-success float-right">
                     {!! icon('+') !!}
                     {{ __('New User') }}
                 </a>
-                @endcan
+            @endcan
 
-                    {!! $filters->render()  !!}
-            </div>
+            {!! $filters->render()  !!}
+        @endslot
 
-        </div>
+        {!! $table->render($users) !!}
 
-        <div class="card-body">
-            {!! $table->render($users) !!}
-        </div>
-    </div>
+    @endcomponent
 
 @stop

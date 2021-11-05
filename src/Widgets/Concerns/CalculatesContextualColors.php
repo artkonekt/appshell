@@ -16,11 +16,13 @@ namespace Konekt\AppShell\Widgets\Concerns;
 
 use Konekt\AppShell\Theme\ThemeColor;
 use Konekt\AppShell\Traits\ManipulatesColors;
+use Konekt\AppShell\Traits\ResolvesSubstitutions;
 use Konekt\AppShell\Widgets\Dto\ColorAttributes;
 
 trait CalculatesContextualColors
 {
     use ManipulatesColors;
+    use ResolvesSubstitutions;
 
     protected function parseColorDefinition(
         $definition,
@@ -38,6 +40,13 @@ trait CalculatesContextualColors
         if (is_array($definition)) {
             if (isset($definition['bool'])) {
                 return $this->byBooleanExpression($definition['bool'], $value);
+            }
+            if (isset($definition['value'])) {
+                $color = $this->resolveSubstitutions($definition['value'], $value);
+                if ($color instanceof ThemeColor) {
+                    $color = $color->value();
+                }
+                return $this->fromColorString($color);
             }
             // Additional magic here
         }

@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Widgets;
 
 final class AppShellWidgets
 {
+    public const AVATAR = 'avatar';
     public const BADGE = 'badge';
     public const BADGES = 'badges';
     public const ENUM_ICON = 'enum_icon';
@@ -23,6 +24,7 @@ final class AppShellWidgets
     public const FILTER_SET = 'filterset';
     public const LINK = 'link';
     public const MULTI_TEXT = 'multi_text';
+    public const RAW_HTML = 'raw_html';
     public const SHOW_DATE = 'show_date';
     public const SHOW_DATETIME = 'show_datetime';
     public const SHOW_TIME = 'show_time';

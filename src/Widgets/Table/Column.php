@@ -14,42 +14,26 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets\Table;
 
-use Illuminate\Support\Arr;
 use Konekt\AppShell\Traits\AccessesRawData;
 use Konekt\AppShell\Widgets;
 
 class Column
 {
     use AccessesRawData;
+    use HasWidgetDefinition;
+    use HasTableCellAttributes;
 
     public string $title;
 
     public string $id;
 
-    public ?string $width;
-
-    public ?string $valign;
-
-    private ?string $widget;
-
-    private array $widgetOptions = [];
-
     public function __construct(string $id, array $attributes = [])
     {
         $this->id = $id;
         $this->title = $attributes['title'] ?? $id;
-        $this->width = $attributes['width'] ?? null;
-        $this->valign = $attributes['valign'] ?? null;
 
-        $widget = $attributes['widget'] ?? null;
-        if (is_string($widget)) {
-            $this->widget = $widget;
-        } elseif (is_array($widget)) {
-            $this->widget = $widget['type'] ?? null;
-            $this->widgetOptions = Arr::except($widget, 'type');
-        } else {
-            $this->widget = null;
-        }
+        $this->parseTableCellAttributes($attributes);
+        $this->parseWidgetDefinition($attributes['widget'] ?? null);
     }
 
     public function render($lineData): string

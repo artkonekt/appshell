@@ -6,6 +6,33 @@
 - Dropped PHP 7.4 support (PHP 8+ only)
 - Dropped Laravel 6 & 7 Support (Laravel 8.12+ only)
 
+## 2.5.1
+##### 2021-10-23
+
+- Fixed bug when search route wasn't defined
+
+## 2.5.0
+##### 2021-10-18
+
+- Dropped PHP 7.4 Support
+- Added actionbar and footer slots to the group widget
+- Added possibility to omit the title from group widget
+- Added "empty" option to table widget to render a text instead of table on empty dataset
+- Added "header:false" option to hide table headers
+- Added "value" option for getting a contextual color directly from the model
+- Added Footer support to the table widget
+- Added Raw HTML widget
+- Added support for conditional widget rendering
+- Added support for extra elements in multi text widget's primary row
+- Added size and tooltip rendering to Avatar widget
+- Added feature to fetch widget text from multiple model "depths" eg.: `$model.country.name`
+- Changed customer and user show/edit/create pages to use group widget instead of hard coded Bootstrap
+- Changed widget text modifiers so that they can modify non-string field values as well
+- Converted address list partial to use the group widget instead of hardcoded bootstrap HTML
+- Converted Invitations to render widgets instead of hardcoded Bootstrap HTML
+- Converted Roles to render widgets instead of hardcoded Bootstrap HTML
+- Fixed Table actions widget when delete confirmation was without translations parameters
+
 ## 2.4.2
 ##### 2021-10-04
 

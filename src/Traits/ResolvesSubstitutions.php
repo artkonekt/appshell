@@ -41,15 +41,16 @@ trait ResolvesSubstitutions
         // There's exactly one model and nothing else in the parameter
         // This way the data type of the given field/method remains
         // intact. preg_replace_callback converts them to string
-        if (preg_match('/^\$model\.[a-zA-Z0-9()_]+$/', $parameter)) {
+        if (preg_match('/^\$model\.[a-zA-Z0-9()_\.]+$/', $parameter)) {
             $tokens = explode('.', $parameter);
+            unset($tokens[0]); // Remove "$model" from tokens
 
-            return $this->getRawData($model, $tokens[1]);
+            return $this->getRawData($model, implode('.', $tokens));
         }
 
         if (Str::contains($parameter, '$model.')) {
             return preg_replace_callback(
-                '/\$model\.([a-zA-Z0-9()_]+)/',
+                '/\$model\.([a-zA-Z0-9()_\.]+)/',
                 fn ($matches) => $this->getRawData($model, $matches[1]),
                 $parameter
             );

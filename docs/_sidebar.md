@@ -21,6 +21,7 @@
     - [MultiText](widget-multitext.md)
     - [Date & Time](widget-datetime.md)
     - [Table](widgets-table.md)
+    - [Group](widgets-group.md)
 
 - IV. Customization
     - [Customizing Admin UI](customize-admin-ui.md)

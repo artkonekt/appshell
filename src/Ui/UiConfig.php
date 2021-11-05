@@ -54,7 +54,7 @@ final class UiConfig
 
     public function isSearchEnabled(): bool
     {
-        return (bool) $this->data['routes']['search'];
+        return (bool) ($this->data['routes']['search'] ?? null);
     }
 
     private function fixMissingDefaults(): void

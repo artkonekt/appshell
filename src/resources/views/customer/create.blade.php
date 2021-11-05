@@ -5,23 +5,17 @@
 @stop
 
 @section('content')
-<div class="card card-accent-success">
-
-    <div class="card-header">
-        {{ __('Enter Customer Details') }}
-    </div>
 
     {!! Form::model($customer, ['route' => 'appshell.customer.store', 'autocomplete' => 'off']) !!}
+    @component(theme_widget('group'), ['accent' => 'success'])
+        @slot('title'){{ __('Enter Customer Details') }}@endslot
 
-        <div class="card-body">
-            @include('appshell::customer._form')
-        </div>
+        @include('appshell::customer._form')
 
-        <div class="card-footer">
+        @slot('footer')
             <button class="btn btn-success">{{ __('Create customer') }}</button>
             <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-
+        @endslot
+    @endcomponent
     {!! Form::close() !!}
-</div>
 @stop

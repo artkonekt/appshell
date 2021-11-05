@@ -50,10 +50,13 @@ class Badge implements Widget
     {
         $result = $options;
         $result['wrap'] = $options['wrap'] ?? 'span';
-        $style = null;
 
         $value = $this->resolveSubstitutions($options['text'] ?? '$model', $data);
-        $bgColor = $this->parseColorDefinition($options['color'] ?? null, $value);
+        $colorDef = $options['color'] ?? null;
+        $bgColor = $this->parseColorDefinition(
+            is_string($colorDef) ? $this->resolveSubstitutions($colorDef, $data) : $colorDef,
+            $value
+        );
         $contextClass = $bgColor->themeColor->isNone() ? '' : 'badge-' . $bgColor->themeColor->value();
         $result['class'] = "badge badge-pill $contextClass " . ($options['class'] ?? '');
 
