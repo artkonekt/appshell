@@ -18,6 +18,13 @@ use Konekt\Address\Models\Address as BaseAddress;
 use Konekt\Customer\Models\CustomerProxy;
 use Konekt\Enum\Eloquent\EnumsAreCompatibleWithLaravelForms;
 
+/**
+ * @todo instead of overloading the models, replace the Form:: functionality
+ *       with an in-house solution. That solution needs to be enum aware
+ *       by default, and implement a feature where subsequent modules
+ *       and applications can register form accessors (decorators)
+ *       eg.: FormAccessors::add(ModelContract::class, 'field', fn ($value) => transform($value));
+ */
 class Address extends BaseAddress
 {
     use EnumsAreCompatibleWithLaravelForms;
