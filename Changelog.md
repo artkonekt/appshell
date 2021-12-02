@@ -1,9 +1,10 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2021-12-XX
+## 2.5.2
+##### 2021-12-02
 
 - Fixed misplaced form tags on quicklinks form
+- Proven to work with PHP 8.1
 
 ## 2.5.1
 ##### 2021-10-23
