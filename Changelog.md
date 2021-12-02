@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2021-12-XX
+
+- Fixed misplaced form tags on quicklinks form
+
 ## 2.5.1
 ##### 2021-10-23
 
