@@ -108,7 +108,7 @@ class ZmdiIconTheme implements IconTheme
             unset($attributes['class']);
         }
 
-        if (isset($attributes['animate'])) {
+        if (isset($attributes['animate']) && boolval($attributes['animate'])) {
             $classes = array_merge($classes, [self::$animatedIconClass]);
             unset($attributes['animate']);
         }
