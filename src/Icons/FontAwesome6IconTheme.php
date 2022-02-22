@@ -147,4 +147,3 @@ class FontAwesome6IconTheme implements IconTheme
         return $result;
     }
 }
-
