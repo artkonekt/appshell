@@ -125,7 +125,7 @@ class FontAwesome6IconTheme implements IconTheme
         );
 
         return sprintf(
-            '<i class="fas fa-%s %s" %s></i>',
+            '<i class="fa-solid fa-%s %s" %s></i>',
             $this->get($abstract),
             implode(' ', $classes),
             $attrString

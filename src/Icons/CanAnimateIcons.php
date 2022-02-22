@@ -18,11 +18,11 @@ trait CanAnimateIcons
 {
     protected static string $animatedIconClass = 'icon-appshell-animated';
 
-    private function animationCss(): string
+    private function animationCss(string $extraCss = ''): string
     {
         return
             '<style>' .
-            '.' . static::$animatedIconClass . '{animation:appshellspin 4s linear infinite;}'
+            '.' . static::$animatedIconClass . "{animation:appshellspin 4s linear infinite;$extraCss}"
             . '@keyframes appshellspin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }}' .
             '</style>'
             ;

@@ -92,7 +92,7 @@ class TablerIconTheme implements IconTheme
         }
 
         return '<link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">'
-            . $this->animationCss();
+            . $this->animationCss('display:inline-block;');
     }
 
     public function render(string $abstract, ThemeColor $color, array $attributes = []): string
