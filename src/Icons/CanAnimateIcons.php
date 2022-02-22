@@ -20,7 +20,11 @@ trait CanAnimateIcons
 
     private function animationCss(): string
     {
-        return '.' . static::$animatedIconClass . '{animation:appshellspin 4s linear infinite;}'
-            . '@keyframes appshellspin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }}';
+        return
+            '<style>' .
+            '.' . static::$animatedIconClass . '{animation:appshellspin 4s linear infinite;}'
+            . '@keyframes appshellspin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }}' .
+            '</style>'
+            ;
     }
 }
