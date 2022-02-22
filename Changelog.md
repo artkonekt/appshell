@@ -5,6 +5,7 @@
 
 - Added Laravel 9 support
 - Added animation support to icons
+- Added Font Awesome 6 icon theme
 
 ## 2.5.2
 ##### 2021-12-02
