@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-02-XX
+## 2.6.0
+##### 2022-02-22
 
 - Added Laravel 9 support
 - Added animation support to icons
