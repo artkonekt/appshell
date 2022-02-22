@@ -21,6 +21,7 @@ class TablerIconTheme implements IconTheme
 {
     use HasIconMap;
     use HasFallbackIcon;
+    use CanAnimateIcons;
 
     public const ID = 'tablericons';
 
@@ -90,7 +91,8 @@ class TablerIconTheme implements IconTheme
             return '';
         }
 
-        return '<link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">';
+        return '<link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">'
+            . $this->animationCss();
     }
 
     public function render(string $abstract, ThemeColor $color, array $attributes = []): string
@@ -104,6 +106,11 @@ class TablerIconTheme implements IconTheme
         if (isset($attributes['class'])) {
             $classes = array_merge($classes, explode(' ', $attributes['class']));
             unset($attributes['class']);
+        }
+
+        if (isset($attributes['animate'])) {
+            $classes = array_merge($classes, [self::$animatedIconClass]);
+            unset($attributes['animate']);
         }
 
         $attrString = implode(

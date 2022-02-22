@@ -4,6 +4,7 @@
 ##### 2022-02-XX
 
 - Added Laravel 9 support
+- Added animation support to icons
 
 ## 2.5.2
 ##### 2021-12-02

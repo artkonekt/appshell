@@ -24,6 +24,8 @@ class FontAwesomeIconTheme implements IconTheme
 
     public const ID = 'font-awesome';
 
+    private const FA_ANIMATION_TYPES = ['beat', 'beat-fade', 'bounce', 'flip', 'shake', 'spin'];
+
     private static string $fallbackIcon = 'bookmark';
 
     private static array $icons = [
@@ -106,6 +108,11 @@ class FontAwesomeIconTheme implements IconTheme
             unset($attributes['class']);
         }
 
+        if (isset($attributes['animate'])) {
+            $classes = array_merge($classes, [$this->animationClass($attributes['animate'])]);
+            unset($attributes['animate']);
+        }
+
         $attrString = implode(
             ' ',
             array_map(
@@ -123,5 +130,20 @@ class FontAwesomeIconTheme implements IconTheme
             implode(' ', $classes),
             $attrString
         );
+    }
+
+    private function animationClass($definition): string
+    {
+        if (false === boolval($definition)) {
+            return '';
+        }
+
+        $result = 'fa-spin';
+
+        if (is_string($definition) && in_array(strtolower($definition), static::FA_ANIMATION_TYPES)) {
+            $result = "fa-$definition";
+        }
+
+        return $result;
     }
 }
