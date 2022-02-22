@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2022-02-XX
+
+- Added Laravel 9 support
+
 ## 2.5.2
 ##### 2021-12-02
 
