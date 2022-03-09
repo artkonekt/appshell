@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-03-XX
+## 2.7.0
+##### 2022-03-09
 
 - Added `empty` option to "badges" widget that displays a default badge if the list is empty
 
