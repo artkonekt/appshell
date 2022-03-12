@@ -41,4 +41,18 @@ class UserTest extends TestCase
 
         $this->assertInstanceOf(Customer::class, $user->customer);
     }
+
+    /** @test */
+    public function a_users_customer_is_optional()
+    {
+        $user = User::create([
+            'email' => 'user@example.co',
+            'type' => UserType::CLIENT,
+            'name' => 'User',
+            'password' => Str::uuid(),
+        ]);
+
+        $this->assertNull($user->customer_id);
+        $this->assertNull($user->customer);
+    }
 }
