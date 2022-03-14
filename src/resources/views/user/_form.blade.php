@@ -70,7 +70,7 @@
     <div class="col-md-10">
         @foreach($types as $key => $value)
             <label class="radio-inline" for="type_{{ $key }}">
-                {{ Form::radio('type', $key, $user->type == $value, ['id' => "type_$key"]) }}
+                {{ Form::radio('type', $key, $user->type == $value, ['id' => "type_$key", 'v-model' => 'userType']) }}
                 {{ $value }}
                 &nbsp;
             </label>
@@ -80,6 +80,9 @@
             <input type="text" hidden class="form-control is-invalid">
             <div class="invalid-feedback">{{ $errors->first('type') }}</div>
         @endif
+    </div>
+    <div class="col-md-10 offset-md-2" v-show="showCustomerSelection()">
+        {{ Form::select('customer_id', $customers->pluck('name','id'), null, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
     </div>
 </div>
 
@@ -103,10 +106,24 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            $('#{{ $fakeElementId }}').remove();
-        }, 470);
+    new Vue({
+        el: '#app',
+        data: {
+            userType: '{{ old('type') ?: $user->type->value() }}',
+            showCustomerSelection() {
+                const customerSelection = {!! is_array($customerSelection) ? '["' . implode('","', $customerSelection) . '"]' : ($customerSelection ? 'true' : 'false') !!};
+                if ('boolean' === typeof(customerSelection)) {
+                    return customerSelection;
+                }
+                return customerSelection.includes(this.userType);
+            }
+        }
     });
 </script>
 @endsection
+
+@push('onload-scripts')
+    setTimeout(function() {
+        document.getElementById('{{ $fakeElementId }}').remove();
+    }, 470);
+@endpush

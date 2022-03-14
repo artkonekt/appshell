@@ -32,7 +32,8 @@ class CreateUser extends FormRequest implements CreateUserContract
             'password' => 'required|min:7',
             'type' => 'present',
             'is_active' => 'sometimes|boolean',
-            'roles' => 'sometimes|array'
+            'roles' => 'sometimes|array',
+            'customer_id' => 'sometimes|nullable|exists:customers,id'
         ];
     }
 

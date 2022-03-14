@@ -14,8 +14,9 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
 use Konekt\Acl\Traits\HasRoles;
+use Konekt\AppShell\Traits\CanBeAssociatedWithACustomer;
 use Konekt\Customer\Contracts\Customer;
 use Konekt\Customer\Models\CustomerProxy;
 use Konekt\User\Models\User as BaseUser;
@@ -27,13 +28,20 @@ use Konekt\User\Models\User as BaseUser;
 class User extends BaseUser
 {
     use HasRoles;
+    use CanBeAssociatedWithACustomer;
 
     protected $fillable = [
         'name', 'email', 'password', 'type', 'is_active', 'customer_id',
     ];
 
-    public function customer(): BelongsTo
+    public function customersVisible(): Collection
     {
-        return $this->belongsTo(CustomerProxy::modelClass(), 'customer_id', 'id');
+        if (!$this->can('list customers')) {
+            return $this->isAssociatedWithACustomer() ?
+                collect([$this->customer]) :
+                collect();
+        }
+
+        return CustomerProxy::all()->sortBy('name');
     }
 }

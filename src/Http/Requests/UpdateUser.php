@@ -32,7 +32,8 @@ class UpdateUser extends FormRequest implements UpdateUserContract
             'password' => 'nullable|min:7',
             'type' => 'present',
             'is_active' => 'sometimes|boolean',
-            'roles' => 'sometimes|array'
+            'roles' => 'sometimes|array',
+            'customer_id' => 'sometimes|nullable|exists:customers,id'
         ];
     }
 
