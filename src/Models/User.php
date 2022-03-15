@@ -16,19 +16,14 @@ namespace Konekt\AppShell\Models;
 
 use Illuminate\Support\Collection;
 use Konekt\Acl\Traits\HasRoles;
-use Konekt\AppShell\Traits\CanBeAssociatedWithACustomer;
-use Konekt\Customer\Contracts\Customer;
+use Konekt\Customer\Traits\BelongsToACustomer;
 use Konekt\Customer\Models\CustomerProxy;
 use Konekt\User\Models\User as BaseUser;
 
-/**
- * @property int $customer_id
- * @property Customer|null $customer
- */
 class User extends BaseUser
 {
     use HasRoles;
-    use CanBeAssociatedWithACustomer;
+    use BelongsToACustomer;
 
     protected $fillable = [
         'name', 'email', 'password', 'type', 'is_active', 'customer_id',
