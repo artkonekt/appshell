@@ -21,6 +21,9 @@ use Konekt\Customer\Traits\BelongsToACustomer;
 use Konekt\Customer\Traits\CustomerIsOptional;
 use Konekt\User\Models\User as BaseUser;
 
+/**
+ * @method static User create(array $attributes)
+ */
 class User extends BaseUser
 {
     use HasRoles;
