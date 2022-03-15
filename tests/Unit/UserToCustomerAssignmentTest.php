@@ -134,7 +134,7 @@ class UserToCustomerAssignmentTest extends TestCase
         foreach ([1,2,3,4] as $i) {
             Customer::create([
                 'type' => CustomerType::ORGANIZATION,
-                'company_name' => 'Company #' . (string)$i
+                'company_name' => 'Company #' . (string) $i
             ]);
         }
 
