@@ -1,5 +1,24 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2022-03-XX
+
+- Added opportunity to assign users to customers
+- Added `timezone` and `ltv` (Customer Lifetime Value) to customers (via Customers v2.3)
+- Dropped Laravel 6 and 7 support
+- Changed minimal Laravel requirement to 8.22.1, see [CVE-2021-21263](https://blog.laravel.com/security-laravel-62011-7302-8221-released)
+- Changed minimal package requirements to:
+    - ACL module: 1.5
+    - Address module: 2.1
+    - Customer module: 2.3
+    - Concord: 1.10.1
+    - Eloquent Sluggable: 8.0.2
+    - Enum Eloquent: 1.7
+    - Gears module: 1.7
+    - Laracasts Flash: 3.2
+    - Laravel Collective HTML (Forms): 6.2.1
+    - Menu module: 1.8
+
 ## 2.7.0
 ##### 2022-03-09
 

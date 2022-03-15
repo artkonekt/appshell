@@ -50,6 +50,7 @@ return [
     ],
     'ui' => [
         'name' => 'AppShell',
+        'customer_selection_for_users' => false, //false, true or and array of strings that represent Customer types
         'url' => '/admin/customer',
         'logo_uri' => '/images/appshell/logo.svg',
         'theme' => 'appshell',

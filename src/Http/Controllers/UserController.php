@@ -65,7 +65,9 @@ class UserController extends BaseController
         return view('appshell::user.create', [
             'user' => app(User::class),
             'types' => UserTypeProxy::choices(),
-            'roles' => RoleProxy::all()
+            'roles' => RoleProxy::all(),
+            'customerSelection' => config('konekt.app_shell.ui.customer_selection_for_users'),
+            'customers' => Auth::user()->customersVisible(),
         ]);
     }
 
@@ -113,7 +115,9 @@ class UserController extends BaseController
         return view('appshell::user.edit', [
             'user' => $user,
             'types' => UserTypeProxy::choices(),
-            'roles' => RoleProxy::all()
+            'roles' => RoleProxy::all(),
+            'customerSelection' => config('konekt.app_shell.ui.customer_selection_for_users'),
+            'customers' => Auth::user()->customersVisible(),
         ]);
     }
 

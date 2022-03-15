@@ -66,14 +66,13 @@
 <hr>
 
 <div class="form-group row">
-    <label class="form-control-label col-md-2">{{ __('User type') }}</label>
+    <label class="col-form-label col-md-2 pt-0">{{ __('User type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)
-            <label class="radio-inline" for="type_{{ $key }}">
-                {{ Form::radio('type', $key, $user->type == $value, ['id' => "type_$key"]) }}
-                {{ $value }}
-                &nbsp;
-            </label>
+            <div class="form-check form-check-inline">
+                {{ Form::radio('type', $key, $user->type == $value, ['id' => "type_$key", 'v-model' => 'userType', 'class' => 'form-check-input']) }}
+                <label class="form-check-label" for="type_{{ $key }}">{{ $value }}</label>
+            </div>
         @endforeach
 
         @if ($errors->has('type'))
@@ -84,7 +83,14 @@
 </div>
 
 <div class="form-group row">
-    <label class="form-control-label col-md-2">{{ __('Active') }}</label>
+    <label class="col-form-label col-md-2" v-show="showCustomerSelection()">{{ __('Belongs to Customer') }}</label>
+    <div class="col-md-10" v-show="showCustomerSelection()">
+        {{ Form::select('customer_id', $customers->pluck('name','id'), null, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label class="col-form-label col-md-2 pt-0">{{ __('Active') }}</label>
     <div class="col-md-10">
         {{ Form::hidden('is_active', 0) }}
         <label class="switch switch-icon switch-pill switch-primary">
@@ -103,10 +109,24 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            $('#{{ $fakeElementId }}').remove();
-        }, 470);
+    new Vue({
+        el: '#app',
+        data: {
+            userType: '{{ old('type') ?: $user->type->value() }}',
+            showCustomerSelection() {
+                const customerSelection = {!! is_array($customerSelection) ? '["' . implode('","', $customerSelection) . '"]' : ($customerSelection ? 'true' : 'false') !!};
+                if ('boolean' === typeof(customerSelection)) {
+                    return customerSelection;
+                }
+                return customerSelection.includes(this.userType);
+            }
+        }
     });
 </script>
 @endsection
+
+@push('onload-scripts')
+    setTimeout(function() {
+        document.getElementById('{{ $fakeElementId }}').remove();
+    }, 470);
+@endpush
