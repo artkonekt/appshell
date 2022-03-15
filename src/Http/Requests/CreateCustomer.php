@@ -35,16 +35,16 @@ class CreateCustomer extends FormRequest implements CreateCustomerContract
             'lastname' => 'required_if:type,individual',
             'company_name' => 'required_if:type,organization',
             'is_active' => 'sometimes|boolean',
-            'timezone' => 'nullable|timezone',
-            'ltv' => 'nullable|numeric',
-            'currency' => ['nullable', Rule::in(array_keys((new DefaultCurrency())->options()))],
+            'timezone' => 'sometimes|nullable|timezone',
+            'ltv' => 'sometimes|nullable|numeric',
+            'currency' => ['sometimes', 'nullable', Rule::in(array_keys((new DefaultCurrency())->options()))],
         ];
     }
 
     public function all($keys = null)
     {
         $result = parent::all($keys);
-        if (null === $result['ltv']) {
+        if (null === ($result['ltv'] ?? null)) {
             $result['ltv'] = 0;
         }
 
