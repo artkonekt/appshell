@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-03-XX
+## 2.8.0
+##### 2022-03-15
 
 - Added opportunity to assign users to customers
 - Added `timezone`, `currency` and `ltv` (Customer Lifetime Value) fields to customers (via Customers v2.3)

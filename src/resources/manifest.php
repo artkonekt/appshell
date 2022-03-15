@@ -3,6 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'name' => 'Konekt AppShell Box',
-    'version' => '2.7.0'
+    'name' => 'AppShell',
+    'version' => '2.8.0'
 ];
