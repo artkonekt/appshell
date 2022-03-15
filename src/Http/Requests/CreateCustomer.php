@@ -51,7 +51,6 @@ class CreateCustomer extends FormRequest implements CreateCustomerContract
         return $result;
     }
 
-
     public function authorize()
     {
         return true;

@@ -118,10 +118,10 @@ class SettingsProvider extends ServiceProvider
                ['select', ['label' => __('Default Country')]],
                'appshell.default.country'
            )->addSettingItem(
-                'defaults',
-                ['select', ['label' => __('Default Currency')]],
-                'appshell.default.currency'
-            );
+               'defaults',
+               ['select', ['label' => __('Default Currency')]],
+               'appshell.default.currency'
+           );
 
         $this->settingsTreeIsBuilt = true;
     }

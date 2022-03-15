@@ -54,4 +54,3 @@ class DefaultCurrency implements Setting
         return false;
     }
 }
-
