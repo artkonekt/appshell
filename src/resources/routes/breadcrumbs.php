@@ -48,7 +48,7 @@ Breadcrumbs::for('appshell.role.edit', function ($breadcrumbs, $role) {
 
 Breadcrumbs::for('appshell.customer.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push(__('Customers'), route('appshell.customer.index'));
+    $breadcrumbs->push(__('Customers'), route('appshell.customer.index', ['is_active' => 1]));
 });
 
 Breadcrumbs::for('appshell.customer.show', function ($breadcrumbs, $customer) {

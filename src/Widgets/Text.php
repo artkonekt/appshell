@@ -102,8 +102,8 @@ class Text implements Widget
             'wrap' => $this->wrap,
             'tagAttributes' => $this->tagAttributes,
             'bold' => $this->bold,
-            'prefix' => $this->prefix,
-            'suffix' => $this->suffix,
+            'prefix' => $this->resolveSubstitutions($this->prefix, $data),
+            'suffix' => $this->resolveSubstitutions($this->suffix, $data),
         ]);
     }
 }

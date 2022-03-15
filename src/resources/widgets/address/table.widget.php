@@ -15,10 +15,10 @@ return [
                     'primary' => [
                         'text' => '$model.name',
                         'url' => [
-                            'route' => 'appshell.customer.show',
+                            'route' => 'appshell.address.edit',
                             'parameters' => ['$model']
                         ],
-                        'onlyIfCan' => 'view customers',
+                        'onlyIfCan' => 'edit addresses',
                     ],
                     'secondary' => [
                         'text' => '$model.type',
@@ -47,10 +47,6 @@ return [
                 'widget' => [
                     'type' => 'table_actions',
                     'actions' => [
-                        'edit' => [
-                            'route' => 'appshell.address.edit',
-                            'can' => 'edit addresses',
-                        ],
                         'delete' => [
                             'route' => 'appshell.address.destroy',
                             'can' => 'delete addresses',

@@ -20,17 +20,16 @@ use Konekt\AppShell\Filters\Filters;
 use Konekt\AppShell\Filters\Generic\BoolTriState;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
 use Konekt\AppShell\Filters\PartialMatchPattern;
+use Konekt\AppShell\Settings\DefaultCurrency;
 use Konekt\AppShell\Widgets;
 use Konekt\AppShell\Widgets\AppShellWidgets;
 use Konekt\Customer\Contracts\Customer;
 use Konekt\Customer\Models\CustomerProxy;
 use Konekt\Customer\Models\CustomerTypeProxy;
+use Konekt\Gears\Facades\Settings;
 
 class CustomerController extends BaseController
 {
-    /**
-     * Displays the list of customers
-     */
     public function index(Request $request)
     {
         $filters = Filters::make([
@@ -50,26 +49,21 @@ class CustomerController extends BaseController
         ]);
     }
 
-    /**
-     * Displays the create new customer form
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create()
     {
+        /** @var \Konekt\Customer\Models\Customer $customer */
         $customer = app(Customer::class);
+        $customer->timezone = config('app.timezone');
+        $customer->is_active = true;
+        $customer->currency = Settings::get('appshell.default.currency');
 
         return view('appshell::customer.create', [
             'customer' => $customer,
+            'currencies' => (new DefaultCurrency())->options(),
             'types' => CustomerTypeProxy::choices()
         ]);
     }
 
-    /**
-     * @param CreateCustomer $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function store(CreateCustomer $request)
     {
         try {
@@ -85,13 +79,6 @@ class CustomerController extends BaseController
         return redirect(route('appshell.customer.index'));
     }
 
-    /**
-     * Show customer
-     *
-     * @param Customer $customer
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function show(Customer $customer)
     {
         return view('appshell::customer.show', [
@@ -99,27 +86,15 @@ class CustomerController extends BaseController
         ]);
     }
 
-    /**
-     * @param Customer $customer
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @internal param User $user
-     *
-     */
     public function edit(Customer $customer)
     {
         return view('appshell::customer.edit', [
             'customer' => $customer,
+            'currencies' => (new DefaultCurrency())->options(),
             'types' => CustomerTypeProxy::choices()
         ]);
     }
 
-    /**
-     * @param Customer         $customer
-     * @param UpdateCustomer $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function update(Customer $customer, UpdateCustomer $request)
     {
         try {
@@ -135,13 +110,6 @@ class CustomerController extends BaseController
         return redirect(route('appshell.customer.show', $customer));
     }
 
-    /**
-     * Delete a customer
-     *
-     * @param Customer $customer
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function destroy(Customer $customer)
     {
         try {

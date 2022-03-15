@@ -26,18 +26,20 @@ return [
                 ],
                 'title' => __('Name'),
             ],
-            'created_at' => [
-                'title' => __('Registered'),
+            'ltv' => [
+                'title' => __('Sales'),
                 'widget' => [
                     'type' => 'multi_text',
                     'primary' => [
-                        'type' => 'show_date',
-                        'text' => '$model.created_at',
+                        'type' => 'text',
+                        'text' => '$model.ltv',
+                        'modifier' => 'number_format',
+                        'suffix' => ' $model.currency',
                         'bold' => false,
                     ],
                     'secondary' => [
                         'text' => '$model.last_purchase_at',
-                        'type' => 'show_datetime',
+                        'type' => 'show_date',
                         'prefix' => __('Last purchase') . ' ',
                         'unknown' => __('never')
                     ]
@@ -59,6 +61,22 @@ return [
                     'color' => ['bool' => ['success', 'secondary']],
                     'text' => '$model.is_active',
                     'modifier' => sprintf('bool2text:%s,%s', __('active'), __('inactive'))
+                ]
+            ],
+            'created_at' => [
+                'title' => __('Registered'),
+                'widget' => [
+                    'type' => 'multi_text',
+                    'primary' => [
+                        'type' => 'show_date',
+                        'text' => '$model.created_at',
+                        'bold' => false,
+                    ],
+                    'secondary' => [
+                        'text' => '$model.timezone',
+                        'prefix' => __('Time zone') . ' ',
+                        'unknown' => __('default')
+                    ]
                 ]
             ],
             'actions' => [

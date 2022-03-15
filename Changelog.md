@@ -4,8 +4,12 @@
 ##### 2022-03-XX
 
 - Added opportunity to assign users to customers
-- Added `timezone` and `ltv` (Customer Lifetime Value) to customers (via Customers v2.3)
+- Added `timezone`, `currency` and `ltv` (Customer Lifetime Value) fields to customers (via Customers v2.3)
+- Added model substitution to text widget's suffix and prefix options
+- Added the default currency setting
+- Improved the Customer create/edit forms
 - Dropped Laravel 6 and 7 support
+- Changed customer list so that inactive ones are hidden by default
 - Changed minimal Laravel requirement to 8.22.1, see [CVE-2021-21263](https://blog.laravel.com/security-laravel-62011-7302-8221-released)
 - Changed minimal package requirements to:
     - ACL module: 1.5
