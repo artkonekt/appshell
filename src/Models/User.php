@@ -18,12 +18,14 @@ use Illuminate\Support\Collection;
 use Konekt\Acl\Traits\HasRoles;
 use Konekt\Customer\Models\CustomerProxy;
 use Konekt\Customer\Traits\BelongsToACustomer;
+use Konekt\Customer\Traits\CustomerIsOptional;
 use Konekt\User\Models\User as BaseUser;
 
 class User extends BaseUser
 {
     use HasRoles;
     use BelongsToACustomer;
+    use CustomerIsOptional;
 
     protected $fillable = [
         'name', 'email', 'password', 'type', 'is_active', 'customer_id',

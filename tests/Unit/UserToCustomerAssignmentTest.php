@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the UserTest class.
+ * Contains the UserToCustomerAssignmentTest class.
  *
  * @copyright   Copyright (c) 2022 Attila Fulop
  * @author      Attila Fulop
@@ -21,7 +21,7 @@ use Konekt\Customer\Models\Customer;
 use Konekt\Customer\Models\CustomerType;
 use Konekt\User\Models\UserType;
 
-class UserTest extends TestCase
+class UserToCustomerAssignmentTest extends TestCase
 {
     /** @test */
     public function a_user_can_have_a_customer()
