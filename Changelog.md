@@ -1,10 +1,9 @@
 # AppShell Changelog
 
 ## 3.x-dev
-##### 2021-Q4
+##### 2022-Q2
 
-- Dropped PHP 7.4 support (PHP 8+ only)
-- Dropped Laravel 6 & 7 Support (Laravel 8.12+ only)
+- Dropped Laravel 8 Support (Laravel 9+ only)
 
 ## 2.8.0
 ##### 2022-03-15
