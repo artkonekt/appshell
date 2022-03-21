@@ -15,6 +15,33 @@ return [
 ];
 ```
 
+## Associate The User with Customer Configuration
+
+> This feature was added in v2.8
+
+It is possible to assign users to customers on the user edit form.
+This feature is **disabled by default**.
+
+To enable this feature, you need to change `konekt.app_shell.ui.customer_selection_for_users`
+configuration value. It can be set to:
+
+- `true`: in this case, it is possible to assign a customer to any [type of user](https://konekt.dev/user/2.x/user-types).
+- `array`: set the user types to allow customer selection for.
+
+**Example**
+
+```php
+return [
+    'modules' => [
+        Konekt\AppShell\Providers\ModuleServiceProvider::class => [
+            'customer_selection_for_users' => ['client', 'api'], // Enable for `client` and `api` types of users
+        ]
+    ]
+];
+```
+
+![Allow customer selection for certain user types only](assign_customer_selection.gif)
+
 ## Disable Parts
 
 You can disable the following features, by setting their respective keys to `true`:

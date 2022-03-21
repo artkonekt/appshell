@@ -6,6 +6,47 @@
 - Dropped PHP 7.4 support (PHP 8+ only)
 - Dropped Laravel 6 & 7 Support (Laravel 8.12+ only)
 
+## 2.8.0
+##### 2022-03-15
+
+- Added opportunity to assign users to customers
+- Added `timezone`, `currency` and `ltv` (Customer Lifetime Value) fields to customers (via Customers v2.3)
+- Added model substitution to text widget's suffix and prefix options
+- Added the default currency setting
+- Improved the Customer create/edit forms
+- Dropped Laravel 6 and 7 support
+- Changed customer list so that inactive ones are hidden by default
+- Changed minimal Laravel requirement to 8.22.1, see [CVE-2021-21263](https://blog.laravel.com/security-laravel-62011-7302-8221-released)
+- Changed minimal package requirements to:
+    - ACL module: 1.5
+    - Address module: 2.1
+    - Customer module: 2.3
+    - Concord: 1.10.1
+    - Eloquent Sluggable: 8.0.2
+    - Enum Eloquent: 1.7
+    - Gears module: 1.7
+    - Laracasts Flash: 3.2
+    - Laravel Collective HTML (Forms): 6.2.1
+    - Menu module: 1.8
+
+## 2.7.0
+##### 2022-03-09
+
+- Added `empty` option to "badges" widget that displays a default badge if the list is empty
+
+## 2.6.0
+##### 2022-02-22
+
+- Added Laravel 9 support
+- Added animation support to icons
+- Added Font Awesome 6 icon theme
+
+## 2.5.2
+##### 2021-12-02
+
+- Fixed misplaced form tags on quicklinks form
+- Proven to work with PHP 8.1
+
 ## 2.5.1
 ##### 2021-10-23
 

@@ -49,7 +49,7 @@ class CustomerTest extends TestCase
     /** @test */
     public function it_can_store_a_customer()
     {
-        $this->actingAs($this->adminUser)->post(route('appshell.customer.store'), [
+        $response = $this->actingAs($this->adminUser)->post(route('appshell.customer.store'), [
             'type' => CustomerType::ORGANIZATION,
             'firstname' => 'Bat',
             'lastname' => 'Man ',
@@ -57,6 +57,8 @@ class CustomerTest extends TestCase
             'tax_nr' => '4444',
             'registration_nr' => '5555'
         ]);
+
+        $response->assertStatus(302);
 
         $customer = Customer::all()->last();
 

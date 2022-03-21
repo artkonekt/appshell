@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Konekt\Address\Models\CountryProxy;
+use Konekt\AppShell\Settings\DefaultCurrency;
 use Konekt\AppShell\Settings\UiIconThemeSetting;
 use Konekt\AppShell\Settings\UiLogoUriSetting;
 use Konekt\AppShell\Settings\UiNameSetting;
@@ -79,6 +80,7 @@ class SettingsProvider extends ServiceProvider
                 }
             )
         );
+        $this->settingsRegistry->add(new DefaultCurrency());
     }
 
     protected function buildSettingsTree(TreeBuilder $ui)
@@ -115,6 +117,10 @@ class SettingsProvider extends ServiceProvider
                'defaults',
                ['select', ['label' => __('Default Country')]],
                'appshell.default.country'
+           )->addSettingItem(
+               'defaults',
+               ['select', ['label' => __('Default Currency')]],
+               'appshell.default.currency'
            );
 
         $this->settingsTreeIsBuilt = true;

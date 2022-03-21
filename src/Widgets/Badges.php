@@ -30,11 +30,14 @@ class Badges implements Widget
 
     protected string $itemsField;
 
-    public function __construct(Theme $theme, Badge $badge, string $itemsField)
+    protected array $ifEmpty;
+
+    public function __construct(Theme $theme, Badge $badge, string $itemsField, array $ifEmpty = [])
     {
         $this->theme = $theme;
         $this->badge = $badge;
         $this->itemsField = $itemsField;
+        $this->ifEmpty = $ifEmpty;
     }
 
     public static function create(Theme $theme, array $options = []): Widget
@@ -42,7 +45,8 @@ class Badges implements Widget
         return new static(
             $theme,
             Widgets::make('badge', Arr::except($options, 'items'), $theme),
-            $options['items'] ?? '$model'
+            $options['items'] ?? '$model',
+            $options['empty'] ?? [],
         );
     }
 
@@ -57,6 +61,10 @@ class Badges implements Widget
         $result = '';
         foreach ($source as $item) {
             $result .= $this->badge->render($item) . ' ';
+        }
+
+        if ('' === $result && isset($this->ifEmpty['text'])) {
+            $result .= Widgets::make('badge', $this->ifEmpty)->render();
         }
 
         return $result;

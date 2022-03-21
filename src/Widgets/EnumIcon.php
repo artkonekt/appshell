@@ -50,11 +50,27 @@ class EnumIcon implements Widget
             $color = $def->themeColor->isNone() ? null : $def->themeColor;
         }
 
+        $this->detectAnimationIntent($data);
+
         $attributes = Arr::except($this->options, ['value', 'color', 'type']);
         if (!isset($attributes['title'])) {
             $attributes['title'] = $value->label();
         }
 
         return icon(enum_icon($value), $color, $attributes);
+    }
+
+    private function detectAnimationIntent($data): void
+    {
+        if (!isset($this->options['animate'])) {
+            return;
+        }
+
+        if (isset($this->options['animateIf'])) {
+            if (!$this->resolveSubstitutions($this->options['animateIf'], $data)) {
+                unset($this->options['animate']);
+                unset($this->options['animateIf']);
+            }
+        }
     }
 }

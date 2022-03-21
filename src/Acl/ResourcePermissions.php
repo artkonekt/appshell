@@ -20,7 +20,10 @@ use Konekt\Acl\PermissionRegistrar;
 
 /**
  * Utility class for handling standard resource permissions
- * @deprecated
+ * @deprecated This file will be kept for backwards compatibility, but
+ *             must not be used in newly written code.
+ *             Use the ResourcePermissionMapper instead
+ * @see https://konekt.dev/appshell/2.x/acl#creating-permission-migrations
  */
 final class ResourcePermissions
 {

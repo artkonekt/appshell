@@ -21,6 +21,7 @@ class LineIconsTheme implements IconTheme
 {
     use HasIconMap;
     use HasFallbackIcon;
+    use CanAnimateIcons;
 
     public const ID = 'lineicons';
 
@@ -90,7 +91,10 @@ class LineIconsTheme implements IconTheme
             return '';
         }
 
-        return '<link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">';
+        return
+            '<link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">' .
+            $this->animationCss()
+            ;
     }
 
     public function render(string $abstract, ThemeColor $color, array $attributes = []): string
@@ -104,6 +108,11 @@ class LineIconsTheme implements IconTheme
         if (isset($attributes['class'])) {
             $classes = array_merge($classes, explode(' ', $attributes['class']));
             unset($attributes['class']);
+        }
+
+        if (isset($attributes['animate']) && boolval($attributes['animate'])) {
+            $classes = array_merge($classes, [self::$animatedIconClass]);
+            unset($attributes['animate']);
         }
 
         $attrString = implode(

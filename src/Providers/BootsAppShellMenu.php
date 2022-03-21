@@ -30,7 +30,7 @@ trait BootsAppShellMenu
             $crm = $appshellMenu->addItem('crm_group', __('CRM'));
 
             $crm
-                ->addSubItem('customers', __('Customers'), ['route' => 'appshell.customer.index'])
+                ->addSubItem('customers', __('Customers'), ['route' => ['appshell.customer.index', 'is_active=1']])
                 ->data('icon', 'customers')
                 ->activateOnUrls($this->routeWildcard('appshell.customer.index'))
                 ->allowIfUserCan('list customers');

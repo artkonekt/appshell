@@ -20,7 +20,7 @@ Breadcrumbs::for('app.order.index', function ($breadcrumbs) {
 
 ### Loading Breadcrumbs With AppShell Helpers
 
-If your application is built from [Concord Modules](https://konekt.dev/concord/1.8/modules), you
+If your application is built from [Concord Modules](https://konekt.dev/concord/1.x/modules), you
 can use a very simple way to define and load breadcrumbs:
 
 Add `breadcrumbs.php` to your module's `<module_root>/resources/routes/` folder:

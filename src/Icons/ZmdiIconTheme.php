@@ -21,6 +21,7 @@ class ZmdiIconTheme implements IconTheme
 {
     use HasIconMap;
     use HasFallbackIcon;
+    use CanAnimateIcons;
 
     public const ID = 'zmdi';
 
@@ -90,7 +91,8 @@ class ZmdiIconTheme implements IconTheme
             return '';
         }
 
-        return '<link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" media="all" type="text/css" rel="stylesheet" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />';
+        return '<link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" media="all" type="text/css" rel="stylesheet" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />'
+            . $this->animationCss();
     }
 
     public function render(string $abstract, ThemeColor $color, array $attributes = []): string
@@ -104,6 +106,11 @@ class ZmdiIconTheme implements IconTheme
         if (isset($attributes['class'])) {
             $classes = array_merge($classes, explode(' ', $attributes['class']));
             unset($attributes['class']);
+        }
+
+        if (isset($attributes['animate']) && boolval($attributes['animate'])) {
+            $classes = array_merge($classes, [self::$animatedIconClass]);
+            unset($attributes['animate']);
         }
 
         $attrString = implode(

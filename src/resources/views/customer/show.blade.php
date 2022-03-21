@@ -25,11 +25,22 @@
         @endcomponent
 
         @component(theme_widget('card_with_icon'), [
-                'icon' => 'time',
+                'icon' => 'money',
                 'type' => $customer->last_purchase_at ? 'success' : null
         ])
-            {{ __('Last purchase') }}
-            {{ show_datetime($customer->last_purchase_at, __('never')) }}
+            {{ number_format($customer->ltv ?? 0) }} {{ $customer->currency }}
+            @slot('subtitle')
+                {{ __('Lifetime Value') }} | {{ __('Last purchase') }}
+                {{ show_date($customer->last_purchase_at, __('never')) }}
+            @endslot
+        @endcomponent
+
+        @component(theme_widget('card_with_icon'), [
+                'icon' => 'time',
+                'type' => 'info'
+        ])
+            {{ __('Time zone') }}
+            {{ $customer->timezone ?? config('app.timezone') }}
 
             @slot('subtitle')
                 {{ __('Customer since') }}

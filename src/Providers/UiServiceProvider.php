@@ -17,6 +17,7 @@ namespace Konekt\AppShell\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Konekt\AppShell\EnumIcons;
+use Konekt\AppShell\Icons\FontAwesome6IconTheme;
 use Konekt\AppShell\Icons\FontAwesomeIconTheme;
 use Konekt\AppShell\Icons\LineIconsTheme;
 use Konekt\AppShell\Icons\TablerIconTheme;
@@ -41,6 +42,7 @@ class UiServiceProvider extends ServiceProvider
         Themes::add(AppShellTheme::ID, AppShellTheme::class);
         IconThemes::add(ZmdiIconTheme::ID, ZmdiIconTheme::class);
         IconThemes::add(FontAwesomeIconTheme::ID, FontAwesomeIconTheme::class);
+        IconThemes::add(FontAwesome6IconTheme::ID, FontAwesome6IconTheme::class);
         IconThemes::add(LineIconsTheme::ID, LineIconsTheme::class);
         IconThemes::add(TablerIconTheme::ID, TablerIconTheme::class);
 
