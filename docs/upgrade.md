@@ -5,7 +5,15 @@
 Beginning with AppShell 3.0, the minimum requirements are:  
 
 - PHP 8.0+
-- Laravel 8.12+
+- Laravel 9.0+
+
+### Theme Updates
+
+- Your theme must implement either implement the `componentNamespace` method or
+  if it uses the `IsGenericTheme` trait, then add the
+  `private static string $componentNamespace = '\Your\Theme\Components'`
+  property to your theme.
+
 
 ## 1.x -> 2.0
 

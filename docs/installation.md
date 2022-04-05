@@ -7,7 +7,7 @@
 As of AppShell v3.0 (unreleased), the requirements are:
 
 - PHP 8.0 or PHP 8.1
-- Laravel 8.12+
+- Laravel 9.0+
 
 ## Install AppShell
 
@@ -51,7 +51,7 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 | #  | Name                | Kind | Version | Id               | Namespace       |
 +----+---------------------+------+---------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 3.0-dev | konekt.app_shell | Konekt\AppShell |
+| 1. | AppShell            | Box  | 3.0-dev | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 
@@ -71,14 +71,11 @@ AppShell (with the underlying modules) contains ~20 migrations out of the box.
 
 ### Auth Scaffolding
 
-> Laravel, with the release of version 6 has significantly changed the way of auth scaffolding.
-> For details, refer to [Laravel Authentication Docs](https://laravel.com/docs/6.x/authentication#authentication-quickstart).
-
 If you haven't done it yet, install the Laravel UI package:
 
 ```bash
-composer require laravel/ui
-php artisan ui:auth
+composer require laravel/ui "^3.4.2"
+php artisan ui bootstrap --auth
 ```
 
 ### The User Model
@@ -86,15 +83,15 @@ php artisan ui:auth
 AppShell offers a pre-built `User` model, that is an extended version of the default Laravel User
 class. It's not mandatory to use this class though, it's possible to use your own models instead.
 
-To complete user setup, you have several options, see some of the variants below.
+To complete user setup, you have several options, see some variants below.
 
 #### Variant 1 - Simple
 
-Modify `App\User` so that it extends AppShell's user model:
+Modify `App\Models\User` so that it extends AppShell's user model:
 
 ```php
 // app/User.php
-namespace App;
+namespace App\Models;
 
 // No need to use Laravel default traits and properties as
 // they're already present in the base class exactly as
@@ -107,7 +104,7 @@ class User extends \Konekt\AppShell\Models\User
 Add this to your `AppServiceProviders`'s boot method:
 
 ```php
-   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
+   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\Models\User::class);
 ```
 
 #### Variant 2 - Flexible
@@ -116,7 +113,7 @@ In case you don't want to extend AppShell's User class, then it's sufficient to 
 interface:
 
 ```php
-// app/User.php
+// app/Models/User.php
 // ... The default User model or arbitrary code for your app
 
 // You can use any other base class eg: TCG\Voyager\Models\User
@@ -153,12 +150,12 @@ class User extends Authenticatable implements UserContract
 Add this to your `AppServiceProviders`'s boot method:
 
 ```php
-   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
+   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\Models\User::class);
 ```
 
-#### Variant 3 - No App\User
+#### Variant 3 - No App\Models\User
 
-If the "final" user class is not going to be `App\User` then don't forget to modify model the
+If the "final" user class is not going to be `App\Models\User` then don't forget to modify model the
 configuration in your app's `config/auth.php` file:
 
 ```php
@@ -166,7 +163,7 @@ configuration in your app's `config/auth.php` file:
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            // 'model' => App\User::class <- change this to:
+            // 'model' => App\Models\User::class <- change this to:
             'model' => Konekt\AppShell\Models\User::class,
         ],
     //...

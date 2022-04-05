@@ -26,6 +26,8 @@ final class AppShellTheme implements Theme
 
     private static string $viewNamespace = 'appshell';
 
+    private static string $componentNamespace = 'Konekt\\AppShell\\Theme\\Components';
+
     private array $layouts = [
         'private' => 'appshell::layouts.default.private',
         'public' => 'appshell::layouts.default.public',

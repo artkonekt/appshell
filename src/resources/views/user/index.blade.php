@@ -8,22 +8,19 @@
 
     @include('appshell::user._subnav', ['active' => 'users'])
 
-    @component(theme_widget('group'), ['accent' => 'secondary'])
-        @slot('title')@yield('title')@endslot
-
-        @slot('actionbar')
+    <x-appshell::group accent="secondary">
+        <x-slot:title>@yield('title')</x-slot:title>
+        <x-slot:actionbar>
             @can('create users')
-                <a href="{{ route('appshell.user.create') }}" class="btn btn-sm btn-outline-success float-right">
+                <x-appshell::button :url="route('appshell.user.create')" size="small" color="success" outline="1">
                     {!! icon('+') !!}
                     {{ __('New User') }}
-                </a>
+                </x-appshell::button>
             @endcan
-
             {!! $filters->render()  !!}
-        @endslot
+        </x-slot:actionbar>
 
         {!! $table->render($users) !!}
 
-    @endcomponent
-
+    </x-appshell::group>
 @stop

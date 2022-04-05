@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Konekt\AppShell\EnumIcons;
@@ -63,9 +64,11 @@ class UiServiceProvider extends ServiceProvider
         if (!$this->config('ui.theme')) {
             config(['konekt.app_shell.ui.theme' => AppShellTheme::ID]);
         }
-        $this->registerEnumIcons();
 
+        Blade::componentNamespace($this->app->get('appshell.theme')->componentNamespace(), 'appshell');
         View::share('appshell', new UiConfig($this->config('ui')));
+
+        $this->registerEnumIcons();
     }
 
     private function registerEnumIcons()
