@@ -53,10 +53,8 @@
             @component(theme_widget('group'), ['accent' => 'success'])
                 @slot('title'){{ __('Profile Image') }}@endslot
                 @slot('actionbar')
-                    @can('edit users')
-                        <a href="https://en.gravatar.com/emails" target="_blank"
-                           class="btn btn-sm btn-outline-info">{{ __('Change...') }}</a>
-                    @endcan
+                    <a href="https://en.gravatar.com/emails" target="_blank"
+                       class="btn btn-sm btn-outline-info">{{ __('Change...') }}</a>
                 @endslot
 
                 <img src="{{ avatar_image_url($user, 200) }}" class="img-avatar img-avatar-100">

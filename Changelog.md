@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2022-04-XX
+
+- Fixed impossibility of editing own avatar without `edit users` permission
+
 ## 2.8.0
 ##### 2022-03-15
 
