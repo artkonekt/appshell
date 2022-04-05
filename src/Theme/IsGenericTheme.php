@@ -67,6 +67,5 @@ trait IsGenericTheme
     public function componentNamespace(): string
     {
         return self::$componentNamespace;
-
     }
 }
