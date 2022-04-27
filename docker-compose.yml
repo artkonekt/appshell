@@ -6,6 +6,6 @@ services:
     volumes:
       - .:/build
   appshell_test_php81:
-    image: phpdaily/php:8.1.0-dev-cli-alpine3.12
+    image: php:8.1-cli-alpine
     volumes:
       - .:/build
