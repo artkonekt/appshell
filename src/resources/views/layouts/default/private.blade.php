@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" media="all" type="text/css" rel="stylesheet" />
-    <link href="{{ $appshell->useMix ? mix('/css/appshell.css') : asset('/css/appshell.css') }}" media="all" type="text/css" rel="stylesheet" />
+    <link href="{{ $appshell->useMix ? mix('/css/appshell3.css') : asset('/css/appshell3.css') }}" media="all" type="text/css" rel="stylesheet" />
     {!! icon_theme_assets() !!}
     @include('appshell::layouts.default._header_includes')
 
