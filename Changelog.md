@@ -4,6 +4,7 @@
 ##### 2022-Q2
 
 - Dropped Laravel 8 Support (Laravel 9+ only)
+- Renamed the stylesheet of the default theme from `appshell` to `appshell3`
 
 ## 2.8.1
 ##### 2022-04-27

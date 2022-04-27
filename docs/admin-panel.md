@@ -22,7 +22,7 @@ This layout will dynamically extend the chosen theme under the hood.
 **Add AppShell assets to Laravel Mix**:
 
 In this scenario, the entire application will be built on top of the AppShell UI,
-and the app's and AppShell's javascript files will be combined in a single `appshell.js` file.
+and the app's and AppShell's javascript files will be combined in a single `appshell3.js` file.
 
 In `webpack.mix.js` change:
 ```js
@@ -31,16 +31,16 @@ In `webpack.mix.js` change:
 // With this one:
 mix.js([
     'resources/js/app.js',
-    'vendor/konekt/appshell/src/resources/assets/js/appshell.js'
-    ], 'public/js/appshell.js')
+    'vendor/konekt/appshell/src/resources/assets/js/appshell3.js'
+    ], 'public/js/appshell3.js')
    // And replace this line:
    //.sass('resources/assets/sass/app.scss', 'public/css');
    // With this one:
-    .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell.sass', 'public/css');
+    .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell3.sass', 'public/css');
 ```
 
-> You can use any name for the output js file instead of `appshell.js`, eg. `app.js`.
-> To do so change the second mix.js parameter from `'public/js/appshell.js'` to the desired name,
+> You can use any name for the output js file instead of `appshell3.js`, eg. `app.js`.
+> To do so change the second mix.js parameter from `'public/js/appshell3.js'` to the desired name,
 > and change in your app's `config/concord.php` the JS filename according to
 > [Customizing Admin UI Documentation](customize-admin-ui.md).
 
@@ -68,8 +68,8 @@ In `webpack.mix.js` change:
 ```js
 mix.js('resources/js/app.js', 'public/js')
    // Add these 2 lines:
-   .js('vendor/konekt/appshell/src/resources/assets/js/appshell.standalone.js', 'public/js/appshell.js')
-   .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell.sass', 'public/css')
+   .js('vendor/konekt/appshell/src/resources/assets/js/appshell.standalone.js', 'public/js/appshell3.js')
+   .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell3.sass', 'public/css')
    // Keep this for the "rest" (usually public frontend)
    .sass('resources/sass/app.scss', 'public/css');
 ```

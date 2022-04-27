@@ -4,8 +4,14 @@
 
 Beginning with AppShell 3.0, the minimum requirements are:  
 
-- PHP 8.0+
-- Laravel 8.12+
+- PHP 8.0
+- Laravel 9.0
+
+### Default Theme
+
+The AppShell Theme has been rewritten from scratch. Notable changes in the new theme:
+
+- The stylesheet has been renamed to `/css/appshell3.css` from `/css/appshell.css`.
 
 ## 1.x -> 2.0
 
