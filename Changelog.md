@@ -5,6 +5,11 @@
 
 - Dropped Laravel 8 Support (Laravel 9+ only)
 
+## 2.8.1
+##### 2022-04-27
+
+- Fixed impossibility of editing own avatar without `edit users` permission
+
 ## 2.8.0
 ##### 2022-03-15
 
