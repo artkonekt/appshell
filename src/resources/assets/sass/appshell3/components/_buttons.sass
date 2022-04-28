@@ -1,0 +1,58 @@
+.btn
+  display: inline-block
+  font-weight: 600
+  line-height: 1.5
+  text-align: center
+  text-decoration: none
+  vertical-align: middle
+  user-select: none
+  padding: .375rem .75rem
+  font-size: 15px
+  background-color: transparent
+  border: 1px solid transparent
+  border-radius: .25rem
+
+.btn-lg
+  padding: .5rem 1rem
+  font-size: 1.25rem
+  border-radius: .3rem
+
+.btn-sm
+  padding: .25rem .5rem
+  font-size: .8125rem
+  border-radius: .2rem
+
+.btn-xs
+  padding: .15rem .25rem
+  font-size: .6rem
+  border-radius: .2rem
+
+=btn-color($color)
+  @if lightness($color) < lightness(#acacac)
+    color: white
+  @else
+    color: $firefly
+  background-color: $color
+  border-color: $color
+  &:hover
+    background-color: scale-color($color, $saturation: 17%, $alpha: -35%)
+    border-color: transparent
+
+@each $name, $color in $theme-colors
+  .btn-#{$name}
+    +btn-color($color)
+
+
+=btn-outline-color($color)
+  color: $color
+  border-color: $color
+  &:hover
+    @if lightness($color) < lightness(#bbb)
+      color: white
+    @else
+      color: $firefly
+    background-color: $color
+
+@each $name, $color in $theme-colors
+  .btn-outline-#{$name}
+    +btn-outline-color($color)

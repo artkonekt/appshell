@@ -1,0 +1,16 @@
+.breadcrumb
+  display: flex
+  flex-wrap: wrap
+  padding: 0 0
+  margin-bottom: 1rem
+  list-style: none
+
+.breadcrumb-item a
+  text-decoration: none
+
+.breadcrumb-item + .breadcrumb-item::before
+  float: left
+  padding: 0 .5rem
+  color: $pale-sky
+  content: "\3009"
+  font-size: 9px

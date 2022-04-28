@@ -24,9 +24,6 @@ use Konekt\AppShell\Icons\TablerIconTheme;
 use Konekt\AppShell\Icons\ZmdiIconTheme;
 use Konekt\AppShell\IconThemes;
 use Konekt\AppShell\Settings\UiIconThemeSetting;
-use Konekt\AppShell\Settings\UiThemeSetting;
-use Konekt\AppShell\Theme\AppShellTheme;
-use Konekt\AppShell\Themes;
 use Konekt\AppShell\Traits\AccessesAppShellConfig;
 use Konekt\AppShell\Ui\UiConfig;
 use Konekt\Customer\Models\CustomerType;
@@ -39,7 +36,6 @@ class UiServiceProvider extends ServiceProvider
 
     public function register()
     {
-        Themes::add(AppShellTheme::ID, AppShellTheme::class);
         IconThemes::add(ZmdiIconTheme::ID, ZmdiIconTheme::class);
         IconThemes::add(FontAwesomeIconTheme::ID, FontAwesomeIconTheme::class);
         IconThemes::add(FontAwesome6IconTheme::ID, FontAwesome6IconTheme::class);
@@ -49,20 +45,10 @@ class UiServiceProvider extends ServiceProvider
         $this->app->singleton('appshell.icon_theme', function () {
             return IconThemes::make(Settings::get(UiIconThemeSetting::KEY));
         });
-
-        $this->app->singleton('appshell.theme', function () {
-            $theme = Themes::make(Settings::get(UiThemeSetting::KEY));
-            $this->app['config']->set('breadcrumbs.view', $theme->viewNamespace() . '::widgets.breadcrumbs');
-
-            return $theme;
-        });
     }
 
     public function boot()
     {
-        if (!$this->config('ui.theme')) {
-            config(['konekt.app_shell.ui.theme' => AppShellTheme::ID]);
-        }
         $this->registerEnumIcons();
 
         View::share('appshell', new UiConfig($this->config('ui')));

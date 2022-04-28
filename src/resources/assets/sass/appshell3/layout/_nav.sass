@@ -1,0 +1,70 @@
+#nav-sidebar-apps
+  flex: 0 0 64px
+  display: flex
+  flex-direction: column
+  background-color: $mercury
+  text-align: center
+
+.nav-apps-primary
+  display: flex
+  flex-direction: column
+  > a
+    display: block
+    font-size: 24px
+    color: #222
+    &:hover
+      color: $spanish-blue
+    > *
+      width: 32px
+      padding: 17px 0
+      margin: 0 auto
+
+.nav-apps-secondary
+  display: flex
+  flex: 1 1 auto
+  flex-direction: column
+  justify-content: flex-end
+  margin-bottom: 17px
+
+#nav-sidebar-menu
+  flex: 0 0 230px
+  box-sizing: border-box
+  background-color: $seashell
+  border-right: 1px solid $mercury
+  padding: 20px 12px 20px 20px
+
+.nav-menu
+  padding-top: .5rem
+  a
+    color: #222
+    min-height: 20px
+    text-decoration: none
+    &:hover
+      color: $spanish-blue
+
+.nav-menu-title
+  font-family: $font-heading
+  margin: 0 0 20px 0
+  font-size: 27px
+  line-height: 29px
+
+.nav-menu-item
+  color: $firefly
+  text-decoration: none
+  font-weight: 600
+  padding: 6px 8px 9px
+
+.nav-menu-group-title, .nav-menu > a
+  font-family: $font-heading
+  display: block
+  padding-bottom: 8px
+
+.nav-menu-group
+  a
+    font-size: 14px
+    padding: 6px 8px 7px 10px
+    display: block
+    font-weight: 400
+
+.nav-app-selected
+  background-color: $seashell

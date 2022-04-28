@@ -79,6 +79,7 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         $this->app->register(ViewServiceProvider::class);
         $this->app->register(SettingsProvider::class);
         $this->app->register(PreferencesProvider::class);
+        $this->app->register(ThemeServiceProvider::class);
         $this->app->register(UiServiceProvider::class);
 
         Widgets::registerWidgetNamespace(

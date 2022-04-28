@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Settings;
 
-use Konekt\AppShell\Theme\AppShellTheme;
+use Konekt\AppShell\Theme\AppShell3Theme;
 use Konekt\AppShell\Themes;
 use Konekt\AppShell\Traits\AccessesAppShellConfig;
 use Konekt\Gears\Contracts\Setting;
@@ -32,7 +32,7 @@ class UiThemeSetting implements Setting
 
     public function default()
     {
-        return $this->config('ui.theme', AppShellTheme::ID);
+        return $this->config('ui.theme', AppShell3Theme::ID);
     }
 
     public function isAllowed()

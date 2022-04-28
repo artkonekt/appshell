@@ -17,7 +17,7 @@ namespace Konekt\AppShell\Tests\Unit;
 use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Tests\Dummies\Parrot;
 use Konekt\AppShell\Tests\TestCase;
-use Konekt\AppShell\Theme\AppShellTheme;
+use Konekt\AppShell\Theme\AppShell3Theme;
 use Konekt\AppShell\Widgets\Link;
 
 class LinkWidgetTest extends TestCase
@@ -32,7 +32,7 @@ class LinkWidgetTest extends TestCase
     /** @test */
     public function it_can_generate_a_link_from_two_field_of_the_model()
     {
-        $link = Link::create(new AppShellTheme(), ['text' => '$model.name', 'url' => '$model.link']);
+        $link = Link::create(new AppShell3Theme(), ['text' => '$model.name', 'url' => '$model.link']);
         $html = $link->render(new Parrot('Pakito', 'https://pakito.parrot'));
 
         $this->assertStringContainsString('href="https://pakito.parrot', $html);
@@ -42,7 +42,7 @@ class LinkWidgetTest extends TestCase
     /** @test */
     public function it_can_generate_a_link_from_a_field_and_a_route()
     {
-        $link = Link::create(new AppShellTheme(), [
+        $link = Link::create(new AppShell3Theme(), [
             'text' => '$model.name',
             'url' => [
                 'route' => 'pakito',
@@ -58,7 +58,7 @@ class LinkWidgetTest extends TestCase
     /** @test */
     public function it_can_generate_a_link_from_a_parametrized_url()
     {
-        $link = Link::create(new AppShellTheme(), [
+        $link = Link::create(new AppShell3Theme(), [
             'text' => '$model.name',
             'url' => [
                 'path' => '/pakito',
@@ -74,7 +74,7 @@ class LinkWidgetTest extends TestCase
     /** @test */
     public function it_can_resolve_a_model_field_as_in_the_route_link()
     {
-        $link = Link::create(new AppShellTheme(), [
+        $link = Link::create(new AppShell3Theme(), [
             'text' => 'Get The Puffin Link',
             'url' => '$model.link'
         ]);
@@ -87,7 +87,7 @@ class LinkWidgetTest extends TestCase
     /** @test */
     public function static_text_can_be_used_as_text_or_as_link()
     {
-        $link = Link::create(new AppShellTheme(), [
+        $link = Link::create(new AppShell3Theme(), [
             'text' => 'Go To Signal',
             'url' => 'https://signal.org'
         ]);
@@ -100,7 +100,7 @@ class LinkWidgetTest extends TestCase
     /** @test */
     public function it_can_conditionally_render_the_link_based_on_a_can_condition()
     {
-        $link = Link::create(new AppShellTheme(), [
+        $link = Link::create(new AppShell3Theme(), [
             'text' => 'Go To Signal',
             'url' => 'https://signal.org',
             'onlyIfCan' => 'view customers'
@@ -118,7 +118,7 @@ class LinkWidgetTest extends TestCase
     /** @test */
     public function inner_text_can_be_wrapped_in_an_html_tag()
     {
-        $link = Link::create(new AppShellTheme(), [
+        $link = Link::create(new AppShell3Theme(), [
             'text' => [
                 'text' => 'Go To Signal',
                 'wrap' => 'span',
@@ -133,7 +133,7 @@ class LinkWidgetTest extends TestCase
     /** @test */
     public function class_can_be_added_to_the_inner_text_wrapper()
     {
-        $link = Link::create(new AppShellTheme(), [
+        $link = Link::create(new AppShell3Theme(), [
             'text' => [
                 'text' => 'Go To Signal',
                 'wrap' => 'span',
