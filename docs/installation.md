@@ -178,6 +178,30 @@ Run command `php artisan make:superuser`.
 
 This will ask a several questions and create a proper superuser that you can start working with.
 
+### Frontend Installation
+
+Since this package will be built along with your application, it's assets need to be added to it:
+
+**1. Add Admin's CSS To Laravel Mix:**
+
+```javascript
+   // webpack.mix.js
+   mix.js('resources/js/app.js', 'public/js')
+    // Add these 2 lines:
+   .js('vendor/konekt/appshell/src/resources/assets/js/appshell.standalone.js', 'public/js/appshell.js')
+   .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell.sass', 'public/css')
+    // Keep the the original assets if needed or remove them if AppShell's UI is the only one of your app
+```
+
+**2. Install the following npm packages:**
+
+```bash
+npm add bootstrap@4.6 jquery alpinejs@3.10 popper.js
+```
+
+**3. Compile the assets with mix:** `npm run dev`
+
+
 ---
 
 **Next**: [Application Prerequisites &raquo;](configuration.md)

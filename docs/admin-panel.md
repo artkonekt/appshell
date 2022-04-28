@@ -44,7 +44,7 @@ mix.js([
 > and change in your app's `config/concord.php` the JS filename according to
 > [Customizing Admin UI Documentation](customize-admin-ui.md).
 
-Remove the omnipresent Vue instance from Laravel's default app.js file:
+Unless you need it, remove the omnipresent Vue instance from Laravel's default app.js file:
 
 `resources/assets/js/app.js`:
 
@@ -55,7 +55,7 @@ const app = new Vue({
 });
 ```
 
-and the compile the assets with mix: `yarn run dev`
+and the compile the assets with mix: `npm run dev`
 
 ### AppShell As Separate Admin UI
 

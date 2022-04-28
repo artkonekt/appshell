@@ -1,3 +1,4 @@
+<section x-data="user">
 <div class="form-group">
     <div class="input-group">
         <div class="input-group-prepend">
@@ -70,7 +71,7 @@
     <div class="col-md-10">
         @foreach($types as $key => $value)
             <div class="form-check form-check-inline">
-                {{ Form::radio('type', $key, $user->type == $value, ['id' => "type_$key", 'v-model' => 'userType', 'class' => 'form-check-input']) }}
+                {{ Form::radio('type', $key, $user->type == $value, ['id' => "type_$key", 'x-model' => 'userType', 'class' => 'form-check-input']) }}
                 <label class="form-check-label" for="type_{{ $key }}">{{ $value }}</label>
             </div>
         @endforeach
@@ -83,8 +84,8 @@
 </div>
 
 <div class="form-group row">
-    <label class="col-form-label col-md-2" v-show="showCustomerSelection()">{{ __('Belongs to Customer') }}</label>
-    <div class="col-md-10" v-show="showCustomerSelection()">
+    <label class="col-form-label col-md-2" x-show="showCustomerSelection()">{{ __('Belongs to Customer') }}</label>
+    <div class="col-md-10" x-show="showCustomerSelection()">
         {{ Form::select('customer_id', $customers->pluck('name','id'), null, ['class' => 'form-control' . ($errors->has('customer_id') ? ' is-invalid' : ''), 'placeholder' => __('Customer')]) }}
     </div>
 </div>
@@ -106,12 +107,11 @@
 
     </div>
 </div>
-
+</section>
 @section('scripts')
 <script>
-    new Vue({
-        el: '#app',
-        data: {
+    document.addEventListener('alpine:init', function() {
+        Alpine.data('user', () => ({
             userType: '{{ old('type') ?: $user->type->value() }}',
             showCustomerSelection() {
                 const customerSelection = {!! is_array($customerSelection) ? '["' . implode('","', $customerSelection) . '"]' : ($customerSelection ? 'true' : 'false') !!};
@@ -120,8 +120,8 @@
                 }
                 return customerSelection.includes(this.userType);
             }
-        }
-    });
+        }))
+    })
 </script>
 @endsection
 

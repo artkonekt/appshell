@@ -4,6 +4,7 @@
 ##### 2022-Q2
 
 - Dropped Laravel 8 Support (Laravel 9+ only)
+- Removed Vue.js and replaced it with Alpinejs (existing functionality has been ported to alpine)
 
 ## 2.8.1
 ##### 2022-04-27

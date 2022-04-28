@@ -7,6 +7,15 @@ Beginning with AppShell 3.0, the minimum requirements are:
 - PHP 8.0+
 - Laravel 8.12+
 
+### Vue Replaced With Alpinejs
+
+The most important change of v3 is that Vue has been replaced with Alpinejs (3.10+).
+It has several consequences:
+1. You need to add Alpinejs to your application's frontend: `npm add alpinejs@3.10`
+2. You can remove vue from your application if you no longer need it (`npm remove vue`)
+3. If your AppShell modules contain vue code you may rewrite them for Alpine (usually it is fairly simple)
+4. It's still OK to keep vuejs in your application if you need it
+
 ## 1.x -> 2.0
 
 Beginning with AppShell 2.0, the minimum required PHP version is PHP 7.4, minimum Laravel is 6.0.

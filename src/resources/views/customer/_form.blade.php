@@ -1,10 +1,10 @@
+<section x-data="{customerType: '{{ old('type') ?: $customer->type->value() }}'}">
 <div class="form-group row{{ $errors->has('type') ? ' has-danger' : '' }}">
     <label class="form-control-label col-md-2">{{ __('Customer type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)
             <label class="radio-inline" for="type_{{ $key }}">
-                {{ Form::radio('type', $key, $customer->type->value() == $key, ['id' => "type_$key", 'v-model' =>
-                'customerType']) }}
+                {{ Form::radio('type', $key, $customer->type->value() == $key, ['id' => "type_$key", 'x-model' => 'customerType']) }}
                 {{ $value }}
                 &nbsp;
             </label>
@@ -50,7 +50,7 @@
 
 </div>
 
-<div id="customer-organization" v-show="customerType == 'organization'">
+<div id="customer-organization" x-show="customerType == 'organization'">
     @include('appshell::customer._organization')
 </div>
 
@@ -73,15 +73,4 @@
 
     </div>
 </div>
-
-
-@section('scripts')
-    <script>
-        new Vue({
-            el: '#app',
-            data: {
-                customerType: '{{ old('type') ?: $customer->type->value() }}'
-            }
-        });
-    </script>
-@stop
+</section>
