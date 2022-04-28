@@ -34,7 +34,9 @@ configuration value. It can be set to:
 return [
     'modules' => [
         Konekt\AppShell\Providers\ModuleServiceProvider::class => [
-            'customer_selection_for_users' => ['client', 'api'], // Enable for `client` and `api` types of users
+            'ui' => [
+                'customer_selection_for_users' => ['client', 'api'], // Enable for `client` and `api` types of users
+            ],
         ]
     ]
 ];

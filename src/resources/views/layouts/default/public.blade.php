@@ -45,10 +45,9 @@
 </div>
 
 <!-- Scripts -->
+@yield('scripts')
 <script src="{{ $appshell->useMix ? mix('/js/appshell.js') : asset('/js/appshell.js') }}"></script>
 
 @include('appshell::layouts.default._footer_includes')
-
-@yield('scripts')
 </body>
 </html>

@@ -1,12 +1,17 @@
 # AppShell Changelog
 
+## 4.x-dev
+#### 2022-XX-YY
+
+- Added Components based on the Laravel Blade Components Feature
+- Renamed the stylesheet of the default theme from `appshell` to `appshell3`
+- Changed the AppShell Theme - it has been rewritten from scratch with new visual style
+
 ## 3.x-dev
 ##### 2022-Q2
 
 - Dropped Laravel 8 Support (Laravel 9+ only)
-- Added Components based on the Laravel Blade Components Feature
-- Renamed the stylesheet of the default theme from `appshell` to `appshell3`
-- Changed the AppShell Theme - it has been rewritten from scratch with new visual style
+- Removed Vue.js and replaced it with Alpinejs (existing functionality has been ported to alpine)
 
 ## 2.8.1
 ##### 2022-04-27

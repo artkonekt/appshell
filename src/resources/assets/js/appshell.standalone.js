@@ -37,6 +37,8 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-window.Vue = require('vue');
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+Alpine.start();
 
 require('./appshell');
