@@ -1,7 +1,7 @@
 @extends('appshell::layouts.private')
 
 @section('title')
-    {{ __('Viewing Invitation of :email', ['email' => $invitation->email]) }}
+    {{ __('Invitation of :email', ['email' => $invitation->email]) }}
 @stop
 
 @section('content')

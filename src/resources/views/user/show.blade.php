@@ -1,7 +1,7 @@
 @extends('appshell::layouts.private')
 
 @section('title')
-    {{ __('Viewing') }} {{ $user->name }}
+    {{ $user->name }}
 @stop
 
 @section('content')

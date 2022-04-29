@@ -10,7 +10,10 @@ return [
         'striped' => true,
         'columns' => [
             'avatar' => [
-                'widget' => 'avatar',
+                'widget' => [
+                    'type' => 'avatar',
+                    'size' => 44,
+                ],
                 'title' => 'Invitation'
             ],
             'invitation' => [

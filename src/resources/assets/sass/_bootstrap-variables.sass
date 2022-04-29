@@ -1,6 +1,5 @@
 // Bootstrap overrides
-
-$font-family-sans-serif: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default
+$font-family-sans-serif: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default
 
 //
 // Color system
@@ -13,22 +12,22 @@ $gray-200:                        #C9D0D0
 $gray-300:                        #BECDCF
 $gray-400:                        #ACC0C3
 $gray-500:                        #9AB4B7
-$gray-600:                        #87A6AB
+$gray-600:                        #8EA1A4
 $gray-700:                        #718F93
 $gray-800:                        #607375
-$gray-900:                        #444
+$gray-900:                        #303335
 $black:                           #010a0c
 
 $blue:                            #385170
 $indigo:                          #6A0136
 $purple:                          #A50B5E
 $pink:                            #E85D75
-$red:                             #F24236
+$red:                             #F2504A
 $orange:                          #F39237
-$yellow:                          #E8C547
-$green:                           #23a38b
+$yellow:                          #E8CC67
+$green:                           #29C79C
 $teal:                            #3b8272
-$cyan:                            #0c9bd3
+$cyan:                            #4A9DBE
 
 $colors: (blue: $blue, indigo: $indigo, purple: $purple, pink: $pink, red: $red, orange: $orange, yellow: $yellow, green: $green, teal: $teal, cyan: $cyan, white: $white, gray: $gray-600, gray-dark: $gray-800)
 
@@ -37,35 +36,30 @@ $theme-colors: (primary: $blue, secondary: $gray-300, success: $green, info: $cy
 // Options
 //
 // Quickly modify global styling by enabling or disabling optional features.
-
 $enable-transitions:              true
 $enable-rounded:                  true
 
 // Body
-//
-// Settings for the `<body>` element.
-
 $body-bg:                         $white
 
 // Typography
-//
-// Font, line-height, and color for body text, headings, and more.
-
-$font-size-base:                  0.875rem
-$font-size-sm:                    0.75rem
+$font-size-base:                  .9375rem
+$font-size-sm:                    .8125rem
 $headings-font-weight:            700
 
 // Breadcrumbs
-
 $breadcrumb-bg:                   #fff
 
 // Cards
+$card-border-color:               $gray-100
+$card-cap-bg:                     $white
+$card-spacer-y:                   .55rem
 
-$card-border-color:               $gray-150
-$card-cap-bg:                     $gray-100
+// Tabs
+$nav-tabs-border-color:           $gray-100
+$nav-tabs-link-active-border-color: $gray-300 $gray-100 $white $gray-100
 
 // Dropdowns
-
 $dropdown-padding-y:              0
 $dropdown-border-color:           $gray-200
 $dropdown-divider-bg:             $gray-100
@@ -73,22 +67,24 @@ $dropdown-link-hover-bg:          $blue
 $dropdown-link-hover-color:       $white
 
 // Buttons
-
 $btn-secondary-border:            $gray-300
 
 // Progress bars
-
 $progress-bg:                     $gray-100
 
 // Tables
-
-$table-bg-accent:                 $gray-100
-$table-bg-hover:                  $gray-100
+$table-accent-bg:                 rgba(245, 247, 247, .5)
+$table-hover-bg:                  rgba(240, 241, 241, .25)
+$table-border-color:              $gray-100
+$table-cell-padding:              .55rem
 
 // Forms
-
 $input-group-addon-bg:            $gray-100
 $input-border-color:              $gray-200
 $input-group-addon-border-color:  $gray-200
 $input-placeholder-color:         $gray-200
 $input-focus-border-color:        $gray-400
+$input-btn-padding-y: .3rem
+
+// Badges
+$badge-font-weight: 600
