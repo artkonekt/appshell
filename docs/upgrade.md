@@ -28,10 +28,17 @@ With the removal of Vue from AppShell, no parts of AppShell are relying on an el
 Your application, or external modules may rely on this, therefore the id is kept in AppShell v3, but it's marked as
 deprecated. The `id="app"` attribute will be removed from the layout in AppShell v4. 
 
-### Visual Changes of the AppShell Theme
+### AppShell Theme Changes
 
-The default theme has changed in several visual aspects.
-To apply the changes, it needs to be rebuilt in your application using `npm run dev` (or whatever your frontend build script is).
+The default theme has changed in several visual and functional aspects.
+
+### Functional Changes
+
+1. The `scripts` section has become a [stack](https://laravel.com/docs/9.x/blade#stacks) and is no longer [section](https://laravel.com/docs/9.x/blade#defining-a-layout)
+2. The `scripts` ~~section~~ stack has moved before the `appshell.js` script tag. This is a useful place to push your alpinejs data.
+3. The `footer-scripts` is stack is still at the bottom, right before the closing `</body>` tag
+
+#### Visual Changes
 
 **Before:**
 
@@ -40,6 +47,9 @@ To apply the changes, it needs to be rebuilt in your application using `npm run 
 **After:**
 
 ![AppShell 3](glimpse3.png)
+
+To apply the visual changes, rebuild the assets in your application using
+`npm run dev` (or whatever your frontend build script is).
 
 #### Ideal Avatar Size in Lists
 

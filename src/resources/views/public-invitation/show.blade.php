@@ -95,7 +95,7 @@
     </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script>
         @if($invitation->isStillValid())
         document.addEventListener("DOMContentLoaded", function() {
@@ -105,4 +105,4 @@
         });
         @endif
     </script>
-@endsection
+@endpush

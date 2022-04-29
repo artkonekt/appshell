@@ -6,6 +6,7 @@
 - Dropped Laravel 8 Support (Laravel 9+ only)
 - BC: Removed Vue.js and replaced it with Alpinejs (existing functionality has been ported to alpine)
 - Changed the default AppShell theme (dark sidebar, narrower font, slightly different colors, and other visual aspects)
+- Changed the `scripts` blade section from `yield()` to `stack()`
 - Changed the footer position to the bottom of the sidebar
 - Changed the default footer content to be empty (populate the `footer` blade section to add content)
 - Fixed the footer underflow issue

@@ -40,7 +40,7 @@
     </div>
 
 <!-- Scripts -->
-@yield('scripts')
+@stack('scripts')
 
 <script src="{{ $appshell->useMix ? mix('/js/appshell.js') : asset('/js/appshell.js') }}"></script>
 
