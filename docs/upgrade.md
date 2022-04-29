@@ -17,6 +17,17 @@ It has several consequences:
 3. If your AppShell modules contain vue code you may rewrite them for Alpine (usually it is fairly simple)
 4. It's still OK to keep vuejs in your application if you need it
 
+#### Deprecated The Top Level "app" ID
+
+The 5.x versions of Laravel [used to encourage](https://github.com/laravel/laravel/blob/5.8/resources/js/app.js#L30)
+the usage of a top level DOM element in the layout having the id `app`.
+
+This has been removed from Laravel 6 (at the time of removing "UI" from the framework) but was kept in AppShell v1 and v2.
+With the removal of Vue from AppShell, no parts of AppShell are relying on an element with this id to be present.
+
+Your application, or external modules may rely on this, therefore the id is kept in AppShell v3, but it's marked as
+deprecated. The `id="app"` attribute will be removed from the layout in AppShell v4. 
+
 ### Visual Changes of the AppShell Theme
 
 The default theme has changed in several visual aspects.

@@ -24,6 +24,7 @@
     </script>
 </head>
 <body>
+    <!-- id=app is deprecated as of AppShell 3.0 and will be removed in v4.0  -->
     <div class="container-fluid app-body" id="app">
         @include('appshell::layouts.default._sidebar')
 

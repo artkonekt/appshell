@@ -9,6 +9,9 @@
 - Changed the footer position to the bottom of the sidebar
 - Changed the default footer content to be empty (populate the `footer` blade section to add content)
 - Fixed the footer underflow issue
+- Deprecated the `id="app"` at the top of the layout in the default theme:
+  - Applications should no longer rely on its existence
+  - It will be removed in AppShell v4
 
 ## 2.8.1
 ##### 2022-04-27
