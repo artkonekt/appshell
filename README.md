@@ -28,4 +28,4 @@ Refer to the [Documentation](https://konekt.dev/appshell/docs) for more details.
 
 ## Glimpse At The Default UI
 
-![AppShell Glimpse](docs/glimpse.png)
+![AppShell Glimpse](docs/glimpse3.png)

@@ -4,7 +4,8 @@
 ##### 2022-Q2
 
 - Dropped Laravel 8 Support (Laravel 9+ only)
-- Removed Vue.js and replaced it with Alpinejs (existing functionality has been ported to alpine)
+- BC: Removed Vue.js and replaced it with Alpinejs (existing functionality has been ported to alpine)
+- Changed the default AppShell theme (dark sidebar, narrower font, slightly different colors, and other visual aspects)
 
 ## 2.8.1
 ##### 2022-04-27

@@ -5,16 +5,37 @@
 Beginning with AppShell 3.0, the minimum requirements are:  
 
 - PHP 8.0+
-- Laravel 8.12+
+- Laravel 9+
 
-### Vue Replaced With Alpinejs
+### Replaced Vue With Alpinejs
 
 The most important change of v3 is that Vue has been replaced with Alpinejs (3.10+).
 It has several consequences:
+
 1. You need to add Alpinejs to your application's frontend: `npm add alpinejs@3.10`
 2. You can remove vue from your application if you no longer need it (`npm remove vue`)
 3. If your AppShell modules contain vue code you may rewrite them for Alpine (usually it is fairly simple)
 4. It's still OK to keep vuejs in your application if you need it
+
+### Visual Changes of the AppShell Theme
+
+The default theme has changed in several visual aspects.
+To apply the changes, it needs to be rebuilt in your application using `npm run dev` (or whatever your frontend build script is).
+
+**Before:**
+
+![AppShell 2](glimpse.png)
+
+**After:**
+
+![AppShell 3](glimpse3.png)
+
+#### Ideal Avatar Size in Lists
+
+Spacings have slightly changed, and the ideal avatar size in table listing has changed from 50 to 44.
+If you have modules that have such lists, then you may want to change the avatar size to 44 at those places.
+
+![Avatar 44px](avatar44.jpg)
 
 ## 1.x -> 2.0
 
