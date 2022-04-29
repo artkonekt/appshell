@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## 3.x-dev
-##### 2022-Q2
+## 3.0.0
+##### 2022-04-29
 
 - Dropped Laravel 8 Support (Laravel 9+ only)
 - BC: Removed Vue.js and replaced it with Alpinejs (existing functionality has been ported to alpine)
