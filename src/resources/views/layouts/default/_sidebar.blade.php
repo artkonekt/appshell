@@ -9,5 +9,6 @@
         <nav class="nav sidebar-nav flex-column" id="appshell-sidebar-nav">
             @include('appshell::layouts.default._nav')
         </nav>
+        @include('appshell::layouts.default._sidebar_footer')
     </div>
 </div>

@@ -27,7 +27,6 @@
     <div class="container-fluid app-body" id="app">
         @include('appshell::layouts.default._sidebar')
 
-        <!-- Main content -->
         <main class="main">
             @include('appshell::layouts.default._header')
             @include('appshell::layouts.default._breadcrumbs')
@@ -36,17 +35,8 @@
                 @include('flash::message')
                 @yield('content')
             </div>
-            <!-- /.container-fluid -->
         </main>
-
     </div>
-
-    <footer class="app-footer">
-        @section('footer')
-        &copy; {{ date('Y') }}&nbsp;<a href="{{ $appshell->url }}">{{ $appshell->name }}</a>
-        @endsection
-        @yield('footer')
-    </footer>
 
 <!-- Scripts -->
 @yield('scripts')
