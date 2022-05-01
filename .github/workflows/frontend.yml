@@ -27,7 +27,7 @@ jobs:
           cp tests/frontend/appshell.mix.js ./
           cp tests/frontend/print.mix.js ./
       - name: Install Dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm i --legacy-peer-deps
       - name: Theme Build
         env:
           NODE_OPTIONS: ${{ matrix.node-version == '17.x' && '--openssl-legacy-provider' || '' }}
