@@ -1,9 +1,11 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-XX-YY
+## 3.0.1
+##### 2022-05-01
 
 - Fixed the extra font loading by removing the surplus *Montserrat* font import from the layouts
+
+> Added Frontend CI tests
 
 ## 3.0.0
 ##### 2022-04-29
