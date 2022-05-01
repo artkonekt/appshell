@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "appshell": "mix --mix-config appshell.mix.js",
-        "print": "mix --mix-config print.mix.js",
+        "print": "mix --mix-config print.mix.js"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.2",
