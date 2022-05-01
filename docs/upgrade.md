@@ -34,7 +34,7 @@ The default theme has changed in several visual and functional aspects.
 
 ### Functional Changes
 
-1. The `scripts` section has become a [stack](https://laravel.com/docs/9.x/blade#stacks) and is no longer [section](https://laravel.com/docs/9.x/blade#defining-a-layout)
+1. The `scripts` section has become a [stack](https://laravel.com/docs/9.x/blade#stacks) and is no longer a [section](https://laravel.com/docs/9.x/blade#defining-a-layout)
 2. The `scripts` ~~section~~ stack has moved before the `appshell.js` script tag. This is a useful place to push your alpinejs data.
 3. The `footer-scripts` is stack is still at the bottom, right before the closing `</body>` tag
 
@@ -53,7 +53,7 @@ To apply the visual changes, rebuild the assets in your application using
 
 #### Ideal Avatar Size in Lists
 
-Spacings have slightly changed, and the ideal avatar size in table listing has changed from 50 to 44.
+Spacings have slightly changed, and the ideal avatar size in table listing has changed from 50px to 44px.
 If you have modules that have such lists, then you may want to change the avatar size to 44 at those places.
 
 ![Avatar 44px](avatar44.jpg)
