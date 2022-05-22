@@ -3,7 +3,8 @@
 ## Unreleased
 ##### 2022-XX-YY
 
-- Updated google font import link at the top of appshell.sass that caused issues with newer Laravel Mix/SASS lib versions. See [laravel-mix#2430](https://github.com/laravel-mix/laravel-mix/issues/2430).
+- Fixed Google Font import link at the top of appshell.sass that caused issues with newer Laravel Mix/SASS lib versions. See [laravel-mix#2430](https://github.com/laravel-mix/laravel-mix/issues/2430).
+- Added custom asset links feature to the AppShell theme 
 
 ## 3.0.1
 ##### 2022-05-01

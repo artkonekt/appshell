@@ -20,6 +20,20 @@ return [
             'active_element' => 'link'
         ]
     ],
+    /**
+     * Settings of the default, built-in AppShell Theme
+     * These settings have no effect if the host app
+     * uses another, non-default theme for its UI
+     **/
+    'default_theme' => [
+        // If an app wants to serve the assets from a custom location, it can be configured
+        'custom_assets' => [
+            'enabled' => false, // Config entries below are only used if enabled=true
+            'css_link' => null, // can be either relative eg. '/admin/assets/appshell.css` or absolute `https://x.co/appshell3.css`
+            'js_link' => null, // can be either relative eg. '/admin/assets/admin.js` or absolute `https://x.co/appshell.js`
+            'helper' => null, // The asset helper to be used for filtering. It can be either `asset`, `mix` or null
+        ],
+    ],
     'views' => [
         'namespace' => 'appshell'
     ],

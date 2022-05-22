@@ -10,8 +10,7 @@
 
     <title>@yield('title') &middot; {{ $appshell->name }}</title>
 
-    <!-- Styles -->
-    <link href="{{ $appshell->useMix ? mix('/css/appshell.css') : asset('/css/appshell.css')  }}" media="all" type="text/css" rel="stylesheet" />
+    @include('appshell::layouts.default._css')
     {!! icon_theme_assets() !!}
 
     @include('appshell::layouts.default._header_includes')
@@ -46,7 +45,7 @@
 
 <!-- Scripts -->
 @stack('scripts')
-<script src="{{ $appshell->useMix ? mix('/js/appshell.js') : asset('/js/appshell.js') }}"></script>
+@include('appshell::layouts.default._js')
 
 @include('appshell::layouts.default._footer_includes')
 </body>
