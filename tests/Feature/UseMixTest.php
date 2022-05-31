@@ -23,7 +23,7 @@ class UseMixTest extends TestCase
     {
         $response = $this->actingAs($this->adminUser)->get(route('appshell.account.display'));
         $response->assertStatus(500);
-        $response->assertSeeText('The Mix manifest does not exist.');
+        $response->assertSeeText('Mix manifest');
     }
 
     protected function resolveApplicationConfiguration($app)
