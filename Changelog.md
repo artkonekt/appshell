@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2022-06-02
+
+- Changed Laravel requirements to exclude v9.15.0 that puts the entire application down 
+
 ## 3.1.1
 ##### 2022-06-02
 
