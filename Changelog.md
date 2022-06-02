@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2022-XX-YY
+
+- Changed the preferences tree container service from `singleton` to `scoped` (to overcome corrupt data in Octane setup)
+
 ## 2.8.1
 ##### 2022-04-27
 
