@@ -1,9 +1,9 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-XX-YY
+## 3.1.1
+##### 2022-06-02
 
-- Changed the preferences tree container service from `singleton` to `scoped` (to overcome corrupt data in Octane setup)
+- Changed the preferences tree container service from `singleton` to `scoped` (to fix corrupt data in Octane setup)
 
 ## 3.1.0
 ##### 2022-05-31
