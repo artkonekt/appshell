@@ -30,7 +30,7 @@
         "laracasts/flash": "^3.2",
         "cviebrock/eloquent-sluggable": "^8.0.2|^9.0",
         "diglactic/laravel-breadcrumbs": "^7.0",
-        "laravel/framework": "^8.47|^9.0"
+        "laravel/framework": "^8.47|9.0 - 9.14"
     },
     "require-dev": {
         "ext-sqlite3": "*",

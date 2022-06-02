@@ -5,6 +5,7 @@
 
 - Changed the preferences tree container service from `singleton` to `scoped` (to overcome corrupt data in Octane setup)
 - Changed minimum Laravel requirement from 8.22 to 8.47 [to support scoped instances](https://github.com/laravel/framework/blob/8.x/CHANGELOG-8.x.md#v8470-2021-06-16)
+- Changed maximum Laravel requirement to 9.14 (9.15.0 is known to break). See [Laravel PR #42582](https://github.com/laravel/framework/pull/42582)
 
 ## 2.8.1
 ##### 2022-04-27
