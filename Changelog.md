@@ -3,7 +3,9 @@
 ## Unreleased
 ##### 2022-06-02
 
-- Changed Laravel requirements to exclude v9.15.0 that puts the entire application down 
+- Changed Laravel requirements to min v9.2 and to exclude v9.15.0 that puts the entire application down
+- Reverted TreeBuilder container service to singleton (changed in 2.8.2) - as it never actually worked well
+  The real fix for Octane based setup was added in Gears 1.10.0
 
 ## 3.1.1
 ##### 2022-06-02

@@ -32,7 +32,7 @@ class PreferencesProvider extends ServiceProvider
     {
         parent::register();
 
-        $this->app->scoped('appshell.preferences_tree_builder', function ($app) {
+        $this->app->singleton('appshell.preferences_tree_builder', function ($app) {
             $instance = new TreeBuilder($app['gears.settings'], $app['gears.preferences']);
             $this->buildPreferencesTree($instance);
 
