@@ -1,9 +1,9 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-XX-YY
+## 2.8.3
+##### 2022-06-03
 
-- Allowing Laravel 9.16+ (9.15.0 is kept to be excluded) [See Laravel #42606](https://github.com/laravel/framework/pull/42606)
+- Changed Laravel version lock to allow 9.16+ (9.15.0 is kept to be excluded) [See Laravel #42606](https://github.com/laravel/framework/pull/42606)
 - Reverted TreeBuilder container service to singleton (changed in 2.8.2) - as it never actually worked well
   - The real fix for Octane based setup was added in Gears 1.10.0 
 
