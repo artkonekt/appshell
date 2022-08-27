@@ -24,8 +24,7 @@ class Button extends Component
         public ?string $size = null,
         public ?string $icon = null,
         public ?string $iconPosition = 'before'
-    )
-    {
+    ) {
     }
 
     public function render()
