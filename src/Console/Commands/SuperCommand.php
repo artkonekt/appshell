@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * Contains the Make Super User Command class.
  *
@@ -15,6 +16,7 @@ namespace Konekt\AppShell\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Hash;
 use Konekt\Acl\Contracts\Role;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
@@ -27,8 +29,7 @@ class SuperCommand extends Command
 
     protected $description = 'Create a superuser (for initial setup)';
 
-    /** @var ResourcePermissionMapper */
-    private $permissionMapper;
+    private ResourcePermissionMapper $permissionMapper;
 
     public function handle(ResourcePermissionMapper $permissionMapper)
     {
@@ -45,7 +46,7 @@ class SuperCommand extends Command
         $user = UserProxy::create([
             'email' => $email,
             'name' => $name,
-            'password' => bcrypt($pass),
+            'password' => Hash::make($pass),
             'type' => UserType::ADMIN
         ])->fresh();
 

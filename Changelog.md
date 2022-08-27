@@ -7,6 +7,7 @@
 - Renamed the stylesheet of the default theme from `appshell` to `appshell3`
 - Changed the AppShell Theme - it has been rewritten from scratch with new visual style
 - Changed Breadcrumbs dependency from v7 to v8
+- Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 
 ## 3.1.2
 ##### 2022-08-27
