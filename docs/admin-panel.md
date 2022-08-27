@@ -124,6 +124,35 @@ return [
 ];
 ```
 
+## Custom Assets
+
+> Feature added in v3.1
+
+When using the default AppShell Theme, it is possible to use completely custom
+URLs for loading the layout's assets `appshell.css` and `appshell.js`.
+
+This can be useful in various situations where you want to load the assets
+from a different location than your application's base URL.
+
+This feature is disabled by default. To enable it, set the following values in `config/concord.php`:
+
+```php
+return [
+    'modules' => [
+        Konekt\AppShell\Providers\ModuleServiceProvider::class => [
+            'default_theme' => [
+                'custom_assets' => [
+                    'enabled' => true,
+                    'css_link' => 'https://x.co/appshell3.css', // Can be absolute or relative URL
+                    'js_link' => '/site/assets/vendor/appshell/appshell.js', // Can be absolute or relative URL 
+                    'helper' => null, // Can be either `asset`, `mix` or null
+                ],
+            ],           
+        ]
+    ]
+];
+```
+
 ---
 
 **Next**: [Authentication &raquo;](admin-authentication.md)

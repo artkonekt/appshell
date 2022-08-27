@@ -83,6 +83,14 @@ $sidebar-nav-dropdown-indicator-hover:str-replace(url("data:image/svg+xml;charse
     background: $sidebar-gradient
     width: $sidebar-width
 
+.sidebar-footer
+    color: $gray-200
+    padding: .5rem
+    position: fixed
+    bottom: 0
+    a
+        color: $gray-200
+
 .sidebar-nav
     color: $sidebar-color
     letter-spacing: 1px
@@ -98,6 +106,7 @@ $sidebar-nav-dropdown-indicator-hover:str-replace(url("data:image/svg+xml;charse
         padding-top: 0.75rem
         padding-bottom: 0.75rem
         &.active
+            border-left: 2px solid $success
             font-weight: 600
         &:hover
             background-color: rgba(255, 255, 255, 0.1)
@@ -135,11 +144,11 @@ $sidebar-nav-dropdown-indicator-hover:str-replace(url("data:image/svg+xml;charse
 
     .nav-link
         color: $sidebar-nav-dropdown-color
-        border-left: 0 !important
+        //border-left: 0 !important
 
     > .nav-link.nav-dropdown-toggle::before
         transform: rotate(-45deg)
 
     .nav-dropdown.open
-        border-left: 0
+        //border-left: 0
 

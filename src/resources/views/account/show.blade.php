@@ -10,13 +10,12 @@
 
         <div class="col-sm-9">
             {!! Form::model($user, [
-                    'class' => 'card card-accent-info',
                     'route' => ['appshell.account.save', $user],
                     'method' => 'PUT']
                     )
             !!}
 
-            @component(theme_widget('group'))
+            @component(theme_widget('group'), ['accent' => 'info'])
                 @slot('title'){{ __('User Account') }}@endslot
                 @slot('actionbar')
                     @can('edit users')

@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component(theme_widget('group'))
+    @component(theme_widget('group'), ['accent' => 'secondary'])
         @slot('title'){{ __('Roles') }}@endslot
         @slot('actionbar')
             @can('create roles')

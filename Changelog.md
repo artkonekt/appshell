@@ -7,11 +7,44 @@
 - Renamed the stylesheet of the default theme from `appshell` to `appshell3`
 - Changed the AppShell Theme - it has been rewritten from scratch with new visual style
 
-## 3.x-dev
-##### 2022-Q2
+## 3.1.2
+##### 2022-08-27
+
+- Changed Laravel requirements to min v9.2 and to exclude v9.15.0 that puts the entire application down
+- Reverted TreeBuilder container service to singleton (changed in 2.8.2) - as it never actually worked well
+  The real fix for Octane based setup was added in Gears 1.10.0
+
+## 3.1.1
+##### 2022-06-02
+
+- Changed the preferences tree container service from `singleton` to `scoped` (to fix corrupt data in Octane setup)
+
+## 3.1.0
+##### 2022-05-31
+
+- Fixed Google Font import link at the top of appshell.sass that caused issues with newer Laravel Mix/SASS lib versions. See [laravel-mix#2430](https://github.com/laravel-mix/laravel-mix/issues/2430).
+- Added custom asset links feature to the AppShell theme 
+
+## 3.0.1
+##### 2022-05-01
+
+- Fixed the extra font loading by removing the surplus *Montserrat* font import from the layouts
+
+> Added Frontend CI tests
+
+## 3.0.0
+##### 2022-04-29
 
 - Dropped Laravel 8 Support (Laravel 9+ only)
-- Removed Vue.js and replaced it with Alpinejs (existing functionality has been ported to alpine)
+- BC: Removed Vue.js and replaced it with Alpinejs (existing functionality has been ported to alpine)
+- Changed the default AppShell theme (dark sidebar, narrower font, slightly different colors, and other visual aspects)
+- Changed the `scripts` blade section from `yield()` to `stack()`
+- Changed the footer position to the bottom of the sidebar
+- Changed the default footer content to be empty (populate the `footer` blade section to add content)
+- Fixed the footer underflow issue
+- Deprecated the `id="app"` at the top of the layout in the default theme:
+  - Applications should no longer rely on its existence
+  - It will be removed in AppShell v4
 
 ## 2.8.1
 ##### 2022-04-27

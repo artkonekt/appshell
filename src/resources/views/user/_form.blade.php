@@ -108,7 +108,7 @@
     </div>
 </div>
 </section>
-@section('scripts')
+@push('scripts')
 <script>
     document.addEventListener('alpine:init', function() {
         Alpine.data('user', () => ({
@@ -123,7 +123,7 @@
         }))
     })
 </script>
-@endsection
+@endpush
 
 @push('onload-scripts')
     setTimeout(function() {

@@ -10,9 +10,8 @@
 
     <title>@yield('title') &middot; {{ $appshell->name }}</title>
 
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" media="all" type="text/css" rel="stylesheet" />
-    <link href="{{ $appshell->useMix ? mix('/css/appshell3.css') : asset('/css/appshell3.css')  }}" media="all" type="text/css" rel="stylesheet" />
+    @include('appshell::layouts.default._css')
+    {!! icon_theme_assets() !!}
 
     @include('appshell::layouts.default._header_includes')
 
@@ -45,8 +44,8 @@
 </div>
 
 <!-- Scripts -->
-@yield('scripts')
-<script src="{{ $appshell->useMix ? mix('/js/appshell.js') : asset('/js/appshell.js') }}"></script>
+@stack('scripts')
+@include('appshell::layouts.default._js')
 
 @include('appshell::layouts.default._footer_includes')
 </body>

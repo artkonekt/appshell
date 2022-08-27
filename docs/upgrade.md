@@ -4,23 +4,59 @@
 
 Beginning with AppShell 3.0, the minimum requirements are:  
 
-- PHP 8.0
-- Laravel 9.0
+- PHP 8.0+
+- Laravel 9+
 
-### Default Theme
-
-The AppShell Theme has been rewritten from scratch. Notable changes in the new theme:
-
-- The stylesheet has been renamed to `/css/appshell3.css` from `/css/appshell.css`.
-
-### Vue Replaced With Alpinejs
+### Replaced Vue With Alpinejs
 
 The most important change of v3 is that Vue has been replaced with Alpinejs (3.10+).
 It has several consequences:
+
 1. You need to add Alpinejs to your application's frontend: `npm add alpinejs@3.10`
 2. You can remove vue from your application if you no longer need it (`npm remove vue`)
 3. If your AppShell modules contain vue code you may rewrite them for Alpine (usually it is fairly simple)
 4. It's still OK to keep vuejs in your application if you need it
+
+#### Deprecated The Top Level "app" ID
+
+The 5.x versions of Laravel [used to encourage](https://github.com/laravel/laravel/blob/5.8/resources/js/app.js#L30)
+the usage of a top level DOM element in the layout having the id `app`.
+
+This has been removed from Laravel 6 (at the time of removing "UI" from the framework) but was kept in AppShell v1 and v2.
+With the removal of Vue from AppShell, no parts of AppShell are relying on an element with this id to be present.
+
+Your application, or external modules may rely on this, therefore the id is kept in AppShell v3, but it's marked as
+deprecated. The `id="app"` attribute will be removed from the layout in AppShell v4. 
+
+### AppShell Theme Changes
+
+The default theme has changed in several visual and functional aspects.
+
+### Functional Changes
+
+1. The `scripts` section has become a [stack](https://laravel.com/docs/9.x/blade#stacks) and is no longer a [section](https://laravel.com/docs/9.x/blade#defining-a-layout)
+2. The `scripts` ~~section~~ stack has moved before the `appshell.js` script tag. This is a useful place to push your alpinejs data.
+3. The `footer-scripts` is stack is still at the bottom, right before the closing `</body>` tag
+
+#### Visual Changes
+
+**Before:**
+
+![AppShell 2](glimpse.png)
+
+**After:**
+
+![AppShell 3](glimpse3.png)
+
+To apply the visual changes, rebuild the assets in your application using
+`npm run dev` (or whatever your frontend build script is).
+
+#### Ideal Avatar Size in Lists
+
+Spacings have slightly changed, and the ideal avatar size in table listing has changed from 50px to 44px.
+If you have modules that have such lists, then you may want to change the avatar size to 44 at those places.
+
+![Avatar 44px](avatar44.jpg)
 
 ## 1.x -> 2.0
 

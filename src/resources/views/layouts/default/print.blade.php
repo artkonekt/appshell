@@ -10,7 +10,6 @@
     <title>@yield('title') &middot; {{ $appshell->name }}</title>
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" media="all" type="text/css" rel="stylesheet" />
     <link href="{{ $appshell->useMix ? mix('/css/print.css') : asset('/css/print.css') }}" media="all" type="text/css" rel="stylesheet" />
     {!! icon_theme_assets() !!}
 </head>

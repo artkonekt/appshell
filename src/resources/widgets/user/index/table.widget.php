@@ -10,8 +10,11 @@ return [
         'striped' => true,
         'columns' => [
             'avatar' => [
-                'widget' => 'avatar',
-                'title' => '&nbsp;'
+                'widget' => [
+                    'type' => 'avatar',
+                    'size' => 44,
+                ],
+                'title' => '&nbsp;',
             ],
             'name' => [
                 'widget' => [
