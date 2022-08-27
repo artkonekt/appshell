@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-06-02
+## 3.1.2
+##### 2022-08-27
 
 - Changed Laravel requirements to min v9.2 and to exclude v9.15.0 that puts the entire application down
 - Reverted TreeBuilder container service to singleton (changed in 2.8.2) - as it never actually worked well
