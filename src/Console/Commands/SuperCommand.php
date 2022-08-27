@@ -31,7 +31,7 @@ class SuperCommand extends Command
 
     private ResourcePermissionMapper $permissionMapper;
 
-    public function handle(ResourcePermissionMapper $permissionMapper)
+    public function handle(ResourcePermissionMapper $permissionMapper): void
     {
         $this->permissionMapper = $permissionMapper;
         $this->info("Now you're about to create a new user with all privileges");
@@ -52,16 +52,14 @@ class SuperCommand extends Command
 
         $this->info("User '$email' has been created (id: {$user->id})");
 
-        $user->assignRole($roleName);
+        $user->assignRole($role);
         $this->info("Role '$roleName' has been assigned to '$email'.");
     }
 
     /**
      * Asks for and validates E-mail address
-     *
-     * @return string
      */
-    protected function askEmail()
+    protected function askEmail(): string
     {
         $email = $this->ask('E-mail');
 
@@ -86,12 +84,7 @@ class SuperCommand extends Command
         return $email;
     }
 
-    /**
-     * @param $roleName
-     *
-     * @return Role
-     */
-    protected function fetchRole($roleName)
+    protected function fetchRole(string $roleName): Role
     {
         $role = RoleProxy::where('name', $roleName)->first();
         if (! $role) {
@@ -107,12 +100,7 @@ class SuperCommand extends Command
         return $role;
     }
 
-    /**
-     * @param $name
-     *
-     * @return Role
-     */
-    protected function createRole($name)
+    protected function createRole(string $name): Role
     {
         /** @var \Konekt\Acl\Models\Role $role */
         $role = RoleProxy::create(['name' => $name])->fresh();
