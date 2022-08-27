@@ -18,13 +18,11 @@ trait HasBreadcrumbs
 {
     /**
      * Loads definitions from breadcrumbs file in case it's enabled in the config
-     *
-     * @return bool
      */
-    public function loadBreadcrumbs()
+    public function loadBreadcrumbs(): void
     {
         if (!$this->config('breadcrumbs')) {
-            return false;
+            return;
         }
 
         $file = sprintf(
