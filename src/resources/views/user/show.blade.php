@@ -43,7 +43,7 @@
             {{ $user->name }}
             @if (!$user->is_active)
                 <small>
-                        <span class="badge badge-default">
+                        <span class="badge rounded-pill bg-light">
                             {{ __('inactive') }}
                         </span>
                 </small>

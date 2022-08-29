@@ -14,7 +14,7 @@
             {{ $customer->getName() }}
             @if (!$customer->is_active)
                 <small>
-                        <span class="badge badge-secondary">
+                        <span class="badge rounded-pill bg-secondary">
                             {{ __('inactive') }}
                         </span>
                 </small>

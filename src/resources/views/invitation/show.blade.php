@@ -16,7 +16,7 @@
             {{ $invitation->email }}
             @if ($invitation->isNoLongerValid())
                 <small>
-                        <span class="badge badge-default">
+                        <span class="badge rounded-pill bg-light">
                             {{ __('invalid') }}
                         </span>
                 </small>

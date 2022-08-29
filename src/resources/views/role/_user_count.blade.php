@@ -1,4 +1,4 @@
-<span class="badge badge-secondary badge-pill"
+<span class="badge rounded-pill bg-secondary"
       title="{{
     trans_choice(
         '{0} ' .

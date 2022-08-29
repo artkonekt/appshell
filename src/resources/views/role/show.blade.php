@@ -16,12 +16,12 @@
         <div class="form-group">
             <legend>{{ __('Allows') }}</legend>
             @forelse($role->permissions as $permission)
-                <span class="badge badge-pill badge-success">
+                <span class="badge rounded-pill bg-success">
                         {!! icon('check') !!}
                     {{ $permission->name }}
                     </span>
             @empty
-                <span class="badge badge-pill badge-warning">
+                <span class="badge rounded-pill bg-warning">
                         {!! icon(':(') !!}
                     {{ __('nothing') }}
                     </span>
@@ -32,12 +32,12 @@
         <div class="form-group">
             <legend>{{ __('Denies') }}</legend>
             @forelse($noperms as $permission)
-                <span class="badge badge-pill badge-danger">
+                <span class="badge rounded-pill bg-danger">
                         {!! icon('warning') !!}
                     {{ $permission->name }}
                     </span>
             @empty
-                <span class="badge badge-pill badge-success">
+                <span class="badge rounded-pill bg-success">
                         {!! icon(':)') !!}
                     {{ __('nothing') }}
                     </span>

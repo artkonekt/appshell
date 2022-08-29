@@ -8,6 +8,7 @@
 - Changed the AppShell Theme - it has been rewritten from scratch with new visual style
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
+- Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
 
 ## 3.1.2
 ##### 2022-08-27
