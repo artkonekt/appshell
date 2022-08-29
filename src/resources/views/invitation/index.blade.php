@@ -12,7 +12,7 @@
         @slot('title')@yield('title')@endslot
         @slot('actionbar')
             @can('create invitations')
-                <a href="{{ route('appshell.invitation.create') }}" class="btn btn-sm btn-outline-success float-right">
+                <a href="{{ route('appshell.invitation.create') }}" class="btn btn-sm btn-outline-success">
                     {{ __('Invite new user') }}
                 </a>
             @endcan

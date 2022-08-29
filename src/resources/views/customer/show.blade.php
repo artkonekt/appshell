@@ -67,7 +67,7 @@
             {!! Form::open(['route' => ['appshell.customer.destroy', $customer],
                                         'method' => 'DELETE',
                                         'data-confirmation-text' => __('Are you sure to delete :name?', ['name' => $customer->getName()]),
-                                        'class' => 'float-right'
+                                        'class' => 'd-inline'
                                        ])
             !!}
             <button class="btn btn-outline-danger">

@@ -9,7 +9,7 @@
     @slot('actionbar')
         @can($editTheParent)
             @can('create addresses')
-                <a href="{{ route('appshell.address.create') }}?for={{$for}}&forId={{ $of->id }}" class="btn btn-sm btn-outline-success float-right">
+                <a href="{{ route('appshell.address.create') }}?for={{$for}}&forId={{ $of->id }}" class="btn btn-sm btn-outline-success">
                     {!! icon('+') !!}
                     {{ __('New Address') }}
                 </a>

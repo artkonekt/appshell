@@ -11,7 +11,7 @@
         @slot('actionbar')
             @can('create roles')
                 <a href="{{ route('appshell.role.create') }}"
-                   class="btn btn-sm btn-outline-success float-right">
+                   class="btn btn-sm btn-outline-success">
                     {!! icon('+') !!}
                     {{ __('New Role') }}
                 </a>

@@ -11,7 +11,7 @@
 
         @slot('actionbar')
             @can('create customers')
-                <a href="{{ route('appshell.customer.create') }}" class="btn btn-sm btn-outline-success float-right">
+                <a href="{{ route('appshell.customer.create') }}" class="btn btn-sm btn-outline-success">
                     {!! icon('+') !!}
                     {{ __('Create Customer') }}
                 </a>

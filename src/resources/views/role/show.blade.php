@@ -80,7 +80,7 @@
             @can('delete roles')
                 {!! Form::open(['route' => ['appshell.role.destroy', $role],
                                 'method' => 'DELETE',
-                                'class' => 'float-right',
+                                'class' => 'd-inline',
                                 'data-confirmation-text' => __('Are you sure to delete the :name role?', ['name' => $role->name])
                                 ])
                 !!}

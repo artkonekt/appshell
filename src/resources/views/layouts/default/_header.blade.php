@@ -16,7 +16,7 @@
 
         <div class="col-md-6 col-lg-5 text-right">
             @if ($appshell->quick_links['enabled'])
-                <div class="dropdown float-right">
+                <div class="dropdown float-end">
                     <a class="btn btn-none" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                        id="quicklinks">
                         <div class="appshell-header-user">
@@ -36,7 +36,7 @@
                 </div>
             @endif
             @if ($appshell->isSearchEnabled())
-                <button class="btn btn-none float-right" type="button" data-toggle="modal"
+                <button class="btn btn-none float-end" type="button" data-toggle="modal"
                         data-target="#appshell-search-modal" id="appshell-search-button"
                         title="{{ __('Search [SHIFT SHIFT]') }}"
                 >
@@ -45,7 +45,7 @@
                     </div>
                 </button>
             @endif
-            <div class="dropdown float-right">
+            <div class="dropdown float-end">
                 <a class="btn btn-none dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                    id="account-dropdown-link">
                     <img src="{{ avatar_image_url(Auth::user(), 70) }}" class="img-avatar img-avatar-35">

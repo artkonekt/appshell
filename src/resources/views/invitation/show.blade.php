@@ -118,8 +118,8 @@
                 {!! Form::open([
                         'route' => ['appshell.invitation.destroy', $invitation],
                         'method' => 'DELETE',
-                        'data-confirmation-text' => __('Are you sure to cancel the invitationof :email?', ['email' => $invitation->email]),
-                        'class' => "float-right"
+                        'data-confirmation-text' => __('Are you sure to cancel the invitation of :email?', ['email' => $invitation->email]),
+                        'class' => "d-inline"
                         ])
                 !!}
 
