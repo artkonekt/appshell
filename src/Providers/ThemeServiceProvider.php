@@ -44,6 +44,6 @@ class ThemeServiceProvider extends ServiceProvider
             config(['konekt.app_shell.ui.theme' => AppShell3Theme::ID]);
         }
 
-        Blade::componentNamespace(theme()->componentNamespace(), 'appshell');
+        //Blade::componentNamespace(theme()->componentNamespace(), 'appshell');
     }
 }
