@@ -6,7 +6,8 @@
 
 @section('content')
 
-    <div class="card-deck mb-3">
+    <div class="row my-3">
+        <div class="col">
         @component(theme_widget('card_with_icon'), [
                 'icon' => enum_icon($customer->type),
                 'type' => $customer->is_active ? 'success' : 'warning'
@@ -23,7 +24,9 @@
                 {{ $customer->type->label() }}
             @endslot
         @endcomponent
+        </div>
 
+        <div class="col">
         @component(theme_widget('card_with_icon'), [
                 'icon' => 'money',
                 'type' => $customer->last_purchase_at ? 'success' : null
@@ -34,7 +37,9 @@
                 {{ show_date($customer->last_purchase_at, __('never')) }}
             @endslot
         @endcomponent
+        </div>
 
+        <div class="col">
         @component(theme_widget('card_with_icon'), [
                 'icon' => 'time',
                 'type' => 'info'
@@ -47,8 +52,7 @@
                 {{ show_date($customer->created_at) }}
             @endslot
         @endcomponent
-
-        @yield('widgets')
+        </div>
 
     </div>
 

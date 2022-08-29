@@ -8,7 +8,8 @@
 
 @include('appshell::user._subnav', ['active' => 'invitations'])
 
-    <div class="card-deck mb-3">
+    <div class="row my-3">
+        <div class="col">
         @component(theme_widget('card_with_icon'), [
                 'icon' => 'email',
                 'type' => $invitation->isStillValid() ? 'success' : ($invitation->hasBeenUtilizedAlready() ? 'info' : 'warning')
@@ -26,7 +27,9 @@
                 {{ show_datetime($invitation->expires_at) }}
             @endslot
         @endcomponent
+        </div>
 
+        <div class="col">
         @component(theme_widget('card_with_icon'), [
                 'icon' => 'security',
                 'type' => 'info'
@@ -46,7 +49,9 @@
                 @endif
             @endslot
         @endcomponent
+        </div>
 
+        <div class="col">
         @component(theme_widget('card_with_icon'), [
             'icon' => 'user',
             'type' => $invitation->hasBeenUtilizedAlready() ? 'success' : ($invitation->isExpired() ? 'warning' : null)
@@ -78,8 +83,7 @@
                 @endif
             @endslot
         @endcomponent
-
-        @yield('widgets')
+        </div>
 
     </div>
 

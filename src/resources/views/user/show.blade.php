@@ -35,7 +35,8 @@
 
 @section('content')
 
-    <div class="card-deck mb-3">
+    <div class="row my-3">
+        <div class="col">
         @component(theme_widget('card_with_icon'), [
                 'icon' => $user->is_active ? 'user-active' : 'user-inactive',
                 'type' => $user->is_active ? 'success' : 'warning'
@@ -53,7 +54,9 @@
                 {{ show_date($user->created_at) }}
             @endslot
         @endcomponent
+        </div>
 
+        <div class="col">
         @component(theme_widget('card_with_icon'), [
                 'icon' => 'security',
                 'type' => 'info'
@@ -73,7 +76,9 @@
                 @endif
             @endslot
         @endcomponent
+        </div>
 
+        <div class="col">
         @component(theme_widget('card_with_icon'), ['icon' => 'star'])
             {{ $user->login_count }} {{ __('logins') }}
 
@@ -87,8 +92,7 @@
 
             @endslot
         @endcomponent
-
-        @yield('widgets')
+        </div>
 
     </div>
 
