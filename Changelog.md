@@ -10,6 +10,11 @@
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
 
+## 3.3.0
+##### 2022-08-31
+
+- Added the `addAlias()` method to the resource permission mapper
+
 ## 3.2.0
 ##### 2022-08-31
 

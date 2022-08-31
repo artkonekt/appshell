@@ -321,4 +321,13 @@ class AclResourcePermissionMapperTest extends TestCase
         $this->assertEquals('list products', $this->mapper->permissionFor('master_product', 'index'));
         $this->assertEquals('list products', $this->mapper->permissionFor('masterProduct', 'index'));
     }
+
+    /** @test */
+    public function resource_aliases_can_be_added_on_the_fly()
+    {
+        $this->assertEquals('list master products', $this->mapper->permissionFor('master product', 'index'));
+
+        $this->mapper->addAlias('master product', 'product');
+        $this->assertEquals('list products', $this->mapper->permissionFor('master product', 'index'));
+    }
 }

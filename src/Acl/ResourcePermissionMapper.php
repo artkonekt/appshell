@@ -129,6 +129,11 @@ final class ResourcePermissionMapper
         $this->customPluralForms[$resource] = $pluralForm;
     }
 
+    public function addAlias(string $alias, string $target): void
+    {
+        $this->aliases[$this->plural($alias)] = $this->plural($target);
+    }
+
     private function plural(string $word): string
     {
         return $this->customPluralForms[$word] ?? Str::plural($word);
@@ -145,7 +150,7 @@ final class ResourcePermissionMapper
 
         $this->aliases = [];
         foreach ($aliases as $alias => $target) {
-            $this->aliases[$this->plural($alias)] = $this->plural($target);
+            $this->addAlias($alias, $target);
         }
     }
 }
