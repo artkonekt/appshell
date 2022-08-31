@@ -156,7 +156,7 @@ and allows or denies (`abort(403)`) access to the route.
 
 As an example, the ACL middleware when applied to these routes will proceed like this:
 
-```
+```text
 URL /product/123/edit
  │
  └> Controller/Action = `ProductController@show`
@@ -175,7 +175,7 @@ URL /product/123/edit
      └──┘        
 ```
 
-```
+```text
 URL /product-types/123/edit
  │
  └> Controller/Action = `ProductTypeController@show`
@@ -201,6 +201,37 @@ and not the route definition, ie:
 
 - `ProductTypeController` -> the resource name will be `ProductType` regardless of how the route is defined;
 - `ProductTypeController::index` -> the action name will be `index` regardless of the route definition.
+
+### Resource Name Aliases
+
+Sometimes a permission should allow to additional resources.
+An example is that the `create products` permission allows creating both `product`
+and `master product` resources.
+
+To achieve this, set the key/value pairs within the `konekt.app_shell.acl.aliases` configuration:
+
+```php
+// config/concord.php
+return [
+    'modules' => [
+        Konekt\AppShell\Providers\ModuleServiceProvider::class => [
+            // ...
+            'acl' => [
+                'aliases' => [
+                    'master products' => 'products',
+                ],
+            ],
+            // ...
+```
+
+You can also define them using Laravel's built-in config helper:
+
+```php
+config(['konekt.app_shell.acl.aliases.master products' => 'products']);
+```
+
+The proper format is to use the plural variant for both the alias and the target, but
+if you pass singular resource names, the library will convert them.
 
 ## Creating CRUD with ACL
 

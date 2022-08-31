@@ -10,7 +10,8 @@ return [
         Konekt\Acl\Providers\ModuleServiceProvider::class => []
     ],
     'acl' => [
-        'allow_action_as_verb' => false
+        'allow_action_as_verb' => false,
+        'aliases' => [],
     ],
     'event_listeners' => true,
     'menu' => [

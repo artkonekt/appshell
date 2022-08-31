@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2022-XX-YY
+
+- Added option to define ACL resource name aliases (eg 'master product' => 'product')
+
 ## 3.1.2
 ##### 2022-08-27
 
