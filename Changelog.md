@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## 3.3.0
+##### 2022-08-31
+
+- Added the `addAlias()` method to the resource permission mapper
+
 ## 3.2.0
 ##### 2022-08-31
 
