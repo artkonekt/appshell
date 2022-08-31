@@ -10,6 +10,11 @@
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
 
+## 3.2.0
+##### 2022-08-31
+
+- Added option to define ACL resource name aliases (eg 'master product' => 'product')
+
 ## 3.1.2
 ##### 2022-08-27
 

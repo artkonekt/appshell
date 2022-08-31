@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
  * and action names eg. 'index', 'show', 'store', etc
  *
  * Based on the idea of Laravel resource route/controller convention:
- * @see https://laravel.com/docs/8.x/controllers#resource-controllers
+ * @see https://laravel.com/docs/9.x/controllers#resource-controllers
  * @see Route::resource()
  */
 final class ResourcePermissionMapper
@@ -36,7 +36,16 @@ final class ResourcePermissionMapper
         'destroy' => 'delete',
     ];
 
-    private $customPluralForms = [];
+    private array $customPluralForms = [];
+
+    private ?array $aliases = null;
+
+    public function __construct(array $aliases = null)
+    {
+        if (null !== $aliases) {
+            $this->loadAliases($aliases);
+        }
+    }
 
     /**
      * Returns permission verb like 'edit', 'list', etc based on Laravel resource action
@@ -70,6 +79,8 @@ final class ResourcePermissionMapper
             return null;
         }
 
+        $this->loadAliases();
+
         return $verb . ' ' . $this->mappedResourceName($resource);
     }
 
@@ -82,7 +93,9 @@ final class ResourcePermissionMapper
      */
     public function mappedResourceName(string $resource): string
     {
-        return str_replace('_', ' ', $this->plural(Str::snake(str_replace('-', '_', $resource))));
+        $name = str_replace('_', ' ', $this->plural(Str::snake(str_replace('-', '_', $resource))));
+
+        return $this->aliases[$name] ?? $name;
     }
 
     /**
@@ -119,5 +132,20 @@ final class ResourcePermissionMapper
     private function plural(string $word): string
     {
         return $this->customPluralForms[$word] ?? Str::plural($word);
+    }
+
+    private function loadAliases(array $aliases = null): void
+    {
+        if (null !== $this->aliases) {
+            return;
+        }
+
+        $aliases = $aliases ?: config('konekt.app_shell.acl.aliases', []);
+        $aliases = is_array($aliases) ? $aliases : [];
+
+        $this->aliases = [];
+        foreach ($aliases as $alias => $target) {
+            $this->aliases[$this->plural($alias)] = $this->plural($target);
+        }
     }
 }
