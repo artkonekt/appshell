@@ -208,7 +208,15 @@ Sometimes a permission should allow to additional resources.
 An example is that the `create products` permission allows creating both `product`
 and `master product` resources.
 
-To achieve this, set the key/value pairs within the `konekt.app_shell.acl.aliases` configuration:
+To achieve this, there are several ways, packages should call the `addAlias()` method
+on the app container's singleton:
+
+```php
+app()->get(ResourcePermissionMapper::class)->addAlias('master product', 'product');
+```
+
+It is also possible to set the key/value pairs within the `konekt.app_shell.acl.aliases`
+configuration:
 
 ```php
 // config/concord.php
@@ -230,8 +238,9 @@ You can also define them using Laravel's built-in config helper:
 config(['konekt.app_shell.acl.aliases.master products' => 'products']);
 ```
 
-The proper format is to use the plural variant for both the alias and the target, but
-if you pass singular resource names, the library will convert them.
+The proper format is to use the plural variant of resource names for both the
+alias and the target, but if you pass singular resource names, the library will
+convert them.
 
 ## Creating CRUD with ACL
 
