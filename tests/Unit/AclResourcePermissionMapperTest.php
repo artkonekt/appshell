@@ -264,4 +264,61 @@ class AclResourcePermissionMapperTest extends TestCase
         $this->assertEquals('request approval for', $this->mapper->permissionVerbForAction('requestApprovalFor'));
         $this->assertEquals('reject publication of', $this->mapper->permissionVerbForAction('reject_publication_of'));
     }
+
+    /** @test */
+    public function resource_names_can_aliased()
+    {
+        $aliasedMapper = new ResourcePermissionMapper(['master products' => 'products']);
+
+        $this->assertEquals('create products', $aliasedMapper->permissionFor('master product', 'create'));
+    }
+
+    /** @test */
+    public function resource_names_aliases_can_be_set_from_the_config()
+    {
+        config(['konekt.app_shell.acl.aliases.simple products' => 'products']);
+
+        $this->assertEquals('create products', $this->mapper->permissionFor('simple product', 'create'));
+    }
+
+    /** @test */
+    public function resource_name_aliases_are_automatically_pluralized()
+    {
+        $aliasedMapper = new ResourcePermissionMapper([
+            'master product' => 'product',
+            'packages' => 'product',
+            'subscription' => 'products',
+        ]);
+
+        $this->assertEquals('edit products', $aliasedMapper->permissionFor('master product', 'edit'));
+        $this->assertEquals('edit products', $aliasedMapper->permissionFor('package', 'edit'));
+        $this->assertEquals('edit products', $aliasedMapper->permissionFor('subscription', 'edit'));
+    }
+
+    /** @test */
+    public function resource_name_aliases_are_automatically_pluralized_from_config()
+    {
+        config(['konekt.app_shell.acl.aliases' => [
+            'master product' => 'product',
+            'packages' => 'product',
+            'subscription' => 'products',
+        ]]);
+
+        $this->assertEquals('edit products', $this->mapper->permissionFor('master product', 'edit'));
+        $this->assertEquals('edit products', $this->mapper->permissionFor('package', 'edit'));
+        $this->assertEquals('edit products', $this->mapper->permissionFor('subscription', 'edit'));
+    }
+
+    /** @test */
+    public function resource_aliases_are_properly_normalized()
+    {
+        config(['konekt.app_shell.acl.aliases' => [
+            'master product' => 'product',
+        ]]);
+
+        $this->assertEquals('list products', $this->mapper->permissionFor('master product', 'index'));
+        $this->assertEquals('list products', $this->mapper->permissionFor('master-product', 'index'));
+        $this->assertEquals('list products', $this->mapper->permissionFor('master_product', 'index'));
+        $this->assertEquals('list products', $this->mapper->permissionFor('masterProduct', 'index'));
+    }
 }
