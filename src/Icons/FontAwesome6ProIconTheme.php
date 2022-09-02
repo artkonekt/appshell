@@ -67,7 +67,7 @@ class FontAwesome6ProIconTheme implements IconTheme
         AppShellIcons::SORT => 'bars-sort',
         AppShellIcons::SORT_ASC => 'arrow-down-short-wide',
         AppShellIcons::SORT_DESC => 'arrow-down-wide-short',
-        AppShellIcons::SETTINGS => 'folder-gear',
+        AppShellIcons::SETTINGS => 'gears',
         AppShellIcons::SECURITY => 'shield-halved',
         AppShellIcons::STAR => 'stars',
         AppShellIcons::TIME => 'timer',
