@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-09-XX
+## 3.4.0
+##### 2022-09-02
 
 - Added `spinner` and `plug` icons
 - Added Font Awesome 6 Pro icon theme support
