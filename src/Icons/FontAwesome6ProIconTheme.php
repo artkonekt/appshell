@@ -150,7 +150,7 @@ class FontAwesome6ProIconTheme implements IconTheme
         );
 
         return sprintf(
-            '<i class="fa-%s fa-%s %s" %s></i>',
+            '<i class="fa-%s fa-%s %s fa-fw" %s></i>',
             $this->iconStyle,
             $this->get($abstract),
             implode(' ', $classes),

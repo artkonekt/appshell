@@ -24,7 +24,8 @@ return [
                 'fa6_pro' => [
                      // Your own Pro kit code, copied from the Font Awesome website:
                     'kit_code' => '<script src="https://kit.fontawesome.com/f2a94220aa.js" crossorigin="anonymous"></script>',
-                    'icon_style' => 'regular', // one of: solid, regular, light, thin, duotone            
+                    'icon_style' => 'regular', // one of: solid, regular, light, thin, duotone
+                ]            
             ],
         ],
     ],
