@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2022-09-XX
+
+- Added `spinner` and `plug` icons
+
 ## 3.3.0
 ##### 2022-08-31
 

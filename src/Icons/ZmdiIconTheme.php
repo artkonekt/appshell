@@ -73,6 +73,8 @@ class ZmdiIconTheme implements IconTheme
         AppShellIcons::CHEVRON_LEFT => 'chevron-left',
         AppShellIcons::FILTERS => 'tune',
         AppShellIcons::SEARCH => 'search',
+        AppShellIcons::SPINNER => 'spinner',
+        AppShellIcons::PLUG => 'input-power',
     ];
 
     public static function getName(): string

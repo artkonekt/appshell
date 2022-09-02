@@ -73,6 +73,8 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::CHEVRON_LEFT => 'chevron-left',
         AppShellIcons::FILTERS => 'adjustments',
         AppShellIcons::SEARCH => 'search',
+        AppShellIcons::SPINNER => 'rotate-clockwise-2',
+        AppShellIcons::PLUG => 'plug',
     ];
 
     public static function getName(): string

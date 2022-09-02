@@ -74,6 +74,8 @@ class FontAwesome6IconTheme implements IconTheme
         AppShellIcons::CHEVRON_LEFT => 'chevron-left',
         AppShellIcons::FILTERS => 'sliders',
         AppShellIcons::SEARCH => 'magnifying-glass',
+        AppShellIcons::SPINNER => 'spinner',
+        AppShellIcons::PLUG => 'plug',
     ];
 
     public static function getName(): string
