@@ -64,4 +64,6 @@ final class AppShellIcons
     public const CHEVRON_LEFT = '<';
     public const FILTERS = 'filters';
     public const SEARCH = 'search';
+    public const SPINNER = 'spinner';
+    public const PLUG = 'plug';
 }
