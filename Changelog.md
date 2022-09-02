@@ -4,6 +4,8 @@
 ##### 2022-09-XX
 
 - Added `spinner` and `plug` icons
+- Added Font Awesome 6 Pro icon theme support
+- Upgraded FontAwesome 6 Free icon theme to v6.2
 
 ## 3.3.0
 ##### 2022-08-31

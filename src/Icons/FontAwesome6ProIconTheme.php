@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 /**
- * Contains the FontAwesome6IconTheme class.
+ * Contains the FontAwesome6ProIconTheme class.
  *
  * @copyright   Copyright (c) 2022 Attila Fulop
  * @author      Attila Fulop
  * @license     MIT
- * @since       2022-02-22
+ * @since       2022-09-02
  *
  */
 
@@ -17,70 +17,85 @@ namespace Konekt\AppShell\Icons;
 use Konekt\AppShell\Contracts\IconTheme;
 use Konekt\AppShell\Theme\ThemeColor;
 
-class FontAwesome6IconTheme implements IconTheme
+class FontAwesome6ProIconTheme implements IconTheme
 {
     use HasIconMap;
     use HasFallbackIcon;
 
-    public const ID = 'font-awesome6';
+    public const ID = 'font-awesome6-pro';
 
     private const FA_ANIMATION_TYPES = ['beat', 'beat-fade', 'bounce', 'flip', 'shake', 'spin'];
+    private const FA_PRO_STYLES = ['solid', 'regular', 'light', 'thin', 'duotone'];
+    private const DEFAULT_STYLE = 'regular';
 
-    private static string $fallbackIcon = 'bookmark';
+    private ?string $kitCode;
+
+    private string $iconStyle;
+
+    private static string $fallbackIcon = 'caret-right';
 
     private static array $icons = [
-        AppShellIcons::USERS => 'user-group',
-        AppShellIcons::USER => 'user',
-        AppShellIcons::USER_ACTIVE => 'user-check',
-        AppShellIcons::USER_INACTIVE => 'user-xmark',
+        AppShellIcons::USERS => 'people-group',
+        AppShellIcons::USER => 'person',
+        AppShellIcons::USER_ACTIVE => 'person-circle-check',
+        AppShellIcons::USER_INACTIVE => 'person-circle-xmark',
         AppShellIcons::CUSTOMERS => 'address-card',
         AppShellIcons::CUSTOMER => 'id-badge',
-        AppShellIcons::WARNING => 'triangle-exclamation',
-        AppShellIcons::ACTIVE => 'circle-chevron-right',
-        AppShellIcons::INACTIVE => 'circle-xmark',
-        AppShellIcons::CHECK => 'check',
-        AppShellIcons::CROSS => 'xmark',
-        AppShellIcons::INFO => 'circle-info',
-        AppShellIcons::HELP => 'circle-question',
-        AppShellIcons::EMAIL => 'envelope',
-        AppShellIcons::ORGANIZATION => 'city',
-        AppShellIcons::PASSWORD => 'key',
+        AppShellIcons::WARNING => 'brake-warning',
+        AppShellIcons::ACTIVE => 'wave-pulse',
+        AppShellIcons::INACTIVE => 'skull',
+        AppShellIcons::CHECK => 'circle-check',
+        AppShellIcons::CROSS => 'circle-xmark',
+        AppShellIcons::INFO => 'square-info',
+        AppShellIcons::HELP => 'square-question',
+        AppShellIcons::EMAIL => 'envelopes',
+        AppShellIcons::ORGANIZATION => 'building-user',
+        AppShellIcons::PASSWORD => 'key-skeleton',
         AppShellIcons::MONEY => 'money-check-dollar',
-        AppShellIcons::CALENDAR => 'calendar-day',
-        AppShellIcons::MALE => 'person',
-        AppShellIcons::FEMALE => 'person-dress',
-        AppShellIcons::SMILEY_GLAD => 'face-smile',
-        AppShellIcons::SMILEY_SAD => 'face-frown',
+        AppShellIcons::CALENDAR => 'calendar-lines',
+        AppShellIcons::MALE => 'mars',
+        AppShellIcons::FEMALE => 'venus',
+        AppShellIcons::SMILEY_GLAD => 'face-smile-relaxed',
+        AppShellIcons::SMILEY_SAD => 'face-disappointed',
         AppShellIcons::MORE_ITEMS => 'ellipsis-vertical',
         AppShellIcons::PLUS => 'plus',
         AppShellIcons::MINUS => 'minus',
-        AppShellIcons::EDIT => 'pen',
-        AppShellIcons::DELETE => 'xmark',
-        AppShellIcons::TAG => 'tag',
+        AppShellIcons::EDIT => 'pencil',
+        AppShellIcons::DELETE => 'trash',
+        AppShellIcons::TAG => 'hashtag',
         AppShellIcons::COLOR => 'palette',
-        AppShellIcons::SORT => 'sort',
-        AppShellIcons::SORT_ASC => 'arrow-up-wide-short',
+        AppShellIcons::SORT => 'bars-sort',
+        AppShellIcons::SORT_ASC => 'arrow-down-short-wide',
         AppShellIcons::SORT_DESC => 'arrow-down-wide-short',
-        AppShellIcons::SETTINGS => 'gear',
-        AppShellIcons::SECURITY => 'shield',
-        AppShellIcons::STAR => 'star',
-        AppShellIcons::TIME => 'clock-rotate-left',
-        AppShellIcons::TAX => 'scroll',
+        AppShellIcons::SETTINGS => 'folder-gear',
+        AppShellIcons::SECURITY => 'shield-halved',
+        AppShellIcons::STAR => 'stars',
+        AppShellIcons::TIME => 'timer',
+        AppShellIcons::TAX => 'droplet-percent',
         AppShellIcons::QUICK_LINKS => 'bolt',
         AppShellIcons::HAMBURGER => 'bars-staggered',
-        AppShellIcons::LINK => 'link',
+        AppShellIcons::LINK => 'link-simple',
         AppShellIcons::IMAGE => 'images',
         AppShellIcons::CHEVRON_RIGHT => 'chevron-right',
         AppShellIcons::CHEVRON_LEFT => 'chevron-left',
-        AppShellIcons::FILTERS => 'sliders',
+        AppShellIcons::FILTERS => 'sliders-up',
         AppShellIcons::SEARCH => 'magnifying-glass',
         AppShellIcons::SPINNER => 'spinner',
         AppShellIcons::PLUG => 'plug',
     ];
 
+    public function __construct()
+    {
+        $this->kitCode = config('konekt.app_shell.icons.fa6_pro.kit_code');
+        $this->iconStyle = config('konekt.app_shell.icons.fa6_pro.icon_style', self::DEFAULT_STYLE);
+        if (!in_array($this->iconStyle, self::FA_PRO_STYLES)) {
+            $this->iconStyle = self::DEFAULT_STYLE;
+        }
+    }
+
     public static function getName(): string
     {
-        return 'Font Awesome 6 Icons';
+        return 'Font Awesome 6 Pro';
     }
 
     public function get(string $abstract): string
@@ -92,6 +107,14 @@ class FontAwesome6IconTheme implements IconTheme
     {
         if ('header' !== $location) {
             return '';
+        }
+
+        if (null !== $this->kitCode) {
+            return $this->kitCode;
+        }
+
+        if (function_exists('flash')) {
+            flash()->warning(__('Font Awesome Pro 6 Kit code is missing from config. Using Font Awesome 6 Free.'));
         }
 
         return '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />';
@@ -127,7 +150,8 @@ class FontAwesome6IconTheme implements IconTheme
         );
 
         return sprintf(
-            '<i class="fa-solid fa-%s %s" %s></i>',
+            '<i class="fa-%s fa-%s %s" %s></i>',
+            $this->iconStyle,
             $this->get($abstract),
             implode(' ', $classes),
             $attrString
