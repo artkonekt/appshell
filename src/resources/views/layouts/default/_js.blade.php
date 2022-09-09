@@ -9,5 +9,5 @@
 @if($custom)
     <script src="{{ null === $helper ? $js : $helper($js) }}"></script>
 @else
-    <script src="{{ $appshell->useMix ? mix('/js/appshell.js') : asset('/js/appshell.js') }}"></script>
+    <script type="module" src="{{ $appshell->useMix ? mix('/js/appshell.js') : asset('/js/appshell.js') }}"></script>
 @endif
