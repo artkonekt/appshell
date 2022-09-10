@@ -2,7 +2,7 @@
 <?php
     $cfg = config('konekt.app_shell.default_theme.custom_assets', []);
     $custom = $cfg['enabled'] ?? false;
-    $js = ($custom ? ($cfg['js_link'] ?? null) : null) ?: '/js/appshell.js';
+    $js = $custom ? ($cfg['js_link'] ?? '') : '/js/appshell.js';
     $helper = $cfg['helper'] ?? null;
     $helper = in_array($helper, ['mix', 'asset', null], true) ? $helper : null;
 ?>
