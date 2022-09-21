@@ -10,6 +10,13 @@
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
 
+## 3.5.0
+##### 2022-09-21
+
+- Fixed Unparenthesized ternary PHP Deprecation Error; thanks [Peterson Umoke](https://github.com/peterson-umoke)!
+- Added explicit route parameters support for table actions widget
+- Added PHP 8.2 support
+
 ## 3.4.0
 ##### 2022-09-02
 
