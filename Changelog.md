@@ -1,10 +1,11 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2022-09-XX
+## 3.5.0
+##### 2022-09-21
 
 - Fixed Unparenthesized ternary PHP Deprecation Error; thanks [Peterson Umoke](https://github.com/peterson-umoke)!
 - Added explicit route parameters support for table actions widget
+- Added PHP 8.2 support
 
 ## 3.4.0
 ##### 2022-09-02
