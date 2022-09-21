@@ -42,6 +42,12 @@ class Actions implements Widget
         $actions = [];
         foreach ($this->actions as $action => $params) {
             $actions[$action] = $params;
+            if (isset($params['parameters'])) {
+                $actions[$action]['route_parameters'] = array_map(
+                    fn ($parameter) => $this->resolveSubstitutions($parameter, $data),
+                    $params['parameters'] ?? []
+                );
+            }
         }
 
         if (isset($actions['delete'])) {

@@ -4,7 +4,7 @@
 ##### 2022-09-XX
 
 - Fixed Unparenthesized ternary PHP Deprecation Error; thanks [Peterson Umoke](https://github.com/peterson-umoke)!
-
+- Added explicit route parameters support for table actions widget
 
 ## 3.4.0
 ##### 2022-09-02
