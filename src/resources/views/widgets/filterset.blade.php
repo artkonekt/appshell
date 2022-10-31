@@ -3,14 +3,14 @@
 @endphp
 <div class="dropdown filterset">
     @if($filters->activeCount() > 0)
-        <span class="position-relative" title="{{ __('Filters') }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="position-relative" title="{{ __('Filters') }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {!! icon('filters', null, ['class' => 'btn']) !!}
             <small class="position-absolute" style="left: 25px; top: -7px"><span class="badge rounded-pill bg-danger">{{ $filters->activeCount() }}</span></small>
         </span>
     @else
         {!! icon('filters', null, [
                 'class' => 'btn',
-                'data-toggle' => 'dropdown',
+                'data-bs-toggle' => 'dropdown',
                 'aria-haspopup' => 'true',
                 'aria-expanded' => 'false',
                 'title' => __('Filters'),

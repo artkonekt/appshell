@@ -17,7 +17,7 @@
         <div class="col-md-6 col-lg-5 text-right">
             @if ($appshell->quick_links['enabled'])
                 <div class="dropdown float-end">
-                    <a class="btn btn-none" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    <a class="btn btn-none" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                        id="quicklinks">
                         <div class="appshell-header-user">
                             <h4>{!! icon('quick-links', 'muted') !!}</h4>
@@ -46,7 +46,7 @@
                 </button>
             @endif
             <div class="dropdown float-end">
-                <a class="btn btn-none dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                <a class="btn btn-none dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                    id="account-dropdown-link">
                     <img src="{{ avatar_image_url(Auth::user(), 70) }}" class="img-avatar img-avatar-35">
                     <div class="appshell-header-user">
