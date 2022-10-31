@@ -1,19 +1,19 @@
-$(document).ready(function () {
-    $('.nav-dropdown-toggle').on('click', function(e){
-        e.preventDefault();
-        $(this).parent().toggleClass('open');
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  document
+    .querySelectorAll('input[name="_method"][type="hidden"][value="DELETE"]')
+    .forEach(deleter => {
+      deleteForm = deleter.closest('form')
+      if (deleteForm) {
+        deleteForm.onsubmit = event => {
+          let confirmText = deleter.dataset.confirmationText ? deleter.dataset.confirmationText : 'Are you sure you want to delete this item?'
 
-    $('input[name="_method"][type="hidden"][value="DELETE"]')
-        .parent('form')
-        .on('submit', function (e) {
-            var confirmText = $(this).data('confirmation-text') ? $(this).data('confirmation-text') : 'Are you sure you want to delete this item?';
-
-            if (!confirm(confirmText)) {
-                e.preventDefault();
-            }
-        });
-});
+          if (!confirm(confirmText)) {
+            event.preventDefault();
+          }
+        }
+      }
+    })
+})
 
 function MultiselectDropdown(options){
     var config={
@@ -56,7 +56,7 @@ function MultiselectDropdown(options){
         el.loadOptions=()=>{
             list.innerHTML='';
 
-            if(el.attributes['multiselect-select-all']?.value=='true'){
+            if(el.attributes['multiselect-select-all']?.value == 'true'){
                 var op=newEl('div',{class:'multiselect-dropdown-all-selector'})
                 var ic=newEl('input',{type:'checkbox'});
                 op.appendChild(ic);
@@ -111,7 +111,7 @@ function MultiselectDropdown(options){
                         div.appendChild(c);
                     });
                 }
-                if(0==el.selectedOptions.length) div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
+                if(0 === el.selectedOptions.length) div.appendChild(newEl('span',{class:'placeholder',text:el.attributes['placeholder']?.value??config.placeholder}));
             };
             div.refresh();
         }
