@@ -5,9 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="appshell-search-modal-title">{{ __('Search') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('Close') }}">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">

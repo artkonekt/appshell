@@ -36,8 +36,8 @@
                 </div>
             @endif
             @if ($appshell->isSearchEnabled())
-                <button class="btn btn-none float-end" type="button" data-toggle="modal"
-                        data-target="#appshell-search-modal" id="appshell-search-button"
+                <button class="btn btn-none float-end" type="button" data-bs-toggle="modal"
+                        data-bs-target="#appshell-search-modal" id="appshell-search-button"
                         title="{{ __('Search [SHIFT SHIFT]') }}"
                 >
                     <div class="appshell-header-user">

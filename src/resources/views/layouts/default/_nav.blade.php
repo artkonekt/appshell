@@ -13,7 +13,7 @@
             @if($item->hasChildren())
                 @if($item->childrenAllowed()->count())
                     <span class="nav-item nav-dropdown{{ $item->hasActiveChild() ? ' open' : '' }}">
-                        <a href="#sidebar-submenu-{{$item->name}}" class="nav-link nav-dropdown-toggle" data-toggle="collapse" aria-expanded="{{ $item->hasActiveChild() ? 'true' : 'false' }}">
+                        <a href="#sidebar-submenu-{{$item->name}}" class="nav-link nav-dropdown-toggle" data-bs-toggle="collapse" aria-expanded="{{ $item->hasActiveChild() ? 'true' : 'false' }}">
                             @if($item->data('icon'))
                                 {!! icon($item->data('icon')) !!}
                             @endif

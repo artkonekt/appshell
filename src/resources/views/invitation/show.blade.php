@@ -98,7 +98,7 @@
             @endcan
 
             <span id="__invitation_tooltip_{{ $invitation->id }}"
-                  data-toggle="tooltip"
+                  data-bs-toggle="tooltip"
                   title="{{ __('Invitation link for :email has been copied to the clipboard', ['email' => $invitation->email]) }}"
                   onclick="copyInvitationLinkToClipboard({{ $invitation->id }})"
                   style="cursor: pointer"
@@ -154,7 +154,7 @@
     </script>
 @endpush
 @push('onload-scripts')
-    $('[data-toggle="tooltip"]').tooltip({trigger: 'manual', placement: 'left'})
+    $('[data-bs-toggle="tooltip"]').tooltip({trigger: 'manual', placement: 'left'})
 @endpush
 @endonce
 
