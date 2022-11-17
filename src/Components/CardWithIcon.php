@@ -23,4 +23,3 @@ class CardWithIcon extends Component
         return view('appshell::components.card-with-icon');
     }
 }
-
