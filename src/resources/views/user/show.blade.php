@@ -37,7 +37,7 @@
 
     <div class="row my-3">
         <div class="col">
-            <x-appshell:card-with-icon
+            <x-appshell::card-with-icon
                 icon="{{ $user->is_active ? 'user-active' : 'user-inactive' }}"
                 type="{{ $user->is_active ? 'success' : 'warning' }}"
             >
@@ -54,7 +54,7 @@
                     {{ show_date($user->created_at) }}
                 </x-slot:subtitle>
 
-            </x-appshell:card-with-icon>
+            </x-appshell::card-with-icon>
         </div>
 
         <div class="col">
