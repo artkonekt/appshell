@@ -44,6 +44,7 @@ class ThemeServiceProvider extends ServiceProvider
             config(['konekt.app_shell.ui.theme' => AppShell3Theme::ID]);
         }
 
-        //Blade::componentNamespace(theme()->componentNamespace(), 'appshell');
+        // Tells Laravel to take AppShell components from the current theme
+        Blade::componentNamespace(theme()->componentNamespace(), 'appshell');
     }
 }
