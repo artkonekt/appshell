@@ -16,11 +16,11 @@
 
     @include('appshell::user._subnav', ['active' => 'users'])
 
-    <x-appshell::group accent="secondary">
+    <x-appshell::card accent="secondary">
 
         <x-slot:title>@yield('title')</x-slot:title>
 
         {!! $table->render($users) !!}
 
-    </x-appshell::group>
+    </x-appshell::card>
 @stop

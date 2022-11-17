@@ -9,6 +9,7 @@
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
+- Renamed the `group` widget/component to `card`
 
 ## 3.5.0
 ##### 2022-09-21
