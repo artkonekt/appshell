@@ -18,6 +18,13 @@ use Illuminate\View\Component;
 
 class CardWithIcon extends Component
 {
+    public function __construct(
+        public ?string $icon = null,
+        public ?string $type = null,
+        public string $cardBodyClass = '',
+    ) {
+    }
+
     public function render()
     {
         return view('appshell::components.card-with-icon');

@@ -38,8 +38,8 @@
     <div class="row my-3">
         <div class="col">
             <x-appshell::card-with-icon
-                icon="{{ $user->is_active ? 'user-active' : 'user-inactive' }}"
-                type="{{ $user->is_active ? 'success' : 'warning' }}"
+                :icon="$user->is_active ? 'user-active' : 'user-inactive'"
+                :type="$user->is_active ? 'success' : 'warning'"
             >
                 {{ $user->name }}
                 @if (!$user->is_active)

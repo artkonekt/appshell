@@ -1,5 +1,5 @@
 <div class="card{{ isset($type) ? " text-white bg-$type" : '' }}">
-    <div class="card-body {{ $cardBodyClass ?? '' }}">
+    <div class="card-body {{ $cardBodyClass }}">
         <div class="h1 text-muted text-right {{ $iconClass ?? '' }}">
             @if (isset($iconSlot))
                 {{ $iconSlot }}
