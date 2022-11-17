@@ -13,7 +13,7 @@
 
     @can('delete users')
         @if(Auth::id() == $user->id)
-            <x-appshell::button variant="outline-danger" size="sm" disabled="disabled" href="{{ route('appshell.user.edit', $user) }}" title="{{ __('It would be quite unhealthy to delete yourself, so you can\'t') }}">
+            <x-appshell::button tag="button" variant="outline-danger" size="sm" disabled="disabled" href="{{ route('appshell.user.edit', $user) }}" title="{{ __('It would be quite unhealthy to delete yourself, so you can\'t') }}">
                 {{ __('Delete user') }}
             </x-appshell::button>
         @else
