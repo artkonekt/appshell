@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Components;
 
-use Illuminate\View\Component;
-
 class Card extends BaseComponent
 {
     public function __construct(
