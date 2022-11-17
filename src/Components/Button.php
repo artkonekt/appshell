@@ -24,13 +24,4 @@ class Button extends BaseComponent
         public ?string $iconPosition = 'before'
     ) {
     }
-
-    public function render()
-    {
-        if (null === $this->tag) {
-            $this->tag = $this->attributes->has('href') ? 'a' : 'button';
-        }
-
-        return parent::render();
-    }
 }
