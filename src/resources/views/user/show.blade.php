@@ -37,23 +37,24 @@
 
     <div class="row my-3">
         <div class="col">
-        @component(theme_widget('card_with_icon'), [
-                'icon' => $user->is_active ? 'user-active' : 'user-inactive',
-                'type' => $user->is_active ? 'success' : 'warning'
-        ])
-            {{ $user->name }}
-            @if (!$user->is_active)
-                <small>
+            <x-appshell:card-with-icon
+                icon="{{ $user->is_active ? 'user-active' : 'user-inactive' }}"
+                type="{{ $user->is_active ? 'success' : 'warning' }}"
+            >
+                {{ $user->name }}
+                @if (!$user->is_active)
+                    <small>
                         <span class="badge rounded-pill bg-light">
                             {{ __('inactive') }}
                         </span>
-                </small>
-            @endif
-            @slot('subtitle')
-                {{ __('Member since') }}
-                {{ show_date($user->created_at) }}
-            @endslot
-        @endcomponent
+                    </small>
+                @endif
+                <x-slot:subtitle>
+                    {{ __('Member since') }}
+                    {{ show_date($user->created_at) }}
+                </x-slot:subtitle>
+
+            </x-appshell:card-with-icon>
         </div>
 
         <div class="col">
