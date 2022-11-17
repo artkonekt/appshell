@@ -17,7 +17,7 @@ namespace Konekt\AppShell\Components;
 class Button extends BaseComponent
 {
     public function __construct(
-        public string $tag = 'a',
+        public string $tag = 'button',
         public string $variant = 'primary',
         public ?string $size = null,
         public ?string $icon = null,

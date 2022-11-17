@@ -13,7 +13,7 @@
 
     @can('delete users')
         @if(Auth::id() == $user->id)
-            <x-appshell::button tag="button" variant="outline-danger" size="sm" disabled="disabled" href="{{ route('appshell.user.edit', $user) }}" title="{{ __('It would be quite unhealthy to delete yourself, so you can\'t') }}">
+            <x-appshell::button variant="outline-danger" size="sm" disabled="disabled" href="{{ route('appshell.user.edit', $user) }}" title="{{ __('It would be quite unhealthy to delete yourself, so you can\'t') }}">
                 {{ __('Delete user') }}
             </x-appshell::button>
         @else
@@ -25,7 +25,7 @@
                     ])
             !!}
 
-            <x-appshell::button tag="button" variant="outline-danger" type="submit" size="sm">
+            <x-appshell::button variant="outline-danger" type="submit" size="sm">
                 {{ __('Delete user') }}
             </x-appshell::button>
             {!! Form::close() !!}
@@ -49,50 +49,44 @@
                         </span>
                     </small>
                 @endif
+
                 <x-slot:subtitle>
                     {{ __('Member since') }}
                     {{ show_date($user->created_at) }}
                 </x-slot:subtitle>
-
             </x-appshell::card-with-icon>
         </div>
 
         <div class="col">
-        @component(theme_widget('card_with_icon'), [
-                'icon' => 'security',
-                'type' => 'info'
-        ])
-            {{ $user->type }}
+            <x-appshell::card-with-icon icon="security" type="info">
+                {{ $user->type }}
+                <x-slot:subtitle>
+                    @if($user->roles->count())
+                        {{ __('Roles') }}:
+                        {{ $user->roles->take(3)->implode('name', ' | ') }}
+                    @else
+                        {{ __('no roles') }}
+                    @endif
 
-            @slot('subtitle')
-                @if($user->roles->count())
-                    {{ __('Roles') }}:
-                    {{ $user->roles->take(3)->implode('name', ' | ') }}
-                @else
-                    {{ __('no roles') }}
-                @endif
-
-                @if($user->roles->count() > 3)
-                    | {{ __('+ :num more...', ['num' => $user->roles->count() - 3]) }}
-                @endif
-            @endslot
-        @endcomponent
+                    @if($user->roles->count() > 3)
+                        | {{ __('+ :num more...', ['num' => $user->roles->count() - 3]) }}
+                    @endif
+                </x-slot:subtitle>
+            </x-appshell::card-with-icon>
         </div>
 
         <div class="col">
-        @component(theme_widget('card_with_icon'), ['icon' => 'star'])
-            {{ $user->login_count }} {{ __('logins') }}
-
-            @slot('subtitle')
-                @if ($user->last_login_at)
-                    {{ __('Last login') }}
-                    {{ show_datetime($user->last_login_at) }}
-                @else
-                    {{ __('never logged in') }}
-                @endif
-
-            @endslot
-        @endcomponent
+            <x-appshell::card-with-icon icon="star">
+                {{ $user->login_count }} {{ __('logins') }}
+                <x-slot:subtitle>
+                    @if ($user->last_login_at)
+                        {{ __('Last login') }}
+                        {{ show_datetime($user->last_login_at) }}
+                    @else
+                        {{ __('never logged in') }}
+                    @endif
+                </x-slot:subtitle>
+            </x-appshell::card-with-icon>
         </div>
 
     </div>

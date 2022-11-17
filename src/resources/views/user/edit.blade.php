@@ -15,23 +15,21 @@
 ]) !!}
 
 <div class="col-12 col-md-6 col-lg-8 col-xl-9">
-    @component(theme_widget('group'), ['accent' => 'secondary'])
-        @slot('title'){{ __('User Account Data') }}@endslot
-
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __('User Account Data') }}</x-slot:title>
         @include('appshell::user._form')
-
-        @slot('footer')
-            <button class="btn btn-primary">{{ __('Save') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        @endslot
-    @endcomponent
+        <x-slot:footer>
+            <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
+            <x-appshell::button onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
+        </x-slot:footer>
+    </x-appshell::card>
 </div>
 
 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-    @component(theme_widget('group'), ['accent' => 'success'])
-        @slot('title'){{ __('Roles') }}@endslot
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __('Roles') }}</x-slot:title>
         @include('appshell::role._assignment', ['model' => $user])
-    @endcomponent
+    </x-appshell::card>
 </div>
 
 {!! Form::close() !!}
