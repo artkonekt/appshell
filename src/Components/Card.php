@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Contains the Group class.
+ * Contains the Card class.
  *
  * @copyright   Copyright (c) 2022 Attila Fulop
  * @author      Attila Fulop
@@ -16,7 +16,7 @@ namespace Konekt\AppShell\Components;
 
 use Illuminate\View\Component;
 
-class Group extends Component
+class Card extends Component
 {
     public function __construct(
         public ?string $accent = null,
@@ -25,6 +25,6 @@ class Group extends Component
 
     public function render()
     {
-        return view('appshell::components.group');
+        return view('appshell::components.card');
     }
 }
