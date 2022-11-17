@@ -14,9 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Components;
 
-use Illuminate\View\Component;
-
-class Button extends Component
+class Button extends BaseComponent
 {
     public function __construct(
         public string $tag = 'a',
@@ -25,10 +23,5 @@ class Button extends Component
         public ?string $icon = null,
         public ?string $iconPosition = 'before'
     ) {
-    }
-
-    public function render()
-    {
-        return view('appshell::components.button');
     }
 }

@@ -16,15 +16,10 @@ namespace Konekt\AppShell\Components;
 
 use Illuminate\View\Component;
 
-class Card extends Component
+class Card extends BaseComponent
 {
     public function __construct(
         public ?string $accent = null,
     ) {
-    }
-
-    public function render()
-    {
-        return view('appshell::components.card');
     }
 }
