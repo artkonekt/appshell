@@ -17,11 +17,20 @@ namespace Konekt\AppShell\Components;
 class Button extends BaseComponent
 {
     public function __construct(
-        public string $tag = 'button',
+        public ?string $tag = null,
         public string $variant = 'primary',
         public ?string $size = null,
         public ?string $icon = null,
         public ?string $iconPosition = 'before'
     ) {
+    }
+
+    public function render()
+    {
+        if (null === $this->tag) {
+            $this->tag = $this->attributes->has('href') ? 'a' : 'button';
+        }
+
+        return parent::render();
     }
 }

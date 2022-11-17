@@ -20,7 +20,7 @@
         @include('appshell::user._form')
         <x-slot:footer>
             <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
-            <x-appshell::button onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
         </x-slot:footer>
     </x-appshell::card>
 </div>
