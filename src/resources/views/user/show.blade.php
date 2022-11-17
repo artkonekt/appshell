@@ -4,7 +4,7 @@
     {{ $user->name }}
 @stop
 
-@section('page-actions')
+@push('page-actions')
     @can('edit users')
         <x-appshell::button variant="outline-primary" size="sm" href="{{ route('appshell.user.edit', $user) }}">
             {{ __('Edit user') }}
@@ -31,7 +31,7 @@
             {!! Form::close() !!}
         @endif
     @endcan
-@stop
+@endpush
 
 @section('content')
 

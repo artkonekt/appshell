@@ -2,7 +2,7 @@
     <div class="page-header-titlebar">
         <h1 class="page-title">@yield('title')</h1>
         <div class="page-actionbar">
-            @yield('page-actions')
+            @stack('page-actions')
         </div>
     </div>
 
