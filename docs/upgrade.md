@@ -1,5 +1,38 @@
 # Upgrading
 
+## 3.x -> 4.0
+
+> ⚠ AppShell v4 IS STILL WORK IN PROGRESS and HAS NOT BEEN RELEASED YET! (Coming in March 2023)
+
+## Group Component Has Been Renamed To Card
+
+Additionally, the component's `actionbar` slot has been renamed to `actions`
+
+In v3:
+
+```blade
+@component(theme_widget('group'))
+    @slot('title')
+        Product
+    @endslot
+        
+    @slot('actiobar')
+        <a href="/edit">Edit</a>
+    @endslot
+@endcomponent
+```
+
+in v4:
+
+```blade
+<x-appshell::card>
+    <x-slot:title>Product</x-slot:title>
+    <x-slot:actions>
+        <a href="/edit">Edit</a>
+    </x-slot:actions>
+</x-appshell::card>
+```
+
 ## 2.x -> 3.0
 
 Beginning with AppShell 3.0, the minimum requirements are:  
