@@ -21,7 +21,8 @@ class Button extends BaseComponent
         public string $variant = 'primary',
         public ?string $size = null,
         public ?string $icon = null,
-        public ?string $iconPosition = 'before'
+        public ?string $iconPosition = 'before',
+        public ?string $float = null
     ) {
     }
 }
