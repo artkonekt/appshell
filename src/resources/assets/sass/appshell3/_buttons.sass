@@ -1,0 +1,17 @@
+.btn-xs
+  +button-size($btn-padding-y-xs, $btn-padding-x-xs, $font-size-xs, $border-radius-xs)
+
+.btn
+    &.float-end
+        margin-left: .2rem
+
+.btn-show-on-tr-hover
+    display: none
+
+.btn-none
+    &:focus
+        box-shadow: none
+
+tr:hover
+    .btn-show-on-tr-hover
+        display: inline-block
