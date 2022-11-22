@@ -5,15 +5,12 @@
 @stop
 
 @push('page-actions')
-    @can('edit users')
-        <x-appshell::button variant="outline-primary" size="sm" href="{{ route('appshell.user.edit', $user) }}">
-            {{ __('Edit user') }}
-        </x-appshell::button>
-    @endcan
-
     @can('delete users')
-        @if(Auth::id() == $user->id)
-            <x-appshell::button tag="button" variant="outline-danger" size="sm" disabled="disabled" href="{{ route('appshell.user.edit', $user) }}" title="{{ __('It would be quite unhealthy to delete yourself, so you can\'t') }}">
+        @if(Auth::id() === $user->id)
+            <x-appshell::button tag="button" variant="danger" disabled="disabled"
+                :href="route('appshell.user.edit', $user)"
+                :title="__('It would be quite unhealthy to delete yourself, so you can\'t')"
+            >
                 {{ __('Delete user') }}
             </x-appshell::button>
         @else
@@ -21,15 +18,20 @@
                     'route' => ['appshell.user.destroy', $user],
                     'method' => 'DELETE',
                     'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name]),
-                    'class' => "inline-block"
+                    'class' => "inline"
                     ])
             !!}
 
-            <x-appshell::button variant="outline-danger" type="submit" size="sm">
-                {{ __('Delete user') }}
-            </x-appshell::button>
+                <x-appshell::button variant="danger" type="submit">
+                    {{ __('Delete user') }}
+                </x-appshell::button>
             {!! Form::close() !!}
         @endif
+    @endcan
+
+    @can('edit users')
+        <x-appshell::button variant="light" size="sm" href="{{ route('appshell.user.edit', $user) }}"
+            :title="__('Edit user')" icon="+" />
     @endcan
 @endpush
 
@@ -88,7 +90,6 @@
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
-
     </div>
 
 @stop
