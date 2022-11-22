@@ -7,9 +7,9 @@
 @section('content')
 
 {!! Form::open(['route' => 'appshell.quicklinks.update', 'method' => 'PUT']) !!}
-    @component(theme_widget('group'))
+    <x-appshell::card>
         @foreach($links as $item)
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <div class="col">
                     <input class="form-control" type="text" name="labels[]"
                            placeholder="Label" value="{{ $item['label'] }}">
@@ -20,7 +20,7 @@
                 </div>
             </div>
         @endforeach
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col">
                 <input class="form-control" type="text" name="labels[]"
                        placeholder="Label">
@@ -31,11 +31,11 @@
             </div>
         </div>
 
-        @slot('footer')
-            <button class="btn btn-primary">{{ __('Save quick links') }}</button>
-            <a class="btn btn-link" href="javascript:history.go(-1);">{{ __('Back without saving') }}</a>
-        @endslot
-    @endcomponent
+        <x-slot:footer>
+            <x-appshell::button>{{ __('Save quick links') }}</x-appshell::button>
+            <x-appshell::button type="link" href="javascript:history.go(-1);">{{ __('Back without saving') }}</x-appshell::button>
+        </x-slot:footer>
+    </x-appshell::card>
 {!! Form::close() !!}
 
 @stop
