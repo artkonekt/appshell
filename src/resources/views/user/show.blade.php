@@ -7,7 +7,7 @@
 @push('page-actions')
     @can('delete users')
         @if(Auth::id() === $user->id)
-            <x-appshell::button tag="button" variant="danger" disabled="disabled"
+            <x-appshell::button tag="button" size="sm" variant="danger" disabled="disabled"
                 :href="route('appshell.user.edit', $user)"
                 :title="__('It would be quite unhealthy to delete yourself, so you can\'t')"
             >
@@ -18,11 +18,11 @@
                     'route' => ['appshell.user.destroy', $user],
                     'method' => 'DELETE',
                     'data-confirmation-text' => __('Are you sure to delete poor :name?', ['name' => $user->name]),
-                    'class' => "inline"
+                    'class' => "d-inline"
                     ])
             !!}
 
-                <x-appshell::button variant="danger" type="submit">
+                <x-appshell::button variant="danger" type="submit" size="sm">
                     {{ __('Delete user') }}
                 </x-appshell::button>
             {!! Form::close() !!}
@@ -31,7 +31,7 @@
 
     @can('edit users')
         <x-appshell::button variant="light" size="sm" href="{{ route('appshell.user.edit', $user) }}"
-            :title="__('Edit user')" icon="+" />
+            :title="__('Edit user')" icon="edit" />
     @endcan
 @endpush
 
