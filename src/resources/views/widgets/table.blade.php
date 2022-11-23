@@ -21,7 +21,7 @@
         @foreach($table->data as $line)
             <tr>
                 @foreach($table->columns as $column)
-                    <td{!! $column->tdAttributes() !!}@if($column->hasInlineStyle())style="{{ $column->inlineStyle() }}"@endif>{!! $column->render($line) !!}</td>
+                    <td{!! $column->tdAttributes() !!}@if($column->hasInlineStyle()) style="{{ $column->inlineStyle() }}"@endif>{!! $column->render($line) !!}</td>
                 @endforeach
             </tr>
         @endforeach
@@ -29,7 +29,7 @@
     @if($table->hasFooter())
         <tfoot>
         @foreach($table->footer as $footerColumn)
-            <td{!! $footerColumn->tdAttributes() !!}@if($footerColumn->hasInlineStyle())style="{{ $footerColumn->inlineStyle() }}"@endif>{!! $footerColumn->render($table->data) !!}</td>
+            <td{!! $footerColumn->tdAttributes() !!}@if($footerColumn->hasInlineStyle()) style="{{ $footerColumn->inlineStyle() }}"@endif>{!! $footerColumn->render($table->data) !!}</td>
         @endforeach
         </tfoot>
     @endif
