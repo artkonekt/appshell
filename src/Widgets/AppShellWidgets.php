@@ -19,6 +19,7 @@ final class AppShellWidgets
     public const AVATAR = 'avatar';
     public const BADGE = 'badge';
     public const BADGES = 'badges';
+    public const COLOR_ENUM_ICON = 'color_enum_icon';
     public const ENUM_ICON = 'enum_icon';
     public const FILTER = 'filter';
     public const FILTER_SET = 'filterset';

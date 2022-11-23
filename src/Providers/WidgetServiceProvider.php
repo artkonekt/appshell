@@ -28,6 +28,7 @@ class WidgetServiceProvider extends ServiceProvider
         AppShellWidgets::AVATAR => Widgets\Avatar::class,
         AppShellWidgets::BADGE => Widgets\Badge::class,
         AppShellWidgets::BADGES => Widgets\Badges::class,
+        AppShellWidgets::COLOR_ENUM_ICON => Widgets\ColorEnumIcon::class,
         AppShellWidgets::ENUM_ICON => Widgets\EnumIcon::class,
         AppShellWidgets::FILTER => Widgets\Filter::class,
         AppShellWidgets::FILTER_SET => Widgets\FilterSet::class,
