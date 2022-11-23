@@ -59,7 +59,6 @@ class MultiText implements Widget
             $secondary = new NullWidget();
         }
 
-
         $instance = new static($theme, $primary, $secondary);
 
         foreach ($options['primary']['extras'] ?? [] as $extra) {
