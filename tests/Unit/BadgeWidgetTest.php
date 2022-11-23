@@ -58,4 +58,14 @@ class BadgeWidgetTest extends TestCase
         $this->assertStringContainsString('background-color: #333333', $html);
         $this->assertStringContainsString('color: #FFFFFF', $html);
     }
+
+    /** @test */
+    public function it_doesnt_mess_up_color_and_background_color()
+    {
+        $text = Badge::create(new AppShell3Theme(), ['text' => 'McQueen', 'color' => '#272322']);
+        $html = trim($text->render());
+        $this->assertStringContainsString('background-color: #272322', $html);
+        $this->assertStringContainsString('color: #FFFFFF', $html);
+        $this->assertStringNotContainsString('color: #121212', $html);
+    }
 }

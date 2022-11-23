@@ -63,6 +63,7 @@ class Badge implements Widget
         if (null !== $bgColor->style) {
             $result['style'] = $bgColor->style;
         }
+        unset($result['color']);
 
         return $result;
     }
