@@ -27,4 +27,14 @@ final class ColorAttributes
         $this->themeColor = $themeColor;
         $this->style = $style;
     }
+
+    public function isEmpty(): bool
+    {
+        return null === $this->style && $this->themeColor->isNone();
+    }
+
+    public function isNotEmpty(): bool
+    {
+        return !$this->isEmpty();
+    }
 }

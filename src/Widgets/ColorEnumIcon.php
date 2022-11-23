@@ -18,11 +18,9 @@ use Illuminate\Support\Arr;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Traits\ResolvesSubstitutions;
-use Konekt\AppShell\Widgets\Concerns\CalculatesContextualColors;
 
 class ColorEnumIcon implements Widget
 {
-    use CalculatesContextualColors;
     use ResolvesSubstitutions;
 
     protected Theme $theme;

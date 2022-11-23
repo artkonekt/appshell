@@ -25,7 +25,7 @@ class BadgeWidgetTest extends TestCase
     {
         $text = Badge::create(new AppShell3Theme(), ['text' => 'Hot Deal']);
         $html = trim($text->render());
-        $this->assertStringContainsString('class="badge badge-pill', $html);
+        $this->assertStringContainsString('class="badge rounded-pill', $html);
         $this->assertStringContainsString('Hot Deal</', $html);
     }
 
@@ -34,7 +34,7 @@ class BadgeWidgetTest extends TestCase
     {
         $text = Badge::create(new AppShell3Theme(), ['text' => 'Expired', 'color' => 'danger']);
         $html = trim($text->render());
-        $this->assertStringContainsString('class="badge badge-pill badge-danger', $html);
+        $this->assertStringContainsString('class="badge rounded-pill bg-danger', $html);
         $this->assertStringContainsString('Expired</', $html);
     }
 
@@ -43,7 +43,7 @@ class BadgeWidgetTest extends TestCase
     {
         $text = Badge::create(new AppShell3Theme(), ['text' => 'Lollobrigida', 'color' => '#EE1212']);
         $html = trim($text->render());
-        $this->assertStringContainsString('class="badge badge-pill', $html);
+        $this->assertStringContainsString('class="badge rounded-pill', $html);
         $this->assertStringNotContainsString('badge-primary', $html);
         $this->assertStringContainsString('style="', $html);
         $this->assertStringContainsString('background-color: #EE1212', $html);

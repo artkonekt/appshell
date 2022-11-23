@@ -169,4 +169,20 @@ class TextWidgetTest extends TestCase
         $this->assertEquals('yes', $text->render(1));
         $this->assertEquals('', $text->render(null));
     }
+
+    /** @test */
+    public function a_theme_color_can_be_specified()
+    {
+        $text = Text::create(new AppShell3Theme(), ['text' => 'Hey I have color', 'color' => 'primary']);
+
+        $this->assertStringContainsString('class="text-primary', $text->render());
+    }
+
+    /** @test */
+    public function a_concrete_color_can_be_specified()
+    {
+        $text = Text::create(new AppShell3Theme(), ['text' => 'Hey I have color', 'color' => '#ff0000']);
+
+        $this->assertStringContainsString('style="color: #ff0000', $text->render());
+    }
 }

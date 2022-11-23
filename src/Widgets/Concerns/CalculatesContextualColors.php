@@ -27,26 +27,27 @@ trait CalculatesContextualColors
     protected function parseColorDefinition(
         $definition,
         $value = null,
-        string $fallback = ThemeColor::PRIMARY
+        ?string $fallback = ThemeColor::PRIMARY,
+        bool $setForegroundColor = false
     ): ColorAttributes {
         if (null === $definition) {
             return new ColorAttributes(ThemeColor::create($fallback), null);
         }
 
         if (is_string($definition)) {
-            return $this->fromColorString($definition);
+            return $this->fromColorString($definition, $setForegroundColor);
         }
 
         if (is_array($definition)) {
             if (isset($definition['bool'])) {
-                return $this->byBooleanExpression($definition['bool'], $value);
+                return $this->byBooleanExpression($definition['bool'], $value, $setForegroundColor);
             }
             if (isset($definition['value'])) {
                 $color = $this->resolveSubstitutions($definition['value'], $value);
                 if ($color instanceof ThemeColor) {
                     $color = $color->value();
                 }
-                return $this->fromColorString($color);
+                return $this->fromColorString($color, $setForegroundColor);
             }
             // Additional magic here
         }
@@ -54,10 +55,11 @@ trait CalculatesContextualColors
         return new ColorAttributes(ThemeColor::create($fallback), null);
     }
 
-    private function byBooleanExpression(array $definition, $value): ColorAttributes
+    private function byBooleanExpression(array $definition, $value, $setForegroundColor = false): ColorAttributes
     {
         return $this->fromColorString(
-            (bool) $value ? $definition[0] ?? null : $definition[1] ?? null
+            (bool) $value ? $definition[0] ?? null : $definition[1] ?? null,
+            $setForegroundColor
         );
     }
 

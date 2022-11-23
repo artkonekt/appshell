@@ -5,7 +5,8 @@
 
 - Added Components based on the Laravel Blade Components Feature
 - Added `page-actions` blade stack that themes need to define
-- Added colored enum icon feature via the `color_enum_icon()` helper 
+- Added colored enum icon feature via the `color_enum_icon()` helper
+- Added feature to specify the color of text widgets
 - Renamed the stylesheet of the default theme from `appshell` to `appshell3`
 - Changed the AppShell Theme - it has been rewritten from scratch with new visual style
 - Changed Breadcrumbs dependency from v7 to v8

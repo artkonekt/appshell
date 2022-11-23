@@ -25,7 +25,7 @@ class BadgesWidgetTest extends TestCase
     {
         $badges = Badges::create(new AppShell3Theme(), ['empty' => ['text' => 'Nothing here', 'color' => 'dark']]);
         $html = trim($badges->render([]));
-        $this->assertStringContainsString('badge-dark', $html);
+        $this->assertStringContainsString('bg-dark', $html);
         $this->assertStringContainsString('Nothing here</', $html);
     }
 }

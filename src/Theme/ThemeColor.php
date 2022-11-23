@@ -17,17 +17,30 @@ namespace Konekt\AppShell\Theme;
 use Konekt\Enum\Enum;
 
 /**
- * @method static ThemeColor NONE ()
- * @method static ThemeColor PRIMARY ()
- * @method static ThemeColor SECONDARY ()
- * @method static ThemeColor INFO ()
- * @method static ThemeColor SUCCESS ()
- * @method static ThemeColor WARNING ()
- * @method static ThemeColor DANGER ()
- * @method static ThemeColor TEXT ()
- * @method static ThemeColor DARK ()
- * @method static ThemeColor LIGHT ()
- * @method static ThemeColor MUTED ()
+ * @method static ThemeColor NONE()
+ * @method static ThemeColor PRIMARY()
+ * @method static ThemeColor SECONDARY()
+ * @method static ThemeColor INFO()
+ * @method static ThemeColor SUCCESS()
+ * @method static ThemeColor WARNING()
+ * @method static ThemeColor DANGER()
+ * @method static ThemeColor TEXT()
+ * @method static ThemeColor DARK()
+ * @method static ThemeColor LIGHT()
+ * @method static ThemeColor MUTED()
+ *
+ * @method bool isNone()
+ * @method bool isPrimary()
+ * @method bool isSecondary()
+ * @method bool isInfo()
+ * @method bool isSuccess()
+ * @method bool isWarning()
+ * @method bool isDanger()
+ * @method bool isText()
+ * @method bool isDark()
+ * @method bool isLight()
+ * @method bool isMuted()
+ *
  */
 class ThemeColor extends Enum
 {
