@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Tests\Unit;
 
+use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Tests\TestCase;
 use Konekt\AppShell\Theme\AppShell3Theme;
 use Konekt\AppShell\Widgets\MultiText;
@@ -31,6 +32,20 @@ class MultiTextWidgetTest extends TestCase
         $html = $widget->render();
         $this->assertStringContainsString('First here', $html);
         $this->assertStringContainsString('Second there', $html);
+    }
+
+    /** @test */
+    public function the_secondary_widget_can_be_null()
+    {
+        $widget = MultiText::create(new AppShell3Theme(), [
+            'primary' => ['text' => 'First here'],
+            'secondary' => null,
+        ]);
+
+        $model = new User(['email' => 'this@notvisible.com']);
+        $html = $widget->render($model);
+        $this->assertStringContainsString('First here', $html);
+        $this->assertStringNotContainsString($model->email, $html);
     }
 
     /** @test */
