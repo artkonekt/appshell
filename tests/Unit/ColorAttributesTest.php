@@ -32,7 +32,7 @@ class ColorAttributesTest extends TestCase
     public function it_is_not_empty_if_a_non_none_theme_color_is_set()
     {
         foreach (ThemeColor::values() as $themeColor) {
-            if ($themeColor !== ThemeColor::NONE) {
+            if (ThemeColor::NONE !== $themeColor) {
                 $this->assertFalse(
                     (new ColorAttributes(ThemeColor::create($themeColor), null))->isEmpty()
                 );
