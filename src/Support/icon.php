@@ -9,6 +9,7 @@ declare(strict_types=1);
  */
 
 use Konekt\AppShell\Contracts\IconTheme;
+use Konekt\AppShell\Contracts\ThemeColored;
 use Konekt\AppShell\EnumIcons;
 use Konekt\AppShell\Theme\ThemeColor;
 use Konekt\Enum\Enum;
@@ -27,6 +28,13 @@ function enum_icon(Enum $enum): string
 function icon(string $name, string $color = null, array $attributes = []): string
 {
     return icon_theme()->render($name, ThemeColor::create($color), $attributes);
+}
+
+function color_enum_icon(Enum $enum, array $attributes = []): string
+{
+    $color = $enum instanceof ThemeColored ? $enum->color()->value() : ThemeColor::NONE;
+
+    return icon(enum_icon($enum), $color, $attributes);
 }
 
 /**

@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Models;
 
+use Konekt\AppShell\Concerns\IsColoredEnum;
+use Konekt\AppShell\Contracts\ThemeColored;
 use Konekt\AppShell\Theme\ThemeColor;
 use Konekt\Enum\Enum;
 
@@ -25,14 +27,24 @@ use Konekt\Enum\Enum;
  *
  * @property-read ThemeColor $color
  */
-class InvitationStatus extends Enum
+class InvitationStatus extends Enum implements ThemeColored
 {
+    use IsColoredEnum;
+
     public const ACTIVE = 'active';
     public const EXPIRED = 'expired';
     public const UTILIZED = 'utilized';
     public const INVALID = 'invalid';
 
     protected static array $labels = [];
+
+    protected static $defaultColor = ThemeColor::DANGER;
+
+    protected static $colors = [
+        self::ACTIVE => ThemeColor::SUCCESS,
+        self::EXPIRED => ThemeColor::WARNING,
+        self::UTILIZED => ThemeColor::INFO,
+    ];
 
     public function __get($name)
     {
@@ -41,23 +53,6 @@ class InvitationStatus extends Enum
         }
 
         return parent::__get($name);
-    }
-
-    public function color(): ThemeColor
-    {
-        switch ($this->value) {
-            case self::ACTIVE:
-                return ThemeColor::SUCCESS();
-                break;
-            case self::EXPIRED:
-                return ThemeColor::WARNING();
-                break;
-            case self::UTILIZED:
-                return ThemeColor::INFO();
-                break;
-            default:
-                return ThemeColor::DANGER();
-        }
     }
 
     protected static function boot()
