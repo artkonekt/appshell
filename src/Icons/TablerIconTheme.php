@@ -93,7 +93,7 @@ class TablerIconTheme implements IconTheme
             return '';
         }
 
-        return '<link rel="stylesheet" href="https://unpkg.com/@tabler/icons@latest/iconfont/tabler-icons.min.css">'
+        return '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">'
             . $this->animationCss('display:inline-block;');
     }
 

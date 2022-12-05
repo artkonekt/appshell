@@ -11,6 +11,7 @@
 - Changed the AppShell Theme - it has been rewritten from scratch with new visual style
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
+- Changed Tabler icon CDN URL from unpkg to jsdelivr
 - Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
 - Renamed the `group` widget/component to `card`
 
