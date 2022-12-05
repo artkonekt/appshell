@@ -1,10 +1,10 @@
 # AppShell Changelog
 
 
-## Unreleased
-##### 2022-12-XX
+## 3.5.1
+##### 2022-12-05
 
-- Changed Tabler icon CDN URL from unpkg to jsdelivr (Cherry pick from v4.x branch)
+- Fixed missing Tabler Icon assets by changing their CDN URL from unpkg to jsdelivr 🎅
 
 ## 3.5.0
 ##### 2022-09-21
