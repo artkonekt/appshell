@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2023-XX-YY
+## 3.6.0
+##### 2023-01-26
 
 - Added pagination to customer and user lists (fixed 100 record page size)
 - Added changing the Laravel Paginator style to Bootstrap 4
