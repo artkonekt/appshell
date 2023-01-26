@@ -1,5 +1,11 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2023-XX-YY
+
+- Added the `PartialMatchInMultipleFields` filter
+- Changed customer list name filter to search in `firstname`, `lastname` fields as well besides the `company_name` 
+
 ## 3.6.0
 ##### 2023-01-26
 

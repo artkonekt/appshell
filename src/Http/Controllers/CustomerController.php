@@ -18,7 +18,7 @@ use Konekt\AppShell\Contracts\Requests\CreateCustomer;
 use Konekt\AppShell\Contracts\Requests\UpdateCustomer;
 use Konekt\AppShell\Filters\Filters;
 use Konekt\AppShell\Filters\Generic\BoolTriState;
-use Konekt\AppShell\Filters\Generic\PartialMatch;
+use Konekt\AppShell\Filters\Generic\PartialMatchInMultipleFields;
 use Konekt\AppShell\Filters\PartialMatchPattern;
 use Konekt\AppShell\Settings\DefaultCurrency;
 use Konekt\AppShell\Widgets;
@@ -33,7 +33,7 @@ class CustomerController extends BaseController
     public function index(Request $request)
     {
         $filters = Filters::make([
-            (new PartialMatch('company_name', __('Name'), PartialMatchPattern::ANYWHERE()))->displayAsTextField(),
+            (new PartialMatchInMultipleFields('name', ['firstname', 'lastname', 'company_name'], __('Name'), PartialMatchPattern::ANYWHERE())),
             new BoolTriState('is_active', __('Actives only'), __('Inactives only'), __('Any status'), __('Status')),
         ]);
 
