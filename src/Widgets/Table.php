@@ -72,7 +72,6 @@ class Table implements Widget
             $this->data = collect($data);
         } elseif ($data instanceof LengthAwarePaginator) {
             $this->data = $data->getCollection();
-
         } else {
             $this->data = collect([]);
         }
