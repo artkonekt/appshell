@@ -46,7 +46,7 @@ class UserController extends BaseController
         $filters->activateFromRequest($request);
 
         return view('appshell::user.index', [
-            'users' => $filters->apply(UserProxy::query())->with('roles')->get(),
+            'users' => $filters->apply(UserProxy::query())->with('roles')->paginate(100)->withQueryString(),
             'table' => widget('appshell::user.index.table'),
             'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
                 'route' => 'appshell.user.index',

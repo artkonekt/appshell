@@ -40,7 +40,7 @@ class CustomerController extends BaseController
         $filters->activateFromRequest($request);
 
         return view('appshell::customer.index', [
-            'customers' => $filters->apply(CustomerProxy::query())->get(),
+            'customers' => $filters->apply(CustomerProxy::query())->paginate(100)->withQueryString(),
             'table' => widget('appshell::customer.index.table'),
             'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
                 'route' => 'appshell.customer.index',

@@ -26,4 +26,8 @@
 
     @endcomponent
 
+    <div class="my-4">
+        {!! $users->links() !!}
+    </div>
+
 @stop

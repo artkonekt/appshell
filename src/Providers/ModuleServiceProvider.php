@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 use Konekt\Address\Contracts\Address as AddressContract;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
@@ -99,6 +100,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
     public function boot()
     {
         parent::boot();
+
+        if (!config('konekt.app_shell.disable.paginator_style')) {
+            Paginator::useBootstrapFour();
+        }
 
         $this->loadBreadcrumbs();
 
