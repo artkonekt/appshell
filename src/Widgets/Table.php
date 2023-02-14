@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Konekt\AppShell\Contracts\Theme;
@@ -69,6 +70,8 @@ class Table implements Widget
             $this->data = $data;
         } elseif (is_array($data)) {
             $this->data = collect($data);
+        } elseif ($data instanceof LengthAwarePaginator) {
+            $this->data = $data->getCollection();
         } else {
             $this->data = collect([]);
         }

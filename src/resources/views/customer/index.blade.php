@@ -24,4 +24,8 @@
 
     @endcomponent
 
+    <div class="my-4">
+        {!! $customers->links() !!}
+    </div>
+
 @stop

@@ -48,10 +48,11 @@ return [
 
 You can disable the following features, by setting their respective keys to `true`:
 
-| Feature       | Config Key                              | Effect                                                                             |
-|:--------------|:----------------------------------------|:-----------------------------------------------------------------------------------|
-| Commands      | `konekt.appshell.disable.commands`      | The AppShell console commands wont be registered with Artisan                      |
-| Login Counter | `konekt.appshell.disable.login_counter` | The `login_count` and `last_login_at` fields of the user won't be updated on login |
+| Feature         | Config Key                                | Effect                                                                                                             |
+|:----------------|:------------------------------------------|:-------------------------------------------------------------------------------------------------------------------|
+| Commands        | `konekt.appshell.disable.commands`        | The AppShell console commands wont be registered with Artisan                                                      |
+| Login Counter   | `konekt.appshell.disable.login_counter`   | The `login_count` and `last_login_at` fields of the user won't be updated on login                                 |
+| Paginator Style | `konekt.appshell.disable.paginator_style` | The [Laravel Paginator style](https://laravel.com/docs/9.x/pagination#using-bootstrap) won't be set to Bootstrap 4 |
 
 ## Auth Route Names
 

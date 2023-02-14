@@ -62,6 +62,7 @@ return [
     'disable' => [
         'login_counter' => false,
         'commands' => false,
+        'paginator_style' => false,
     ],
     'ui' => [
         'name' => 'AppShell',

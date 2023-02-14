@@ -23,4 +23,9 @@
         {!! $table->render($users) !!}
 
     </x-appshell::card>
+
+    <div class="my-4">
+        {!! $users->links() !!}
+    </div>
+
 @stop

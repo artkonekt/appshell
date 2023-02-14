@@ -14,6 +14,18 @@
 - Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
 - Renamed the `group` widget/component to `card`
 
+## 3.7.0
+##### 2023-01-26
+
+- Added the `PartialMatchInMultipleFields` filter
+- Changed customer list name filter to search in `firstname`, `lastname` fields as well besides the `company_name` 
+
+## 3.6.0
+##### 2023-01-26
+
+- Added pagination to customer and user lists (fixed 100 record page size)
+- Added changing the Laravel Paginator style to Bootstrap 4
+- Added `disable.paginator_style` configuration
 
 ## 3.5.1
 ##### 2022-12-05
