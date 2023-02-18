@@ -71,4 +71,9 @@ class FilterSet implements Widget
             'route' => $this->route,
         ]);
     }
+
+    public function filters(): Filters
+    {
+        return $this->filters;
+    }
 }
