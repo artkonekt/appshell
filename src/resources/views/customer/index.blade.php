@@ -4,25 +4,24 @@
     {{ __('Customers') }}
 @stop
 
+@push('page-actions')
+    @can('create customers')
+        <x-appshell::button variant="success" size="sm" icon="+" href="{{ route('appshell.customer.create') }}">
+            {{ __('Add Customer') }}
+        </x-appshell::button>
+    @endcan
+@endpush
+
 @section('content')
 
-    @component(theme_widget('group'), ['accent' => 'secondary'])
-        @slot('title')@yield('title')@endslot
+    <x-appshell::card accent="secondary">
 
-        @slot('actionbar')
-            @can('create customers')
-                <a href="{{ route('appshell.customer.create') }}" class="btn btn-sm btn-outline-success">
-                    {!! icon('+') !!}
-                    {{ __('Create Customer') }}
-                </a>
-            @endcan
-
-            {!! $filters->render()  !!}
-        @endslot
+        <x-slot:title>@yield('title')</x-slot:title>
+        <x-slot:actions>{!! $filters->render()  !!}</x-slot:actions>
 
         {!! $table->render($customers) !!}
 
-    @endcomponent
+    </x-appshell::card>
 
     <div class="my-4">
         {!! $customers->links() !!}
