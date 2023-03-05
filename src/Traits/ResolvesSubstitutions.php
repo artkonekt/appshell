@@ -62,9 +62,7 @@ trait ResolvesSubstitutions
     private static function makeCallable($definition): callable
     {
         if (is_string($definition)) {
-            return function ($data, Widget $widget) use ($definition) {
-                return $widget->resolveSubstitutions($definition, $data);
-            };
+            return fn ($data, Widget $widget) => $widget->resolveSubstitutions($definition, $data);
         }
 
         if (is_array($definition)) {

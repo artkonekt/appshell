@@ -116,6 +116,49 @@ class LinkWidgetTest extends TestCase
     }
 
     /** @test */
+    public function it_can_conditionally_render_the_link_based_on_an_if_closure()
+    {
+        $link = Link::create(new AppShellTheme(), [
+            'text' => 'Edit Absnece',
+            'url' => 'https://absence.app/edit',
+            'onlyIf' => fn ($item) => $item->user_id === auth()->id(),
+        ]);
+
+        $itemForAdminUser = new \stdClass();
+        $itemForAdminUser->user_id = $this->adminUser->id;
+
+        $itemForNormalUser = new \stdClass();
+        $itemForNormalUser->user_id = $this->normalUser->id;
+
+        $this->actingAs($this->normalUser);
+        $this->assertStringNotContainsString('href="', $link->render($itemForAdminUser));
+        $this->assertStringContainsString('href="', $link->render($itemForNormalUser));
+
+        $this->actingAs($this->adminUser);
+        $this->assertStringNotContainsString('href="', $link->render($itemForNormalUser));
+        $this->assertStringContainsString('href="', $link->render($itemForAdminUser));
+    }
+
+    /** @test */
+    public function it_can_conditionally_render_the_link_based_on_an_if_condition_that_reads_a_model_property()
+    {
+        $link = Link::create(new AppShellTheme(), [
+            'text' => 'Modify Order',
+            'url' => 'https://order.app/modify',
+            'onlyIf' => '$model.is_active',
+        ]);
+
+        $activeOrder = new \stdClass();
+        $activeOrder->is_active = true;
+
+        $inactiveOrder = new \stdClass();
+        $inactiveOrder->is_active = false;
+
+        $this->assertStringNotContainsString('href="', $link->render($inactiveOrder));
+        $this->assertStringContainsString('href="', $link->render($activeOrder));
+    }
+
+    /** @test */
     public function inner_text_can_be_wrapped_in_an_html_tag()
     {
         $link = Link::create(new AppShell3Theme(), [

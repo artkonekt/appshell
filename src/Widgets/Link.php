@@ -28,6 +28,7 @@ class Link implements Widget
 
     protected static $allowedOptions = [
         'onlyIfCan',
+        'onlyIf',
     ];
 
     /** @var callable */
@@ -68,14 +69,18 @@ class Link implements Widget
     {
         $url = $this->url;
         return $this->renderViewFromTheme('link', array_merge($this->options, [
-            'can' => $this->can(),
+            'can' => $this->can($data),
             'text' => $this->text->render($data),
             'url' => $url($data, $this),
         ]));
     }
 
-    private function can(): bool
+    private function can($data): bool
     {
+        if (isset($this->options['onlyIf'])) {
+            return $this->evaluateOnlyIfCondition($data);
+        }
+
         $permission = $this->options['onlyIfCan'] ?? null;
         if (null === $permission) {
             return true;
@@ -86,5 +91,12 @@ class Link implements Widget
         }
 
         return self::$canCache[Auth::user()->id][$permission];
+    }
+
+    private function evaluateOnlyIfCondition($data): bool
+    {
+        $callable = self::makeCallable($this->options['onlyIf']);
+
+        return (bool) $callable($data, $this);
     }
 }
