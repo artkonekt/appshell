@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2023-XX-YY
+## 3.8.0
+##### 2023-03-05
 
 - Added Laravel 10 Support
 - Added the `onlyIf` option to links that can conditionally render links based on closures or model properties
