@@ -110,8 +110,38 @@ $link->render();
 
 ### Conditional Links
 
+It is possible to only render links on `if` and `can` conditions.
+
+#### OnlyIf Conditions
+
+It is possible to pass a closure that determines
+
+```php
+$link = Widgets::make('link', [
+    'text' => '$model.title',
+    'url' => [
+        'route' => 'app.absence.edit',
+        'parameters' => ['$model'],
+    ],
+    'onlyIf' => fn ($absence) => $absence->user_id === auth()->id(),
+]);
+```
+
+Calling the render method of the link widget above with a given model will only render the link if the closure returns true:
+
+```php
+$myabsence = Absence::find(123);
+$link->render($myabsence)
+// <a href="http://localhost/absence/edit/123">My Absence</a>
+$notMyAbsence = Absence::find(444);
+$link->render($notMyAbsence);
+//Title of the absence without link
+```
+
+#### OnlyIfCan Conditions
+
 It is possible to only render links if they are allowed by the
-[Laravel Authorization subsystem](https://laravel.com/docs/8.x/authorization#authorizing-actions-using-policies)
+[Laravel Authorization subsystem](https://laravel.com/docs/10.x/authorization#authorizing-actions-using-policies)
 ie. the `can()` method:
 
 ```php

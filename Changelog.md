@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2023-XX-YY
+
+- Added the `onlyIf` option to links that can conditionally render links based on closures or model properties
+
 ## 3.7.0
 ##### 2023-01-26
 
