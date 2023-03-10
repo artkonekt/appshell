@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2023-XX-YY
+
+- Added enum color support via `EnumColors` registry class and `enum_color()` helper function
+
 ## 3.8.0
 ##### 2023-03-05
 
