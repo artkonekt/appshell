@@ -25,6 +25,6 @@ trait CanAnimateIcons
             '.' . static::$animatedIconClass . "{animation:appshellspin 4s linear infinite;$extraCss}"
             . '@keyframes appshellspin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }}' .
             '</style>'
-            ;
+        ;
     }
 }

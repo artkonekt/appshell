@@ -37,16 +37,16 @@ class PartialMatchPattern extends Enum
         switch ($this->value) {
             case self::BEGINS_WITH:
                 return "$criteria%";
-            break;
+                break;
 
             case self::ENDS_WITH:
                 return "%$criteria";
-            break;
+                break;
 
             case self::ANYWHERE:
             default:
                 return "%$criteria%";
-            break;
+                break;
         }
     }
 }

@@ -96,7 +96,7 @@ class LineIconsTheme implements IconTheme
         return
             '<link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">' .
             $this->animationCss()
-            ;
+        ;
     }
 
     public function render(string $abstract, ThemeColor $color, array $attributes = []): string

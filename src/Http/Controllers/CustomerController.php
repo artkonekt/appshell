@@ -33,7 +33,7 @@ class CustomerController extends BaseController
     public function index(Request $request)
     {
         $filters = Filters::make([
-            (new PartialMatchInMultipleFields('name', ['firstname', 'lastname', 'company_name'], __('Name'), PartialMatchPattern::ANYWHERE())),
+            new PartialMatchInMultipleFields('name', ['firstname', 'lastname', 'company_name'], __('Name'), PartialMatchPattern::ANYWHERE()),
             new BoolTriState('is_active', __('Actives only'), __('Inactives only'), __('Any status'), __('Status')),
         ]);
 

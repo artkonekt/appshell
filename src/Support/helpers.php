@@ -10,7 +10,10 @@ declare(strict_types=1);
  */
 
 use Konekt\AppShell\Contracts\Widget;
+use Konekt\AppShell\EnumColors;
+use Konekt\AppShell\Theme\ThemeColor;
 use Konekt\AppShell\Widgets;
+use Konekt\Enum\Enum;
 
 /**
  * Returns whether the given array contains any of the keys
@@ -41,6 +44,11 @@ function avatar_image_url($model = null, int $size = 100)
         $size,
         $default
     );
+}
+
+function enum_color(Enum $enum): ThemeColor|string
+{
+    return EnumColors::colorOf($enum);
 }
 
 if (!function_exists('show_date')) {

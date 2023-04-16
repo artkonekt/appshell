@@ -4,10 +4,10 @@
 
 ## Requirements
 
-As of AppShell v3.0, the requirements are:
+As of AppShell v3.8, the requirements are:
 
-- PHP 8.0 or PHP 8.1
-- Laravel 9.0+
+- PHP 8.0, 8.1 or 8.2
+- Laravel 9.x, 10.x
 
 ## Install AppShell
 
@@ -18,7 +18,7 @@ composer create-project laravel/laravel myapp
 cd myapp
 ```
 
-.. or go to an existing Laravel 6+ application's root folder and launch these commands:
+.. or go to an existing Laravel 9+ application's root folder and launch these commands:
 
 ```bash
 composer require konekt/appshell
@@ -51,7 +51,7 @@ Now you should see this:
 +----+---------------------+------+---------+------------------+-----------------+
 | #  | Name                | Kind | Version | Id               | Namespace       |
 +----+---------------------+------+---------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 3.0.1   | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 3.9.0   | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+---------+------------------+-----------------+
 ```
 

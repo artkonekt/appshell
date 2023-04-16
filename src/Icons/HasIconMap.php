@@ -28,4 +28,9 @@ trait HasIconMap
     {
         self::$icons[$abstract] = $concrete;
     }
+
+    public static function supportedIcons(): array
+    {
+        return array_keys(self::$icons);
+    }
 }

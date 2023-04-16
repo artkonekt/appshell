@@ -45,4 +45,10 @@ interface IconTheme
      * needed in order the icons to be rendered. CDN or local.
      */
     public function assets(string $location = 'header'): string;
+
+    /**
+     * Returns the list of icons (abstracts) supported by the theme
+     * @todo Add this to the interface with v4
+     * public static function supportedIcons(): array
+     */
 }

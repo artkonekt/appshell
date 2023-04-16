@@ -14,6 +14,16 @@
 - Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
 - Renamed the `group` widget/component to `card`
 
+## Unreleased
+##### 2023-XX-YY
+
+- Added the `supportedIcons()` method to all icon themes (the method is a v4 `IconTheme` interface method candidate)
+
+## 3.9.0
+##### 2023-03-10
+
+- Added enum color support via `EnumColors` registry class and `enum_color()` helper function
+
 ## 3.8.0
 ##### 2023-03-05
 
