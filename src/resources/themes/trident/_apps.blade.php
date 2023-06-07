@@ -1,6 +1,6 @@
 <nav id="nav-sidebar-apps">
     <nav class="nav-apps-primary">
-        <a href="{{ $appshell->url }}"><img src="{{ $appshell->logoUri ?: '/img/appshell3.svg' }}" class="logo" alt="{{ $appshell->name }}" title="{{ $appshell->name }} Home" /></a>
+        <a href="{{ $appshell->url }}"><img src="{{ $appshell->logoUri ?: '/img/trident.svg' }}" class="logo" alt="{{ $appshell->name }}" title="{{ $appshell->name }} Home" /></a>
         <a href="#" class="nav-app-selected" title="CRM"><i class="fa-light fa-people-group"></i></a>
     </nav>
 

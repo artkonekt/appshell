@@ -16,7 +16,7 @@ namespace Konekt\AppShell\Tests\Unit;
 
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Tests\TestCase;
-use Konekt\AppShell\Theme\AppShell3Theme;
+use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Widgets\MultiText;
 
 class MultiTextWidgetTest extends TestCase
@@ -24,7 +24,7 @@ class MultiTextWidgetTest extends TestCase
     /** @test */
     public function it_can_render_two_lines_of_text()
     {
-        $widget = MultiText::create(new AppShell3Theme(), [
+        $widget = MultiText::create(new AppShellTheme(), [
             'primary' => ['text' => 'First here'],
             'secondary' => ['text' => 'Second there'],
         ]);
@@ -37,7 +37,7 @@ class MultiTextWidgetTest extends TestCase
     /** @test */
     public function the_secondary_widget_can_be_null()
     {
-        $widget = MultiText::create(new AppShell3Theme(), [
+        $widget = MultiText::create(new AppShellTheme(), [
             'primary' => ['text' => 'First here'],
             'secondary' => null,
         ]);
@@ -51,7 +51,7 @@ class MultiTextWidgetTest extends TestCase
     /** @test */
     public function it_can_render_extra_text_at_the_end_of_the_primary_widget()
     {
-        $widget = MultiText::create(new AppShell3Theme(), [
+        $widget = MultiText::create(new AppShellTheme(), [
             'primary' => [
                 'text' => 'Some text',
                 'extras' => [['text' => '#123']]
@@ -66,7 +66,7 @@ class MultiTextWidgetTest extends TestCase
     /** @test */
     public function it_can_render_an_icon_in_the_extra_widget()
     {
-        $widget = MultiText::create(new AppShell3Theme(), [
+        $widget = MultiText::create(new AppShellTheme(), [
             'primary' => [
                 'text' => 'Some text',
                 'extras' => [['icon' => 'user']]
@@ -81,7 +81,7 @@ class MultiTextWidgetTest extends TestCase
     /** @test */
     public function it_can_render_raw_html_in_the_extra_widget()
     {
-        $widget = MultiText::create(new AppShell3Theme(), [
+        $widget = MultiText::create(new AppShellTheme(), [
             'primary' => [
                 'text' => 'Some text',
                 'extras' => [['html' => '<img src="a.jpg"` />']]
@@ -96,7 +96,7 @@ class MultiTextWidgetTest extends TestCase
     /** @test */
     public function it_can_render_an_extra_text_and_and_extra_icon()
     {
-        $widget = MultiText::create(new AppShell3Theme(), [
+        $widget = MultiText::create(new AppShellTheme(), [
             'primary' => [
                 'text' => 'Some text',
                 'extras' => [['text' => 'Priority:'], ['icon' => 'user']]

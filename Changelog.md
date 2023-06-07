@@ -12,12 +12,11 @@
 - Changed minimum version requirements:
   - Enum v4.1
   - Address v3.0
-- Changed the AppShell Theme - it has been rewritten from scratch with new visual style
+- Added the Trident Theme - it has been written from scratch with new visual style
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - BC: Added the `supportedIcons()` static method to the `IconTheme` interface
 - BC: Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
-- BC: Renamed the stylesheet of the default theme from `appshell` to `appshell3`
 - BC: Renamed the `group` widget/component to `card`
 
 ## Unreleased

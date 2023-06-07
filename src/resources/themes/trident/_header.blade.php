@@ -6,5 +6,5 @@
         </div>
     </div>
 
-    @include('appshell::layouts.appshell3._breadcrumbs')
+    @include('trident::layouts._breadcrumbs')
 </header>

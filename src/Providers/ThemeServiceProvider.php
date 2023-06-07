@@ -17,7 +17,8 @@ namespace Konekt\AppShell\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Konekt\AppShell\Settings\UiThemeSetting;
-use Konekt\AppShell\Theme\AppShell3Theme;
+use Konekt\AppShell\Theme\AppShellTheme;
+use Konekt\AppShell\Theme\TridentTheme;
 use Konekt\AppShell\Themes;
 use Konekt\AppShell\Traits\AccessesAppShellConfig;
 use Konekt\Gears\Facades\Settings;
@@ -28,7 +29,8 @@ class ThemeServiceProvider extends ServiceProvider
 
     public function register()
     {
-        Themes::add(AppShell3Theme::ID, AppShell3Theme::class);
+        Themes::add(AppShellTheme::ID, AppShellTheme::class);
+        Themes::add(TridentTheme::ID, TridentTheme::class);
 
         $this->app->singleton('appshell.theme', function () {
             $theme = Themes::make(Settings::get(UiThemeSetting::KEY));
@@ -41,7 +43,7 @@ class ThemeServiceProvider extends ServiceProvider
     public function boot()
     {
         if (!$this->config('ui.theme')) {
-            config(['konekt.app_shell.ui.theme' => AppShell3Theme::ID]);
+            config(['konekt.app_shell.ui.theme' => AppShellTheme::ID]);
         }
 
         // Tells Laravel to take AppShell components from the current theme

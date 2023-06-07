@@ -11,13 +11,13 @@
     <title>@yield('title') &middot; {{ $appshell->name }}</title>
 
     <!-- Styles -->
-    <link href="{{ $appshell->useMix ? mix('/css/appshell3.css') : asset('/css/appshell3.css') }}" media="all" type="text/css" rel="stylesheet" />
+    <link href="{{ $appshell->useMix ? mix('/css/trident.css') : asset('/css/trident.css') }}" media="all" type="text/css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://use.typekit.net/utx1hrc.css">
     <script src="https://kit.fontawesome.com/f2a94220aa.js" crossorigin="anonymous"></script>
 
     {!! icon_theme_assets() !!}
-    @include('appshell::layouts.appshell3._header_includes')
+    @include('trident::layouts._header_includes')
 
     <!-- Scripts -->
     <script>
@@ -28,11 +28,11 @@
 </head>
 <body class="appshell-layout">
 
-    @include('appshell::layouts.appshell3._apps')
-    @include('appshell::layouts.appshell3._sidemenu')
+    @include('trident::layouts._apps')
+    @include('trident::layouts._sidemenu')
 
     <main id="appshell-main">
-        @include('appshell::layouts.appshell3._header')
+        @include('trident::layouts._header')
         <section class="content">
             <div class="filters">
                 <button class="btn btn-sm btn-secondary">Inactives</button>
@@ -43,7 +43,7 @@
         </section>
     </main>
 
-    <script src="{{ $appshell->useMix ? mix('/js/appshell3.js') : asset('/js/appshell3.js') }}"></script>
+    <script src="{{ $appshell->useMix ? mix('/js/trident.js') : asset('/js/trident.js') }}"></script>
 
 </body>
 

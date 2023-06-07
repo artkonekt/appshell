@@ -16,7 +16,7 @@ namespace Konekt\AppShell\Tests\Unit;
 
 use Konekt\AppShell\Tests\Dummies\BirdCage;
 use Konekt\AppShell\Tests\TestCase;
-use Konekt\AppShell\Theme\AppShell3Theme;
+use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Widgets\Table;
 
 class TableWidgetTest extends TestCase
@@ -24,7 +24,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_a_basic_table()
     {
-        $table = new Table(new AppShell3Theme());
+        $table = new Table(new AppShellTheme());
         $html = $table->render();
 
         $this->assertIsString($html);
@@ -34,7 +34,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function columns_can_be_defined_for_the_table()
     {
-        $table = new Table(new AppShell3Theme(), ['id', 'name']);
+        $table = new Table(new AppShellTheme(), ['id', 'name']);
         $html = $table->render();
 
         $this->assertStringContainsString('<th >id', $html);
@@ -44,7 +44,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function id_and_column_can_be_defined_on_columns()
     {
-        $table = new Table(new AppShell3Theme(), ['id' => ['title' => '#'], 'name' => ['title' => 'Name']]);
+        $table = new Table(new AppShellTheme(), ['id' => ['title' => '#'], 'name' => ['title' => 'Name']]);
         $html = $table->render();
 
         $this->assertStringContainsString('<th >#', $html);
@@ -54,7 +54,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function data_can_be_passed_to_the_table()
     {
-        $table = new Table(new AppShell3Theme(), ['id', 'name']);
+        $table = new Table(new AppShellTheme(), ['id', 'name']);
         $html = $table->render(collect([
             ['id' => 1, 'name' => 'Giovanni Gatto'],
             ['id' => 2, 'name' => 'Mr. Fritz Teufel'],
@@ -69,7 +69,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_a_link_widget()
     {
-        $table = new Table(new AppShell3Theme(), [
+        $table = new Table(new AppShellTheme(), [
             'id',
             'name' => [
                 'widget' => [
@@ -93,7 +93,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_a_raw_html_widget()
     {
-        $table = new Table(new AppShell3Theme(), [
+        $table = new Table(new AppShellTheme(), [
             'name' => [
                 'widget' => [
                     'type' => 'raw_html',
@@ -113,7 +113,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_the_columns_subfield_as_a_text()
     {
-        $table = new Table(new AppShell3Theme(), [
+        $table = new Table(new AppShellTheme(), [
             'id',
             'parrot' => [
                 'widget' => [
@@ -138,7 +138,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_a_footer()
     {
-        $table = new Table(new AppShell3Theme(), ['id', 'name'], ['footer' => [true, true]]);
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' => [true, true]]);
         $html = $table->render();
 
         $this->assertStringContainsString('<tfoot>', $html);
@@ -149,7 +149,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_text_into_footer_columns()
     {
-        $table = new Table(new AppShell3Theme(), ['id', 'name'], ['footer' => ['Total', 0]]);
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' => ['Total', 0]]);
         $html = $table->render();
 
         $this->assertStringContainsString('<tfoot>', $html);
@@ -161,7 +161,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_colspan_into_footer_columns()
     {
-        $table = new Table(new AppShell3Theme(), ['id', 'name'], ['footer' =>
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' =>
             [
                 ['text' => 'This is a final text', 'colspan' => 2],
             ],
@@ -176,7 +176,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_a_sum_of_a_column_in_the_footer_without_widget()
     {
-        $table = new Table(new AppShell3Theme(), ['price'], ['footer' =>
+        $table = new Table(new AppShellTheme(), ['price'], ['footer' =>
             [
                 ['text' => '$model.sum(price)'],
             ],
@@ -190,7 +190,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_a_sum_of_a_column_in_the_footer_using_a_widget()
     {
-        $table = new Table(new AppShell3Theme(), ['price'], ['footer' =>
+        $table = new Table(new AppShellTheme(), ['price'], ['footer' =>
             [
                 ['text' => '$model.sum(price)', 'widget' => ['type' => 'text']],
             ],
@@ -204,7 +204,7 @@ class TableWidgetTest extends TestCase
     /** @test */
     public function it_can_render_multiple_footer_columns()
     {
-        $table = new Table(new AppShell3Theme(), ['id', 'name'], ['footer' =>
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' =>
             [
                 ['text' => 'COL1'],
                 ['text' => 'COL2'],

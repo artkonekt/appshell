@@ -16,20 +16,20 @@ namespace Konekt\AppShell\Theme;
 
 use Konekt\AppShell\Contracts\Theme;
 
-final class AppShell3Theme implements Theme
+final class AppShellTheme implements Theme
 {
     use IsGenericTheme;
 
     public const ID = 'appshell';
 
-    private static string $name = 'AppShell 3';
+    private static string $name = 'AppShell';
 
     private static string $viewNamespace = 'appshell';
 
     private array $layouts = [
-        'private' => 'appshell::layouts.appshell3.private',
-        'public' => 'appshell::layouts.appshell3.public',
-        'print' => 'appshell::layouts.appshell3.print',
+        'private' => 'appshell::layouts.default.private',
+        'public' => 'appshell::layouts.default.public',
+        'print' => 'appshell::layouts.default.print',
     ];
 
     private array $themeColors = [

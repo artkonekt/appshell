@@ -23,7 +23,7 @@ class BreadcrumbsTest extends TestCase
     {
         $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.index'));
 
-        $response->assertSee('<nav class="breadcrumb', false);
+        $response->assertSee('<nav aria-label="breadcrumb">', false);
         $response->assertSee('class="breadcrumb-item active">Customers', false);
     }
 }
