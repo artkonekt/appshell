@@ -48,7 +48,6 @@ interface IconTheme
 
     /**
      * Returns the list of icons (abstracts) supported by the theme
-     * @todo Add this to the interface with v4
-     * public static function supportedIcons(): array
      */
+     public static function supportedIcons(): array;
 }

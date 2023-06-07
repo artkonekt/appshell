@@ -7,12 +7,18 @@
 - Added `page-actions` blade stack that themes need to define
 - Added colored enum icon feature via the `color_enum_icon()` helper
 - Added feature to specify the color of text widgets
-- Renamed the stylesheet of the default theme from `appshell` to `appshell3`
+- Dropped Laravel 10 support
+- Dropped Enum v3 support
+- Changed minimum version requirements:
+  - Enum v4.1
+  - Address v3.0
 - Changed the AppShell Theme - it has been rewritten from scratch with new visual style
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
-- Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
-- Renamed the `group` widget/component to `card`
+- BC: Added the `supportedIcons()` static method to the `IconTheme` interface
+- BC: Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
+- BC: Renamed the stylesheet of the default theme from `appshell` to `appshell3`
+- BC: Renamed the `group` widget/component to `card`
 
 ## Unreleased
 ##### 2023-XX-YY
