@@ -49,5 +49,5 @@ interface IconTheme
     /**
      * Returns the list of icons (abstracts) supported by the theme
      */
-     public static function supportedIcons(): array;
+    public static function supportedIcons(): array;
 }
