@@ -1,21 +1,20 @@
 {
-    "private": true,
-    "scripts": {
-        "appshell": "mix --mix-config appshell.mix.js",
-        "print": "mix --mix-config print.mix.js"
-    },
-    "devDependencies": {
-        "autoprefixer": "^10.4.2",
-        "axios": "^0.25",
-        "bootstrap": "^4.6.1",
-        "jquery": "^3.6.0",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "popper.js": "^1.16.1",
-        "postcss": "^8.4.6",
-        "resolve-url-loader": "^5.0.0",
-        "sass": "^1.51.0",
-        "sass-loader": "^12.6.0",
-        "alpinejs": "^3.10.2"
-    }
+  "private": true,
+  "scripts": {
+    "appshell": "mix --mix-config appshell.mix.js",
+    "print": "mix --mix-config print.mix.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "axios": "^0.27",
+    "bootstrap": "^5.3",
+    "laravel-mix": "^6.0",
+    "lodash": "^4.17",
+    "@popperjs/core": "^2.11.6",
+    "postcss": "^8.4",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.59",
+    "sass-loader": "^13.0",
+    "alpinejs": "^3.10.2"
+  }
 }
