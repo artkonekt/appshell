@@ -1,5 +1,5 @@
 <section x-data="{customerType: '{{ old('type') ?: $customer->type->value() }}'}">
-<div class="form-group row{{ $errors->has('type') ? ' has-danger' : '' }}">
+<div class="mb-4 row{{ $errors->has('type') ? ' has-danger' : '' }}">
     <label class="form-control-label col-md-2">{{ __('Customer type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)
@@ -21,7 +21,7 @@
 <div class="row">
 
     <div class="col-md-6">
-        <div class="form-group">
+        <div class="mb-4">
             {{ Form::text('firstname', null, [
                     'class' => 'form-control form-control-lg' . ($errors->has('firstname') ? ' is-invalid' : ''),
                     'placeholder' => __('First name')
@@ -35,7 +35,7 @@
     </div>
 
     <div class="col-md-6">
-        <div class="form-group">
+        <div class="mb-4">
             {{ Form::text('lastname', null, [
                     'class' => 'form-control form-control-lg' . ($errors->has('lastname') ? ' is-invalid' : ''),
                     'placeholder' => __('Last name')
@@ -56,7 +56,7 @@
 
 <hr>
 
-<div class="form-group row">
+<div class="mb-4 row">
     <label class="form-control-label col-md-2">{{ __('Active') }}</label>
     <div class="col-md-10">
         {{ Form::hidden('is_active', 0) }}

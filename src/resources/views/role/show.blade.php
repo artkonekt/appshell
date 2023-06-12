@@ -13,7 +13,7 @@
             @component('appshell::role._user_count', ['count' => $role->users->count()]) @endcomponent
         @endslot
 
-        <div class="form-group">
+        <div class="mb-4">
             <legend>{{ __('Allows') }}</legend>
             @forelse($role->permissions as $permission)
                 <span class="badge rounded-pill bg-success">
@@ -29,7 +29,7 @@
         </div>
 
         <?php $noperms = $permissions->diff($role->permissions); ?>
-        <div class="form-group">
+        <div class="mb-4">
             <legend>{{ __('Denies') }}</legend>
             @forelse($noperms as $permission)
                 <span class="badge rounded-pill bg-danger">
@@ -44,7 +44,7 @@
             @endforelse
         </div>
 
-        <div class="form-group">
+        <div class="mb-4">
             <legend>{{ __('Users having this role') }}</legend>
             @forelse($role->users as $user)
                 <div class="btn-group btn-group-sm" style="margin-bottom: 5px" role="group">

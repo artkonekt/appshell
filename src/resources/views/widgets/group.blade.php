@@ -1,13 +1,14 @@
-<div class="card{{ isset($accent) ? ' card-accent-' . $accent : '' }} mb-3">
+<?php $accent = $accent ?? null ?>
+<div @class(['card mb-4 mt-4', "card-accent-$accent" => $accent])>
     @isset($title)
-    <div class="card-header">
-        {{ $title }}
-        @isset($actionbar)
-            <div class="card-actionbar">
-                {!! $actionbar !!}
-            </div>
-        @endisset
-    </div>
+        <div class="card-header">
+            <h5 @class(['card-title', 'mb-0' => isset($actionbar)])>{{ $title }}</h5>
+            @isset($actionbar)
+                <div class="card-actionbar">
+                    {!! $actionbar !!}
+                </div>
+            @endisset
+        </div>
     @endisset
     <div class="card-body">
         {{ $slot }}

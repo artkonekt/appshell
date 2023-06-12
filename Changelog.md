@@ -7,6 +7,7 @@
 - Added `page-actions` blade stack that themes need to define
 - Added colored enum icon feature via the `color_enum_icon()` helper
 - Added feature to specify the color of text widgets
+- Adde `hover` option to table widget (adds `table-hover` if enabled)
 - Dropped Laravel 10 support
 - Dropped Enum v3 support
 - Changed minimum version requirements:

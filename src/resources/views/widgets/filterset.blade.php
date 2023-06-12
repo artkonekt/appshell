@@ -21,7 +21,7 @@
     <div class="dropdown-menu dropdown-menu-right filterset-dropdown-of-{{ count($filters) < 7 ? count($filters) : 'many' }}">
         <form action="{{ route($route) }}" class="m-3" id="{{ $filterFormId }}">
 
-            <div class="form-group">
+            <div class="mb-4">
                 <div class="form-row">
                     @foreach($widgets as $widget)
                         <div class="col">

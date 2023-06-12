@@ -19,7 +19,7 @@
                 <h2 class="text-center">{{ __('Reset Password') }}</h2>
                 <hr>
 
-                <div class="form-group">
+                <div class="mb-4">
                     <input id="email" type="email"
                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                            name="email" value="{{ old('email') }}"

@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-4">
     {{ Form::text('name', null, [
             'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
             'placeholder' => __('Name of the role')
@@ -9,7 +9,7 @@
     @endif
 </div>
 
-<div class="form-group row">
+<div class="mb-4 row">
     @foreach($permissions as $permission)
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" style="overflow: hidden; white-space: nowrap;">
             <label class="switch switch-icon switch-pill switch-primary">

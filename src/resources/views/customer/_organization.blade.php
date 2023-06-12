@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-4">
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
@@ -17,7 +17,7 @@
 
 </div>
 
-<div class="form-group">
+<div class="mb-4">
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
@@ -35,7 +35,7 @@
     </div>
 </div>
 
-<div class="form-group">
+<div class="mb-4">
     {{ Form::text('registration_nr', null, [
             'class' => 'form-control' . ($errors->has('registration_nr') ? ' is-invalid' : ''),
             'placeholder' => __('Reg. no.')

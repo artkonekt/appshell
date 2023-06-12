@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h2 class="text-center">{{ __('Login') }}</h2>
                 <hr>
-                <div class="form-group">
+                <div class="mb-4">
 
                     <input id="email" type="email"
                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -25,7 +25,7 @@
 
                 </div>
 
-                <div class="form-group">
+                <div class="mb-4">
 
                     <input id="password" type="password"
                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
@@ -40,7 +40,7 @@
 
                 </div>
 
-                <div class="form-group">
+                <div class="mb-4">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}

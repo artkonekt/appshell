@@ -1,5 +1,5 @@
 @if($table->data->isEmpty() && $table->rendersAlternativeForEmptyDataset())
-    <table class="table">
+    <table class="table rounded-1">
         <tbody>
             <tr>
                 <td class="text-center">{{ $table->options['empty']['text'] }}</td>
@@ -7,7 +7,7 @@
         </tbody>
     </table>
 @else
-<table class="table @isset($table->options['striped'])table-striped @endisset">
+<table @class(['table rounded-1', 'table-striped' => isset($table->options['striped']), 'table-hover' => isset($table->options['hover'])])>
     @unless($table->headerIsHidden())
     <thead>
         <tr>

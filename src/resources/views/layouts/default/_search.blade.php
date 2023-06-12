@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('Close') }}"></button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
+                <div class="mb-4">
                     <input name="q" id="appshell-search-modal-input" type="text" class="form-control form-control-lg" placeholder="{{ __('Type and hit ENTER') }}">
                 </div>
             </div>

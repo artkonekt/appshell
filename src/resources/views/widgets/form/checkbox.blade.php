@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-4">
     <div class="form-check">
 
         <input type="hidden" name="{{ $name }}" value="0" />

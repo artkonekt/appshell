@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="mb-4">
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
@@ -19,7 +19,7 @@
 
 <hr>
 
-<div class="form-group">
+<div class="mb-4">
     <div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text">
@@ -45,7 +45,7 @@
 
 <hr>
 
-<div class="form-group row">
+<div class="mb-4 row">
     <label class="form-control-label col-md-2">{{ __('User type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)

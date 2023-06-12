@@ -1,5 +1,5 @@
 @if($for)
-    <div class="form-group row">
+    <div class="mb-4 row">
         <label class="form-control-label col-md-2">{{ __('Address for') }}:</label>
 
         <div class="col-md-10">
@@ -10,7 +10,7 @@
     </div>
 @endif
 
-<div class="form-group row">
+<div class="mb-4 row">
     <label class="form-control-label col-md-2">{{ __('Address type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)
@@ -30,7 +30,7 @@
 
 <hr>
 
-<div class="form-group">
+<div class="mb-4">
     {{ Form::text('name', null, [
             'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
             'placeholder' => __('Name')
@@ -45,7 +45,7 @@
 <div class="row">
     <div class="col-md-6">
         <label class="form-control-label">{{ __('Country') }}</label>
-        <div class="form-group">
+        <div class="mb-4">
             {{ Form::select(
                         'country_id',
                         $countries->pluck('name', 'id'),
@@ -62,7 +62,7 @@
 
     <div class="col-md-6">
         <label class="form-control-label">{{ __('State/Province') }}</label>
-        <div class="form-group">
+        <div class="mb-4">
             {{ Form::select('province_id', [], null, [
                     'class' => 'form-control' . ($errors->has('province_id') ? ' is-invalid' : '')
                 ])
@@ -80,7 +80,7 @@
 
     <div class="col-md-6">
         <label class="form-control-label">{{ __('City') }}</label>
-        <div class="form-group">
+        <div class="mb-4">
             {{ Form::text('city', null, ['class' => 'form-control' . ($errors->has('city') ? ' is-invalid' : '')]) }}
 
             @if ($errors->has('city'))
@@ -91,7 +91,7 @@
 
     <div class="col-md-6">
         <label class="form-control-label">{{ __('Postal/Zip Code') }}</label>
-        <div class="form-group">
+        <div class="mb-4">
             {{ Form::text('postalcode', null, ['class' => 'form-control' . ($errors->has('postalcode') ? ' is-invalid' : '')]) }}
 
             @if ($errors->has('postalcode'))
@@ -103,7 +103,7 @@
 </div>
 
 <label class="form-control-label">{{ __('Address') }}</label>
-<div class="form-group">
+<div class="mb-4">
     {{ Form::text('address', null, ['class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : '')]) }}
 
     @if ($errors->has('address'))

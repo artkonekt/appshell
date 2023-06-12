@@ -7,8 +7,18 @@ use Konekt\AppShell\Widgets\AppShellWidgets;
 return [
     'type' => AppShellWidgets::TABLE,
     'options' => [
-        'striped' => true,
+        'hover' => true,
         'columns' => [
+            'id' => [
+                'title' => '&nbsp;',
+                'valign' => 'middle',
+                'widget' => [
+                    'type' => 'raw_html',
+                    'html' => function ($issue) {
+                        return '<input type="checkbox" name="issue_' . $issue->id . '" />';
+                    },
+                ],
+            ],
             'avatar' => [
                 'widget' => [
                     'type' => 'avatar',
