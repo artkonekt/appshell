@@ -6,7 +6,7 @@
 
 @section('content')
 
-{!! Form::model($user, ['route' => 'appshell.user.store', 'autocomplete' => 'off', 'class' => 'row']) !!}
+{!! Form::model($user, ['route' => 'appshell.user.store', 'autocomplete' => 'off', 'class' => 'row mb-3']) !!}
 
 <div class="col-12 col-md-6 col-lg-8 col-xl-9">
     @component(theme_widget('group'), ['accent' => 'success'])

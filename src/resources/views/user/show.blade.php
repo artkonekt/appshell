@@ -37,7 +37,7 @@
 
 @section('content')
 
-    <div class="row my-3">
+    <div class="row mb-3">
         <div class="col">
             <x-appshell::card-with-icon
                 :icon="$user->is_active ? 'user-active' : 'user-inactive'"

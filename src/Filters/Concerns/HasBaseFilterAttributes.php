@@ -24,6 +24,8 @@ trait HasBaseFilterAttributes
 
     private ?string $placeholder = null;
 
+    private bool $searchable = false;
+
     public function id(): string
     {
         return $this->id;
@@ -46,5 +48,10 @@ trait HasBaseFilterAttributes
     public function placeholder(): ?string
     {
         return $this->placeholder;
+    }
+
+    public function searchable(): bool
+    {
+        return $this->searchable;
     }
 }

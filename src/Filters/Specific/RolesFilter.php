@@ -35,6 +35,7 @@ class RolesFilter implements Filter
         $this->id = $id;
         $this->label = $label ?? __('Roles');
         $this->placeholder = $placeholder ?? $this->label;
+        $this->searchable = true;
     }
 
     public function apply(Builder $query, $criteria): Builder

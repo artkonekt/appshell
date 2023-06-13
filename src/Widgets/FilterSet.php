@@ -45,6 +45,7 @@ class FilterSet implements Widget
                 'type' => $filter->widgetType(),
                 'title' => $filter->label(),
                 'placeholder' => $filter->placeholder(),
+                'searchable' => $filter->searchable(),
                 'options' => $filter->possibleValues(),
                 'isActive' => $filters->isActive($filter->id()),
                 'criteria' => $filters->activeOne($filter->id()) ? $filters->activeOne($filter->id())->criteria() : null,

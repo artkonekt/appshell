@@ -11,7 +11,7 @@
     'method' => 'PUT',
     'autocomplete' => 'off',
     'id' => 'user-form',
-    'class' => 'row'
+    'class' => 'row mb-3'
 ]) !!}
 
 <div class="col-12 col-md-6 col-lg-8 col-xl-9">

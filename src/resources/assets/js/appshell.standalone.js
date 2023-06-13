@@ -18,3 +18,13 @@ if (token) {
 Alpine.start();
 
 require('./appshell');
+
+import NiceSelect from "./nice-select2";
+
+window.addEventListener('load',()=>{
+  document.querySelectorAll("select[multiple]").forEach(
+    function (el) {
+      new NiceSelect(el, { searchable: el.getAttribute('searchable') });
+    }
+  );
+});

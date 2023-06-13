@@ -3,7 +3,7 @@
 @endphp
 <div class="dropdown filterset">
     @if($filters->activeCount() > 0)
-        <span class="position-relative" title="{{ __('Filters') }}" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="position-relative" title="{{ __('Filters') }}" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
             {!! icon('filters', null, ['class' => 'btn']) !!}
             <small class="position-absolute" style="left: 25px; top: -7px"><span class="badge rounded-pill bg-danger">{{ $filters->activeCount() }}</span></small>
         </span>
@@ -11,6 +11,7 @@
         {!! icon('filters', null, [
                 'class' => 'btn',
                 'data-bs-toggle' => 'dropdown',
+                'data-bs-auto-close' => 'outside',
                 'aria-haspopup' => 'true',
                 'aria-expanded' => 'false',
                 'title' => __('Filters'),
@@ -22,7 +23,7 @@
         <form action="{{ route($route) }}" class="m-3" id="{{ $filterFormId }}">
 
             <div class="mb-4">
-                <div class="form-row">
+                <div class="row">
                     @foreach($widgets as $widget)
                         <div class="col">
                             {!! $widget->render() !!}</span>

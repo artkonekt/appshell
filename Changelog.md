@@ -7,13 +7,15 @@
 - Added `page-actions` blade stack that themes need to define
 - Added colored enum icon feature via the `color_enum_icon()` helper
 - Added feature to specify the color of text widgets
-- Adde `hover` option to table widget (adds `table-hover` if enabled)
+- Added `hover` option to table widget (adds `table-hover` if enabled)
+- Added the `searchable()` method to the `Filter` interface
+- Added the Trident Theme - it has been written from scratch with new visual style
 - Dropped Laravel 10 support
 - Dropped Enum v3 support
+- Replaced the multiselect dropdown with a nice-select2 implementation
 - Changed minimum version requirements:
   - Enum v4.1
   - Address v3.0
-- Added the Trident Theme - it has been written from scratch with new visual style
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - BC: Added the `supportedIcons()` static method to the `IconTheme` interface

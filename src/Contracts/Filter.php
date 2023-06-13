@@ -24,6 +24,8 @@ interface Filter
 
     public function placeholder(): ?string;
 
+    public function searchable(): bool;
+
     public function widgetType(): string;
 
     public function possibleValues($context = null): ?array;

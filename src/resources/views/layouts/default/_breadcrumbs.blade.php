@@ -1,5 +1,5 @@
 <!-- Breadcrumb -->
-<div class="container-fluid">
+<div class="container-fluid mb-3">
 @if (Breadcrumbs::exists())
     {!! Breadcrumbs::render() !!}
 @else

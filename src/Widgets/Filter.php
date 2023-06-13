@@ -36,6 +36,8 @@ class Filter implements Widget
 
     private bool $isActive = false;
 
+    private bool $isSearchable = false;
+
     private $criteria = null;
 
     public function __construct(Theme $theme, string $id, FilterType $type, string $title = null)
@@ -73,6 +75,7 @@ class Filter implements Widget
         $instance->placeholder = Arr::get($options, 'placeholder', '');
         $instance->isActive = Arr::get($options, 'isActive', false);
         $instance->criteria = Arr::get($options, 'criteria');
+        $instance->isSearchable = Arr::get($options, 'searchable', false);
 
         return $instance;
     }
@@ -93,6 +96,7 @@ class Filter implements Widget
             'title' => $this->title,
             'type' => $this->type->value(),
             'placeholder' => $this->placeholder,
+            'searchable' => $this->isSearchable,
             'options' => $this->options,
             'isActive' => $this->isActive,
             'criteria' => $this->criteria,
