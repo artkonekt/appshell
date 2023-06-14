@@ -14,6 +14,7 @@
   - Alert
   - Badge
   - Floating Label
+- Added custom `tag` support for card component
 - Dropped Laravel 10 support
 - Dropped Enum v3 support
 - Replaced the multiselect dropdown with a nice-select2 implementation
