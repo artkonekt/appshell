@@ -6,9 +6,9 @@
 <div class="col-md-8 col-lg-6">
 
     @if (session('status'))
-        <div class="alert alert-success">
+        <x-appshell::alert variant="success">
             {{ session('status') }}
-        </div>
+        </x-appshell::alert>
     @endif
 
     <div class="card">

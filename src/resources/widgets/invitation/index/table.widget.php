@@ -7,14 +7,14 @@ use Konekt\AppShell\Widgets\AppShellWidgets;
 return [
     'type' => AppShellWidgets::TABLE,
     'options' => [
-        'striped' => true,
+        'hover' => true,
         'columns' => [
             'avatar' => [
                 'widget' => [
                     'type' => 'avatar',
                     'size' => 44,
                 ],
-                'title' => 'Invitation'
+                'title' => '&nbsp;'
             ],
             'invitation' => [
                 'widget' => [
@@ -31,7 +31,7 @@ return [
                         'text' => '$model.name'
                     ],
                 ],
-                'title' => '',
+                'title' => __('Invitee'),
             ],
             'created_at' => [
                 'title' => __('Invited at'),

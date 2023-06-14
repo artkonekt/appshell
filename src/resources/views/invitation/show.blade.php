@@ -4,157 +4,129 @@
     {{ __('Invitation of :email', ['email' => $invitation->email]) }}
 @stop
 
+@push('page-actions')
+    @if($invitation->hasNotBeenUtilizedYet())
+        @can('edit invitations')
+            <x-appshell::button :href="route('appshell.invitation.edit', $invitation)"
+                                variant="light" size="sm" icon="edit"
+                                :title="__('Edit invitation')"></x-appshell::button>
+        @endcan
+
+        @can('delete invitations')
+            {!! Form::open([
+                    'route' => ['appshell.invitation.destroy', $invitation],
+                    'method' => 'DELETE',
+                    'data-confirmation-text' => __('Are you sure to cancel the invitation of :email?', ['email' => $invitation->email]),
+                    'class' => "d-inline"
+                    ])
+            !!}
+
+            <x-appshell::button variant="danger" type="submit" size="sm">
+                {{ __('Cancel invitation') }}
+            </x-appshell::button>
+
+            {!! Form::close() !!}
+        @endcan
+
+    @endif
+@endpush
+
 @section('content')
 
-@include('appshell::user._subnav', ['active' => 'invitations'])
+    @include('appshell::user._subnav', ['active' => 'invitations'])
 
     <div class="row my-3">
         <div class="col">
-        @component(theme_widget('card_with_icon'), [
-                'icon' => 'email',
-                'type' => $invitation->isStillValid() ? 'success' : ($invitation->hasBeenUtilizedAlready() ? 'info' : 'warning')
-        ])
-            {{ $invitation->email }}
-            @if ($invitation->isNoLongerValid())
-                <small>
-                        <span class="badge rounded-pill bg-light">
-                            {{ __('invalid') }}
-                        </span>
-                </small>
-            @endif
-            @slot('subtitle')
-                {{ $invitation->isExpired() ? __('Expired at') : __('Expires at') }}
-                {{ show_datetime($invitation->expires_at) }}
-            @endslot
-        @endcomponent
-        </div>
-
-        <div class="col">
-        @component(theme_widget('card_with_icon'), [
-                'icon' => 'security',
-                'type' => 'info'
-        ])
-            {{ $invitation->type->label() }}
-
-            @slot('subtitle')
-                @if($invitation->roles->count())
-                    {{ __('Roles') }}:
-                    {{ $invitation->roles->take(3)->implode('name', ' | ') }}
-                @else
-                    {{ __('no roles') }}
-                @endif
-
-                @if($invitation->roles->count() > 3)
-                    | {{ __('+ :num more...', ['num' => $invitation->roles->count() - 3]) }}
-                @endif
-            @endslot
-        @endcomponent
-        </div>
-
-        <div class="col">
-        @component(theme_widget('card_with_icon'), [
-            'icon' => 'user',
-            'type' => $invitation->hasBeenUtilizedAlready() ? 'success' : ($invitation->isExpired() ? 'warning' : null)
-        ])
-            @if ($invitation->hasBeenUtilizedAlready())
-                {{ __('Utilized at') }}
-                {{ show_datetime($invitation->utilized_at) }}
-            @else
-                @if($invitation->isNotExpired())
-                    {{ __('Not utilized yet') }}
-                @else
-                    {{ __('Expired without utilization') }}
-                @endif
-            @endif
-
-            @slot('subtitle')
+            <x-appshell::card-with-icon icon="email"
+                :type="$invitation->isStillValid() ? 'success' : ($invitation->hasBeenUtilizedAlready() ? 'info' : 'secondary')"
+            >
+                {{ $invitation->email }}
                 @if ($invitation->hasBeenUtilizedAlready())
-                    @can('view users')
-                        <a href="{{ route('appshell.user.show', $invitation->getTheCreatedUser()) }}" class="text-muted">
-                            {{ __('Registered as :name', ['name' => $invitation->getTheCreatedUser()->name]) }}
-                        </a>
+                    <x-appshell::badge variant="success" font-size="6">{{ __('accepted') }}</x-appshell::badge>
+                @elseif ($invitation->isNoLongerValid())
+                    <x-appshell::badge variant="warning" font-size="6">{{ __('invalid') }}</x-appshell::badge>
+                @endif
+
+                <x-slot:subtitle>
+                    {{ $invitation->isExpired() ? __('Expired at') : __('Expires at') }}
+                    {{ show_datetime($invitation->expires_at) }}
+                </x-slot:subtitle>
+            </x-appshell::card-with-icon>
+        </div>
+
+        <div class="col">
+            <x-appshell::card-with-icon icon="security">
+                {{ $invitation->type->label() }}
+
+                <x-slot:subtitle>
+                    @if($invitation->roles->count())
+                        {{ __('Roles') }}:
+                        {{ $invitation->roles->take(3)->implode('name', ' | ') }}
                     @else
-                        {{ __('Registered as :name', ['name' => $invitation->getTheCreatedUser()->name]) }}
-                    @endcan
+                        {{ __('no roles') }}
+                    @endif
+
+                    @if($invitation->roles->count() > 3)
+                        | {{ __('+ :num more...', ['num' => $invitation->roles->count() - 3]) }}
+                    @endif
+                </x-slot:subtitle>
+            </x-appshell::card-with-icon>
+        </div>
+
+        <div class="col">
+            <x-appshell::card-with-icon icon="user">
+                @if ($invitation->hasBeenUtilizedAlready())
+                    {{ __('Accepted at') }}
+                    {{ show_datetime($invitation->utilized_at) }}
                 @else
                     @if($invitation->isNotExpired())
-                        {{ __('No user got registered yet') }}
+                        {{ __('Not utilized yet') }}
+                    @else
+                        {{ __('Expired without utilization') }}
                     @endif
                 @endif
-            @endslot
-        @endcomponent
+
+                @if($invitation->getTheCreatedUser())
+                        <x-slot:icon-slot>
+                            <img src="{{ avatar_image_url($invitation->getTheCreatedUser()) }}"
+                                 alt="{{ $invitation->getTheCreatedUser()->name }}"
+                                 class="img-avatar img-avatar-37"
+                            >
+                        </x-slot:icon-slot>
+                @endif
+
+                <x-slot:subtitle>
+                    @if ($invitation->hasBeenUtilizedAlready())
+                        @can('view users')
+                            @if($invitation->getTheCreatedUser())
+                                <a href="{{ route('appshell.user.show', $invitation->getTheCreatedUser()) }}"
+                                   class="text-muted">
+                                    {{ __('Registered as :name', ['name' => $invitation->getTheCreatedUser()->name]) }}
+                                </a>
+                            @else
+                                {{ __('User with id `:id` was created', ['id' => $invitation->user_id ?? 'NULL']) }}
+                            @endif
+                        @else
+                            {{ __('Registered as :name', ['name' => $invitation->getTheCreatedUser()?->name]) }}
+                        @endcan
+                    @else
+                        @if($invitation->isNotExpired())
+                            {{ __('No user got registered yet') }}
+                        @else
+                            {{ __('No user got registered') }}
+                        @endif
+                    @endif
+                </x-slot:subtitle>
+            </x-appshell::card-with-icon>
         </div>
 
     </div>
 
-    @yield('cards')
+    @if($invitation->isStillValid())
+    <x-appshell::card>
+        <strong>URL:</strong>
+        <code class="rounded p-2 d-inline-block my-1 text-bg-dark" >{{ route('appshell.public.invitation.show', $invitation->hash) }}</code>
+    </x-appshell::card>
+    @endif
 
-@if($invitation->hasNotBeenUtilizedYet())
-    <div class="card">
-        <div class="card-body">
-
-            @can('edit invitations')
-            <a href="{{ route('appshell.invitation.edit', $invitation) }}" class="btn btn-outline-primary">{{ __('Edit invitation') }}</a>
-            @endcan
-
-            <span id="__invitation_tooltip_{{ $invitation->id }}"
-                  data-bs-toggle="tooltip"
-                  title="{{ __('Invitation link for :email has been copied to the clipboard', ['email' => $invitation->email]) }}"
-                  onclick="copyInvitationLinkToClipboard({{ $invitation->id }})"
-                  style="cursor: pointer"
-            >
-                <btn class="btn btn-outline-info" type="button" title="{{ __('Copy Invitation Link') }}">
-                    {!! icon('link', 'secondary') !!}
-                </btn>
-                <input type="text" class="invisible"
-                       style="height: 0.5rem; width: 2rem; padding: 0;"
-                       id="__invitation_link_{{ $invitation->id }}"
-                       value="{{ route('appshell.public.invitation.show', $invitation->hash) }}"
-                />
-            </span>
-
-
-            @can('delete invitations')
-                {!! Form::open([
-                        'route' => ['appshell.invitation.destroy', $invitation],
-                        'method' => 'DELETE',
-                        'data-confirmation-text' => __('Are you sure to cancel the invitation of :email?', ['email' => $invitation->email]),
-                        'class' => "d-inline"
-                        ])
-                !!}
-
-                    <button class="btn btn-outline-danger">
-                        {{ __('Cancel invitation') }}
-                    </button>
-
-                {!! Form::close() !!}
-            @endcan
-
-        </div>
-    </div>
-@endif
 @stop
-
-@once
-@push('footer-scripts')
-    <script>
-        function copyInvitationLinkToClipboard(id) {
-            var element = document.getElementById("__invitation_link_" + id);
-
-            element.classList.remove('invisible');
-            element.select();
-            element.setSelectionRange(0, 99999); /* For mobile devices */
-            document.execCommand('copy');
-            element.classList.add('invisible');
-            $('#__invitation_tooltip_' + id).tooltip('show');
-            setTimeout(function () {
-                $('#__invitation_tooltip_' + id).tooltip('hide');
-            }, 1750)
-        }
-    </script>
-@endpush
-@push('onload-scripts')
-    $('[data-bs-toggle="tooltip"]').tooltip({trigger: 'manual', placement: 'left'})
-@endpush
-@endonce
-

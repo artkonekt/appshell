@@ -1,13 +1,13 @@
 @if($invitation->isExpired())
-    <div class="alert alert-warning">
+    <x-appshell::alert variant="warning">
         {{ __('This invitation has expired and no longer can be used.') }}
-    </div>
+    </x-appshell::alert>
 @elseif($invitation->hasBeenUtilizedAlready())
-    <div class="alert alert-info">
+    <x-appshell::alert variant="info">
         {{ __('This invitation has been utilized already') }}
-    </div>
+    </x-appshell::alert>
 @else
-    <div class="alert alert-danger">
+    <x-appshell::alert variant="danger">
         {{ __('This invitation is invalid') }}
-    </div>
+    </x-appshell::alert>
 @endif

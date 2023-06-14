@@ -6,6 +6,6 @@
 @endforeach
 
 @if ($errors->has('roles'))
-    <div class="alert alert-danger">{{ $errors->first('roles') }}</div>
+    <x-appshell::alert variant="danger">{{ $errors->first('roles') }}</x-appshell::alert>
 @endif
 

@@ -3,21 +3,21 @@
 declare(strict_types=1);
 
 /**
- * Contains the Card class.
+ * Contains the Alert class.
  *
- * @copyright   Copyright (c) 2022 Attila Fulop
+ * @copyright   Copyright (c) 2023 Vanilo UG
  * @author      Attila Fulop
  * @license     MIT
- * @since       2022-04-27
+ * @since       2023-06-14
  *
  */
 
 namespace Konekt\AppShell\Components;
 
-class Card extends BaseComponent
+class Alert extends BaseComponent
 {
     public function __construct(
-        public ?string $accent = null,
+        public string $variant = 'info',
         public string $tag = 'div',
     ) {
     }

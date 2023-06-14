@@ -1,18 +1,19 @@
 <div class="mb-4">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('email') !!}
-            </span>
-        </div>
-        {{ Form::email('email', null, [
-            'class' => 'form-control form-control-lg' . ($errors->has('email') ? ' is-invalid' : ''),
-            'autocomplete' => 'off',
-            'placeholder' => __('E-mail address')
-            ])
-        }}
+    <div class="input-group {{$errors->has('email') ? ' has-validation' : ''}}">
+        <span class="input-group-text">
+            {!! icon('email') !!}
+        </span>
+        <x-appshell::floating-label :label="__('E-mail')" :is-invalid="$errors->has('email')">
+            {{ Form::email('email', null, [
+                'class' => 'form-control form-control-lg' . ($errors->has('email') ? ' is-invalid' : ''),
+                'autocomplete' => 'off',
+                'placeholder' => __('E-mail address')
+                ])
+            }}
+        </x-appshell::floating-label>
+
         @if ($errors->has('email'))
-            <div class="invalid-tooltip">{{ $errors->first('email') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('email') }}</div>
         @endif
     </div>
 </div>
@@ -20,19 +21,19 @@
 <hr>
 
 <div class="mb-4">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text">
-                {!! icon('user') !!}
-            </span>
-        </div>
-        {{ Form::text('name', null, [
-                'class' => 'form-control form-control-sm' . ($errors->has('name') ? ' is-invalid' : ''),
-                'placeholder' => __('Full name (optional)')
-            ])
-        }}
+    <div class="input-group {{$errors->has('name') ? ' has-validation' : ''}}">
+        <span class="input-group-text">
+            {!! icon('user') !!}
+        </span>
+        <x-appshell::floating-label :label="__('Full name (optional)')" :is-invalid="$errors->has('name')">
+            {{ Form::text('name', null, [
+                    'class' => 'form-control form-control-sm' . ($errors->has('name') ? ' is-invalid' : ''),
+                    'placeholder' => __('Full name (optional)')
+                ])
+            }}
+        </x-appshell::floating-label>
         @if ($errors->has('name'))
-            <div class="invalid-tooltip">{{ $errors->first('name') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
         @endif
     </div>
 </div>
@@ -63,12 +64,13 @@
     </div>
 </div>
 
-@section('scripts')
+@push('footer-scripts')
 <script>
-    $(document).ready(function() {
+    document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function() {
-            $('#{{ $fakeElementId }}').remove();
+            console.log(document.getElementById('{{ $fakeElementId }}'));
+            document.getElementById('{{ $fakeElementId }}').remove();
         }, 470);
-    });
+    })
 </script>
-@endsection
+@endpush
