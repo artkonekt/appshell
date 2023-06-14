@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Helpers;
 
+use Konekt\AppShell\Theme\ThemeColor;
+
 class ColorHelper
 {
     /**
@@ -26,6 +28,11 @@ class ColorHelper
     public function canBeReadTogether(string $color1, string $color2): bool
     {
         return $this->lumDiff($color1, $color2) > 4.3;
+    }
+
+    public function needsWhiteText(string $bgColor): bool
+    {
+        return $this->canBeReadTogether(self::colorAsHex($bgColor), '#ffffff');
     }
 
     public function lumDiff(string $color1, string $color2): float
@@ -66,12 +73,22 @@ class ColorHelper
         // fall back to 1 if out of range
         $alpha = (0 <= $alpha) && ($alpha <= 1) ? $alpha : 1;
         return sprintf(
-            'rgba(%d, %d, %d, %.2f',
+            'rgba(%d, %d, %d, %.2f)',
             $this->red($hexColor),
             $this->green($hexColor),
             $this->blue($hexColor),
             $alpha
         );
+    }
+
+    public function colorAsHex(string $color): string
+    {
+        return self::isThemeColor($color) ? theme()->themeColorToHex($color) : $color;
+    }
+
+    public function isThemeColor(string $color): bool
+    {
+        return ThemeColor::has($color);
     }
 
     /**

@@ -10,6 +10,8 @@
 - Added `hover` option to table widget (adds `table-hover` if enabled)
 - Added the `searchable()` method to the `Filter` interface
 - Added the Trident Theme - it has been written from scratch with new visual style
+- Added the following blade components:
+  - Badge
 - Dropped Laravel 10 support
 - Dropped Enum v3 support
 - Replaced the multiselect dropdown with a nice-select2 implementation

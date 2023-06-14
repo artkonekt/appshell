@@ -6,7 +6,7 @@
     @break
 
     @case('select')
-        {!! Form::select($id, $options ?? [], $criteria, ['class' => 'form-control form-control-sm', 'placeholder' => $placeholder]) !!}
+        {!! Form::select($id, $options ?? [], $criteria, ['class' => 'form-select form-select-sm', 'placeholder' => $placeholder]) !!}
     @break
 
     @case('multiselect')

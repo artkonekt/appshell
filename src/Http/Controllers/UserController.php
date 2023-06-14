@@ -62,8 +62,11 @@ class UserController extends BaseController
      */
     public function create()
     {
+        $user = app(User::class);
+        $user->is_active = true;
+
         return view('appshell::user.create', [
-            'user' => app(User::class),
+            'user' => $user,
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all(),
             'customerSelection' => config('konekt.app_shell.ui.customer_selection_for_users'),

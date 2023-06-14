@@ -39,18 +39,18 @@
 
     <div class="row mb-3">
         <div class="col">
-            <x-appshell::card-with-icon
-                :icon="$user->is_active ? 'user-active' : 'user-inactive'"
-                :type="$user->is_active ? 'success' : 'warning'"
-            >
+            <x-appshell::card-with-icon :type="$user->is_active ? 'success' : 'secondary'">
                 {{ $user->name }}
                 @if (!$user->is_active)
-                    <small>
-                        <span class="badge rounded-pill bg-light">
-                            {{ __('inactive') }}
-                        </span>
-                    </small>
+                    <x-appshell::badge variant="warning" font-size="6">{{ __('inactive') }}</x-appshell::badge>
                 @endif
+
+                <x-slot:icon-slot>
+                    <img src="{{ avatar_image_url($user) }}"
+                         alt="{{ $user->name }}"
+                         class="img-avatar img-avatar-37"
+                    >
+                </x-slot:icon-slot>
 
                 <x-slot:subtitle>
                     {{ __('Member since') }}
@@ -60,7 +60,7 @@
         </div>
 
         <div class="col">
-            <x-appshell::card-with-icon icon="security" type="info">
+            <x-appshell::card-with-icon icon="security">
                 {{ $user->type }}
                 <x-slot:subtitle>
                     @if($user->roles->count())

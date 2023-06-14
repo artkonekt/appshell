@@ -18,18 +18,18 @@ use Konekt\AppShell\Theme\ThemeColor;
 
 trait ManipulatesColors
 {
-    protected static function isThemeColor(string $string): bool
+    protected static function isThemeColor(string $color): bool
     {
-        return ThemeColor::has($string);
+        return helper('color')->isThemeColor($color);
     }
 
     protected static function needsWhiteText(string $bgColor): bool
     {
-        return helper('color')->canBeReadTogether(self::colorAsHex($bgColor), '#ffffff');
+        return helper('color')->needsWhiteText($bgColor);
     }
 
     protected static function colorAsHex(string $color): string
     {
-        return self::isThemeColor($color) ? theme()->themeColorToHex($color) : $color;
+        return helper('color')->colorAsHex($color);
     }
 }
