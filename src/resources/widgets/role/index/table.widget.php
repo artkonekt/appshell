@@ -7,7 +7,7 @@ use Konekt\AppShell\Widgets\AppShellWidgets;
 return [
     'type' => AppShellWidgets::TABLE,
     'options' => [
-        'striped' => true,
+        'hover' => true,
         'columns' => [
             'name' => [
                 'widget' => [
@@ -35,30 +35,6 @@ return [
                     'modifier' => 'count'
                 ]
             ],
-            'actions' => [
-                'title' => '&nbsp;',
-                'width' => '10%',
-                'valign' => 'middle',
-                'widget' => [
-                    'type' => 'table_actions',
-                    'actions' => [
-                        'edit' => [
-                            'route' => 'appshell.role.edit',
-                            'can' => 'edit roles',
-                        ],
-                        'delete' => [
-                            'route' => 'appshell.role.destroy',
-                            'can' => 'delete roles',
-                            'confirm' => [
-                                'text' => 'Are you sure to delete the :name role?',
-                                'params' => [
-                                    'name' => '$model.name'
-                                ],
-                            ]
-                        ]
-                    ]
-                ]
-            ]
         ]
     ]
 ];

@@ -8,16 +8,16 @@
 
     {!! Form::open(['route' => 'appshell.role.store']) !!}
 
-        @component(theme_widget('group'), ['accent' => 'success'])
-            @slot('title'){{ __('New Role Details') }}@endslot
+    <x-appshell::card accent="success">
+        <x-slot:title>{{ __('New Role Details') }}</x-slot:title>
 
-            @include('appshell::role._form')
+        @include('appshell::role._form')
 
-            @slot('footer')
-                <button class="btn btn-success">{{ __('Create role') }}</button>
-                <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-            @endslot
-        @endcomponent
+        <x-slot:footer>
+            <x-appshell::button variant="success">{{ __('Create role') }}</x-appshell::button>
+            <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
+        </x-slot:footer>
+    </x-appshell::card>
 
     {!! Form::close() !!}
 

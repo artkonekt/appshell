@@ -8,16 +8,16 @@
 
     {!! Form::model($role, ['route' => ['appshell.role.update', $role], 'method' => 'PUT']) !!}
 
-    @component(theme_widget('group'), ['accent' => 'secondary'])
-        @slot('title'){{ __('Role Details') }}@endslot
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __('Role Details') }}</x-slot:title>
 
         @include('appshell::role._form')
 
-        @slot('footer')
-            <button class="btn btn-primary">{{ __('Save') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        @endslot
-    @endcomponent
+        <x-slot:footer>
+            <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
+            <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
+        </x-slot:footer>
+    </x-appshell::card>
 
     {!! Form::close() !!}
 

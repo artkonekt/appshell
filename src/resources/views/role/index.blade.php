@@ -6,29 +6,26 @@
 
 @section('content')
 
-    @component(theme_widget('group'), ['accent' => 'secondary'])
-        @slot('title'){{ __('Roles') }}@endslot
-        @slot('actionbar')
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __('Roles') }}</x-slot:title>
+        <x-slot:actions>
             @can('create roles')
-                <a href="{{ route('appshell.role.create') }}"
-                   class="btn btn-sm btn-outline-success">
-                    {!! icon('+') !!}
+                <x-appshell::button :href="route('appshell.role.create')" variant="outline-success" icon="+" size="sm">
                     {{ __('New Role') }}
-                </a>
+                </x-appshell::button>
             @endcan
-        @endslot
+        </x-slot:actions>
 
         {!! widget('appshell::role.index.table')->render($roles) !!}
 
-    @endcomponent
+    </x-appshell::card>
 
-    @component(theme_widget('group'))
-        @slot('title')
+    <x-appshell::card>
+        <x-slot:title>
             {{ __('Permissions') }}
-            {!! icon('help', 'info', ['title' => __("Permissions can not be edited, they are defined by System Modules")]) !!}
-        @endslot
+            {!! icon('help', 'info', ['title' => __("Permissions can not be edited, they are defined by the system")]) !!}
+        </x-slot:title>
 
         {!! \Konekt\AppShell\Widgets::make('badges', ['color' => 'dark', 'text' => '$model.name'])->render($permissions) !!}
-
-    @endcomponent
+    </x-appshell::card>
 @stop

@@ -12,12 +12,10 @@
 <div class="mb-4 row">
     @foreach($permissions as $permission)
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" style="overflow: hidden; white-space: nowrap;">
-            <label class="switch switch-icon switch-pill switch-primary">
-                {{ Form::checkbox("permissions[{$permission->name}]", 1, $role->hasPermissionTo($permission), ['class' => 'switch-input']) }}
-                <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
-                <span class="switch-handle"></span>
-            </label>
-            {{ $permission->name }}
+            <div class="form-check form-switch">
+                {{ Form::checkbox("permissions[{$permission->name}]", 1, $role->hasPermissionTo($permission), ['class' => 'form-check-input', 'role' => 'switch', 'id' => '__permission_' . $permission->id]) }}
+                <label class="form-check-label" for="__permission_{{ $permission->id }}">{{ $permission->name }}</label>
+            </div>
         </div>
     @endforeach
 
