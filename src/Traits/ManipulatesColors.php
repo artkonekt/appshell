@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Traits;
 
-use Konekt\AppShell\Theme\ThemeColor;
-
 trait ManipulatesColors
 {
     protected static function isThemeColor(string $color): bool
