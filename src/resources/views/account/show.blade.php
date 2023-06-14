@@ -4,6 +4,14 @@
     {{ __('My Account') }}
 @stop
 
+@push('page-actions')
+    @can('edit users')
+        <x-appshell::button :href="route('appshell.user.edit', $user)" variant="outline-info" size="sm">
+            {{ __('Edit on users page') }}
+        </x-appshell::button>
+    @endcan
+@endpush
+
 @section('content')
 
     <div class="row">
@@ -12,17 +20,11 @@
             {!! Form::model($user, [
                     'route' => ['appshell.account.save', $user],
                     'method' => 'PUT']
-                    )
+                )
             !!}
 
-            @component(theme_widget('group'), ['accent' => 'info'])
-                @slot('title'){{ __('User Account') }}@endslot
-                @slot('actionbar')
-                    @can('edit users')
-                        <a href="{{ route('appshell.user.edit', $user) }}"
-                           class="btn btn-sm btn-outline-info">{{ __('Edit on users page') }}</a>
-                    @endcan
-                @endslot
+            <x-appshell::card accent="info">
+                <x-slot:title>{{ __('User Account') }}</x-slot:title>
 
                 @component(theme_widget('form.text'), [
                         'label' => __('Display Name'),
@@ -39,25 +41,26 @@
                 ])
                 @endcomponent
 
-                @slot('footer')
-                    <button class="btn btn-primary">{{ __('Save') }}</button>
-                @endslot
+                <x-slot:footer>
+                    <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
+                </x-slot:footer>
 
-            @endcomponent
+            </x-appshell::card>
 
             {!! Form::close() !!}
         </div>
 
         <div class="col-sm-3">
-            @component(theme_widget('group'), ['accent' => 'success'])
-                @slot('title'){{ __('Profile Image') }}@endslot
-                @slot('actionbar')
-                    <a href="https://en.gravatar.com/emails" target="_blank"
-                       class="btn btn-sm btn-outline-info">{{ __('Change...') }}</a>
-                @endslot
+            <x-appshell::card accent="success">
+                <x-slot:title>{{ __('Profile Image') }}</x-slot:title>
+                <x-slot:actions>
+                    <x-appshell::button href="https://en.gravatar.com/emails" target="_blank" size="sm" variant="outline-info">
+                        {{ __('Change...') }}
+                    </x-appshell::button>
+                </x-slot:actions>
 
                 <img src="{{ avatar_image_url($user, 200) }}" class="img-avatar img-avatar-100">
-            @endcomponent
+            </x-appshell::card>
         </div>
 
     </div>

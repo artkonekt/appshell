@@ -28,8 +28,8 @@
                         'active' => $loop->first
                     ])
                         @foreach($tab->children() as $group)
-                            @component(theme_widget('group'), ['accent' => 'secondary'])
-                                @slot('title'){{ $group->label() }}@endslot
+                            <x-appshell::card accent="secondary">
+                                <x-slot:title>{{ $group->label() }}</x-slot:title>
                                 @foreach($group->items() as $item)
                                     @component(theme_widget('form.' . $item->getWidget()->component()),
                                         array_merge([
@@ -40,7 +40,7 @@
                                     )
                                     @endcomponent
                                 @endforeach
-                            @endcomponent
+                            </x-appshell::card>
                         @endforeach
                     @endcomponent
                 @endforeach
@@ -48,14 +48,11 @@
         @endslot
     @endcomponent
 
-    <p>&nbsp;</p>
+    <x-appshell::card class="mt-3">
+        <x-appshell::button variant="primary">{{ __('Save preferences') }}</x-appshell::button>
+        <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Back without saving') }}</x-appshell::button>
+    </x-appshell::card>
 
-    <div class="card">
-        <div class="card-body">
-            <button class="btn btn-primary">{{ __('Save preferences') }}</button>
-            <a class="btn btn-link" href="javascript:history.go(-1);">{{ __('Back without saving') }}</a>
-        </div>
-    </div>
     {!! Form::close() !!}
 
 @stop

@@ -1,6 +1,6 @@
 <div class="dropdown">
 
-    <a class="btn btn-none border-0 href="#" data-bs-toggle="dropdown" aria-haspopup="true"
+    <a class="btn btn-none border-0" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
        aria-expanded="false" id="account-dropdown-link">
         <img src="{{ avatar_image_url(Auth::user(), 48) }}" class="img-avatar img-avatar-24" alt="{{ Auth::user()->name }}">
     </a>
