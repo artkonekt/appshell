@@ -7,7 +7,7 @@ use Konekt\AppShell\Widgets\AppShellWidgets;
 return [
     'type' => AppShellWidgets::TABLE,
     'options' => [
-        'striped' => true,
+        'hover' => true,
         'columns' => [
             'name' => [
                 'widget' => [

@@ -5,24 +5,16 @@
 @stop
 
 @section('content')
-<div class="card card-accent-secondary">
+{!! Form::model($address, ['route' => ['appshell.address.update', $address], 'method' => 'PUT', 'autocomplete' => 'off']) !!}
+    <x-appshell::card accent="secondary">
+        <x-slot:title>{{ __('Address Details') }}</x-slot:title>
 
-    <div class="card-header">
-        {{ __('Address Details') }}
-    </div>
+        @include('appshell::address._form')
 
-    {!! Form::model($address, ['route' => ['appshell.address.update', $address], 'method' => 'PUT', 'autocomplete' => 'off']) !!}
-
-        <div class="card-body">
-            @include('appshell::address._form')
-        </div>
-
-        <div class="card-footer">
-            <button class="btn btn-primary">{{ __('Save') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-
-    {!! Form::close() !!}
-
-</div>
+        <x-slot:footer>
+            <x-appshell::button variant="primary">{{ __('Update address') }}</x-appshell::button>
+            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+        </x-slot:footer>
+    </x-appshell::card>
+{!! Form::close() !!}
 @stop

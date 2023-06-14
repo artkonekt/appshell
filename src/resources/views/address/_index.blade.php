@@ -1,22 +1,21 @@
-@component(theme_widget('group'))
-    @slot('title'){{ __('Addresses') }}@endslot
+<x-appshell::card>
+    <x-slot:title>{{ __('Addresses') }}</x-slot:title>
 
     <?php
         $for = shorten(get_class($of));
         $editTheParent = 'edit ' . Illuminate\Support\Str::plural($for);
     ?>
 
-    @slot('actionbar')
+    <x-slot:actions>
         @can($editTheParent)
             @can('create addresses')
-                <a href="{{ route('appshell.address.create') }}?for={{$for}}&forId={{ $of->id }}" class="btn btn-sm btn-outline-success">
-                    {!! icon('+') !!}
+                <x-appshell::button href="{{ route('appshell.address.create') }}?for={{$for}}&forId={{ $of->id }}"
+                    size="sm" variant="success" icon="+">
                     {{ __('New Address') }}
-                </a>
+                </x-appshell::button>
             @endcan
         @endcan
-    @endslot
+    </x-slot:actions>
 
     {!! widget('appshell::address.table')->render($addresses) !!}
-
-@endcomponent
+</x-appshell::card>

@@ -1,4 +1,4 @@
-<label class="form-control-label">{{ $label }}</label>
+<label class="form-label">{{ $label }}</label>
 <div class="mb-4">
     <select class="form-control @if ($errors->has($name)) is-invalid @endif" name="{{ $name }}">
         @foreach($options as $key => $label)

@@ -23,17 +23,11 @@ class CreateAddressForm extends FormRequest implements CreateAddressFormContract
     use HasFor;
     use IsAddressRequest;
 
-    /**
-     * @inheritDoc
-     */
     public function rules()
     {
         return $this->getForRules();
     }
 
-    /**
-     * @inheritDoc
-     */
     public function authorize()
     {
         return true;

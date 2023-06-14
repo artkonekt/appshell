@@ -7,7 +7,7 @@ use Konekt\AppShell\Widgets\AppShellWidgets;
 return [
     'type' => AppShellWidgets::TABLE,
     'options' => [
-        'striped' => true,
+        'hover' => true,
         'columns' => [
             'name' => [
                 'widget' => [
@@ -51,7 +51,7 @@ return [
                             'route' => 'appshell.address.destroy',
                             'can' => 'delete addresses',
                             'confirm' => [
-                                'text' => 'AAre you sure you want to delete this address?',
+                                'text' => __('Are you sure you want to delete this address?'),
                             ]
                         ]
                     ]

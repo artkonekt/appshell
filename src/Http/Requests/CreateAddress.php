@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Konekt\Address\Models\AddressTypeProxy;
 use Konekt\AppShell\Contracts\Requests\CreateAddress as CreateAddressContract;
 
 class CreateAddress extends FormRequest implements CreateAddressContract
@@ -24,21 +26,16 @@ class CreateAddress extends FormRequest implements CreateAddressContract
     use IsAddressRequest;
     use MutatesAddress;
 
-    /**
-     * @inheritDoc
-     */
     public function rules()
     {
         return array_merge($this->getForRules(), [
             'name' => 'required',
             'country_id' => 'required',
-            'address' => 'required'
+            'address' => 'required',
+            'type' => Rule::in(AddressTypeProxy::values()),
         ]);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function authorize()
     {
         return true;

@@ -5,6 +5,7 @@
         <nav>
             @stack('page-actions')
             @if ($appshell->quick_links['enabled'])
+                <span class="text-secondary mx-1">&nbsp;</span>
                 <button class="btn btn-sm border-0 dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" id="quicklinks">
                     {!! icon('quick-links', 'muted') !!}

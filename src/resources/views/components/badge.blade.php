@@ -1,1 +1,1 @@
-<span @class(["badge text-bg-{$variant}", "fs-$fontSize" => $fontSize])>{{ $slot }}</span>
+<span @class(["badge rounded-pill text-bg-{$variant}", "fs-$fontSize" => $fontSize])>{{ $slot }}</span>

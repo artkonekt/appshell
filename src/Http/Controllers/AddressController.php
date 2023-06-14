@@ -95,7 +95,7 @@ class AddressController extends BaseController
         }
 
         if (!$for) {
-            return redirect(config('appshell.ui.url'));
+            return redirect(config('konekt.app_shell.ui.url'));
         }
 
         return redirect(route(sprintf('appshell.%s.show', shorten(get_class($for))), $for));

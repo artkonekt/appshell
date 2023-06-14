@@ -5,6 +5,20 @@
 @stop
 
 @push('page-actions')
+
+    @can('delete customers')
+        {!! Form::open([
+                'route' => ['appshell.customer.destroy', $customer],
+                'method' => 'DELETE',
+                'data-confirmation-text' => __('Are you sure to delete :name?', ['name' => $customer->name]),
+                'class' => "d-inline"
+                ])
+        !!}
+
+        <x-appshell::button variant="outline-danger" type="submit" size="sm" icon="delete" :title="__('Delete user')"></x-appshell::button>
+        {!! Form::close() !!}
+    @endcan
+
     @can('edit customers')
         <x-appshell::button :href="route('appshell.customer.edit', $customer)"
             variant="light" size="sm" icon="edit" :title="__('Edit customer')"></x-appshell::button>
@@ -21,11 +35,9 @@
             >
                 {{ $customer->getName() }}
                 @if (!$customer->is_active)
-                    <small>
-                        <span class="badge rounded-pill bg-secondary">
-                            {{ __('inactive') }}
-                        </span>
-                    </small>
+                    <x-appshell::badge variant="secondary" font-size="6">
+                        {{ __('inactive') }}
+                    </x-appshell::badge>
                 @endif
 
                 <x-slot:subtitle>

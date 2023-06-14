@@ -47,7 +47,7 @@
 <hr>
 
 <div class="mb-4 row">
-    <label class="form-control-label col-md-2">{{ __('User type') }}</label>
+    <label class="form-label col-md-2">{{ __('User type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)
             <label class="radio-inline" for="type_{{ $key }}">

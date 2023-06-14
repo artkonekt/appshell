@@ -10,27 +10,28 @@
         <div class="row">
 
             <div class="col-md-8 col-lg-9">
-                @component(theme_widget('group'), ['accent' => 'secondary'])
-                    @slot('title'){{ __('Customer Details') }}@endslot
+                <x-appshell::card accent="secondary">
+                    <x-slot:title>{{ __('Customer Details') }}</x-slot:title>
 
                     @include('appshell::customer._form')
-                @endcomponent
+                </x-appshell::card>
             </div>
 
             <div class="col-md-4 col-lg-3">
-                @component(theme_widget('group'), ['accent' => 'secondary'])
-                    @slot('title'){{ __('Settings') }}@endslot
+                <x-appshell::card accent="secondary">
+                    <x-slot:title>{{ __('Settings') }}</x-slot:title>
 
                     @include('appshell::customer._settings')
-                @endcomponent
+                </x-appshell::card>
             </div>
 
         </div>
 
-        @component(theme_widget('group'))
-            <button class="btn btn-primary">{{ __('Save') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        @endcomponent
+        <x-appshell::card>
+            <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
+            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+        </x-appshell::card>
+
     {!! Form::close() !!}
 
 @stop

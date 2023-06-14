@@ -5,24 +5,16 @@
 @stop
 
 @section('content')
-<div class="card card-accent-success">
-
-    <div class="card-header">
-        {{ __('Address Details') }}
-    </div>
-
     {!! Form::model($address, ['route' => 'appshell.address.store', 'autocomplete' => 'off']) !!}
+    <x-appshell::card accent="success">
+        <x-slot:title>{{ __('Address Details') }}</x-slot:title>
 
-        <div class="card-body">
             @include('appshell::address._form')
-        </div>
 
-        <div class="card-footer">
-            <button class="btn btn-success">{{ __('Create address') }}</button>
-            <a href="#" onclick="history.back();" class="btn btn-link text-muted">{{ __('Cancel') }}</a>
-        </div>
-
+            <x-slot:footer>
+                <x-appshell::button variant="success">{{ __('Create address') }}</x-appshell::button>
+                <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+            </x-slot:footer>
+    </x-appshell::card>
     {!! Form::close() !!}
-
-</div>
 @stop

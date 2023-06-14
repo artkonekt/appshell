@@ -1,17 +1,17 @@
 <section x-data="{customerType: '{{ old('type') ?: $customer->type->value() }}'}">
-<div class="mb-4 row{{ $errors->has('type') ? ' has-danger' : '' }}">
-    <label class="form-control-label col-md-2">{{ __('Customer type') }}</label>
+
+    <div class="mb-4 mt-2 row">
+    <label class="form-label col-md-2">{{ __('Customer type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)
-            <label class="radio-inline" for="type_{{ $key }}">
-                {{ Form::radio('type', $key, $customer->type->value() == $key, ['id' => "type_$key", 'x-model' => 'customerType']) }}
-                {{ $value }}
-                &nbsp;
-            </label>
+            <div class="form-check form-check-inline {{ $errors->has('type') ? ' is-invalid' : '' }}">
+                {{ Form::radio('type', $key, $customer->type->value() == $key, ['id' => "type_$key", 'x-model' => 'customerType', 'class' => 'form-check-input' . ($errors->has('type') ? ' is-invalid' : '')]) }}
+                <label class="form-check-label" for="type_{{ $key }}">{{ $value }}</label>
+            </div>
         @endforeach
 
         @if ($errors->has('type'))
-            <div class="form-control-feedback">{{ $errors->first('type') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('type') }}</div>
         @endif
     </div>
 </div>
@@ -22,20 +22,23 @@
 
     <div class="col-md-6">
         <div class="mb-4">
-            {{ Form::text('firstname', null, [
+            <x-appshell::floating-label :label="__('First name')">
+                {{ Form::text('firstname', null, [
                     'class' => 'form-control form-control-lg' . ($errors->has('firstname') ? ' is-invalid' : ''),
                     'placeholder' => __('First name')
-                ])
-            }}
+                    ])
+                }}
 
-            @if ($errors->has('firstname'))
-                <div class="invalid-feedback">{{ $errors->first('firstname') }}</div>
-            @endif
+                @if ($errors->has('firstname'))
+                    <div class="invalid-feedback">{{ $errors->first('firstname') }}</div>
+                @endif
+            </x-appshell::floating-label>
         </div>
     </div>
 
     <div class="col-md-6">
         <div class="mb-4">
+            <x-appshell::floating-label :label="__('Last name')">
             {{ Form::text('lastname', null, [
                     'class' => 'form-control form-control-lg' . ($errors->has('lastname') ? ' is-invalid' : ''),
                     'placeholder' => __('Last name')
@@ -45,6 +48,7 @@
             @if ($errors->has('lastname'))
                 <div class="invalid-feedback">{{ $errors->first('lastname') }}</div>
             @endif
+            </x-appshell::floating-label>
         </div>
     </div>
 
@@ -57,14 +61,13 @@
 <hr>
 
 <div class="mb-4 row">
-    <label class="form-control-label col-md-2">{{ __('Active') }}</label>
+    <label class="col-form-label col-md-2 pt-0">{{ __('Active') }}</label>
     <div class="col-md-10">
         {{ Form::hidden('is_active', 0) }}
-        <label class="switch switch-icon switch-pill switch-primary">
-            {{ Form::checkbox('is_active', 1, null, ['class' => 'switch-input']) }}
-            <span class="switch-label" data-on="&#xf26b;" data-off="&#xf136;"></span>
-            <span class="switch-handle"></span>
-        </label>
+        <div class="form-check form-switch">
+            {{ Form::checkbox('is_active', 1, null, ['class' => 'form-check-input', 'role' => 'switch']) }}
+            <label class="form-check-label"></label>
+        </div>
 
         @if ($errors->has('is_active'))
             <input type="text" hidden class="form-control is-invalid">
