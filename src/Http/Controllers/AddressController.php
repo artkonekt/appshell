@@ -43,12 +43,12 @@ class AddressController extends BaseController
             $address = AddressProxy::create($request->getDataAttributes());
 
             if ($for = $request->getFor()) {
-                $relation = $request->getForRelationName();
-                $address->{$relation}()->attach($for->id);
+                $address->model()->associate($for);
+                $address->save();
 
                 $message = __(':type address has been created for :name', [
                     'type' => $address->type->label(),
-                    'name' => $for->getName()
+                    'name' => $for->name ?? shorten($for::class),
                 ]);
             } else {
                 $message = __('Address has been created');

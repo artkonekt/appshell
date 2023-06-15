@@ -40,7 +40,7 @@ class CustomerTest extends TestCase
     {
         $response = $this->actingAs($this->adminUser)->get(route('appshell.customer.create'));
 
-        $response->assertSee('Create new customer');
+        $response->assertSee('Create New Customer');
         $response->assertSee('Create customer');
         $response->assertSee('First name');
         $response->assertSee('Last name');

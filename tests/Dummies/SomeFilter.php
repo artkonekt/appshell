@@ -60,4 +60,9 @@ class SomeFilter implements Filter
     {
         return $query;
     }
+
+    public function searchable(): bool
+    {
+        return false;
+    }
 }
