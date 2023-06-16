@@ -52,6 +52,11 @@ trait CalculatesContextualColors
             // Additional magic here
         }
 
+        if (is_callable($definition)) {
+            $rawValue = $definition($value);
+            return is_string($rawValue) ? $this->fromColorString($rawValue) : new ColorAttributes($rawValue, null);
+        }
+
         return new ColorAttributes(ThemeColor::create($fallback), null);
     }
 
