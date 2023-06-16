@@ -82,6 +82,7 @@ class FontAwesome6ProIconTheme implements IconTheme
         AppShellIcons::SEARCH => 'magnifying-glass',
         AppShellIcons::SPINNER => 'spinner',
         AppShellIcons::PLUG => 'plug',
+        AppShellIcons::UPLOAD => 'cloud-upload',
     ];
 
     public function __construct()

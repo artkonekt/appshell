@@ -75,6 +75,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::SEARCH => 'search',
         AppShellIcons::SPINNER => 'rotate-clockwise-2',
         AppShellIcons::PLUG => 'plug',
+        AppShellIcons::UPLOAD => 'cloud-upload',
     ];
 
     public static function getName(): string

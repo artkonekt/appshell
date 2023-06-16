@@ -75,6 +75,7 @@ class ZmdiIconTheme implements IconTheme
         AppShellIcons::SEARCH => 'search',
         AppShellIcons::SPINNER => 'spinner',
         AppShellIcons::PLUG => 'input-power',
+        AppShellIcons::UPLOAD => 'cloud-upload',
     ];
 
     public static function getName(): string

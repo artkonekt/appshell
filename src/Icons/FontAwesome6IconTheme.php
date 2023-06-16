@@ -76,6 +76,7 @@ class FontAwesome6IconTheme implements IconTheme
         AppShellIcons::SEARCH => 'magnifying-glass',
         AppShellIcons::SPINNER => 'spinner',
         AppShellIcons::PLUG => 'plug',
+        AppShellIcons::UPLOAD => 'cloud-upload',
     ];
 
     public static function getName(): string

@@ -75,6 +75,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::SEARCH => 'keyword-research',
         AppShellIcons::SPINNER => 'spinner',
         AppShellIcons::PLUG => 'plug',
+        AppShellIcons::UPLOAD => 'cloud-upload',
     ];
 
     public static function getName(): string

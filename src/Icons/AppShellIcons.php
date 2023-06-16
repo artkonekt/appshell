@@ -66,4 +66,5 @@ final class AppShellIcons
     public const SEARCH = 'search';
     public const SPINNER = 'spinner';
     public const PLUG = 'plug';
+    public const UPLOAD = 'upload';
 }
