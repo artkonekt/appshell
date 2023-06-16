@@ -37,7 +37,7 @@
 
 @section('content')
 
-    <div class="row mb-3">
+    <div class="row my-3">
         <div class="col">
             <x-appshell::card-with-icon :type="$user->is_active ? 'success' : 'secondary'">
                 {{ $user->name }}
