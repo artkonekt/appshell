@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
       deleteForm = deleter.closest('form')
       if (deleteForm) {
         deleteForm.onsubmit = event => {
-          let confirmText = deleter.dataset.confirmationText ? deleter.dataset.confirmationText : 'Are you sure you want to delete this item?'
+          let confirmText = event.target.dataset.confirmationText ? event.target.dataset.confirmationText : 'Are you sure you want to delete this item?'
 
           if (!confirm(confirmText)) {
             event.preventDefault();
