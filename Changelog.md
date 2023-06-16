@@ -15,7 +15,8 @@
   - Badge
   - Floating Label
 - Added custom `tag` support for card component
-- Added the following icons: `upload`, 
+- Added the following icons: `upload`,
+- Added the feature to substitute array values and/or object properties of any depth in widgets
 - Dropped Laravel 9 support
 - Dropped Enum v3 support
 - Replaced the multiselect dropdown with a nice-select2 implementation

@@ -18,32 +18,18 @@ use Illuminate\Support\Str;
 
 trait AccessesRawData
 {
-    protected function getRawData($model, string $attribute)
+    protected function getRawData($model, string $attributes)
     {
-        if (is_array($model)) {
-            return $model[$attribute] ?? '';
+        $result = $model;
+
+        foreach (explode('.', $attributes) as $attribute) {
+            $result = match (true) {
+                is_array($result) => $result[$attribute],
+                is_object($result) => Str::endsWith($attribute, '()') ? call_user_func([$result, str_replace('()', '', $attribute)]) : $result->{$attribute},
+                is_null($result) => null,
+            };
         }
 
-        if (is_object($model)) {
-            if (Str::endsWith($attribute, '()')) {
-                return call_user_func([$model, str_replace('()', '', $attribute)]);
-            }
-            if (Str::contains($attribute, '.')) {
-                $parts = explode('.', $attribute);
-                switch (count($parts)) {
-                    case 2:
-                        return $model->{$parts[0]}?->{$parts[1]};
-                    case 3:
-                        return $model->{$parts[0]}?->{$parts[1]}?->{$parts[2]};
-                    case 4:
-                        return $model->{$parts[0]}?->{$parts[1]}?->{$parts[2]}?->{$parts[3]};
-                    default:
-                        return ''; // Shrug
-                }
-            }
-            return $model->{$attribute};
-        }
-
-        return '';
+        return $result ?? '';
     }
 }
