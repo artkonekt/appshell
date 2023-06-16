@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Konekt\AppShell\Models;
 
 use Konekt\Enum\Enum;
@@ -13,5 +15,4 @@ class ResourceAction extends Enum
     public const EDIT = 'edit';
     public const UPDATE = 'update';
     public const DESTROY = 'destroy';
-
 }

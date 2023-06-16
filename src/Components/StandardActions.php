@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Components;
 
-use Illuminate\Support\Str;
 use Konekt\AppShell\Models\ResourceAction;
 
 class StandardActions extends BaseComponent
