@@ -14,8 +14,8 @@
         @include('appshell::role._form')
 
         <x-slot:footer>
-            <x-appshell::button variant="success">{{ __('Create role') }}</x-appshell::button>
-            <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::create-button model-name="role" />
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 

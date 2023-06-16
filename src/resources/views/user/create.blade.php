@@ -11,10 +11,12 @@
 <div class="col-12 col-md-6 col-lg-8 col-xl-9">
     <x-appshell::card accent="success">
         <x-slot:title>{{ __('Enter Account Details') }}</x-slot:title>
+
         @include('appshell::user._form')
+
         <x-slot:footer>
-            <x-appshell::button variant="success">{{ __('Create user') }}</x-appshell::button>
-            <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::create-button model-name="user" />
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 </div>

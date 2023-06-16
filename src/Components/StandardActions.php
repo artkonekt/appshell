@@ -28,16 +28,16 @@ class StandardActions extends BaseComponent
         public ?string $editButtonText = null,
         public ?string $deleteButtonTitle = null,
         public ?string $deleteConfirmationText = null,
-        public ?string $editRole = null,
-        public ?string $deleteRole = null,
+        public ?string $editPermission = null,
+        public ?string $deletePermission = null,
     ) {
         $this->modelName = $modelName ?? shorten($model::class);
         $this->editButtonText = $editButtonText ?? __('Edit');
-        $this->deleteButtonTitle = $deleteButtonTitle ?? __('Delete the :object', ['object' => $this->modelName]);
-        $this->deleteConfirmationText = $deleteConfirmationText ?? __('Delete the :name :object?', ['name' => $this->name, 'object' => $this->modelName]);
+        $this->deleteButtonTitle = $deleteButtonTitle ?? __('Delete the :object', ['object' => __($this->modelName)]);
+        $this->deleteConfirmationText = $deleteConfirmationText ?? __('Delete the :name :object?', ['name' => $this->name, 'object' => __($this->modelName)]);
         $this->editUrl = $editUrl ?? route("$route.edit", $this->model);
         $this->deleteUrl = $deleteUrl ?? route("$route.destroy", $this->model);
-        $this->editRole = $editRole ?? 'edit ' . Str::plural($this->modelName);
-        $this->deleteRole = $deleteRole ?? 'delete ' . Str::plural($this->modelName);
+        $this->editPermission = $editPermission ?? 'edit ' . Str::lower(Str::plural($this->modelName));
+        $this->deletePermission = $deletePermission ?? 'delete ' . Str::lower(Str::plural($this->modelName));
     }
 }

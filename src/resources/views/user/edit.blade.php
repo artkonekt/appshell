@@ -17,10 +17,12 @@
 <div class="col-12 col-md-6 col-lg-8 col-xl-9">
     <x-appshell::card accent="secondary">
         <x-slot:title>{{ __('User Account Data') }}</x-slot:title>
+
         @include('appshell::user._form')
+
         <x-slot:footer>
-            <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
-            <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::save-button />
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 </div>

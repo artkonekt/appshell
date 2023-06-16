@@ -5,11 +5,7 @@
 @stop
 
 @push('page-actions')
-    @can('create customers')
-        <x-appshell::button variant="outline-success" size="sm" icon="+" href="{{ route('appshell.customer.create') }}">
-            {{ __('Add Customer') }}
-        </x-appshell::button>
-    @endcan
+    <x-appshell::create-action model-name="customer" route="appshell.customer.create" />
 @endpush
 
 @section('content')

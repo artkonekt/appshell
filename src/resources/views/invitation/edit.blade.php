@@ -21,8 +21,8 @@
         @include('appshell::invitation._form')
 
         <x-slot:footer>
-            <x-appshell::button variant="success">{{ __('Update invitation') }}</x-appshell::button>
-            <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::save-button :text="__('Update invitation')" />
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 </div>

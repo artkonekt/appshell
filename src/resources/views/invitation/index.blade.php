@@ -5,11 +5,7 @@
 @stop
 
 @push('page-actions')
-    @can('create invitations')
-        <x-appshell::button variant="outline-success" size="sm" icon="+" href="{{ route('appshell.invitation.create') }}">
-            {{ __('Invite new user') }}
-        </x-appshell::button>
-    @endcan
+    <x-appshell::create-action model-name="invitation" route="appshell.invitation.create" :button-text="__('Invite new user')" />
 @endpush
 
 @section('content')

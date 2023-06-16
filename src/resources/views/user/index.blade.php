@@ -5,11 +5,7 @@
 @stop
 
 @push('page-actions')
-    @can('create users')
-        <x-appshell::button variant="outline-success" size="sm" icon="+" href="{{ route('appshell.user.create') }}">
-            {{ __('New User') }}
-        </x-appshell::button>
-    @endcan
+    <x-appshell::create-action model-name="user" route="appshell.user.create" />
 @endpush
 
 @section('content')

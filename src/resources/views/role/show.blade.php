@@ -5,24 +5,7 @@
 @stop
 
 @push('page-actions')
-
-    @can('delete roles')
-        {!! Form::open(['route' => ['appshell.role.destroy', $role],
-                        'method' => 'DELETE',
-                        'class' => 'd-inline',
-                        'data-confirmation-text' => __('Are you sure to delete the :name role?', ['name' => $role->name])
-                        ])
-        !!}
-        <x-appshell::button variant="outline-danger" size="sm" icon="delete" :title="__('Delete role')"></x-appshell::button>
-        {!! Form::close() !!}
-    @endcan
-
-    @can('edit roles')
-        <x-appshell::button :href="route('appshell.role.edit', $role)" variant="outline-primary" size="sm">
-            {{ __('Edit') }}
-        </x-appshell::button>
-    @endcan
-
+    <x-appshell::standard-actions :model="$role" route="appshell.role" :name="$role->name" />
 @endpush
 
 @section('content')
@@ -77,7 +60,7 @@
         </div>
 
         <x-slot:footer>
-            <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Back') }}</x-appshell::button>
+            <x-appshell::cancel-button :text="__('Back')" />
         </x-slot:footer>
 
     </x-appshell::card>

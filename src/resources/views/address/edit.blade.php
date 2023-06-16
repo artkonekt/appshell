@@ -12,8 +12,8 @@
         @include('appshell::address._form')
 
         <x-slot:footer>
-            <x-appshell::button variant="primary">{{ __('Update address') }}</x-appshell::button>
-            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::save-button :text="__('Update address')" />
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 {!! Form::close() !!}

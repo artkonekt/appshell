@@ -32,8 +32,8 @@
         </div>
 
         <x-slot:footer>
-            <x-appshell::button>{{ __('Save quick links') }}</x-appshell::button>
-            <x-appshell::button variant="link" class="text-muted" href="javascript:history.go(-1);">{{ __('Back without saving') }}</x-appshell::button>
+            <x-appshell::save-button :text="__('Save quick links')" />
+            <x-appshell::cancel-button />
         </x-slot:footer>
     </x-appshell::card>
 {!! Form::close() !!}

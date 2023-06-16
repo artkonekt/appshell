@@ -28,8 +28,8 @@
         </div>
 
         <x-appshell::card>
-            <x-appshell::button variant="primary">{{ __('Save') }}</x-appshell::button>
-            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::save-button model-name="customer" />
+            <x-appshell::cancel-button />
         </x-appshell::card>
 
     {!! Form::close() !!}

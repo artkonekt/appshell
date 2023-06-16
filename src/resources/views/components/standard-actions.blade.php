@@ -1,4 +1,4 @@
-@can($deleteRole)
+@can($deletePermission)
     {!! Form::open([
             'url' => $deleteUrl,
             'method' => 'DELETE',
@@ -10,6 +10,6 @@
     {!! Form::close() !!}
 @endcan
 
-@can($editRole)
+@can($editPermission)
     <x-appshell::button href="{{ $editUrl }}" variant="outline-secondary" size="sm">{{ $editButtonText }}</x-appshell::button>
 @endcan

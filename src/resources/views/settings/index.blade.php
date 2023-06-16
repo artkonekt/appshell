@@ -49,8 +49,8 @@
     @endcomponent
 
     <x-appshell::card class="mt-3">
-        <x-appshell::button variant="primary">{{ __('Save settings') }}</x-appshell::button>
-        <x-appshell::button type="button" onclick="history.back();" variant="link" class="text-muted">{{ __('Back without saving') }}</x-appshell::button>
+        <x-appshell::save-button :text="__('Save settings')" />
+        <x-appshell::cancel-button :text="__('Back without saving')" />
     </x-appshell::card>
 
     {!! Form::close() !!}

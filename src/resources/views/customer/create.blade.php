@@ -27,8 +27,8 @@
         </div>
 
         <x-appshell::card>
-            <x-appshell::button variant="success">{{ __('Create customer') }}</x-appshell::button>
-            <x-appshell::button variant="link" href="#" onclick="history.back();" class="text-secondary">{{ __('Cancel') }}</x-appshell::button>
+            <x-appshell::create-button model-name="customer" />
+            <x-appshell::cancel-button />
         </x-appshell::card>
     {!! Form::close() !!}
 @stop

@@ -5,11 +5,7 @@
 @stop
 
 @push('page-actions')
-    @can('create roles')
-        <x-appshell::button :href="route('appshell.role.create')" variant="outline-success" icon="+" size="sm">
-            {{ __('New Role') }}
-        </x-appshell::button>
-    @endcan
+    <x-appshell::create-action model-name="role" route="appshell.role.create" />
 @endpush
 
 @section('content')

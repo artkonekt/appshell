@@ -5,36 +5,14 @@
 @stop
 
 @push('page-actions')
-
-    @can('delete customers')
-        {!! Form::open([
-                'route' => ['appshell.customer.destroy', $customer],
-                'method' => 'DELETE',
-                'data-confirmation-text' => __('Are you sure to delete :name?', ['name' => $customer->name]),
-                'class' => "d-inline"
-                ])
-        !!}
-
-        <x-appshell::button variant="outline-danger" type="submit" size="sm" icon="delete" :title="__('Delete user')"></x-appshell::button>
-        {!! Form::close() !!}
-    @endcan
-
-    @can('edit customers')
-        <x-appshell::button :href="route('appshell.customer.edit', $customer)"
-            variant="outline-secondary" size="sm">
-            {{ __('Edit') }}
-        </x-appshell::button>
-    @endcan
+    <x-appshell::standard-actions :model="$customer" route="appshell.customer" :name="$customer->name" />
 @endpush
 
 @section('content')
 
     <div class="row my-3">
         <div class="col">
-            <x-appshell::card-with-icon
-                :icon="enum_icon($customer->type)"
-                :type="$customer->is_active ? 'success' : 'warning'"
-            >
+            <x-appshell::card-with-icon :icon="enum_icon($customer->type)" :type="$customer->is_active ? 'success' : 'warning'">
                 {{ $customer->getName() }}
                 @if (!$customer->is_active)
                     <x-appshell::badge variant="secondary" font-size="6">
