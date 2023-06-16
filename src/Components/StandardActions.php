@@ -35,7 +35,7 @@ class StandardActions extends BaseComponent
         $this->editButtonText = $editButtonText ?? __('Edit');
         $this->deleteButtonTitle = $deleteButtonTitle ?? __('Delete the :object', ['object' => $this->modelName]);
         $this->deleteConfirmationText = $deleteConfirmationText ?? __('Delete the :name :object?', ['name' => $this->name, 'object' => $this->modelName]);
-        $this->editUrl = $editUrl ?? route("$route.destroy", $this->model);
+        $this->editUrl = $editUrl ?? route("$route.edit", $this->model);
         $this->deleteUrl = $deleteUrl ?? route("$route.destroy", $this->model);
         $this->editRole = $editRole ?? 'edit ' . Str::plural($this->modelName);
         $this->deleteRole = $deleteRole ?? 'delete ' . Str::plural($this->modelName);
