@@ -22,16 +22,15 @@
                     ])
             !!}
 
-                <x-appshell::button variant="danger" type="submit" size="sm">
-                    {{ __('Delete user') }}
-                </x-appshell::button>
+                <x-appshell::button variant="outline-danger" type="submit" size="sm" icon="delete" :title="__('Delete user')"></x-appshell::button>
             {!! Form::close() !!}
         @endif
     @endcan
 
     @can('edit users')
-        <x-appshell::button variant="light" size="sm" href="{{ route('appshell.user.edit', $user) }}"
-            :title="__('Edit user')" icon="edit" />
+        <x-appshell::button variant="outline-primary" size="sm" href="{{ route('appshell.user.edit', $user) }}">
+            {{ __('Edit') }}
+        </x-appshell::button>
     @endcan
 @endpush
 

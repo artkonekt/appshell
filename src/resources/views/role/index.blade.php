@@ -4,17 +4,18 @@
     {{ __('Permissions & Roles') }}
 @stop
 
+@push('page-actions')
+    @can('create roles')
+        <x-appshell::button :href="route('appshell.role.create')" variant="outline-success" icon="+" size="sm">
+            {{ __('New Role') }}
+        </x-appshell::button>
+    @endcan
+@endpush
+
 @section('content')
 
     <x-appshell::card accent="secondary">
         <x-slot:title>{{ __('Roles') }}</x-slot:title>
-        <x-slot:actions>
-            @can('create roles')
-                <x-appshell::button :href="route('appshell.role.create')" variant="outline-success" icon="+" size="sm">
-                    {{ __('New Role') }}
-                </x-appshell::button>
-            @endcan
-        </x-slot:actions>
 
         {!! widget('appshell::role.index.table')->render($roles) !!}
 

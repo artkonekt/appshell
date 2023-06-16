@@ -6,7 +6,7 @@
 
 @push('page-actions')
     @can('edit users')
-        <x-appshell::button :href="route('appshell.user.edit', $user)" variant="outline-info" size="sm">
+        <x-appshell::button :href="route('appshell.user.edit', $user)" variant="outline-secondary" size="sm">
             {{ __('Edit on users page') }}
         </x-appshell::button>
     @endcan

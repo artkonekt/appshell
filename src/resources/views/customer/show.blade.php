@@ -21,7 +21,9 @@
 
     @can('edit customers')
         <x-appshell::button :href="route('appshell.customer.edit', $customer)"
-            variant="light" size="sm" icon="edit" :title="__('Edit customer')"></x-appshell::button>
+            variant="outline-secondary" size="sm">
+            {{ __('Edit') }}
+        </x-appshell::button>
     @endcan
 @endpush
 

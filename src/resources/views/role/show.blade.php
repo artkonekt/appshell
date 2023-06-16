@@ -5,9 +5,6 @@
 @stop
 
 @push('page-actions')
-    @can('edit roles')
-        <a href="{{ route('appshell.role.edit', $role) }}" class="btn btn-sm btn-outline-primary">{{ __('Edit role') }}</a>
-    @endcan
 
     @can('delete roles')
         {!! Form::open(['route' => ['appshell.role.destroy', $role],
@@ -16,10 +13,14 @@
                         'data-confirmation-text' => __('Are you sure to delete the :name role?', ['name' => $role->name])
                         ])
         !!}
-        <button class="btn btn-sm btn-outline-danger">
-            {{ __('Delete role') }}
-        </button>
+        <x-appshell::button variant="outline-danger" size="sm" icon="delete" :title="__('Delete role')"></x-appshell::button>
         {!! Form::close() !!}
+    @endcan
+
+    @can('edit roles')
+        <x-appshell::button :href="route('appshell.role.edit', $role)" variant="outline-primary" size="sm">
+            {{ __('Edit') }}
+        </x-appshell::button>
     @endcan
 
 @endpush

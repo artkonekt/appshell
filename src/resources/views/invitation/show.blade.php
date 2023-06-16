@@ -6,12 +6,6 @@
 
 @push('page-actions')
     @if($invitation->hasNotBeenUtilizedYet())
-        @can('edit invitations')
-            <x-appshell::button :href="route('appshell.invitation.edit', $invitation)"
-                                variant="light" size="sm" icon="edit"
-                                :title="__('Edit invitation')"></x-appshell::button>
-        @endcan
-
         @can('delete invitations')
             {!! Form::open([
                     'route' => ['appshell.invitation.destroy', $invitation],
@@ -21,11 +15,17 @@
                     ])
             !!}
 
-            <x-appshell::button variant="danger" type="submit" size="sm">
+            <x-appshell::button variant="outline-danger" type="submit" size="sm">
                 {{ __('Cancel invitation') }}
             </x-appshell::button>
 
             {!! Form::close() !!}
+        @endcan
+
+        @can('edit invitations')
+            <x-appshell::button :href="route('appshell.invitation.edit', $invitation)" variant="outline-secondary" size="sm">
+                {{ __('Edit') }}
+            </x-appshell::button>
         @endcan
 
     @endif

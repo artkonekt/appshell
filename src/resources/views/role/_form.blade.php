@@ -1,4 +1,5 @@
 <div class="mb-4">
+    <x-appshell::floating-label :label="__('Name of the role')">
     {{ Form::text('name', null, [
             'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
             'placeholder' => __('Name of the role')
@@ -7,6 +8,7 @@
     @if ($errors->has('name'))
         <div class="invalid-feedback">{{ $errors->first('name') }}</div>
     @endif
+    </x-appshell::floating-label>
 </div>
 
 <div class="mb-4 row">

@@ -4,6 +4,7 @@
         <span class="input-group-text">
             {!! icon('user') !!}
         </span>
+        <x-appshell::floating-label :label="__('Full name')">
         {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Full name')
@@ -12,6 +13,7 @@
         @if ($errors->has('name'))
             <div class="invalid-tooltip">{{ $errors->first('name') }}</div>
         @endif
+        </x-appshell::floating-label>
     </div>
 </div>
 

@@ -10,7 +10,7 @@
         @can($editTheParent)
             @can('create addresses')
                 <x-appshell::button href="{{ route('appshell.address.create') }}?for={{$for}}&forId={{ $of->id }}"
-                    size="sm" variant="success" icon="+">
+                    size="sm" variant="outline-success" icon="+">
                     {{ __('New Address') }}
                 </x-appshell::button>
             @endcan

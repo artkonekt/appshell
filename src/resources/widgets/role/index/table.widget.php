@@ -12,7 +12,10 @@ return [
             'name' => [
                 'widget' => [
                     'type' => 'link',
-                    'text' => '$model.name',
+                    'text' => [
+                        'bold' => true,
+                        'text' => '$model.name',
+                    ],
                     'url' => [
                         'route' => 'appshell.role.show',
                         'parameters' => ['$model']

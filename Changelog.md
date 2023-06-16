@@ -24,7 +24,7 @@
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - BC: Added the `supportedIcons()` static method to the `IconTheme` interface
-- BC: Upgrade to Bootstrap 5 (v5.2 at the time of conversion)
+- BC: Upgrade to Bootstrap 5.3
 - BC: Renamed the `group` widget/component to `card`
 
 ## Unreleased
