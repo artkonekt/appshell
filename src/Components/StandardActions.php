@@ -19,8 +19,8 @@ use Illuminate\Support\Str;
 class StandardActions extends BaseComponent
 {
     public function __construct(
-        public object  $model,
-        public string  $name = '',
+        public object $model,
+        public string $name = '',
         public ?string $route = null,
         public ?string $editUrl = null,
         public ?string $deleteUrl = null,
