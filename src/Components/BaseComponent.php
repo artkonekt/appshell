@@ -17,10 +17,13 @@ namespace Konekt\AppShell\Components;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
+use Konekt\AppShell\Acl\ResourcePermissionMapper;
 
 abstract class BaseComponent extends Component
 {
     protected static array $viewFileNameCache = [];
+
+    private static ?ResourcePermissionMapper $_aclMapper = null;
 
     public function render()
     {
@@ -48,5 +51,14 @@ abstract class BaseComponent extends Component
         }
 
         return view(self::$viewFileNameCache[$ns][$view]);
+    }
+
+    protected function aclMap(): ResourcePermissionMapper
+    {
+        if (null === self::$_aclMapper) {
+            self::$_aclMapper = new ResourcePermissionMapper();
+        }
+
+        return self::$_aclMapper;
     }
 }

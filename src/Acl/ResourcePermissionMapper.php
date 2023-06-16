@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Acl;
 
 use Illuminate\Support\Str;
+use Konekt\AppShell\Models\ResourceAction;
 
 /**
  * Mapping between resource names like 'user', 'category', 'subscription', etc
@@ -26,14 +27,14 @@ use Illuminate\Support\Str;
  */
 final class ResourcePermissionMapper
 {
-    private $actionVerbMap = [
-        'index' => 'list',
-        'create' => 'create',
-        'store' => 'create',
-        'show' => 'view',
-        'edit' => 'edit',
-        'update' => 'edit',
-        'destroy' => 'delete',
+    private array $actionVerbMap = [
+        ResourceAction::INDEX => 'list',
+        ResourceAction::CREATE => 'create',
+        ResourceAction::STORE => 'create',
+        ResourceAction::SHOW => 'view',
+        ResourceAction::EDIT => 'edit',
+        ResourceAction::UPDATE => 'edit',
+        ResourceAction::DESTROY => 'delete',
     ];
 
     private array $customPluralForms = [];

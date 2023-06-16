@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Components;
 
 use Illuminate\Support\Str;
+use Konekt\AppShell\Models\ResourceAction;
 
 class StandardActions extends BaseComponent
 {
@@ -37,7 +38,12 @@ class StandardActions extends BaseComponent
         $this->deleteConfirmationText = $deleteConfirmationText ?? __('Delete the :name :object?', ['name' => $this->name, 'object' => __($this->modelName)]);
         $this->editUrl = $editUrl ?? route("$route.edit", $this->model);
         $this->deleteUrl = $deleteUrl ?? route("$route.destroy", $this->model);
-        $this->editPermission = $editPermission ?? 'edit ' . Str::lower(Str::plural($this->modelName));
-        $this->deletePermission = $deletePermission ?? 'delete ' . Str::lower(Str::plural($this->modelName));
+
+        if (is_null($this->editPermission)) {
+            $this->editPermission = $this->aclMap()->permissionFor($this->modelName, ResourceAction::EDIT);
+        }
+        if (is_null($this->deletePermission)) {
+            $this->deletePermission = $this->aclMap()->permissionFor($this->modelName, ResourceAction::DESTROY);
+        }
     }
 }

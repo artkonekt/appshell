@@ -45,6 +45,7 @@ class WidgetServiceProvider extends ServiceProvider
         AppShellWidgetModifiers::UPPERCASE => Widgets\Modifiers\Uppercase::class,
         AppShellWidgetModifiers::LOWERCASE => Widgets\Modifiers\Lowercase::class,
         AppShellWidgetModifiers::BOOL2TEXT => Widgets\Modifiers\Bool2Text::class,
+        AppShellWidgetModifiers::TEXT_IF_EMPTY => Widgets\Modifiers\TextIfEmpty::class,
         AppShellWidgetModifiers::SHOW_DATETIME => Widgets\Modifiers\ShowDateTime::class,
         AppShellWidgetModifiers::SHOW_DATE => Widgets\Modifiers\ShowDate::class,
         AppShellWidgetModifiers::SHOW_TIME => Widgets\Modifiers\ShowTime::class,

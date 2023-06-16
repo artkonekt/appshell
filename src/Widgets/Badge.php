@@ -57,7 +57,7 @@ class Badge implements Widget
             is_string($colorDef) ? $this->resolveSubstitutions($colorDef, $data) : $colorDef,
             $value
         );
-        $contextClass = $bgColor->themeColor->isNone() ? '' : 'bg-' . $bgColor->themeColor->value();
+        $contextClass = $bgColor->themeColor->isNone() ? '' : 'text-bg-' . $bgColor->themeColor->value();
         $result['class'] = "badge rounded-pill $contextClass " . ($options['class'] ?? '');
 
         if (null !== $bgColor->style) {

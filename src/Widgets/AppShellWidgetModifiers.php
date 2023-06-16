@@ -17,6 +17,8 @@ namespace Konekt\AppShell\Widgets;
 final class AppShellWidgetModifiers
 {
     public const BOOL2TEXT = 'bool2text';
+
+    public const TEXT_IF_EMPTY = 'text_if_empty';
     public const LOWERCASE = 'lowercase';
     public const UPPERCASE = 'uppercase';
     public const SHOW_DATETIME = 'show_datetime';

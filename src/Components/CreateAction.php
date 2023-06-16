@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Components;
 
 use Illuminate\Support\Str;
+use Konekt\AppShell\Models\ResourceAction;
 use LogicException;
 
 class CreateAction extends BaseComponent
@@ -33,6 +34,6 @@ class CreateAction extends BaseComponent
 
         $this->buttonText = $buttonText ?? ($this->modelName ? __('New :object', ['object' => __($this->modelName)]) : __('Create new'));
         $this->url = $url ?? (str_ends_with($this->route, '.create') ? route($this->route) : route("$route.create"));
-        $this->permission = $permission ?? 'create ' . Str::lower(Str::plural($this->modelName));
+        $this->permission = $permission ?? $this->aclMap()->permissionFor($this->modelName, ResourceAction::CREATE);
     }
 }
