@@ -89,13 +89,12 @@
     <label class="col-form-label col-md-2 pt-0">{{ __('Active') }}</label>
     <div class="col-md-10">
         {{ Form::hidden('is_active', 0) }}
-        <div class="form-check form-switch">
+        <div class="form-check form-switch {{ $errors->has('is_active') ? 'is-invalid' : '' }}">
             {{ Form::checkbox('is_active', 1, null, ['class' => 'form-check-input', 'role' => 'switch']) }}
             <label class="form-check-label"></label>
         </div>
 
         @if ($errors->has('is_active'))
-            <input type="text" hidden class="form-control is-invalid">
             <div class="invalid-feedback">{{ $errors->first('is_active') }}</div>
         @endif
 
