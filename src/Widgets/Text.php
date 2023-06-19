@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Widgets;
 
+use Closure;
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Theme\ThemeColor;
@@ -48,9 +49,9 @@ class Text implements Widget
 
     private bool $bold = false;
 
-    private string $prefix = '';
+    private string|Closure $prefix = '';
 
-    private string $suffix = '';
+    private string|Closure $suffix = '';
 
     private null|array|string $colorDef = null;
 
@@ -82,11 +83,11 @@ class Text implements Widget
         }
 
         if (isset($options['prefix'])) {
-            $instance->prefix = (string) $options['prefix'];
+            $instance->prefix = is_callable($options['prefix']) ? $options['prefix'] : (string) $options['prefix'];
         }
 
         if (isset($options['suffix'])) {
-            $instance->suffix = (string) $options['suffix'];
+            $instance->suffix = is_callable($options['suffix']) ? $options['suffix'] : (string) $options['suffix'];
         }
 
         $instance->colorDef = $options['color'] ?? null;
@@ -125,14 +126,17 @@ class Text implements Widget
             $this->wrap = self::DEFAULT_WRAP;
         }
 
+        $prefix = $this->prefix;
+        $suffix = $this->suffix;
+
         return $this->renderViewFromTheme('text', [
             'text' => $this->modify($text($data, $this)),
             'wrap' => $this->wrap,
             'tagAttributes' => $this->tagAttributes,
             'color' => $color,
             'bold' => $this->bold,
-            'prefix' => $this->resolveSubstitutions($this->prefix, $data),
-            'suffix' => $this->resolveSubstitutions($this->suffix, $data),
+            'prefix' => is_callable($prefix) ? $prefix($data) : $this->resolveSubstitutions($prefix, $data),
+            'suffix' => is_callable($suffix) ? $suffix($data) : $this->resolveSubstitutions($suffix, $data),
         ]);
     }
 }

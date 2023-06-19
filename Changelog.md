@@ -18,7 +18,8 @@
 - Added custom `tag` support for card component
 - Added the following icons: `upload`,
 - Added the feature to substitute array values and/or object properties of any depth in widgets
-- Added the feature to use clojures in widget color definitions
+- Added the feature to use closures in widget color definitions
+- Added support for using closures as widget text prefix and suffix
 - Added the `text_if_null` widget modifier
 - Dropped Laravel 9 support
 - Dropped Enum v3 support

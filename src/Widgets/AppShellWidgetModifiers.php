@@ -21,6 +21,7 @@ final class AppShellWidgetModifiers
     public const TEXT_IF_EMPTY = 'text_if_empty';
     public const LOWERCASE = 'lowercase';
     public const UPPERCASE = 'uppercase';
+    public const INTVAL = 'intval';
     public const SHOW_DATETIME = 'show_datetime';
     public const SHOW_DATE = 'show_date';
     public const SHOW_TIME = 'show_time';
