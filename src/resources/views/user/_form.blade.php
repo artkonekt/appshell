@@ -4,16 +4,16 @@
         <span class="input-group-text">
             {!! icon('user') !!}
         </span>
-        <x-appshell::floating-label :label="__('Full name')">
+        <x-appshell::floating-label :label="__('Full name')" :is-invalid="$errors->has('name')">
         {{ Form::text('name', null, [
                 'class' => 'form-control form-control-lg' . ($errors->has('name') ? ' is-invalid' : ''),
                 'placeholder' => __('Full name')
             ])
         }}
-        @if ($errors->has('name'))
-            <div class="invalid-tooltip">{{ $errors->first('name') }}</div>
-        @endif
         </x-appshell::floating-label>
+        @if ($errors->has('name'))
+            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+        @endif
     </div>
 </div>
 
@@ -31,7 +31,7 @@
             ])
         }}
         @if ($errors->has('email'))
-            <div class="invalid-tooltip">{{ $errors->first('email') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('email') }}</div>
         @endif
     </div>
 </div>
@@ -55,7 +55,7 @@
             ])
         }}
         @if ($errors->has('password'))
-            <div class="invalid-tooltip">{{ $errors->first('password') }}</div>
+            <div class="invalid-feedback">{{ $errors->first('password') }}</div>
         @endif
     </div>
 </div>
@@ -66,14 +66,13 @@
     <label class="col-form-label col-md-2 pt-0">{{ __('User type') }}</label>
     <div class="col-md-10">
         @foreach($types as $key => $value)
-            <div class="form-check form-check-inline">
-                {{ Form::radio('type', $key, $user->type == $value, ['id' => "type_$key", 'x-model' => 'userType', 'class' => 'form-check-input']) }}
+            <div class="form-check form-check-inline {{ $errors->has('type') ? 'is-invalid' : '' }}">
+                {{ Form::radio('type', $key, $user->type == $value, ['id' => "type_$key", 'x-model' => 'userType', 'class' => 'form-check-input' . ($errors->has('type') ? ' is-invalid': '')]) }}
                 <label class="form-check-label" for="type_{{ $key }}">{{ $value }}</label>
             </div>
         @endforeach
 
         @if ($errors->has('type'))
-            <input type="text" hidden class="form-control is-invalid">
             <div class="invalid-feedback">{{ $errors->first('type') }}</div>
         @endif
     </div>

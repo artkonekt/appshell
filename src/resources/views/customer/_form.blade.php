@@ -22,7 +22,7 @@
 
     <div class="col-md-6">
         <div class="mb-4">
-            <x-appshell::floating-label :label="__('First name')">
+            <x-appshell::floating-label :label="__('First name')" :is-invalid="$errors->has('firstname')">
                 {{ Form::text('firstname', null, [
                     'class' => 'form-control form-control-lg' . ($errors->has('firstname') ? ' is-invalid' : ''),
                     'placeholder' => __('First name')
@@ -38,7 +38,7 @@
 
     <div class="col-md-6">
         <div class="mb-4">
-            <x-appshell::floating-label :label="__('Last name')">
+            <x-appshell::floating-label :label="__('Last name')" :is-invalid="$errors->has('lastname')">
             {{ Form::text('lastname', null, [
                     'class' => 'form-control form-control-lg' . ($errors->has('lastname') ? ' is-invalid' : ''),
                     'placeholder' => __('Last name')

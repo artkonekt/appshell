@@ -15,7 +15,9 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Konekt\AppShell\Contracts\Requests\CreateUser as CreateUserContract;
+use Konekt\User\Models\UserTypeProxy;
 
 class CreateUser extends FormRequest implements CreateUserContract
 {
@@ -30,7 +32,7 @@ class CreateUser extends FormRequest implements CreateUserContract
             'name' => 'required|min:2|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:7',
-            'type' => 'present',
+            'type' => ['required', Rule::in(UserTypeProxy::values()) ],
             'is_active' => 'sometimes|boolean',
             'roles' => 'sometimes|array',
             'customer_id' => 'sometimes|nullable|exists:customers,id',
