@@ -33,8 +33,8 @@
             </div>
 
             <div class="filterset-button-holder">
-                <button class="btn btn-sm btn-outline-secondary" type="button" onclick="window.location.href=this.form.action">{{ __('Reset') }}</button>
-                <button class="btn btn-sm btn-primary" type="submit">{{ __('Filter') }}</button>
+                <x-appshell::button variant="outline-secondary" type="button" onclick="window.location.href=this.form.action" size="sm">{{ __('Reset') }}</x-appshell::button>
+                <x-appshell::button variant="primary" size="sm" type="submit">{{ __('Filter') }}</x-appshell::button>
             </div>
         </form>
     </div>
