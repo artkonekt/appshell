@@ -28,7 +28,8 @@ trait CalculatesContextualColors
         $definition,
         $value = null,
         ?string $fallback = ThemeColor::PRIMARY,
-        bool $setForegroundColor = false
+        bool $setForegroundColor = false,
+        $model = null,
     ): ColorAttributes {
         if (null === $definition) {
             return new ColorAttributes(ThemeColor::create($fallback), null);
@@ -47,6 +48,15 @@ trait CalculatesContextualColors
                 if ($color instanceof ThemeColor) {
                     $color = $color->value();
                 }
+
+                return $this->fromColorString($color, $setForegroundColor);
+            }
+            if (isset($definition['enum_color'])) {
+                $color = enum_color($this->resolveSubstitutions($definition['enum_color'], $model));
+                if ($color instanceof ThemeColor) {
+                    $color = $color->value();
+                }
+
                 return $this->fromColorString($color, $setForegroundColor);
             }
             // Additional magic here

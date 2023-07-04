@@ -23,6 +23,7 @@ final class AppShellWidgets
     public const ENUM_ICON = 'enum_icon';
     public const FILTER = 'filter';
     public const FILTER_SET = 'filterset';
+    public const IMAGE = 'image';
     public const LINK = 'link';
     public const MULTI_TEXT = 'multi_text';
     public const RAW_HTML = 'raw_html';

@@ -27,6 +27,7 @@ trait AccessesRawData
                 is_array($result) => $result[$attribute],
                 is_object($result) => Str::endsWith($attribute, '()') ? call_user_func([$result, str_replace('()', '', $attribute)]) : $result->{$attribute},
                 is_null($result) => null,
+                is_string($result) => $result,
             };
         }
 

@@ -21,6 +21,8 @@
 - Added the feature to use closures in widget color definitions
 - Added support for using closures as widget text prefix and suffix
 - Added the `text_if_null` widget modifier
+- Added the image widget
+- Added the `enum_color` feature to the widget color options
 - Dropped Laravel 9 support
 - Dropped Enum v3 support
 - Replaced the multiselect dropdown with a nice-select2 implementation
