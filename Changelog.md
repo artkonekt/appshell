@@ -23,7 +23,7 @@
 - Added the `text_if_null` widget modifier
 - Added the image widget
 - Added the `enum_color` feature to the widget color options
-- Added the `folder` icon
+- Added the following icons: folder, file
 - Dropped Laravel 9 support
 - Dropped Enum v3 support
 - Replaced the multiselect dropdown with a nice-select2 implementation

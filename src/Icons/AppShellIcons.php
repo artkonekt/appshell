@@ -68,4 +68,5 @@ final class AppShellIcons
     public const PLUG = 'plug';
     public const UPLOAD = 'upload';
     public const FOLDER = 'folder';
+    public const FILE = 'file';
 }

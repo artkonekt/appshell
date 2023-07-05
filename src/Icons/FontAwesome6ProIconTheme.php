@@ -84,6 +84,7 @@ class FontAwesome6ProIconTheme implements IconTheme
         AppShellIcons::PLUG => 'plug',
         AppShellIcons::UPLOAD => 'cloud-upload',
         AppShellIcons::FOLDER => 'folder-open',
+        AppShellIcons::FILE => 'file',
     ];
 
     public function __construct()

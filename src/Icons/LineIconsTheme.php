@@ -77,6 +77,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::PLUG => 'plug',
         AppShellIcons::UPLOAD => 'cloud-upload',
         AppShellIcons::FOLDER => 'folder',
+        AppShellIcons::FILE => 'empty-file',
     ];
 
     public static function getName(): string

@@ -78,6 +78,7 @@ class FontAwesomeIconTheme implements IconTheme
         AppShellIcons::PLUG => 'plug',
         AppShellIcons::UPLOAD => 'cloud-upload-alt',
         AppShellIcons::FOLDER => 'folder',
+        AppShellIcons::FILE => 'file',
     ];
 
     public static function getName(): string
