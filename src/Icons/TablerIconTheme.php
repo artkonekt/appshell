@@ -64,7 +64,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::SECURITY => 'shield-check',
         AppShellIcons::STAR => 'star',
         AppShellIcons::TIME => 'history',
-        AppShellIcons::TAX => 'tax',
+        AppShellIcons::TAX => 'receipt-tax',
         AppShellIcons::QUICK_LINKS => 'windmill',
         AppShellIcons::HAMBURGER => 'menu-2',
         AppShellIcons::LINK => 'link',
