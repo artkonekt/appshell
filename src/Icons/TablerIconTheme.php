@@ -76,6 +76,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::SPINNER => 'rotate-clockwise-2',
         AppShellIcons::PLUG => 'plug',
         AppShellIcons::UPLOAD => 'cloud-upload',
+        AppShellIcons::DOWNLOAD => 'cloud-download',
         AppShellIcons::FOLDER => 'folder',
         AppShellIcons::FILE => 'file',
     ];

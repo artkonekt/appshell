@@ -76,6 +76,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::SPINNER => 'spinner',
         AppShellIcons::PLUG => 'plug',
         AppShellIcons::UPLOAD => 'cloud-upload',
+        AppShellIcons::DOWNLOAD => 'cloud-download',
         AppShellIcons::FOLDER => 'folder',
         AppShellIcons::FILE => 'empty-file',
     ];
