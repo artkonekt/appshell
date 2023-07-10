@@ -24,7 +24,7 @@
 - Added the image widget
 - Added the `enum_color` feature to the widget color options
 - Added the following icons: folder, file
-- Added the `Currencies` helper class
+- Added the `Currencies` helper class and the `CurrencyExists` validation rule
 - Dropped Laravel 9 support
 - Dropped Enum v3 support
 - Replaced the multiselect dropdown with a nice-select2 implementation
