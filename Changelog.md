@@ -24,6 +24,7 @@
 - Added the image widget
 - Added the `enum_color` feature to the widget color options
 - Added the following icons: folder, file
+- Added the `Currencies` helper class
 - Dropped Laravel 9 support
 - Dropped Enum v3 support
 - Replaced the multiselect dropdown with a nice-select2 implementation
@@ -32,6 +33,7 @@
   - Address v3.0
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
+- Changed the filename of `resources/database/currencies.json` (removed the leading space from the filename)
 - BC: Added the `supportedIcons()` static method to the `IconTheme` interface
 - BC: Upgrade to Bootstrap 5.3
 - BC: Renamed the `group` widget/component to `card`

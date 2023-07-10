@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Settings;
 
+use Konekt\AppShell\Helpers\Currencies;
 use Konekt\AppShell\Traits\AccessesAppShellConfig;
 use Konekt\Gears\Contracts\Setting;
 
@@ -43,7 +44,7 @@ class DefaultCurrency implements Setting
     public function options()
     {
         if (null === self::$currencies) {
-            self::$currencies = json_decode(file_get_contents(dirname(__DIR__) . '/resources/database/ currencies.json'), true);
+            self::$currencies = Currencies::choices();
         }
 
         return self::$currencies;
