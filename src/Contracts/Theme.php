@@ -15,6 +15,8 @@ namespace Konekt\AppShell\Contracts;
 
 interface Theme
 {
+    public const COMPONENT_NAMESPACE = 'Konekt\\AppShell\\Components';
+
     public static function getName(): string;
 
     public function themeColorToHex(?string $themeColorName): string;
@@ -24,6 +26,4 @@ interface Theme
     public function layout(string $variant): string;
 
     public function viewNamespace(): string;
-
-    public function componentNamespace(): string;
 }

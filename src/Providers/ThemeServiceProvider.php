@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Settings\UiThemeSetting;
 use Konekt\AppShell\Theme\AppShellTheme;
 use Konekt\AppShell\Theme\TridentTheme;
@@ -46,7 +47,6 @@ class ThemeServiceProvider extends ServiceProvider
             config(['konekt.app_shell.ui.theme' => AppShellTheme::ID]);
         }
 
-        // Tells Laravel to take AppShell components from the current theme
-        Blade::componentNamespace(theme()->componentNamespace(), 'appshell');
+        Blade::componentNamespace(Theme::COMPONENT_NAMESPACE, 'appshell');
     }
 }

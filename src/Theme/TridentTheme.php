@@ -45,9 +45,4 @@ class TridentTheme implements Theme
         ThemeColor::MUTED => '#737376',
         ThemeColor::NONE => '#444444',
     ];
-
-    public function componentNamespace(): string
-    {
-        return 'Konekt\\AppShell\\Components';
-    }
 }
