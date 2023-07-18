@@ -34,7 +34,7 @@ class BadgeWidgetTest extends TestCase
     {
         $text = Badge::create(new AppShellTheme(), ['text' => 'Expired', 'color' => 'danger']);
         $html = trim($text->render());
-        $this->assertStringContainsString('class="badge rounded-pill bg-danger', $html);
+        $this->assertStringContainsString('class="badge rounded-pill text-bg-danger', $html);
         $this->assertStringContainsString('Expired</', $html);
     }
 
