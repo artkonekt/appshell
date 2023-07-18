@@ -1,5 +1,3 @@
-import "../sass/nice-select2.scss";
-
 // utility functions
 function triggerClick(el) {
   var event = document.createEvent("MouseEvents");
@@ -59,11 +57,7 @@ function data(el, key) {
 }
 
 function hasClass(el, className) {
-  if (el){
-    return el.classList.contains(className);
-  }else{
-    return false;
-  }
+  return  el ? el.classList.contains(className) : false;
 }
 
 function addClass(el, className) {
@@ -89,6 +83,8 @@ export default function NiceSelect(element, options) {
   this.placeholder      = attr(this.el, "placeholder") || this.config.placeholder || "Select an option";
   this.searchtext       = attr(this.el, "searchtext") || this.config.searchtext || "Search";
   this.selectedtext     = attr(this.el, "selectedtext") || this.config.selectedtext || "selected";
+  this.emptyItemAsPlaceholder = !!attr(this.el, "empty-as-placeholder");
+  this.autoWidth        = !!attr(this.el, "auto-width");
 
   this.dropdown         = null;
   this.multiple         = attr(this.el, "multiple");
@@ -141,7 +137,7 @@ NiceSelect.prototype.extractData = function() {
         text: item.label,
         value: 'optgroup'
       };
-    }else{
+    } else {
       let text  = item.innerText;
       if(item.dataset.display != undefined){
         text  = item.dataset.display;
@@ -161,8 +157,12 @@ NiceSelect.prototype.extractData = function() {
 	    optgroup: item.tagName == 'OPTGROUP'
     };
 
-    data.push(itemData);
-    allOptions.push({ data: itemData, attributes: attributes });
+    if (this.emptyItemAsPlaceholder && !attributes.optgroup && (item.value === null || item.value === undefined || item.value === "")) {
+      this.placeholder = itemData.text;
+    } else {
+      data.push(itemData);
+      allOptions.push({ data: itemData, attributes: attributes });
+    }
   });
 
   this.data     = data;
@@ -184,11 +184,13 @@ NiceSelect.prototype.renderDropdown = function() {
     this.multiple ? "has-multiple" : ""
   ];
 
+  let style = this.autoWidth ? 'width: auto;' : '';
+
   let searchHtml = `<div class="nice-select-search-box">`;
     searchHtml  += `<input type="text" class="nice-select-search" placeholder="${this.searchtext}..." title="search"/>`;
   searchHtml  += `</div>`;
 
-  var html = `<div class="${classes.join(" ")}" tabindex="${this.disabled ? null : 0}">`;
+  var html = `<div class="${classes.join(" ")}" tabindex="${this.disabled ? null : 0}" style="${style}">`;
       html += `<span class="${this.multiple ? "multiple-options" : "current"}"></span>`;
       html += `<div class="nice-select-dropdown">`;
         html += `${this.config.searchable ? searchHtml : ""}`;
@@ -206,7 +208,7 @@ NiceSelect.prototype.renderDropdown = function() {
 NiceSelect.prototype._renderSelectedItems = function() {
   if (this.multiple) {
     var selectedHtml = "";
-    if(this.config.showSelectedItems || this.config.showSelectedItems || window.getComputedStyle(this.dropdown).width == 'auto' || this.selectedOptions.length < 2){
+    if(this._shouldShowSelectedItems()){
       this.selectedOptions.forEach(function(item) {
         selectedHtml += `<span class="current">${item.data.text}</span>`;
       });
@@ -223,6 +225,20 @@ NiceSelect.prototype._renderSelectedItems = function() {
     this.dropdown.querySelector(".current").innerHTML = html;
   }
 };
+
+NiceSelect.prototype._shouldShowSelectedItems = function() {
+  if (this.config.showSelectedItems || this.dropdown.style.width === 'auto' || this.selectedOptions.length < 2) {
+    return true;
+  }
+
+  var itemsWidth = 0;
+  this.selectedOptions.forEach(function(item) {
+    itemsWidth += 8 * item.data.text.length; // rough estimate
+  });
+
+  return parseInt(window.getComputedStyle(this.dropdown).width, 10) > itemsWidth;
+};
+
 
 NiceSelect.prototype._renderItems = function() {
   var ul = this.dropdown.querySelector("ul");

@@ -11,7 +11,7 @@
 
     @case('multiselect')
         <select name="{{ $id . '[]' }}" class="form-control form-control-sm" @if($searchable ?? false)searchable="true"@endif
-                multiple multiselect-select-all="true" size="1" placeholder="{{ $placeholder }}">
+                multiple size="1" placeholder="{{ $placeholder }}">
             @foreach($options as $value => $label)
                 <option value="{{ $value }}"@if(in_array($value, $criteria ?? [])) selected @endif>{{ $label }}</option>
             @endforeach
