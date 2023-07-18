@@ -29,6 +29,7 @@ class PreferencesController extends BaseController
     public function update(Request $request)
     {
         Preferences::update($request->get('preferences'));
+        app('appshell.settings_tree_builder')->bustCache();
 
         flash()->success(__('Preferences have been saved'));
 

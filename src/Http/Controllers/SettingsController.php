@@ -28,6 +28,7 @@ class SettingsController extends BaseController
     public function update(Request $request)
     {
         Settings::update($request->get('settings'));
+        app('appshell.settings_tree_builder')->bustCache();
 
         flash()->success(__('Settings have been saved'));
 

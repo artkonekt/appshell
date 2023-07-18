@@ -25,12 +25,14 @@
 - Added the `enum_color` feature to the widget color options
 - Added the following icons: folder, file
 - Added the `Currencies` helper class and the `CurrencyExists` validation rule
+- Fixed settings/preferences TreeBuilder related issues with premature loading, and possible stale/corrupt data in Octane environment
 - Dropped Laravel 9 support
 - Dropped Enum v3 support
 - Replaced the multiselect dropdown with a nice-select2 implementation
 - Changed minimum version requirements:
   - Enum v4.1
   - Address v3.0
+  - Gears v1.12
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - Changed the filename of `resources/database/currencies.json` (removed the leading space from the filename)

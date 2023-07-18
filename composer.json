@@ -24,7 +24,7 @@
         "konekt/user": "^3.0",
         "konekt/acl": "^1.6",
         "konekt/menu": "^1.9",
-        "konekt/gears": "^1.8",
+        "konekt/gears": "^1.12",
         "konekt/enum": "^4.1",
         "konekt/enum-eloquent": "^1.8.1",
         "laravelcollective/html": "^6.3",
