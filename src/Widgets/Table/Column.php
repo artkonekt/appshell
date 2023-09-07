@@ -27,6 +27,8 @@ class Column
 
     public string $id;
 
+    public readonly bool $is_hidden;
+
     public function __construct(string $id, array $attributes = [])
     {
         $this->id = $id;
@@ -34,6 +36,15 @@ class Column
 
         $this->parseTableCellAttributes($attributes);
         $this->parseWidgetDefinition($attributes['widget'] ?? null);
+        $this->is_hidden = match(isset($attributes['hideIf'])) {
+            false => false,
+            true => is_callable($attributes['hideIf']) ? call_user_func($attributes['hideIf']) : (bool) $attributes['hideIf'],
+        };
+    }
+
+    public function isHidden(): bool
+    {
+        return $this->is_hidden;
     }
 
     public function render($lineData): string

@@ -136,6 +136,33 @@ class TableWidgetTest extends TestCase
     }
 
     /** @test */
+    public function columns_can_be_hidden()
+    {
+        config(['hide_the_col' => true]);
+
+        $table = new Table(new AppShellTheme(), [
+            'id',
+            'parrot' => [
+                'hideIf' => fn () => (bool) config('hide_the_col'),
+                'widget' => [
+                    'type' => 'text',
+                    'text' => '$model.parrot.name',
+                ]
+            ],
+            'link' => [
+                'widget' => [
+                    'type' => 'text',
+                    'text' => '$model.parrot.link',
+                ]
+            ],
+        ]);
+        $cages = [new BirdCage('Gyurri', 'george')];
+
+        $this->assertStringNotContainsString('<th >parrot', $table->render($cages));
+        $this->assertStringNotContainsString('<td>Gyurri', $table->render($cages));
+    }
+
+    /** @test */
     public function it_can_render_a_footer()
     {
         $table = new Table(new AppShellTheme(), ['id', 'name'], ['footer' => [true, true]]);

@@ -12,7 +12,9 @@
     <thead>
         <tr>
         @foreach($table->columns as $column)
+            @unless($column->isHidden())
             <th @isset($column->width)style="width: {{ $column->width }};"@endisset>{!! $column->title !!}</th>
+            @endunless
         @endforeach
         </tr>
     </thead>
@@ -21,7 +23,9 @@
         @foreach($table->data as $line)
             <tr>
                 @foreach($table->columns as $column)
+                    @unless($column->isHidden())
                     <td{!! $column->tdAttributes() !!}@if($column->hasInlineStyle()) style="{{ $column->inlineStyle() }}"@endif>{!! $column->render($line) !!}</td>
+                    @endunless
                 @endforeach
             </tr>
         @endforeach

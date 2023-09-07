@@ -8,6 +8,7 @@
 - Added colored enum icon feature via the `color_enum_icon()` helper
 - Added feature to specify the color of text widgets
 - Added `hover` option to table widget (adds `table-hover` if enabled)
+- Added the `hideIf` directive to table columns (widget)
 - Added the `searchable()` method to the `Filter` interface
 - Added the Trident Theme - it has been written from scratch with new visual style
 - Added the following blade components:
