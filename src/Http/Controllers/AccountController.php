@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Konekt\AppShell\Contracts\Requests\SaveAccount;
 
 class AccountController extends BaseController
@@ -32,7 +33,7 @@ class AccountController extends BaseController
         $data = $request->only(['name']);
 
         if ($request->has('password') && !empty($request->get('password'))) {
-            $data['password'] = bcrypt($request->get('password'));
+            $data['password'] = Hash::make($request->get('password'));
             $pwChanged = true;
         }
 

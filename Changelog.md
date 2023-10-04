@@ -29,6 +29,7 @@
 - Fixed settings/preferences TreeBuilder related issues with premature loading, and possible stale/corrupt data in Octane environment
 - Dropped Laravel 9 support
 - Dropped Enum v3 support
+- Replaced all bcrypt calls with `Hash::make()`
 - Replaced the multiselect dropdown with a nice-select2 implementation
 - Changed minimum version requirements:
   - Enum v4.1

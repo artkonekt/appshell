@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Konekt\Acl\Models\RoleProxy;
 use Konekt\AppShell\Contracts\Requests\CreateUser;
 use Konekt\AppShell\Contracts\Requests\UpdateUser;
@@ -81,7 +82,7 @@ class UserController extends BaseController
      */
     public function store(CreateUser $request)
     {
-        $request->merge(['password' => bcrypt($request->get('password'))]);
+        $request->merge(['password' => Hash::make($request->get('password'))]);
 
         try {
             $user = UserProxy::create($request->except('roles'));
@@ -134,7 +135,7 @@ class UserController extends BaseController
     {
         $data = $request->except(['password', 'roles']);
         if ($request->wantsPasswordChange()) {
-            $data['password'] = bcrypt($request->getNewPassword());
+            $data['password'] = Hash::make($request->getNewPassword());
         }
 
         try {
