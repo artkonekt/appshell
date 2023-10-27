@@ -1,1 +1,1 @@
-<{{$tag}} class="alert alert-{{$variant}}">{{ $slot }}</{{$tag}}>
+<{{$tag}} class="alert alert-{{$variant}}" {{ $attributes }}>{{ $slot }}</{{$tag}}>
