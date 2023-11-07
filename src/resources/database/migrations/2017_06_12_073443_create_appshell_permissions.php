@@ -22,7 +22,7 @@ class CreateAppshellPermissions extends Migration
         $adminRole = RoleProxy::create(['name' => 'admin']);
 
         $adminRole->givePermissionTo(
-            ResourcePermissions::createPermissionsForResource($this->resources)
+            ...ResourcePermissions::createPermissionsForResource($this->resources)->all()
         );
 
         $admins = UserProxy::where(['type' => UserType::ADMIN])->get();

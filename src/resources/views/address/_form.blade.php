@@ -99,11 +99,15 @@
 
 </div>
 
-<label class="form-label">{{ __('Address') }}</label>
-<div class="mb-3">
-    {{ Form::text('address', null, ['class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : '')]) }}
+<div class="row">
+    <div class="col-md-6">
+        <label class="form-label">{{ __('Address') }}</label>
+        <div class="mb-3">
+            {{ Form::text('address', null, ['class' => 'form-control' . ($errors->has('address') ? ' is-invalid' : '')]) }}
 
-    @if ($errors->has('address'))
-        <div class="invalid-feedback">{{ $errors->first('address') }}</div>
-    @endif
+            @if ($errors->has('address'))
+                <div class="invalid-feedback">{{ $errors->first('address') }}</div>
+            @endif
+        </div>
+    </div>
 </div>

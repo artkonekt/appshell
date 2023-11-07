@@ -28,7 +28,7 @@ class AddInvitationPermissions extends Migration
             }
 
             if ($adminRole) {
-                $adminRole->givePermissionTo($permissions);
+                $adminRole->givePermissionTo(...$permissions);
             }
         }
     }

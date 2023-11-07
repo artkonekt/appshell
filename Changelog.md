@@ -41,6 +41,7 @@
 - BC: Added the `supportedIcons()` static method to the `IconTheme` interface
 - BC: Upgrade to Bootstrap 5.3
 - BC: Renamed the `group` widget/component to `card`
+- BC: Upgrade to Konekt Acl v2
 
 ## Unreleased
 ##### 2023-XX-YY

@@ -13,7 +13,7 @@ class CreateSettingsPermissions extends Migration
         $adminRole = RoleProxy::where(['name' => 'admin'])->first();
         if ($adminRole) {
             $adminRole->givePermissionTo(
-                ResourcePermissions::createPermissionsForResource('setting')
+                ...ResourcePermissions::createPermissionsForResource('setting')->all()
             );
         }
     }

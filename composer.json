@@ -22,7 +22,7 @@
         "konekt/customer": "^3.0",
         "konekt/address": "^3.0",
         "konekt/user": "^3.0",
-        "konekt/acl": "^1.6",
+        "konekt/acl": "^2.0.x-dev",
         "konekt/menu": "^1.9",
         "konekt/gears": "^1.12",
         "konekt/enum": "^4.1",
