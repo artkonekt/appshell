@@ -105,8 +105,8 @@ class SuperCommand extends Command
         /** @var \Konekt\Acl\Models\Role $role */
         $role = RoleProxy::create(['name' => $name])->fresh();
 
-        $role->givePermissionTo($this->permissionMapper->allPermissionsFor('user'));
-        $role->givePermissionTo($this->permissionMapper->allPermissionsFor('role'));
+        $role->givePermissionTo(...$this->permissionMapper->allPermissionsFor('user'));
+        $role->givePermissionTo(...$this->permissionMapper->allPermissionsFor('role'));
 
         return $role;
     }
