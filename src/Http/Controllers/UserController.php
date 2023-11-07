@@ -86,7 +86,7 @@ class UserController extends BaseController
 
         try {
             $user = UserProxy::create($request->except('roles'));
-            $user->syncRoles($request->roles());
+            $user->syncRoles(...$request->roles());
 
             flash()->success(__('User has been created'));
         } catch (\Exception $e) {
@@ -140,7 +140,7 @@ class UserController extends BaseController
 
         try {
             $user->update($data);
-            $user->syncRoles($request->roles());
+            $user->syncRoles(...$request->roles());
 
             $flashMessage = __(':name has been updated.', ['name' => $user->name]);
             if ($request->wantsPasswordChange()) {

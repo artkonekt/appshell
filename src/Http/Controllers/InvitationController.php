@@ -49,7 +49,7 @@ class InvitationController extends BaseController
                 $request->getOptions(),
                 $request->getExpiryDays()
             );
-            $invitation->syncRoles($request->roles());
+            $invitation->syncRoles(...$request->roles());
 
             flash()->success(__('Invitation has been created'));
         } catch (\Exception $e) {
@@ -90,7 +90,7 @@ class InvitationController extends BaseController
 
         try {
             $invitation->update($data);
-            $invitation->syncRoles($request->roles());
+            $invitation->syncRoles(...$request->roles());
             $flashMessage = __('Invitation for :email has been updated.', ['email' => $invitation->email]);
 
             flash()->success($flashMessage);

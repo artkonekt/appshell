@@ -52,7 +52,7 @@ class PublicInvitationController extends BaseController
             'password' => $request->get('password'),
             'name' => $request->get('name', $invitation->name),
         ]);
-        $user->syncRoles($invitation->roles);
+        $user->syncRoles(...$invitation->roles);
 
         return view('appshell::public-invitation.completed', [
             'user' => $user,
