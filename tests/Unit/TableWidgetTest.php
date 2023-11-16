@@ -261,7 +261,7 @@ class TableWidgetTest extends TestCase
         $table = new Table(
             new AppShellTheme(),
             ['id', 'name'],
-            ['rowAttributes' => ['x-show' => ['value' => '!hidden', 'onlyIf' => fn($model) => 'Jeff' === $model['name']]]]
+            ['rowAttributes' => ['x-show' => ['value' => '!hidden', 'onlyIf' => fn ($model) => 'Jeff' === $model['name']]]]
         );
 
         $html = $table->render([
