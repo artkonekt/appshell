@@ -21,7 +21,7 @@
     @endunless
     <tbody>
         @foreach($table->data as $line)
-            <tr @foreach($table->rowAttributes as $k => $v){{ $k }}="{{ $v }}"@endforeach>
+            <tr{!! $table->rowAttributes($line) !!}>
                 @foreach($table->columns as $column)
                     @unless($column->isHidden())
                     <td{!! $column->tdAttributes() !!}@if($column->hasInlineStyle()) style="{{ $column->inlineStyle() }}"@endif>{!! $column->render($line) !!}</td>

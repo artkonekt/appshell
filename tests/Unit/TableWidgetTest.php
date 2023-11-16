@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Tests\Unit;
 
+use Illuminate\Support\Str;
 use Konekt\AppShell\Tests\Dummies\BirdCage;
 use Konekt\AppShell\Tests\TestCase;
 use Konekt\AppShell\Theme\AppShellTheme;
@@ -252,5 +253,23 @@ class TableWidgetTest extends TestCase
         $html = $table->render([['id' => 1, 'name' => 'Joe']]);
 
         $this->assertStringContainsString('<tr x-show="!hidden"', $html);
+    }
+
+    /** @test */
+    public function it_can_render_conditional_row_attributes()
+    {
+        $table = new Table(
+            new AppShellTheme(),
+            ['id', 'name'],
+            ['rowAttributes' => ['x-show' => ['value' => '!hidden', 'onlyIf' => fn($model) => 'Jeff' === $model['name']]]]
+        );
+
+        $html = $table->render([
+            ['id' => 1, 'name' => 'Joe'],
+            ['id' => 2, 'name' => 'Jeff'],
+            ['id' => 3, 'name' => 'Jane'],
+        ]);
+
+        $this->assertEquals(1, Str::substrCount($html, '<tr x-show="!hidden"'));
     }
 }

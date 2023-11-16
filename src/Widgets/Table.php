@@ -35,7 +35,7 @@ class Table implements Widget
 
     public ?Footer $footer;
 
-    public array $rowAttributes = [];
+    protected array $rowAttributes = [];
 
     public function __construct(Theme $theme, array $columns = [], array $options = [])
     {
@@ -44,7 +44,7 @@ class Table implements Widget
         $this->options = $options;
         $this->data = collect([]);
         $this->footer = isset($options['footer']) ? new Footer($options['footer']) : null;
-        $this->rowAttributes = isset($options['rowAttributes']) ? Arr::wrap($options['rowAttributes']) : [];
+        $this->rowAttributes = Arr::wrap($options['rowAttributes'] ?? null);
     }
 
     public static function create(Theme $theme, array $options = []): Table
@@ -65,6 +65,27 @@ class Table implements Widget
     public function headerIsHidden(): bool
     {
         return false === ($this->options['header'] ?? null);
+    }
+
+    public function rowAttributes($rowData): string
+    {
+        $result = '';
+        foreach ($this->rowAttributes as $key => $value) {
+            if (is_array($value)) {
+                // @todo use SupportsConditionalRendering instead; possibly on a new "Row" class
+                if (isset($value['onlyIf'])) {
+                    if (call_user_func($value['onlyIf'], $rowData)) {
+                        $result .= " $key=\"" . (string) $value['value'] . '"';
+                    }
+                } else {
+                    $result .= " $key=\"" . (string) $value['value'] . '"';
+                }
+            } else {
+                $result .= " $key=\"$value\"";
+            }
+        }
+
+        return $result;
     }
 
     public function render($data = null): string
