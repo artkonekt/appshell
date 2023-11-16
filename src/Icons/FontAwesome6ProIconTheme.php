@@ -86,6 +86,7 @@ class FontAwesome6ProIconTheme implements IconTheme
         AppShellIcons::DOWNLOAD => 'cloud-download',
         AppShellIcons::FOLDER => 'folder-open',
         AppShellIcons::FILE => 'file',
+        AppShellIcons::COMMENT => 'comment-lines',
     ];
 
     public function __construct()

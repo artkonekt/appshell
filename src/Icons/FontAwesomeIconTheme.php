@@ -80,6 +80,7 @@ class FontAwesomeIconTheme implements IconTheme
         AppShellIcons::DOWNLOAD => 'cloud-download-alt',
         AppShellIcons::FOLDER => 'folder',
         AppShellIcons::FILE => 'file',
+        AppShellIcons::COMMENT => 'comment-dots',
     ];
 
     public static function getName(): string

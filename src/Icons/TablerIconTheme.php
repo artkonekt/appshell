@@ -79,6 +79,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::DOWNLOAD => 'cloud-download',
         AppShellIcons::FOLDER => 'folder',
         AppShellIcons::FILE => 'file',
+        AppShellIcons::COMMENT => 'message',
     ];
 
     public static function getName(): string

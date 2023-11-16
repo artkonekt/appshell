@@ -17,7 +17,7 @@
   - Floating Label
   - CancelButton, SaveButton, CreateAction, StandardActions
 - Added custom `tag` support for card component
-- Added the following icons: `upload`, `download`
+- Added the following icons: `upload`, `download`, `comment`
 - Added the feature to substitute array values and/or object properties of any depth in widgets
 - Added the feature to use closures in widget color definitions
 - Added support for using closures as widget text prefix and suffix

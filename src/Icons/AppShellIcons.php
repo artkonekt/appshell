@@ -70,4 +70,6 @@ final class AppShellIcons
     public const DOWNLOAD = 'download';
     public const FOLDER = 'folder';
     public const FILE = 'file';
+
+    public const COMMENT = 'comment';
 }
