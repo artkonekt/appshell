@@ -35,6 +35,8 @@ class Table implements Widget
 
     public ?Footer $footer;
 
+    public array $rowAttributes = [];
+
     public function __construct(Theme $theme, array $columns = [], array $options = [])
     {
         $this->theme = $theme;
@@ -42,6 +44,7 @@ class Table implements Widget
         $this->options = $options;
         $this->data = collect([]);
         $this->footer = isset($options['footer']) ? new Footer($options['footer']) : null;
+        $this->rowAttributes = isset($options['rowAttributes']) ? Arr::wrap($options['rowAttributes']) : [];
     }
 
     public static function create(Theme $theme, array $options = []): Table

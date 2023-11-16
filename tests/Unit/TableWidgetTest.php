@@ -244,4 +244,13 @@ class TableWidgetTest extends TestCase
         $this->assertStringContainsString('<td>COL2</td>', $html);
         $this->assertStringContainsString('</tfoot>', $html);
     }
+
+    /** @test */
+    public function it_can_render_row_attributes()
+    {
+        $table = new Table(new AppShellTheme(), ['id', 'name'], ['rowAttributes' => ['x-show' => '!hidden']]);
+        $html = $table->render([['id' => 1, 'name' => 'Joe']]);
+
+        $this->assertStringContainsString('<tr x-show="!hidden"', $html);
+    }
 }
