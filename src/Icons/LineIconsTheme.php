@@ -39,7 +39,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::INACTIVE => 'cross-circle',
         AppShellIcons::CHECK => 'checkmark',
         AppShellIcons::CROSS => 'close',
-        AppShellIcons::INFO => 'information',
+        AppShellIcons::INFO => 'invention',
         AppShellIcons::HELP => 'question-circle',
         AppShellIcons::EMAIL => 'envelope',
         AppShellIcons::ORGANIZATION => 'apartment',
