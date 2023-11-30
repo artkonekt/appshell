@@ -49,7 +49,7 @@
 
 {{--<body>--}}
 
-{{--    <div class="container-fluid app-body" id="app">--}}
+{{--    <div class="container-fluid app-body">--}}
 {{--        @include('appshell::layouts.default._sidebar')--}}
 
 {{--        <!-- Main content -->--}}
