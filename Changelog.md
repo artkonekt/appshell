@@ -3,6 +3,10 @@
 ## 4.x-dev
 #### 2022-XX-YY
 
+- BC: Added the `supportedIcons()` static method to the `IconTheme` interface
+- BC: Upgrade to Bootstrap 5.3
+- BC: Renamed the `group` widget/component to `card`
+- BC: Upgrade to Konekt Acl v2
 - Added Components based on the Laravel Blade Components Feature
 - Added `page-actions` blade stack that themes need to define
 - Added colored enum icon feature via the `color_enum_icon()` helper
@@ -40,10 +44,6 @@
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - Changed the filename of `resources/database/currencies.json` (removed the leading space from the filename)
-- BC: Added the `supportedIcons()` static method to the `IconTheme` interface
-- BC: Upgrade to Bootstrap 5.3
-- BC: Renamed the `group` widget/component to `card`
-- BC: Upgrade to Konekt Acl v2
 
 ## Unreleased
 ##### 2023-XX-YY
