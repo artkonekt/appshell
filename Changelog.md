@@ -31,6 +31,7 @@
 - Added the `enum_color` feature to the widget color options
 - Added the following icons: folder, file
 - Added the `Currencies` helper class and the `CurrencyExists` validation rule
+- Added the konekt/xtend package dependency
 - Fixed settings/preferences TreeBuilder related issues with premature loading, and possible stale/corrupt data in Octane environment
 - Dropped Laravel 9 support
 - Dropped Enum v3 support
