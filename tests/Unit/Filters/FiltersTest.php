@@ -23,7 +23,6 @@ use Konekt\AppShell\Filters\Generic\ExactMatchMultiple;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
 use Konekt\AppShell\Tests\Dummies\SomeFilter;
 use Konekt\AppShell\Tests\TestCase;
-use stdClass;
 
 class FiltersTest extends TestCase
 {
