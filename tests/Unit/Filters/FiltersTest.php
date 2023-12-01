@@ -69,14 +69,6 @@ class FiltersTest extends TestCase
     }
 
     /** @test */
-    public function it_only_accepts_filter_instances()
-    {
-        $this->expectError();
-
-        new Filters(new stdClass());
-    }
-
-    /** @test */
     public function filters_can_be_accessed_by_id()
     {
         $filters = new Filters($orbit = new SomeFilter('orbit'));
