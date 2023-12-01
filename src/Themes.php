@@ -16,38 +16,24 @@ namespace Konekt\AppShell;
 
 use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Exceptions\NonExistentThemeException;
+use Konekt\Extend\Concerns\HasRegistry;
+use Konekt\Extend\Concerns\RequiresClassOrInterface;
+use Konekt\Extend\Contracts\Registry;
 
-final class Themes
+final class Themes implements Registry
 {
-    private static array $registry = [];
+    use HasRegistry;
+    use RequiresClassOrInterface;
 
-    public static function add(string $id, string $class)
+    protected static string $requiredInterface = Theme::class;
+
+    public static function make(string $id, array $parameters = []): Theme
     {
-        if (array_key_exists($id, self::$registry)) {
-            return;
-        }
-
-        if (!in_array(Theme::class, class_implements($class))) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'The class you are trying to register (%s) as theme, ' .
-                    'must implement the %s interface.',
-                    $class,
-                    Theme::class
-                )
-            );
-        }
-
-        self::$registry[$id] = $class;
-    }
-
-    public static function make(string $id): Theme
-    {
-        $themeClass = self::getClass($id);
+        $themeClass = self::getClassOf($id);
 
         if (null === $themeClass && is_string($fallBackId = config('konekt.app_shell.ui.theme'))) {
             // Falling back to the default theme in the config
-            $themeClass = self::getClass($fallBackId);
+            $themeClass = self::getClassOf($fallBackId);
             if (function_exists('flash')) {
                 flash()->warning(
                     __(
@@ -64,32 +50,6 @@ final class Themes
             );
         }
 
-        return app()->make($themeClass);
-    }
-
-    public static function reset(): void
-    {
-        self::$registry = [];
-    }
-
-    public static function getClass(string $id): ?string
-    {
-        return self::$registry[$id] ?? null;
-    }
-
-    public static function ids(): array
-    {
-        return array_keys(self::$registry);
-    }
-
-    public static function choices(): array
-    {
-        $result = [];
-
-        foreach (self::$registry as $type => $class) {
-            $result[$type] = $class::getName();
-        }
-
-        return $result;
+        return app()->make($themeClass, $parameters);
     }
 }

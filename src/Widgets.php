@@ -19,41 +19,20 @@ use Konekt\AppShell\Contracts\Theme;
 use Konekt\AppShell\Contracts\Widget;
 use Konekt\AppShell\Exceptions\MissingWidgetFileException;
 use Konekt\AppShell\Widgets\UnknownWidget;
+use Konekt\Extend\Concerns\HasRegistry;
+use Konekt\Extend\Concerns\RequiresClassOrInterface;
+use Konekt\Extend\Contracts\Registry;
 
-final class Widgets
+final class Widgets implements Registry
 {
-    private static array $registry = [];
+    use HasRegistry;
+    use RequiresClassOrInterface;
+
+    protected static string $requiredInterface = Widget::class;
 
     private static array $namespaces = [];
 
     private static array $widgetCache = [];
-
-    public static function add(string $id, string $class): bool
-    {
-        if (array_key_exists($id, self::$registry)) {
-            return false;
-        }
-
-        self::override($id, $class);
-
-        return true;
-    }
-
-    public static function override(string $id, string $class): void
-    {
-        if (!in_array(Widget::class, class_implements($class))) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'The class you are trying to register (%s) as a widget, ' .
-                    'must implement the %s interface.',
-                    $class,
-                    Widget::class
-                )
-            );
-        }
-
-        self::$registry[$id] = $class;
-    }
 
     public static function registerWidgetNamespace(string $namespace, string $folder): void
     {
@@ -72,20 +51,15 @@ final class Widgets
         return self::make(self::$widgetCache[$widget]['type'], self::$widgetCache[$widget]['options'], $theme);
     }
 
-    public static function make(string $type, array $options = [], ?Theme $theme = null): Widget
+    public static function make(string $id, array $parameters = [], ?Theme $theme = null): Widget
     {
-        $widgetClass = self::getClass($type) ?? UnknownWidget::class;
+        $widgetClass = self::getClassOf($id) ?? UnknownWidget::class;
 
         if (UnknownWidget::class === $widgetClass) {
-            $options = array_merge($options, ['widget' => $type]);
+            $parameters = array_merge($parameters, ['widget' => $id]);
         }
 
-        return $widgetClass::create($theme ?? theme(), $options);
-    }
-
-    public static function getClass(string $id): ?string
-    {
-        return self::$registry[$id] ?? null;
+        return $widgetClass::create($theme ?? theme(), $parameters);
     }
 
     /*

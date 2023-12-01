@@ -16,43 +16,21 @@ namespace Konekt\AppShell;
 
 use Konekt\AppShell\Contracts\WidgetModifier;
 use Konekt\AppShell\Exceptions\UnknownWidgetModifierException;
+use Konekt\Extend\Concerns\HasRegistry;
+use Konekt\Extend\Concerns\RequiresClassOrInterface;
 
 final class WidgetModifiers
 {
-    private static array $registry = [];
+    use HasRegistry;
+    use RequiresClassOrInterface;
 
-    public static function add(string $id, string $class): bool
-    {
-        if (array_key_exists($id, self::$registry)) {
-            return false;
-        }
-
-        self::override($id, $class);
-
-        return true;
-    }
-
-    public static function override(string $id, string $class): void
-    {
-        if (!in_array(WidgetModifier::class, class_implements($class))) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'The class you are trying to register (%s) as a widget modifier, ' .
-                    'must implement the %s interface.',
-                    $class,
-                    WidgetModifier::class
-                )
-            );
-        }
-
-        self::$registry[$id] = $class;
-    }
+    protected static string $requiredInterface = WidgetModifier::class;
 
     public static function make(string $definition): WidgetModifier
     {
         $parsedDef = self::parse($definition);
         $id = (string) $parsedDef['id'];
-        $class = self::getClass($id);
+        $class = self::getClassOf($id);
 
         if (null === $class) {
             throw new UnknownWidgetModifierException("Couldn't recognize modifier from `$id`");
@@ -63,12 +41,7 @@ final class WidgetModifiers
 
     public static function exists(string $definition): bool
     {
-        return null !== self::getClass(self::parse($definition)['id'] ?? '');
-    }
-
-    public static function getClass(string $id): ?string
-    {
-        return self::$registry[$id] ?? null;
+        return null !== self::getClassOf(self::parse($definition)['id'] ?? '');
     }
 
     /**

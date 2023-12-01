@@ -22,7 +22,7 @@ trait ExtendsIconThemes
     {
         foreach ($this->icons as $abstract => $concretes) {
             foreach ($concretes as $id => $concrete) {
-                $class = IconThemes::getClass($id);
+                $class = IconThemes::getClassOf($id);
                 $class::extend($abstract, $concrete);
             }
         }

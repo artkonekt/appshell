@@ -16,39 +16,24 @@ namespace Konekt\AppShell;
 
 use Konekt\AppShell\Contracts\IconTheme;
 use Konekt\AppShell\Exceptions\NonExistentIconThemeException;
+use Konekt\Extend\Concerns\HasRegistry;
+use Konekt\Extend\Concerns\RequiresClassOrInterface;
+use Konekt\Extend\Contracts\Registry;
 
-final class IconThemes
+final class IconThemes implements Registry
 {
-    /** @var array */
-    private static array $registry = [];
+    use HasRegistry;
+    use RequiresClassOrInterface;
 
-    public static function add(string $id, string $class)
+    protected static string $requiredInterface = IconTheme::class;
+
+    public static function make(string $id, array $parameters = []): IconTheme
     {
-        if (array_key_exists($id, self::$registry)) {
-            return;
-        }
-
-        if (!in_array(IconTheme::class, class_implements($class))) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'The class you are trying to register (%s) as icon theme, ' .
-                    'must implement the %s interface.',
-                    $class,
-                    IconTheme::class
-                )
-            );
-        }
-
-        self::$registry[$id] = $class;
-    }
-
-    public static function make(string $id): IconTheme
-    {
-        $iconThemeClass = self::getClass($id);
+        $iconThemeClass = self::getClassOf($id);
 
         if (null === $iconThemeClass && is_string($fallBackId = config('konekt.app_shell.ui.icon_theme'))) {
             // Falling back to the default icon theme in the config
-            $iconThemeClass = self::getClass($fallBackId);
+            $iconThemeClass = self::getClassOf($fallBackId);
             if (function_exists('flash')) {
                 flash()->warning(
                     __(
@@ -66,31 +51,5 @@ final class IconThemes
         }
 
         return app()->make($iconThemeClass);
-    }
-
-    public static function reset(): void
-    {
-        self::$registry = [];
-    }
-
-    public static function getClass(string $id): ?string
-    {
-        return self::$registry[$id] ?? null;
-    }
-
-    public static function ids(): array
-    {
-        return array_keys(self::$registry);
-    }
-
-    public static function choices(): array
-    {
-        $result = [];
-
-        foreach (self::$registry as $type => $class) {
-            $result[$type] = $class::getName();
-        }
-
-        return $result;
     }
 }

@@ -4,6 +4,7 @@
          convertWarningsToExceptions="false"
          convertDeprecationsToExceptions="false"
          convertNoticesToExceptions="false"
+         stopOnFailure="true"
 >
     <testsuites>
         <testsuite name="AppShell Test Suite">

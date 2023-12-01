@@ -33,6 +33,15 @@ in v4:
 </x-appshell::card>
 ```
 
+### Registry Classes
+
+The following registry-type classes are now based on [Xtend's Registry](https://konekt.dev/xtend/1.0/registry):
+
+- `Konekt\AppShell\Themes`
+- 
+
+The `getClass` static methods of these classes have been renamed to `getClassOf`.
+
 ## 2.x -> 3.0
 
 Beginning with AppShell 3.0, the minimum requirements are:  

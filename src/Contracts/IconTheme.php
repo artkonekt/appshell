@@ -15,14 +15,10 @@ declare(strict_types=1);
 namespace Konekt\AppShell\Contracts;
 
 use Konekt\AppShell\Theme\ThemeColor;
+use Konekt\Extend\Contracts\Registerable;
 
-interface IconTheme
+interface IconTheme extends Registerable
 {
-    /*
-     * Returns the name of the Icon Theme
-     */
-    public static function getName(): string;
-
     /*
      * Allows to add or overwrite mappings between abstract and concrete icons
      */

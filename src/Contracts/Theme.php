@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Contracts;
 
-interface Theme
+use Konekt\Extend\Contracts\Registerable;
+
+interface Theme extends Registerable
 {
     public const COMPONENT_NAMESPACE = 'Konekt\\AppShell\\Components';
-
-    public static function getName(): string;
 
     public function themeColorToHex(?string $themeColorName): string;
 

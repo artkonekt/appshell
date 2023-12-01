@@ -134,12 +134,12 @@ class Filters implements IteratorAggregate, Countable
         return count($this->activeFilters);
     }
 
-    public function count()
+    public function count(): int
     {
         return $this->getIterator()->count();
     }
 
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->items);
     }
