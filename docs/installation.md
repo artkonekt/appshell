@@ -4,9 +4,9 @@
 
 ## Requirements
 
-As of AppShell v3.8, the requirements are:
+As of AppShell v3.10, the requirements are:
 
-- PHP 8.0, 8.1 or 8.2
+- PHP 8.0 - 8.3
 - Laravel 9.x, 10.x
 
 ## Install AppShell
@@ -48,11 +48,11 @@ php artisan concord:modules
 Now you should see this:
 
 ```
-+----+---------------------+------+---------+------------------+-----------------+
-| #  | Name                | Kind | Version | Id               | Namespace       |
-+----+---------------------+------+---------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 3.9.0   | konekt.app_shell | Konekt\AppShell |
-+----+---------------------+------+---------+------------------+-----------------+
++----+---------------------+------+----------+------------------+-----------------+
+| #  | Name                | Kind | Version  | Id               | Namespace       |
++----+---------------------+------+----------+------------------+-----------------+
+| 1. | Konekt AppShell Box | Box  | 3.10.0   | konekt.app_shell | Konekt\AppShell |
++----+---------------------+------+----------+------------------+-----------------+
 ```
 
 > **TIP:** Try `php artisan concord:modules -a` to see ALL modules

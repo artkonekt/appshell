@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2023-XX-YY
+## 3.10.0
+##### 2023-12-17
 
 - Added PHP 8.3 support
 - Added the `supportedIcons()` method to all icon themes (the method is a v4 `IconTheme` interface method candidate)
