@@ -46,9 +46,10 @@
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - Changed the filename of `resources/database/currencies.json` (removed the leading space from the filename)
 
-## Unreleased
-##### 2023-XX-YY
+## 3.10.0
+##### 2023-12-17
 
+- Added PHP 8.3 support
 - Added the `supportedIcons()` method to all icon themes (the method is a v4 `IconTheme` interface method candidate)
 
 ## 3.9.0
