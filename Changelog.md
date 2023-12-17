@@ -3,6 +3,7 @@
 ## Unreleased
 ##### 2023-XX-YY
 
+- Added PHP 8.3 support
 - Added the `supportedIcons()` method to all icon themes (the method is a v4 `IconTheme` interface method candidate)
 
 ## 3.9.0
