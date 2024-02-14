@@ -1,1 +1,1 @@
-<x-appshell::button variant="success">{{ $text }}</x-appshell::button>
+<x-appshell::button variant="success" {{ $attributes }}>{{ $text }}</x-appshell::button>
