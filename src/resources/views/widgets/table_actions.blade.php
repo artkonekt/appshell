@@ -1,6 +1,6 @@
 @isset($actions['edit'])
     @can($actions['edit']['can'])
-        <a href="{{ route($actions['edit']['route'], $model) }}"
+        <a href="{{ route($actions['edit']['route'], $actions['edit']['route_parameters'] ?? $model) }}"
            class="btn btn-sm btn-outline-primary btn-show-on-tr-hover float-right" title="{{ __('Edit') }}">
             {!! icon('edit') !!}
         </a>
@@ -9,7 +9,7 @@
 
 @isset($actions['delete'])
     @can($actions['delete']['can'])
-        {!! Form::open(['route' => [$actions['delete']['route'], $model],
+        {!! Form::open(['route' => [$actions['delete']['route'], $actions['delete']['route_parameters'] ?? $model],
                         'method' => 'DELETE',
                         'data-confirmation-text' => $actions['delete']['confirmation_text'],
                         'class' => 'd-inline',
