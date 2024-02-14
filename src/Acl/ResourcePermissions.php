@@ -130,7 +130,7 @@ final class ResourcePermissions
      */
     public static function permissionFor($resource, $action)
     {
-        if (! $verb = ResourcePermissions::permissionVerbForAction($action)) {
+        if (!$verb = ResourcePermissions::permissionVerbForAction($action)) {
             return false;
         }
 

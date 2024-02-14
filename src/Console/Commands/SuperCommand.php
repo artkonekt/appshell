@@ -87,8 +87,8 @@ class SuperCommand extends Command
     protected function fetchRole(string $roleName): Role
     {
         $role = RoleProxy::where('name', $roleName)->first();
-        if (! $role) {
-            if (! $this->confirm("Role '$roleName' doesn't exists. Create it?")) {
+        if (!$role) {
+            if (!$this->confirm("Role '$roleName' doesn't exists. Create it?")) {
                 $this->warn('Nothing has been done.');
                 exit(1);
             }

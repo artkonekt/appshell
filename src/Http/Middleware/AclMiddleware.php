@@ -31,7 +31,7 @@ class AclMiddleware
         $permission = $permission ?: $this->getNecessaryPermission($request->route()->getAction());
 
         if (false !== $permission) {
-            if (! $request->user()->can($permission)) {
+            if (!$request->user()->can($permission)) {
                 abort(403);
             }
         }
