@@ -28,7 +28,7 @@
         "konekt/enum": "^4.1",
         "konekt/enum-eloquent": "^1.8.1",
         "konekt/xtend": "^1.1",
-        "laravelcollective/html": "^6.3",
+        "konekt/html": "^6.5",
         "laracasts/flash": "^3.2.1",
         "cviebrock/eloquent-sluggable": "^10.0|^11.0.1",
         "diglactic/laravel-breadcrumbs": "^8.0|^9.0",

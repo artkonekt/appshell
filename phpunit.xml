@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<phpunit colors="true"
-         bootstrap="./vendor/autoload.php"
-         convertWarningsToExceptions="false"
-         convertDeprecationsToExceptions="false"
-         convertNoticesToExceptions="false"
-         stopOnFailure="true"
->
-    <testsuites>
-        <testsuite name="AppShell Test Suite">
-            <directory suffix="Test.php">./tests</directory>
-        </testsuite>
-    </testsuites>
-    <php>
-        <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
-        <env name="APP_DEBUG" value="true"/>
-    </php>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" bootstrap="./vendor/autoload.php" stopOnFailure="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache">
+  <testsuites>
+    <testsuite name="AppShell Test Suite">
+      <directory suffix="Test.php">./tests</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <env name="APP_KEY" value="AckfSECXIvnK5r28GVIWUAxmbBSjTsmF"/>
+    <env name="APP_DEBUG" value="true"/>
+  </php>
 </phpunit>

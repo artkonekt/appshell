@@ -1,12 +1,13 @@
 # AppShell Changelog
 
 ## 4.x-dev
-#### 2022-XX-YY
+#### 2024-XX-YY
 
 - BC: Added the `supportedIcons()` static method to the `IconTheme` interface
 - BC: Upgrade to Bootstrap 5.3
 - BC: Renamed the `group` widget/component to `card`
 - BC: Upgrade to Konekt Acl v2
+- Added Laravel 11 support
 - Added Components based on the Laravel Blade Components Feature
 - Added `page-actions` blade stack that themes need to define
 - Added colored enum icon feature via the `color_enum_icon()` helper
@@ -38,6 +39,7 @@
 - Dropped PHP 8.1 support & added PHP 8.3 support
 - Replaced all bcrypt calls with `Hash::make()`
 - Replaced the multiselect dropdown with a nice-select2 implementation
+- Replaced the abandoned laravelcollective/html package with the konekt/html fork for Laravel 11 compatibility
 - Changed minimum version requirements:
   - Enum v4.1
   - Address v3.0
