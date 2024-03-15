@@ -16,6 +16,7 @@
 - Added the `hideIf` directive to table columns (widget)
 - Added the `rowAttributes` option to the table widget
 - Added the `searchable()` method to the `Filter` interface
+- Added the `HasControllerHooks` trait to the base controller class
 - Added the Trident Theme - it has been written from scratch with new visual style
 - Added the following blade components:
   - Alert
@@ -44,6 +45,7 @@
   - Enum v4.1
   - Address v3.0
   - Gears v1.12
+  - Concord v1.15
 - Changed Breadcrumbs dependency from v7 to v8
 - Changed `bcrypt()` to `Hash::make()` in the make:superuser command
 - Changed the filename of `resources/database/currencies.json` (removed the leading space from the filename)

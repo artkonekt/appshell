@@ -18,6 +18,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
+use Konekt\Concord\Hooks\HasControllerHooks;
 
 /**
  * Common base controller class for all AppShell controllers
@@ -29,4 +30,5 @@ abstract class BaseController extends Controller
     use AuthorizesRequests;
     use DispatchesJobs;
     use ValidatesRequests;
+    use HasControllerHooks;
 }
