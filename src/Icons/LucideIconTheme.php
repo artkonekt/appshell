@@ -101,7 +101,7 @@ class LucideIconTheme implements IconTheme
             '<script src="https://unpkg.com/lucide@latest"></script>' .
             '<script>lucide.createIcons();</script>' .
             $this->animationCss()
-            ;
+        ;
     }
 
     public function render(string $abstract, ThemeColor $color, array $attributes = []): string
