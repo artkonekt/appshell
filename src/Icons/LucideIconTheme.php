@@ -100,7 +100,7 @@ class LucideIconTheme implements IconTheme
 
         return
             '<script src="https://unpkg.com/lucide@latest"></script>' .
-            '<script>lucide.createIcons();</script>' .
+            '<script>document.addEventListener("DOMContentLoaded", () => lucide.createIcons());</script>' .
             $this->animationCss()
         ;
     }
