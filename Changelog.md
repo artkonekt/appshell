@@ -18,6 +18,7 @@
 - Added the `searchable()` method to the `Filter` interface
 - Added the `HasControllerHooks` trait to the base controller class
 - Added the Trident Theme - it has been written from scratch with new visual style
+- Added the Lucide Icon Theme (see https://lucide.dev)
 - Added the following blade components:
   - Alert
   - Badge

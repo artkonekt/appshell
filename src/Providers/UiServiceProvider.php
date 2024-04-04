@@ -21,6 +21,7 @@ use Konekt\AppShell\Icons\FontAwesome6IconTheme;
 use Konekt\AppShell\Icons\FontAwesome6ProIconTheme;
 use Konekt\AppShell\Icons\FontAwesomeIconTheme;
 use Konekt\AppShell\Icons\LineIconsTheme;
+use Konekt\AppShell\Icons\LucideIconTheme;
 use Konekt\AppShell\Icons\TablerIconTheme;
 use Konekt\AppShell\Icons\ZmdiIconTheme;
 use Konekt\AppShell\IconThemes;
@@ -43,6 +44,7 @@ class UiServiceProvider extends ServiceProvider
         IconThemes::add(FontAwesome6ProIconTheme::ID, FontAwesome6ProIconTheme::class);
         IconThemes::add(LineIconsTheme::ID, LineIconsTheme::class);
         IconThemes::add(TablerIconTheme::ID, TablerIconTheme::class);
+        IconThemes::add(LucideIconTheme::ID, LucideIconTheme::class);
 
         $this->app->singleton('appshell.icon_theme', function () {
             return IconThemes::make(Settings::get(UiIconThemeSetting::KEY));
