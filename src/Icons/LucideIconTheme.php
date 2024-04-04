@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Icons;
 
+use Konekt\AppShell\Contracts\IconTheme;
 use Konekt\AppShell\Theme\ThemeColor;
 
 class LucideIconTheme implements IconTheme
