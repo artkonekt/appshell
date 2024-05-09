@@ -65,7 +65,7 @@ class CreateProductPermissions extends Migration
     public function down()
     {
         foreach ($this->permissions as $permission) {
-            Permission::delete(['name' => $permission]);            
+            Permission::findByName($permission)?->delete();            
         }
     }
 }
