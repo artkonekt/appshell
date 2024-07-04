@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Configure Mix
@@ -29,12 +29,8 @@ jobs:
           cp tests/frontend/appshell.mix.js ./
           cp tests/frontend/print.mix.js ./
       - name: Install Dependencies
-        run: npm i --legacy-peer-deps
+        run: npm i
       - name: Theme Build
-        env:
-          NODE_OPTIONS: ${{ matrix.node-version == '17.x' && '--openssl-legacy-provider' || '' }}
         run: npm run appshell
       - name: Print Build
-        env:
-          NODE_OPTIONS: ${{ matrix.node-version == '17.x' && '--openssl-legacy-provider' || '' }}
         run: npm run print
