@@ -2,8 +2,6 @@
 
 ## 3.x -> 4.0
 
-> ⚠ AppShell v4 IS STILL WORK IN PROGRESS and HAS NOT BEEN RELEASED YET! (Coming in Q3 2023)
-
 ## Group Component Has Been Renamed To Card
 
 Additionally, the component's `actionbar` slot has been renamed to `actions`

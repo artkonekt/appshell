@@ -4,21 +4,14 @@
 
 ## Requirements
 
-As of AppShell v3.10, the requirements are:
+As of AppShell v4.0, the requirements are:
 
-- PHP 8.0 - 8.3
-- Laravel 9.x, 10.x
+- PHP 8.2 - 8.3
+- Laravel 10.x, 11.x
 
 ## Install AppShell
 
-Either create a new Laravel project:
-
-```bash
-composer create-project laravel/laravel myapp
-cd myapp
-```
-
-.. or go to an existing Laravel 9+ application's root folder and launch these commands:
+Either create a new Laravel project or go to an existing Laravel 10+ application's root folder and launch these commands:
 
 ```bash
 composer require konekt/appshell
@@ -51,7 +44,7 @@ Now you should see this:
 +----+---------------------+------+----------+------------------+-----------------+
 | #  | Name                | Kind | Version  | Id               | Namespace       |
 +----+---------------------+------+----------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 3.10.0   | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 4.0.0    | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+----------+------------------+-----------------+
 ```
 
@@ -71,14 +64,14 @@ AppShell (with the underlying modules) contains ~20 migrations out of the box.
 
 ### Auth Scaffolding
 
-> Laravel, with the release of version 6 has significantly changed the way of auth scaffolding.
-> For details, refer to [Laravel Authentication Docs](https://laravel.com/docs/6.x/authentication#authentication-quickstart).
+Depending on your needs, Laravel offers you several starter kits for authentication: https://laravel.com/docs/11.x/starter-kits
 
-If you haven't done it yet, install the Laravel UI package:
+As a reference, here we're showing you how to install breeze with blade, but you can choose any other solution you like.
 
 ```bash
-composer require laravel/ui
-php artisan ui:auth
+composer require laravel/breeze --dev
+
+php artisan breeze:install
 ```
 
 ### The User Model
@@ -196,7 +189,7 @@ Since this package will be built along with your application, it's assets need t
 **2. Install the following npm packages:**
 
 ```bash
-npm add bootstrap@4.6 jquery alpinejs@3.10 popper.js
+npm add bootstrap@5.3 alpinejs@3.10 popper.js
 ```
 
 **3. Compile the assets with mix:** `npm run dev`

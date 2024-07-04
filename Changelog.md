@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## 4.x-dev
-#### 2024-XX-YY
+## 4.0.0
+##### 2024-07-04
 
 - BC: Added the `supportedIcons()` static method to the `IconTheme` interface
 - BC: Upgrade to Bootstrap 5.3
