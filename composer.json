@@ -30,7 +30,7 @@
         "konekt/xtend": "^1.1",
         "konekt/html": "^6.5",
         "laracasts/flash": "^3.2.1",
-        "cviebrock/eloquent-sluggable": "^10.0|^11.0.1",
+        "cviebrock/eloquent-sluggable": "^10.0|^11.0",
         "diglactic/laravel-breadcrumbs": "^8.0|^9.0",
         "laravel/framework": "^10.0|^11.0"
     },

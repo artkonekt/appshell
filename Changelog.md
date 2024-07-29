@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2024-XX-YY
+
+- Fixed the invalid Eloquent Sluggable package version requirement
+
 ## 4.0.0
 ##### 2024-07-04
 
