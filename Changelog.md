@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.1.0
+##### 2024-09-16
 
 - Upgraded the Tabler Icon Theme to use the v3.x assets from the CDN (from 1.x)
 
