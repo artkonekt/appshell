@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.3.0
+##### 2024-10-29
 
 - Added the possibility to extend/override "for" definitions in requests with the `HasFor` trait
 
