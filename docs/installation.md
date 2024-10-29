@@ -44,7 +44,7 @@ Now you should see this:
 +----+---------------------+------+----------+------------------+-----------------+
 | #  | Name                | Kind | Version  | Id               | Namespace       |
 +----+---------------------+------+----------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 4.1.0    | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 4.2.0    | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+----------+------------------+-----------------+
 ```
 
