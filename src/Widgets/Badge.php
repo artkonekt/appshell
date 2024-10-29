@@ -51,11 +51,12 @@ class Badge implements Widget
         $result = $options;
         $result['wrap'] = $options['wrap'] ?? 'span';
 
-        $value = $this->resolveSubstitutions($options['text'] ?? '$model', $data);
+        $text = self::makeCallable($options['text'] ?? '$model');
+        $prefetchedValue = $text($data, $this);
         $colorDef = $options['color'] ?? null;
         $bgColor = $this->parseColorDefinition(
             is_string($colorDef) ? $this->resolveSubstitutions($colorDef, $data) : $colorDef,
-            $value,
+            $prefetchedValue,
             null,
             false,
             $data

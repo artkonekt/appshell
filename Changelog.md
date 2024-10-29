@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2024-XX-YY
+
+- Added missing support to pass a callback as the badge widget's `text` option
+
 ## 4.1.0
 ##### 2024-09-16
 
