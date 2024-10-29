@@ -19,26 +19,35 @@ use Illuminate\Validation\Rule;
 
 trait HasFor
 {
-    /**
-     * @inheritdoc
-     */
+    protected static array $extendedHasForDefinitions = [];
+
+    public static function overrideHasForDefinition(string $short, string $class): void
+    {
+        static::$extendedHasForDefinitions[$short] = $class;
+    }
+
+    public static function addHasForDefinition(string $short, string $class): void
+    {
+        static::$extendedHasForDefinitions[$short] = $class;
+    }
+
     public function getFor()
     {
         $id = $this->forId;
         $for = $this->for;
 
         if ($id && $for) {
-            $modelClass = concord()->model(concord()->short($for));
+            $modelClass = static::$extendedHasForDefinitions[$for] ?? null;
+            if (null === $modelClass && null !== $contractClass = concord()->short($for)) {
+                $modelClass = concord()->model($contractClass);
+            }
 
-            return $modelClass::find($id);
+            return $modelClass ? $modelClass::find($id) : null;
         }
 
         return null;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getForRelationName()
     {
         $for = $this->for;
@@ -56,7 +65,7 @@ trait HasFor
         }
 
         return [
-            'for' => ['sometimes', Rule::in($this->allowedFor)],
+            'for' => ['sometimes', Rule::in(array_merge($this->allowedFor, array_keys(static::$extendedHasForDefinitions)))],
             'forId' => 'required_with:for'
         ];
     }
