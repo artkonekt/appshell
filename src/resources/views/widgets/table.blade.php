@@ -2,7 +2,7 @@
     <table class="table rounded-1">
         <tbody>
             <tr>
-                <td class="text-center">{{ $table->options['empty']['text'] }}</td>
+                <td class="text-center">{!! $table->getHtmlSnippetForEmptyDataset() !!}</td>
             </tr>
         </tbody>
     </table>

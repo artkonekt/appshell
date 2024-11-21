@@ -54,7 +54,18 @@ class Table implements Widget
 
     public function rendersAlternativeForEmptyDataset(): bool
     {
-        return !empty($this->options['empty']['text'] ?? '');
+        return !empty($this->options['empty']['text'] ?? '')
+            || !empty($this->options['empty']['html'] ?? '');
+    }
+
+    public function getHtmlSnippetForEmptyDataset(): string
+    {
+        if (isset($this->options['empty']['html'])) {
+            return $this->options['empty']['html'];
+        }
+
+        return e($this->options['empty']['text'] ?? '');
+
     }
 
     public function hasFooter(): bool

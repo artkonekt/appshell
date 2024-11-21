@@ -5,6 +5,7 @@
 
 - Added CRUD for Countries and Provinces
 - Added the `globe` icon
+- Added support for setting `empty.html` on the table widget
 
 ## 4.3.0
 ##### 2024-10-29
