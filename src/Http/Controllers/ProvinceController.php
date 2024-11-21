@@ -10,8 +10,8 @@ use Konekt\Address\Contracts\Country;
 use Konekt\Address\Contracts\Province;
 use Konekt\Address\Models\ProvinceProxy;
 use Konekt\Address\Models\ProvinceTypeProxy;
-use Konekt\AppShell\Contracts\Requests\UpdateProvince;
 use Konekt\AppShell\Contracts\Requests\CreateProvince;
+use Konekt\AppShell\Contracts\Requests\UpdateProvince;
 
 class ProvinceController extends BaseController
 {
