@@ -65,7 +65,6 @@ class Table implements Widget
         }
 
         return e($this->options['empty']['text'] ?? '');
-
     }
 
     public function hasFooter(): bool
