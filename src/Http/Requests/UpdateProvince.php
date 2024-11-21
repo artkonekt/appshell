@@ -22,6 +22,7 @@ class UpdateProvince extends FormRequest implements UpdateProvinceContract
                 'required',
                 'string',
                 'max:16',
+                'uppercase',
                 Rule::unique('provinces')->where(function ($query) use ($country) {
                     return $query->where('country_id', $country->id);
                 })->ignore($province),

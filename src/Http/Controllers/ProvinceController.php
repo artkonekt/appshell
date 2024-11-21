@@ -50,6 +50,14 @@ class ProvinceController extends BaseController
         return redirect(route('appshell.country.show', $country));
     }
 
+    public function show(Country $country, Province $province): View
+    {
+        return view('appshell::province.show', [
+            'country' => $country,
+            'province' => $province
+        ]);
+    }
+
     public function edit(Country $country, Province $province): View
     {
         return view('appshell::province.edit', [

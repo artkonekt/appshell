@@ -22,6 +22,7 @@
         {{ Form::text('code', null, [
                 'class' => 'form-control form-control-sm' . ($errors->has('code') ? ' is-invalid': ''),
                 'placeholder' => __('Enter the province code (e.g., HR, BE)'),
+                'oninput' => 'this.value = this.value.toUpperCase()',
                 'id' => 'code',
             ])
         }}

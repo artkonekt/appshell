@@ -20,6 +20,7 @@ class UpdateCountry extends FormRequest implements UpdateCountryContract
                 'string',
                 'size:2',
                 'alpha',
+                'uppercase',
                 Rule::unique('countries', 'id')->ignore($country),
             ],
             'name' => 'required|string|max:255',

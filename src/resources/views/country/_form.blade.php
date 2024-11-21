@@ -23,6 +23,8 @@
                 'class' => 'form-control form-control-sm' . ($errors->has('id') ? ' is-invalid': ''),
                 'placeholder' => __('Enter the 2-letter country code (e.g., US, UK, IN)'),
                 'id' => 'id',
+                'oninput' => 'this.value = this.value.toUpperCase()',
+                'maxlength' => '2',
             ])
         }}
         @if ($errors->has('id'))

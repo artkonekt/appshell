@@ -12,7 +12,7 @@ class CreateCountry extends FormRequest implements CreateCountryContract
     public function rules(): array
     {
         return [
-            'id' => 'required|string|size:2|alpha|unique:countries,id',
+            'id' => 'required|string|size:2|alpha|uppercase|unique:countries,id',
             'name' => 'required|string|max:255',
             'phonecode' => 'required|integer|min:0',
             'is_eu_member' => 'required|boolean',

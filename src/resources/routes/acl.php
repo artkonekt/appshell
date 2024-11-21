@@ -41,7 +41,8 @@ Route::put('settings', [
 
 Route::resource('country', 'CountryController');
 Route::get('/country/{country}/province/create', 'ProvinceController@create')->name('province.create');
-Route::get('/country/{country}/province/{province}/edit', 'ProvinceController@edit')->name('province.edit');
 Route::post('/country/{country}/province', 'ProvinceController@store')->name('province.store');
+Route::get('/country/{country}/province/{province}', 'ProvinceController@show')->name('province.show');
+Route::get('/country/{country}/province/{province}/edit', 'ProvinceController@edit')->name('province.edit');
 Route::put('/country/{country}/province/{province}', 'ProvinceController@update')->name('province.update');
 Route::delete('/country/{country}/province/{province}', 'ProvinceController@destroy')->name('province.destroy');
