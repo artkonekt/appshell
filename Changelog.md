@@ -4,6 +4,7 @@
 ##### 2024-XX-YY
 
 - Added CRUD for Countries and Provinces
+- Added the `globe` icon
 
 ## 4.3.0
 ##### 2024-10-29

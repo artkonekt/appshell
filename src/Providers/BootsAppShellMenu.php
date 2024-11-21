@@ -54,7 +54,7 @@ trait BootsAppShellMenu
                 ->allowIfUserCan('list settings');
             $settings
                 ->addSubItem('countries', __('Countries'), ['route' => 'appshell.country.index'])
-                ->data('icon', 'country')
+                ->data('icon', 'globe')
                 ->allowIfUserCan('list countries');
         }
     }

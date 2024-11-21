@@ -81,6 +81,7 @@ class FontAwesome6IconTheme implements IconTheme
         AppShellIcons::FOLDER => 'folder',
         AppShellIcons::FILE => 'file',
         AppShellIcons::COMMENT => 'comment',
+        AppShellIcons::GLOBE => 'earth-africa',
     ];
 
     public static function getName(): string

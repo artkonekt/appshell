@@ -80,6 +80,7 @@ class ZmdiIconTheme implements IconTheme
         AppShellIcons::FOLDER => 'folder',
         AppShellIcons::FILE => 'file',
         AppShellIcons::COMMENT => 'comment',
+        AppShellIcons::GLOBE => 'globe',
     ];
 
     public static function getName(): string

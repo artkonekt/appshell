@@ -80,6 +80,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::FOLDER => 'folder',
         AppShellIcons::FILE => 'empty-file',
         AppShellIcons::COMMENT => 'comments-alt-2',
+        AppShellIcons::GLOBE => 'world',
     ];
 
     public static function getName(): string

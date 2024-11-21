@@ -71,4 +71,5 @@ final class AppShellIcons
     public const FOLDER = 'folder';
     public const FILE = 'file';
     public const COMMENT = 'comment';
+    public const GLOBE = 'globe';
 }

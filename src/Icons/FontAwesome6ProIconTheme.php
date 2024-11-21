@@ -87,6 +87,7 @@ class FontAwesome6ProIconTheme implements IconTheme
         AppShellIcons::FOLDER => 'folder-open',
         AppShellIcons::FILE => 'file',
         AppShellIcons::COMMENT => 'comment-lines',
+        AppShellIcons::GLOBE => 'earth-africa',
     ];
 
     public function __construct()
