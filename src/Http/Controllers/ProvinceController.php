@@ -6,12 +6,12 @@ namespace Konekt\AppShell\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Konekt\Address\Models\Country;
-use Konekt\Address\Models\Province;
+use Konekt\Address\Contracts\Country;
+use Konekt\Address\Contracts\Province;
 use Konekt\Address\Models\ProvinceProxy;
 use Konekt\Address\Models\ProvinceTypeProxy;
 use Konekt\AppShell\Contracts\Requests\UpdateProvince;
-use Konekt\AppShell\Http\Requests\CreateProvince;
+use Konekt\AppShell\Contracts\Requests\CreateProvince;
 
 class ProvinceController extends BaseController
 {

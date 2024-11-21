@@ -6,7 +6,7 @@ namespace Konekt\AppShell\Http\Controllers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Konekt\Address\Models\Country;
+use Konekt\Address\Contracts\Country;
 use Konekt\Address\Models\CountryProxy;
 use Konekt\AppShell\Contracts\Requests\CreateCountry;
 use Konekt\AppShell\Contracts\Requests\UpdateCountry;

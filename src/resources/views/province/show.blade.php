@@ -20,7 +20,7 @@
                 {{ $province->name }}
 
                 <x-slot:subtitle>
-                    PROVINCE
+                    {{ __('Province') }}
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
@@ -30,7 +30,7 @@
                 {{ $province->code }}
 
                 <x-slot:subtitle>
-                    CODE
+                    {{ __('Code') }}
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
@@ -40,7 +40,7 @@
                 {{ $province->type->label() }}
 
                 <x-slot:subtitle>
-                    TYPE
+                    {{ __('Type') }}
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>
@@ -49,7 +49,7 @@
     <div class="row">
         <div class="col flex">
             <x-appshell::card class="col-md-6">
-                <x-slot:title>Parent</x-slot:title>
+                <x-slot:title>{{ __('Parent') }}</x-slot:title>
 
                 @if ($province->parent)
                     <a href="{{ route('appshell.province.show', [$country, $province->parent]) }}" class="d-block mb-3">
@@ -58,12 +58,12 @@
                         </button>
                     </a>
                 @else
-                    <p class="mb-3">No parent available.</p>
+                    <p class="mb-3">{{ __('No parent available.') }}</p>
                 @endif
             </x-appshell::card>
 
             <x-appshell::card class="col-md-6">
-                <x-slot:title>Children</x-slot:title>
+                <x-slot:title>{{ __('Children') }}</x-slot:title>
 
                 @if ($province->children && $province->children->count() > 0)
                     @foreach ($province->children as $child)
@@ -74,7 +74,7 @@
                         </a>
                     @endforeach
                 @else
-                    <p class="mb-3">No children available.</p>
+                    <p class="mb-3">{{ __('No children available.') }}</p>
                 @endif
             </x-appshell::card>
         </div>
