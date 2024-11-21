@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Konekt\Address\Contracts\Country;
 use Konekt\Address\Models\CountryProxy;
+use Konekt\Address\Seeds\Countries;
 use Konekt\AppShell\Contracts\Requests\CreateCountry;
 use Konekt\AppShell\Contracts\Requests\UpdateCountry;
 
@@ -16,7 +17,7 @@ class CountryController extends BaseController
     public function index(): View
     {
         return view('appshell::country.index', [
-            'countries' => CountryProxy::all(),
+            'countries' => CountryProxy::withCount('provinces as provinces_count')->get(),
         ]);
     }
 
@@ -32,8 +33,21 @@ class CountryController extends BaseController
     public function store(CreateCountry $request): RedirectResponse
     {
         try {
-            $country = CountryProxy::create($request->validated());
-            flash()->success(__(':name has been created', ['name' => $country->name]));
+            if ($request->wantsToSeed()) {
+                if (CountryProxy::count() < 0) {
+                    flash()->error(__('Can not generate the data, because the list of countries is not empty'));
+
+                    return redirect()->back()->withInput();
+                }
+
+                $seeder = new Countries();
+                $seeder->run();
+
+                flash()->success(__('The countries have been created'));
+            } else {
+                $country = CountryProxy::create($request->validated());
+                flash()->success(__(':name has been created', ['name' => $country->name]));
+            }
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 

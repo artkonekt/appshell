@@ -38,7 +38,11 @@
     <div class="col-md-10">
         {{ Form::text('phonecode', null, [
                 'class' => 'form-control form-control-sm' . ($errors->has('phonecode') ? ' is-invalid': ''),
-                'placeholder' => __('Enter the country phone code (e.g., 36, 49)'),
+                'pattern' => "[0-9]*",
+                'inputmode' => 'numeric',
+                'oninput' => 'this.value = this.value.replace(/[^0-9]/g, "")',
+                'maxlength' => '4',
+                'placeholder' => __('Enter the country phone code (e.g., 33, 7)'),
                 'id' => 'phonecode',
             ])
         }}
@@ -49,7 +53,12 @@
 </div>
 
 <div class="mb-3 row">
-    <label for="is_eu_member" class="col-form-label col-form-label-sm col-md-2">{{ __('EU Member') }}</label>
+    <label for="is_eu_member" class="col-form-label col-form-label-sm col-md-2">
+        {{ __('EU Member State') }}
+        <x-appshell::badge variant="secondary" size="sm">
+            {{ __('deprecated') }}
+        </x-appshell::badge>
+    </label>
     <div class="col-md-10">
         <input type="hidden" name="is_eu_member" value="0"/>
 

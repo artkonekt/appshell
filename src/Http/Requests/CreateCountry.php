@@ -12,11 +12,17 @@ class CreateCountry extends FormRequest implements CreateCountryContract
     public function rules(): array
     {
         return [
-            'id' => 'required|string|size:2|alpha|uppercase|unique:countries,id',
-            'name' => 'required|string|max:255',
-            'phonecode' => 'required|integer|min:0',
-            'is_eu_member' => 'required|boolean',
+            'id' => 'required_without:seed|string|size:2|alpha|uppercase|unique:countries,id',
+            'name' => 'required_without:seed|string|max:255',
+            'phonecode' => 'required_without:seed|integer|min:0',
+            'is_eu_member' => 'sometimes|boolean',
+            'seed' => 'sometimes|nullable|boolean'
         ];
+    }
+
+    public function wantsToSeed(): bool
+    {
+        return (bool) $this->input('seed');
     }
 
     public function attributes(): array

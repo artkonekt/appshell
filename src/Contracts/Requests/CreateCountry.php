@@ -8,4 +8,5 @@ use Konekt\Concord\Contracts\BaseRequest;
 
 interface CreateCountry extends BaseRequest
 {
+    public function wantsToSeed(): bool;
 }

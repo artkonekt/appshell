@@ -8,6 +8,7 @@ return [
     'type' => AppShellWidgets::TABLE,
     'options' => [
         'hover' => true,
+        'empty' => ['text' => __('No countries on record')],
         'columns' => [
             'name' => [
                 'widget' => [
@@ -32,16 +33,14 @@ return [
                     'text' => '$model.phonecode',
                 ]
             ],
-            'is_eu_member' => [
-                'title' => __('EU Member'),
+            'province_count' => [
+                'title' => __('Provinces'),
                 'valign' => 'middle',
                 'widget' => [
-                    'type' => 'badge',
-                    'color' => ['bool' => ['success', 'secondary']],
-                    'text' => '$model.is_eu_member',
-                    'modifier' => sprintf('bool2text:%s,%s', __('Yes'), __('No')),
-                ],
-            ],
+                    'type' => 'text',
+                    'text' => '$model.provinces_count',
+                ]
+            ]
         ]
     ]
 ];
