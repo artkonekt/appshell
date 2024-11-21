@@ -52,6 +52,10 @@ trait BootsAppShellMenu
                 ->addSubItem('settings', __('Settings'), ['route' => 'appshell.settings.index'])
                 ->data('icon', 'settings')
                 ->allowIfUserCan('list settings');
+            $settings
+                ->addSubItem('countries', __('Countries'), ['route' => 'appshell.country.index'])
+                ->data('icon', 'country')
+                ->allowIfUserCan('list countries');
         }
     }
 

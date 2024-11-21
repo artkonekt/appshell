@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2024-XX-YY
+
+- Added CRUD for Countries and Provinces
+
 ## 4.3.0
 ##### 2024-10-29
 

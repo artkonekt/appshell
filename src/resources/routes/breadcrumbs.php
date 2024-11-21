@@ -95,3 +95,41 @@ Breadcrumbs::for('appshell.invitation.edit', function ($breadcrumbs, $invitation
     $breadcrumbs->parent('appshell.invitation.show', $invitation);
     $breadcrumbs->push(__('Edit'), route('appshell.invitation.edit', $invitation));
 });
+
+Breadcrumbs::for('appshell.country.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push(__('Countries'), route('appshell.country.index'));
+});
+
+Breadcrumbs::for('appshell.country.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('appshell.country.index');
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('appshell.country.show', function ($breadcrumbs, $country) {
+    $breadcrumbs->parent('appshell.country.index');
+    $breadcrumbs->push($country->name, route('appshell.country.show', $country));
+});
+
+Breadcrumbs::for('appshell.country.edit', function ($breadcrumbs, $country) {
+    $breadcrumbs->parent('appshell.country.show', $country);
+    $breadcrumbs->push(__('Edit'), route('appshell.country.edit', $country));
+});
+
+Breadcrumbs::for('appshell.province.create', function ($breadcrumbs, $country) {
+    $breadcrumbs->parent('appshell.country.show', $country);
+    $breadcrumbs->push(__('Create'));
+});
+
+Breadcrumbs::for('appshell.province.show', function ($breadcrumbs, $country, $province) {
+    $breadcrumbs->parent('appshell.country.show', $country);
+    $breadcrumbs->push(__('Provinces'), route('appshell.country.show', $country));
+    $breadcrumbs->push($province->name, route('appshell.province.show', [$country, $province]));
+});
+
+Breadcrumbs::for('appshell.province.edit', function ($breadcrumbs, $country, $province) {
+    $breadcrumbs->parent('appshell.country.show', $country);
+    $breadcrumbs->push(__('Provinces'), route('appshell.country.show', $country));
+    $breadcrumbs->push($province->name);
+    $breadcrumbs->push(__('Edit'), route('appshell.province.edit', [$country, $province]));
+});

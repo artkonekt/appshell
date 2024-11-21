@@ -27,15 +27,19 @@ use Konekt\AppShell\Http\Middleware\AclMiddleware;
 use Konekt\AppShell\Http\Requests\AcceptInvitation;
 use Konekt\AppShell\Http\Requests\CreateAddress;
 use Konekt\AppShell\Http\Requests\CreateAddressForm;
+use Konekt\AppShell\Http\Requests\CreateCountry;
 use Konekt\AppShell\Http\Requests\CreateCustomer;
 use Konekt\AppShell\Http\Requests\CreateInvitation;
+use Konekt\AppShell\Http\Requests\CreateProvince;
 use Konekt\AppShell\Http\Requests\CreateRole;
 use Konekt\AppShell\Http\Requests\CreateUser;
 use Konekt\AppShell\Http\Requests\EditAddressForm;
 use Konekt\AppShell\Http\Requests\SaveAccount;
 use Konekt\AppShell\Http\Requests\UpdateAddress;
+use Konekt\AppShell\Http\Requests\UpdateCountry;
 use Konekt\AppShell\Http\Requests\UpdateCustomer;
 use Konekt\AppShell\Http\Requests\UpdateInvitation;
+use Konekt\AppShell\Http\Requests\UpdateProvince;
 use Konekt\AppShell\Http\Requests\UpdateRole;
 use Konekt\AppShell\Http\Requests\UpdateUser;
 use Konekt\AppShell\Models\Address;
@@ -67,6 +71,10 @@ class ModuleServiceProvider extends BaseBoxServiceProvider
         CreateInvitation::class,
         UpdateInvitation::class,
         AcceptInvitation::class,
+        CreateCountry::class,
+        UpdateCountry::class,
+        CreateProvince::class,
+        UpdateProvince::class,
     ];
 
     protected $enums = [
