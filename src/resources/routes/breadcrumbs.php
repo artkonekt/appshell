@@ -129,6 +129,7 @@ Breadcrumbs::for('appshell.province.show', function ($breadcrumbs, $country, $pr
 
 Breadcrumbs::for('appshell.province.edit', function ($breadcrumbs, $country, $province) {
     $breadcrumbs->parent('appshell.country.show', $country);
+    $breadcrumbs->push(__('Provinces'), route('appshell.country.show', $country));
     $breadcrumbs->push($province->name);
     $breadcrumbs->push(__('Edit'), route('appshell.province.edit', [$country, $province]));
 });
