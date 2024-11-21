@@ -8,7 +8,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Konekt\Address\Models\Country;
 use Konekt\Address\Models\CountryProxy;
-use Konekt\Address\Models\Province;
 use Konekt\AppShell\Contracts\Requests\CreateCountry;
 use Konekt\AppShell\Contracts\Requests\UpdateCountry;
 

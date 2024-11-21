@@ -8,8 +8,7 @@ use Konekt\Acl\Models\RoleProxy;
 use Konekt\Acl\PermissionRegistrar;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
 
-return new class () extends Migration
-{
+return new class () extends Migration {
     private array $resources = ['province'];
 
     private ?ResourcePermissionMapper $mapper = null;
