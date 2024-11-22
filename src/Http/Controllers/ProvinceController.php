@@ -8,8 +8,10 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Konekt\Address\Contracts\Country;
 use Konekt\Address\Contracts\Province;
+use Konekt\Address\Contracts\ProvinceSeeder;
 use Konekt\Address\Models\ProvinceProxy;
 use Konekt\Address\Models\ProvinceTypeProxy;
+use Konekt\Address\Seeds\ProvinceSeeders;
 use Konekt\AppShell\Contracts\Requests\CreateProvince;
 use Konekt\AppShell\Contracts\Requests\UpdateProvince;
 
@@ -30,17 +32,31 @@ class ProvinceController extends BaseController
     public function store(Country $country, CreateProvince $request): RedirectResponse
     {
         try {
-            $province = ProvinceProxy::create(
-                array_merge(
-                    $request->validated(),
-                    ['country_id' => $country->id]
-                )
-            );
+            if ($request->wantsToSeed()) {
+                if ($country->provinces->isNotEmpty()) {
+                    flash()->error(__('Can not generate the data, because the list of provinces is not empty'));
 
-            flash()->success(__(':name has been added to :country', [
-                'name' => $province->name,
-                'country' => $country->name
-            ]));
+                    return redirect()->back()->withInput();
+                }
+
+                /** @var ProvinceSeeder $seeder */
+                $seeder = ProvinceSeeders::make($request->getSeederId());
+                $seeder->run();
+
+                flash()->success(__('The provinces have been created'));
+            } else {
+                $province = ProvinceProxy::create(
+                    array_merge(
+                        $request->validated(),
+                        ['country_id' => $country->id]
+                    )
+                );
+
+                flash()->success(__(':name has been added to :country', [
+                    'name' => $province->name,
+                    'country' => $country->name
+                ]));
+            }
         } catch (\Exception $e) {
             flash()->error(__('Error: :msg', ['msg' => $e->getMessage()]));
 

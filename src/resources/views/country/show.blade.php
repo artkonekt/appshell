@@ -12,7 +12,10 @@
 
     <x-appshell::card>
         <x-slot:title>{{ __('Provinces') }}</x-slot:title>
-        @include('appshell::province._index', ['provinces' => $country->provinces])
+        @include('appshell::province._index', [
+            'provinces' => $country->provinces,
+            'availableProvinceSeeders' => $availableProvinceSeeders,
+        ])
     </x-appshell::card>
 
 @stop

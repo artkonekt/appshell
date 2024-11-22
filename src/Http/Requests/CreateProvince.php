@@ -7,6 +7,7 @@ namespace Konekt\AppShell\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Konekt\Address\Models\ProvinceTypeProxy;
+use Konekt\Address\Seeds\ProvinceSeeders;
 use Konekt\AppShell\Contracts\Requests\CreateProvince as CreateProvinceContract;
 
 class CreateProvince extends FormRequest implements CreateProvinceContract
@@ -16,9 +17,9 @@ class CreateProvince extends FormRequest implements CreateProvinceContract
         $country = $this->route('country');
 
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required_without:seed|string|max:255',
             'code' => [
-                'required',
+                'required_without:seed',
                 'string',
                 'max:16',
                 'uppercase',
@@ -26,7 +27,7 @@ class CreateProvince extends FormRequest implements CreateProvinceContract
                     return $query->where('country_id', $country->id);
                 }),
             ],
-            'type' => ['required', 'string', 'max:255', Rule::in(ProvinceTypeProxy::values())],
+            'type' => ['required_without:seed', 'string', 'max:255', Rule::in(ProvinceTypeProxy::values())],
             'parent_id' => [
                 'sometimes',
                 'nullable',
@@ -35,7 +36,18 @@ class CreateProvince extends FormRequest implements CreateProvinceContract
                     return $query->where('country_id', $country->id);
                 }),
             ],
+            'seed' => ['sometimes', 'string', Rule::in(ProvinceSeeders::ids())]
         ];
+    }
+
+    public function wantsToSeed(): bool
+    {
+        return $this->has('seed');
+    }
+
+    public function getSeederId()
+    {
+        return $this->input('seed');
     }
 
     public function attributes(): array

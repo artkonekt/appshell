@@ -13,6 +13,14 @@
 @endforeach
 
 @can('create provinces')
+    @foreach($availableProvinceSeeders as $id => $class)
+        {!! Form::open(['route' => ['appshell.province.store', [$country, 'seed' => $id]], 'class' => 'd-inline']) !!}
+            <x-appshell::button variant="outline-secondary" size="sm" route="appshell.country.create" icon="download">
+                {{ __('Generate :seeder', ['seeder' => ucfirst(Str::replace('_', ' ', Str::snake($id)))]) }}
+            </x-appshell::button>
+        {!! Form::close() !!}
+    @endforeach
+
     <a href="{{ route('appshell.province.create', $country) }}" class="btn btn-sm btn-success" title="{{ __('Add province') }}">
         {!! icon('+') !!}
     </a>
