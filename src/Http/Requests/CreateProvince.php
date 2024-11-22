@@ -45,7 +45,7 @@ class CreateProvince extends FormRequest implements CreateProvinceContract
         return $this->has('seed');
     }
 
-    public function getSeederId()
+    public function getSeederId(): ?string
     {
         return $this->input('seed');
     }
