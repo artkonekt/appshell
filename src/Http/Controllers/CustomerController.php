@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Http\Controllers;
 
+use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
 use Illuminate\Http\Request;
 use Konekt\AppShell\Contracts\Requests\CreateCustomer;
 use Konekt\AppShell\Contracts\Requests\UpdateCustomer;
@@ -81,8 +84,95 @@ class CustomerController extends BaseController
 
     public function show(Customer $customer)
     {
+        $daily = new DateInterval('P1D');
+        $currentMonth = new DatePeriod(Carbon::now()->startOfMonth(), $daily, Carbon::now()->endOfMonth());
+
+        $period = $currentMonth;
+        $resolution = 'weekly';
+
+        // Determine the period based on the resolution
+        switch ($resolution) {
+            case 'daily':
+                $period = new DatePeriod(Carbon::now()->startOfMonth(), $daily, Carbon::now()->endOfMonth());
+                break;
+            case 'weekly':
+                $period = new DatePeriod(Carbon::now()->startOfWeek(), $daily, Carbon::now()->endOfMonth());
+                break;
+            case 'monthly':
+                $period = new DatePeriod(Carbon::now()->startOfYear(), $daily, Carbon::now()->endOfYear());
+                break;
+            case 'annual':
+                $period = new DatePeriod(Carbon::now()->startOfYear(), $daily, Carbon::now()->endOfYear());
+                break;
+        }
+
+        $purchases = $customer
+            ->purchases()
+            ->whereBetween('purchase_date', [$period->start, $period->end])
+            ->get();
+
+        // Group and sum based on the resolution
+        $groupedPurchases = $purchases->groupBy(function ($purchase) use ($resolution) {
+            switch ($resolution) {
+                case 'daily':
+                    return $purchase->purchase_date->toDateString(); // Group by date
+                case 'weekly':
+                    // Start and end of the week
+                    $startOfWeek = $purchase->purchase_date->startOfWeek()->toDateString();
+                    $endOfWeek = $purchase->purchase_date->endOfWeek()->toDateString();
+                    return "{$startOfWeek} - {$endOfWeek}"; // Group by week range
+                case 'monthly':
+                    return $purchase->purchase_date->format('Y-m'); // Group by month (YYYY-MM)
+                case 'annual':
+                    return $purchase->purchase_date->format('Y'); // Group by year (YYYY)
+            }
+        })->map(function ($group) {
+            return $group->sum('purchase_value'); // Sum purchase_value for each group
+        });
+
+        // Generate all possible periods (weeks, months, etc.) within the range
+        $allPeriods = collect();
+        $currentDate = Carbon::now()->startOfMonth(); // Adjust this based on the resolution
+
+        switch ($resolution) {
+            case 'daily':
+                // Loop through each day of the current month
+                while ($currentDate <= Carbon::now()->endOfMonth()) {
+                    $allPeriods->put($currentDate->toDateString(), 0);
+                    $currentDate->addDay();
+                }
+                break;
+            case 'weekly':
+                // Loop through each week of the current month
+                while ($currentDate <= Carbon::now()->endOfMonth()) {
+                    $startOfWeek = $currentDate->startOfWeek()->toDateString();
+                    $endOfWeek = $currentDate->endOfWeek()->toDateString();
+                    $allPeriods->put("{$startOfWeek} - {$endOfWeek}", 0);
+                    $currentDate->addWeek();
+                }
+                break;
+            case 'monthly':
+                // Loop through each month of the current year
+                while ($currentDate <= Carbon::now()->endOfYear()) {
+                    $allPeriods->put($currentDate->format('Y-m'), 0);
+                    $currentDate->addMonth();
+                }
+                break;
+            case 'annual':
+                // Loop through each year
+                while ($currentDate <= Carbon::now()->endOfYear()) {
+                    $allPeriods->put($currentDate->format('Y'), 0);
+                    $currentDate->addYear();
+                }
+                break;
+        }
+
+        // Merge the grouped purchases with all possible periods
+        $finalPurchases = $allPeriods->merge($groupedPurchases);
+
         return view('appshell::customer.show', [
-            'customer' => $customer
+            'customer' => $customer,
+            'customerPurchases' => $finalPurchases,
         ]);
     }
 

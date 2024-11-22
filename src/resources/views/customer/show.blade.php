@@ -49,5 +49,51 @@
 
     </div>
 
+    <x-appshell::card>
+        <div id="purchasesChart" style="height:200px"></div>
+    </x-appshell::card>
+
     @include('appshell::address._index', ['addresses' => $customer->addresses, 'of' => $customer])
 @stop
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const purchasesChart = echarts.init(document.getElementById('purchasesChart'));
+
+            window.addEventListener('resize', function () {
+                purchasesChart.resize();
+            });
+
+            const periods = @json($customerPurchases->keys());  // The dates or periods (e.g., "2024-11-01 - 2024-11-03")
+            const totals = @json($customerPurchases->values()); // The purchase totals (e.g., 100, 200, etc.)
+
+            purchasesChart.setOption({
+                title: {
+                    text: 'Purchases per Period'
+                },
+                xAxis: {
+                    type: 'category',
+                    data: periods,
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: 'Purchase Total',
+                        type: 'bar',
+                        data: totals,
+                    }
+                ],
+                grid: {
+                    left: 40,
+                    top: 30,
+                    right: 20,
+                    bottom: 20
+                },
+            });
+        });
+    </script>
+@endsection
