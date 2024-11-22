@@ -34,7 +34,7 @@ class CountryController extends BaseController
     {
         try {
             if ($request->wantsToSeed()) {
-                if (CountryProxy::count() < 0) {
+                if (CountryProxy::count() > 0) {
                     flash()->error(__('Can not generate the data, because the list of countries is not empty'));
 
                     return redirect()->back()->withInput();
