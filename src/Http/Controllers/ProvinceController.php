@@ -43,7 +43,7 @@ class ProvinceController extends BaseController
                 $seeder = ProvinceSeeders::make($request->getSeederId());
                 $seeder->run();
 
-                flash()->success(__('The provinces have been created'));
+                flash()->success(__(':name have been successfully created', ['name' => $seeder::getName()]));
             } else {
                 $province = ProvinceProxy::create(
                     array_merge(

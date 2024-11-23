@@ -60,13 +60,16 @@ class CountryController extends BaseController
 
     public function show(Country $country): View
     {
+        $availableProvinceSeeders = [];
         if ($country->provinces->isEmpty()) {
-            $availableProvinceSeeders = ProvinceSeeders::availableSeedersOfCountry($country->id);
+            foreach (ProvinceSeeders::availableSeedersOfCountry($country->id) as $id => $class) {
+                $availableProvinceSeeders[$id] = $class::getName();
+            }
         }
 
         return view('appshell::country.show', [
             'country' => $country,
-            'availableProvinceSeeders' => $availableProvinceSeeders ?? [],
+            'availableProvinceSeeders' => $availableProvinceSeeders,
         ]);
     }
 

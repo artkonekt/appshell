@@ -1,27 +1,20 @@
 @foreach($provinces as $province)
-    @can('edit provinces')
-        <a href="{{ route('appshell.province.show', [$country, $province]) }}">
-            <button class="btn btn-sm btn-secondary mb-2" type="button" title="{{ $province->type->label() }}">
-                {{ $province->name }}
-            </button>
-        </a>
-    @else
-        <button class="btn btn-sm btn-secondary mb-2" type="button" title="{{ $province->type->label() }}">
-            {{ $province->name }}
-        </button>
-    @endcan
+    <x-appshell::button variant="secondary" size="sm" :title="$province->type->label()" class="mb-2"
+        :href="auth()->user()->can('view provinces') ? route('appshell.province.show', [$country, $province]) : '#'"
+    >
+        {{ $province->name }}
+    </x-appshell::button>
 @endforeach
 
 @can('create provinces')
-    @foreach($availableProvinceSeeders as $id => $class)
+    @foreach($availableProvinceSeeders as $id => $name)
         {!! Form::open(['route' => ['appshell.province.store', [$country, 'seed' => $id]], 'class' => 'd-inline']) !!}
-            <x-appshell::button variant="outline-secondary" size="sm" route="appshell.country.create" icon="download">
-                {{ __('Generate :seeder', ['seeder' => ucfirst(Str::replace('_', ' ', Str::snake($id)))]) }}
+            <x-appshell::button variant="outline-secondary" size="sm" route="appshell.country.create" icon="download" class="mb-2">
+                {{ __('Generate :seeder_name', ['seeder_name' => $name]) }}
             </x-appshell::button>
         {!! Form::close() !!}
     @endforeach
 
-    <a href="{{ route('appshell.province.create', $country) }}" class="btn btn-sm btn-success mb-2" title="{{ __('Add province') }}">
-        {!! icon('+') !!}
-    </a>
+    <x-appshell::button :href="route('appshell.province.create', $country)" :title="__('Add province')"
+            variant="success" size="sm" icon="+" class="mb-2"></x-appshell::button>
 @endcan
