@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Konekt\Address\Contracts\Country;
 use Konekt\Address\Models\CountryProxy;
 use Konekt\Address\Seeds\Countries;
+use Konekt\Address\Seeds\ProvinceSeeders;
 use Konekt\AppShell\Contracts\Requests\CreateCountry;
 use Konekt\AppShell\Contracts\Requests\UpdateCountry;
 
@@ -59,7 +60,14 @@ class CountryController extends BaseController
 
     public function show(Country $country): View
     {
-        return view('appshell::country.show', ['country' => $country]);
+        if ($country->provinces->isEmpty()) {
+            $availableProvinceSeeders = ProvinceSeeders::availableSeedersOfCountry($country->id);
+        }
+
+        return view('appshell::country.show', [
+            'country' => $country,
+            'availableProvinceSeeders' => $availableProvinceSeeders ?? [],
+        ]);
     }
 
     public function edit(Country $country): View

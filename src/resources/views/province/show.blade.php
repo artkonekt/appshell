@@ -16,7 +16,7 @@
 @section('content')
     <div class="row mb-3">
         <div class="col">
-            <x-appshell::card-with-icon icon="plan" type="success">
+            <x-appshell::card-with-icon icon="globe" type="success">
                 {{ $province->name }}
 
                 <x-slot:subtitle>
