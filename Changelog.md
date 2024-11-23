@@ -1,11 +1,12 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.4.0
+##### 2024-11-23
 
 - Added CRUD for Countries and Provinces
-- Added the `globe` icon
+- Added the `globe` and `flag` icons
 - Added support for setting `empty.html` on the table widget
+- Added PHP 8.4 support
 
 ## 4.3.0
 ##### 2024-10-29

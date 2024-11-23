@@ -7,8 +7,7 @@
 @push('page-actions')
     @if($countries->isEmpty())
         {!! Form::open(['route' => ['appshell.country.store', ['seed' => 1]], 'class' => 'd-inline']) !!}
-        <x-appshell::button variant="outline-secondary" size="sm" route="appshell.country.create" icon="download"
-                            onclick="submitSeedCountriesRequest()">
+        <x-appshell::button variant="outline-secondary" size="sm" route="appshell.country.create" icon="download">
             {{ __('Generate all countries') }}
         </x-appshell::button>
         {!! Form::close() !!}
@@ -25,12 +24,3 @@
     </x-appshell::card>
 
 @stop
-
-@push('scripts')
-    <script>
-        function submitSeedCountriesRequest() {
-
-
-        }
-    </script>
-@endpush
