@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.4.0
+##### 2024-11-23
 
 - Added CRUD for Countries and Provinces
 - Added the `globe` and `flag` icons
