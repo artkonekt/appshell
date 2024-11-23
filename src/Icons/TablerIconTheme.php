@@ -81,6 +81,7 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::FILE => 'file',
         AppShellIcons::COMMENT => 'message',
         AppShellIcons::GLOBE => 'world',
+        AppShellIcons::FLAG => 'flag-3',
     ];
 
     public static function getName(): string

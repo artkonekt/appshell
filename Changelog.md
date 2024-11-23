@@ -4,7 +4,7 @@
 ##### 2024-XX-YY
 
 - Added CRUD for Countries and Provinces
-- Added the `globe` icon
+- Added the `globe` and `flag` icons
 - Added support for setting `empty.html` on the table widget
 - Added PHP 8.4 support
 
