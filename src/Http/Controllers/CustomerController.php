@@ -163,14 +163,14 @@ class CustomerController extends BaseController
         }
 
         $periodFormat = [
-            'daily' => fn($date) => $date->toDateString(),
-            'monthly' => fn($date) => $date->format('Y-m'),
-            'annual' => fn($date) => $date->format('Y'),
+            'daily' => fn ($date) => $date->toDateString(),
+            'monthly' => fn ($date) => $date->format('Y-m'),
+            'annual' => fn ($date) => $date->format('Y'),
         ];
 
         // Calculate the sums for each key (date) of the $customerPurchases array
         foreach ($purchases as $purchase) {
-            if ($resolution === 'weekly') {
+            if ('weekly' === $resolution) {
                 foreach ($customerPurchases as $key => $value) {
                     // Split the period key into start and end dates (e.g., '2024-11-01 - 2024-11-07')
                     [$startOfWeek, $endOfWeek] = explode(' - ', $key);
