@@ -16,6 +16,7 @@ namespace Konekt\AppShell\Http\Controllers;
 use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Konekt\AppShell\Contracts\Requests\CreateCustomer;
 use Konekt\AppShell\Contracts\Requests\UpdateCustomer;
@@ -23,6 +24,7 @@ use Konekt\AppShell\Filters\Filters;
 use Konekt\AppShell\Filters\Generic\BoolTriState;
 use Konekt\AppShell\Filters\Generic\PartialMatchInMultipleFields;
 use Konekt\AppShell\Filters\PartialMatchPattern;
+use Konekt\AppShell\Models\ChartResolution;
 use Konekt\AppShell\Settings\DefaultCurrency;
 use Konekt\AppShell\Widgets;
 use Konekt\AppShell\Widgets\AppShellWidgets;
@@ -82,28 +84,20 @@ class CustomerController extends BaseController
         return redirect(route('appshell.customer.index'));
     }
 
-    public function show(Customer $customer)
+    public function show(Request $request, Customer $customer): View
     {
         $daily = new DateInterval('P1D');
-        $currentMonth = new DatePeriod(Carbon::now()->startOfMonth(), $daily, Carbon::now()->endOfMonth());
 
-        $period = $currentMonth;
-        $resolution = 'weekly';
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $period = new DatePeriod(Carbon::parse($request->input('start_date'))->startOfDay(), $daily, Carbon::parse($request->input('end_date'))->endOfDay());
+        } else {
+            $period = new DatePeriod(Carbon::now()->startOfMonth(), $daily, Carbon::now()->endOfMonth());
+        }
 
-        // Determine the period based on the resolution
-        switch ($resolution) {
-            case 'daily':
-                $period = new DatePeriod(Carbon::now()->startOfMonth(), $daily, Carbon::now()->endOfMonth());
-                break;
-            case 'weekly':
-                $period = new DatePeriod(Carbon::now()->startOfWeek(), $daily, Carbon::now()->endOfMonth());
-                break;
-            case 'monthly':
-                $period = new DatePeriod(Carbon::now()->startOfYear(), $daily, Carbon::now()->endOfYear());
-                break;
-            case 'annual':
-                $period = new DatePeriod(Carbon::now()->startOfYear(), $daily, Carbon::now()->endOfYear());
-                break;
+        if ($request->filled('resolution')) {
+            $resolution = $request->input('resolution');
+        } else {
+            $resolution = ChartResolution::DAILY;
         }
 
         $purchases = $customer
@@ -111,68 +105,95 @@ class CustomerController extends BaseController
             ->whereBetween('purchase_date', [$period->start, $period->end])
             ->get();
 
-        // Group and sum based on the resolution
-        $groupedPurchases = $purchases->groupBy(function ($purchase) use ($resolution) {
-            switch ($resolution) {
-                case 'daily':
-                    return $purchase->purchase_date->toDateString(); // Group by date
-                case 'weekly':
-                    // Start and end of the week
-                    $startOfWeek = $purchase->purchase_date->startOfWeek()->toDateString();
-                    $endOfWeek = $purchase->purchase_date->endOfWeek()->toDateString();
-                    return "{$startOfWeek} - {$endOfWeek}"; // Group by week range
-                case 'monthly':
-                    return $purchase->purchase_date->format('Y-m'); // Group by month (YYYY-MM)
-                case 'annual':
-                    return $purchase->purchase_date->format('Y'); // Group by year (YYYY)
-            }
-        })->map(function ($group) {
-            return $group->sum('purchase_value'); // Sum purchase_value for each group
-        });
-
-        // Generate all possible periods (weeks, months, etc.) within the range
-        $allPeriods = collect();
-        $currentDate = Carbon::now()->startOfMonth(); // Adjust this based on the resolution
-
+        // Get an array where the keys are the dates of the period and fill it with 0s
+        $customerPurchases = collect();
+        $periodStart = $period->start->copy();
+        $periodEnd = $period->end->copy();
         switch ($resolution) {
             case 'daily':
-                // Loop through each day of the current month
-                while ($currentDate <= Carbon::now()->endOfMonth()) {
-                    $allPeriods->put($currentDate->toDateString(), 0);
-                    $currentDate->addDay();
+                while ($periodStart <= $periodEnd) {
+                    $customerPurchases->put($periodStart->toDateString(), 0);
+                    $periodStart->addDay();
                 }
                 break;
             case 'weekly':
-                // Loop through each week of the current month
-                while ($currentDate <= Carbon::now()->endOfMonth()) {
-                    $startOfWeek = $currentDate->startOfWeek()->toDateString();
-                    $endOfWeek = $currentDate->endOfWeek()->toDateString();
-                    $allPeriods->put("{$startOfWeek} - {$endOfWeek}", 0);
-                    $currentDate->addWeek();
+                $endOfPeriod = $periodEnd;
+                $startOfWeek = $periodStart;
+
+                $endOfWeek = $startOfWeek->copy()->endOfWeek(Carbon::SUNDAY);
+
+                // Adjust the end of the week if it exceeds the period's end date
+                if ($endOfWeek > $endOfPeriod) {
+                    $endOfWeek = $endOfPeriod;
+                }
+
+                // Add the first week to the resolutionDates collection
+                $customerPurchases->put("{$startOfWeek->toDateString()} - {$endOfWeek->toDateString()}", 0);
+
+                // If the whole period is within the first week, stop
+                if ($endOfWeek === $endOfPeriod) {
+                    break;
+                }
+
+                // Move to the next Monday and loop through the remaining weeks
+                while ($endOfWeek < $endOfPeriod) {
+                    $startOfWeek = $endOfWeek->copy()->addDay()->startOfWeek(Carbon::MONDAY);
+                    $endOfWeek = $startOfWeek->copy()->endOfWeek(Carbon::SUNDAY);
+
+                    // Adjust the end of the week if it exceeds the period's end date
+                    if ($endOfWeek > $endOfPeriod) {
+                        $endOfWeek = $endOfPeriod;
+                    }
+
+                    $customerPurchases->put("{$startOfWeek->toDateString()} - {$endOfWeek->toDateString()}", 0);
                 }
                 break;
             case 'monthly':
-                // Loop through each month of the current year
-                while ($currentDate <= Carbon::now()->endOfYear()) {
-                    $allPeriods->put($currentDate->format('Y-m'), 0);
-                    $currentDate->addMonth();
+                while ($periodStart <= $periodEnd) {
+                    $customerPurchases->put($periodStart->format('Y-m'), 0);
+                    $periodStart->addMonth();
                 }
                 break;
             case 'annual':
-                // Loop through each year
-                while ($currentDate <= Carbon::now()->endOfYear()) {
-                    $allPeriods->put($currentDate->format('Y'), 0);
-                    $currentDate->addYear();
+                while ($periodStart <= $periodEnd) {
+                    $customerPurchases->put($periodStart->format('Y'), 0);
+                    $periodStart->addYear();
                 }
                 break;
         }
 
-        // Merge the grouped purchases with all possible periods
-        $finalPurchases = $allPeriods->merge($groupedPurchases);
+        $periodFormat = [
+            'daily' => fn($date) => $date->toDateString(),
+            'monthly' => fn($date) => $date->format('Y-m'),
+            'annual' => fn($date) => $date->format('Y'),
+        ];
+
+        // Calculate the sums for each key (date) of the $customerPurchases array
+        foreach ($purchases as $purchase) {
+            if ($resolution === 'weekly') {
+                foreach ($customerPurchases as $key => $value) {
+                    // Split the period key into start and end dates (e.g., '2024-11-01 - 2024-11-07')
+                    [$startOfWeek, $endOfWeek] = explode(' - ', $key);
+
+                    if ($purchase->purchase_date->between($startOfWeek, $endOfWeek)) {
+                        $customerPurchases[$key] += $purchase->purchase_value;
+                    }
+                }
+            } else {
+                $periodKey = $periodFormat[$resolution]($purchase->purchase_date);
+
+                if ($customerPurchases->has($periodKey)) {
+                    $customerPurchases[$periodKey] += $purchase->purchase_value;
+                }
+            }
+        }
 
         return view('appshell::customer.show', [
             'customer' => $customer,
-            'customerPurchases' => $finalPurchases,
+            'customerPurchases' => $customerPurchases,
+            'purchasesCount' => $purchases->count(),
+            'resolutions' => ChartResolution::choices(),
+            'period' => $period,
         ]);
     }
 

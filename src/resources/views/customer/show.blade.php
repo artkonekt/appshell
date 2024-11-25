@@ -50,7 +50,48 @@
     </div>
 
     <x-appshell::card>
-        <div id="purchasesChart" style="height:200px"></div>
+        <x-slot:title>
+            {{ __('Purchases') }} <span class="badge bg-secondary">{{ $purchasesCount }}</span>
+        </x-slot:title>
+
+        <x-slot:actions>
+            {!! Form::open(['url' => route('appshell.customer.show', $customer), 'method' => 'GET', 'class' => 'd-flex gap-1 flex-row align-items-center flex-wrap']) !!}
+                <div>
+                    {{ Form::date('start_date', $period->start, [
+                        'class' => 'form-control' . ($errors->has('start_date') ? ' is-invalid' : ''),
+                    ])}}
+
+                    @if ($errors->has('start_date'))
+                        <div class="invalid-feedback">{{ $errors->first('start_date') }}</div>
+                    @endif
+                </div>
+
+                <div>
+                    {{ Form::date('end_date', $period->end, [
+                        'class' => 'form-control' . ($errors->has('end_date') ? ' is-invalid' : ''),
+                    ])}}
+
+                    @if ($errors->has('end_date'))
+                        <div class="invalid-feedback">{{ $errors->first('end_date') }}</div>
+                    @endif
+                </div>
+
+                <div>
+                    {{ Form::select('resolution', $resolutions, request('resolution'), [
+                        'class' => 'form-select' . ($errors->has('resolution') ? ' is-invalid' : '')
+                    ]) }}
+                    @if ($errors->has('resolution'))
+                        <div class="invalid-feedback">{{ $errors->first('resolution') }}</div>
+                    @endif
+                </div>
+
+                <x-appshell::button>
+                    {{ __('Filter') }}
+                </x-appshell::button>
+            {!! Form::close() !!}
+        </x-slot:actions>
+
+        <div id="purchasesChart" style="height:350px"></div>
     </x-appshell::card>
 
     @include('appshell::address._index', ['addresses' => $customer->addresses, 'of' => $customer])
@@ -66,32 +107,36 @@
                 purchasesChart.resize();
             });
 
-            const periods = @json($customerPurchases->keys());  // The dates or periods (e.g., "2024-11-01 - 2024-11-03")
-            const totals = @json($customerPurchases->values()); // The purchase totals (e.g., 100, 200, etc.)
-
             purchasesChart.setOption({
-                title: {
-                    text: 'Purchases per Period'
-                },
                 xAxis: {
                     type: 'category',
-                    data: periods,
+                    data: @json($customerPurchases->keys()),
                 },
                 yAxis: {
                     type: 'value'
                 },
                 series: [
                     {
-                        name: 'Purchase Total',
+                        name: 'Total purchase',
                         type: 'bar',
-                        data: totals,
-                    }
+                        data: @json($customerPurchases->values()),
+                        itemStyle: {
+                            color: '{{ theme_color(\Konekt\AppShell\Theme\ThemeColor::PRIMARY) }}',
+                            borderRadius: 6,
+                        }
+                    },
                 ],
+                tooltip: {
+                    formatter(params) {
+                        return `<p>${params.name}</p>${params.marker}${params.seriesName}<span style="float: right; margin-left: 10px"><b>${params.value.toFixed(2)} {{$customer->currency}}</b></span>`;
+                    },
+                },
+                legend: false,
                 grid: {
                     left: 40,
                     top: 30,
                     right: 20,
-                    bottom: 20
+                    bottom: 20,
                 },
             });
         });
