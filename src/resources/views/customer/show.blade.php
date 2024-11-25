@@ -58,7 +58,7 @@
             {!! Form::open(['url' => route('appshell.customer.show', $customer), 'method' => 'GET', 'class' => 'd-flex gap-1 flex-row align-items-center flex-wrap']) !!}
                 <div>
                     {{ Form::date('start_date', $period->start, [
-                        'class' => 'form-control' . ($errors->has('start_date') ? ' is-invalid' : ''),
+                        'class' => 'form-control form-control-sm' . ($errors->has('start_date') ? ' is-invalid' : ''),
                     ])}}
 
                     @if ($errors->has('start_date'))
@@ -68,7 +68,7 @@
 
                 <div>
                     {{ Form::date('end_date', $period->end, [
-                        'class' => 'form-control' . ($errors->has('end_date') ? ' is-invalid' : ''),
+                        'class' => 'form-control form-control-sm' . ($errors->has('end_date') ? ' is-invalid' : ''),
                     ])}}
 
                     @if ($errors->has('end_date'))
@@ -78,14 +78,14 @@
 
                 <div>
                     {{ Form::select('resolution', $resolutions, request('resolution'), [
-                        'class' => 'form-select' . ($errors->has('resolution') ? ' is-invalid' : '')
+                        'class' => 'form-select form-select-sm' . ($errors->has('resolution') ? ' is-invalid' : '')
                     ]) }}
                     @if ($errors->has('resolution'))
                         <div class="invalid-feedback">{{ $errors->first('resolution') }}</div>
                     @endif
                 </div>
 
-                <x-appshell::button>
+                <x-appshell::button size="sm">
                     {{ __('Filter') }}
                 </x-appshell::button>
             {!! Form::close() !!}
