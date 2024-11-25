@@ -13,6 +13,10 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Http\Controllers;
 
+use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Konekt\AppShell\Contracts\Requests\CreateCustomer;
 use Konekt\AppShell\Contracts\Requests\UpdateCustomer;
@@ -20,6 +24,7 @@ use Konekt\AppShell\Filters\Filters;
 use Konekt\AppShell\Filters\Generic\BoolTriState;
 use Konekt\AppShell\Filters\Generic\PartialMatchInMultipleFields;
 use Konekt\AppShell\Filters\PartialMatchPattern;
+use Konekt\AppShell\Models\ChartResolution;
 use Konekt\AppShell\Settings\DefaultCurrency;
 use Konekt\AppShell\Widgets;
 use Konekt\AppShell\Widgets\AppShellWidgets;
@@ -79,10 +84,116 @@ class CustomerController extends BaseController
         return redirect(route('appshell.customer.index'));
     }
 
-    public function show(Customer $customer)
+    public function show(Request $request, Customer $customer): View
     {
+        $daily = new DateInterval('P1D');
+
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $period = new DatePeriod(Carbon::parse($request->input('start_date'))->startOfDay(), $daily, Carbon::parse($request->input('end_date'))->endOfDay());
+        } else {
+            $period = new DatePeriod(Carbon::now()->startOfMonth(), $daily, Carbon::now()->endOfMonth());
+        }
+
+        if ($request->filled('resolution')) {
+            $resolution = $request->input('resolution');
+        } else {
+            $resolution = ChartResolution::DAILY;
+        }
+
+        $purchases = $customer
+            ->purchases()
+            ->whereBetween('purchase_date', [$period->start, $period->end])
+            ->get();
+
+        // Get an array where the keys are the dates of the period and fill it with 0s
+        $customerPurchases = collect();
+        $periodStart = $period->start->copy();
+        $periodEnd = $period->end->copy();
+        switch ($resolution) {
+            case 'daily':
+                while ($periodStart <= $periodEnd) {
+                    $customerPurchases->put($periodStart->toDateString(), 0);
+                    $periodStart->addDay();
+                }
+                break;
+            case 'weekly':
+                $endOfPeriod = $periodEnd;
+                $startOfWeek = $periodStart;
+
+                $endOfWeek = $startOfWeek->copy()->endOfWeek(Carbon::SUNDAY);
+
+                // Adjust the end of the week if it exceeds the period's end date
+                if ($endOfWeek > $endOfPeriod) {
+                    $endOfWeek = $endOfPeriod;
+                }
+
+                // Add the first week to the resolutionDates collection
+                $customerPurchases->put("{$startOfWeek->toDateString()} - {$endOfWeek->toDateString()}", 0);
+
+                // If the whole period is within the first week, stop
+                if ($endOfWeek === $endOfPeriod) {
+                    break;
+                }
+
+                // Move to the next Monday and loop through the remaining weeks
+                while ($endOfWeek < $endOfPeriod) {
+                    $startOfWeek = $endOfWeek->copy()->addDay()->startOfWeek(Carbon::MONDAY);
+                    $endOfWeek = $startOfWeek->copy()->endOfWeek(Carbon::SUNDAY);
+
+                    // Adjust the end of the week if it exceeds the period's end date
+                    if ($endOfWeek > $endOfPeriod) {
+                        $endOfWeek = $endOfPeriod;
+                    }
+
+                    $customerPurchases->put("{$startOfWeek->toDateString()} - {$endOfWeek->toDateString()}", 0);
+                }
+                break;
+            case 'monthly':
+                while ($periodStart <= $periodEnd) {
+                    $customerPurchases->put($periodStart->format('Y-m'), 0);
+                    $periodStart->addMonth();
+                }
+                break;
+            case 'annual':
+                while ($periodStart <= $periodEnd) {
+                    $customerPurchases->put($periodStart->format('Y'), 0);
+                    $periodStart->addYear();
+                }
+                break;
+        }
+
+        $periodFormat = [
+            'daily' => fn ($date) => $date->toDateString(),
+            'monthly' => fn ($date) => $date->format('Y-m'),
+            'annual' => fn ($date) => $date->format('Y'),
+        ];
+
+        // Calculate the sums for each key (date) of the $customerPurchases array
+        foreach ($purchases as $purchase) {
+            if ('weekly' === $resolution) {
+                foreach ($customerPurchases as $key => $value) {
+                    // Split the period key into start and end dates (e.g., '2024-11-01 - 2024-11-07')
+                    [$startOfWeek, $endOfWeek] = explode(' - ', $key);
+
+                    if ($purchase->purchase_date->between($startOfWeek, $endOfWeek)) {
+                        $customerPurchases[$key] += $purchase->purchase_value;
+                    }
+                }
+            } else {
+                $periodKey = $periodFormat[$resolution]($purchase->purchase_date);
+
+                if ($customerPurchases->has($periodKey)) {
+                    $customerPurchases[$periodKey] += $purchase->purchase_value;
+                }
+            }
+        }
+
         return view('appshell::customer.show', [
-            'customer' => $customer
+            'customer' => $customer,
+            'customerPurchases' => $customerPurchases,
+            'purchasesCount' => $purchases->count(),
+            'resolutions' => ChartResolution::choices(),
+            'period' => $period,
         ]);
     }
 
