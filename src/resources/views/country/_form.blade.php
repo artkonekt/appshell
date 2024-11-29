@@ -1,6 +1,6 @@
 <div class="mb-3">
     <div @class(['input-group input-group-lg', 'has-validation' => $errors->has('name')])>
-        <span class="input-group-text">{!! icon('zone') !!}</span>
+        <span class="input-group-text">{!! icon('globe') !!}</span>
         <x-appshell::floating-label :label="__('Name')" :is-invalid="$errors->has('name')">
             {{ Form::text('name', null, [
                     'class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''),

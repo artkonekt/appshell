@@ -5,6 +5,7 @@
 
 - Added Customer purchases chart to the Customer show page
 - Changed the minimal Customer library dependency to v3.1
+- Fixed the icons (zone -> globe) on the country form
 
 ## 4.4.0
 ##### 2024-11-23
