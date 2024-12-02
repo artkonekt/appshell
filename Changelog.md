@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.5.0
+##### 2024-12-02
 
 - Added Customer purchases chart to the Customer show page
 - Changed the minimal Customer library dependency to v3.1
