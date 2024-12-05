@@ -82,6 +82,9 @@ class LucideIconTheme implements IconTheme
         AppShellIcons::COMMENT => 'message-square-text',
         AppShellIcons::GLOBE => 'globe',
         AppShellIcons::FLAG => 'flag',
+        AppShellIcons::PLAY => 'circle-play',
+        AppShellIcons::STOP => 'circle-stop',
+        AppShellIcons::PAUSE => 'circle-pause',
     ];
 
     public static function getName(): string

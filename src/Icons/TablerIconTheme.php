@@ -82,6 +82,9 @@ class TablerIconTheme implements IconTheme
         AppShellIcons::COMMENT => 'message',
         AppShellIcons::GLOBE => 'world',
         AppShellIcons::FLAG => 'flag-3',
+        AppShellIcons::PLAY => 'player-play',
+        AppShellIcons::STOP => 'player-stop',
+        AppShellIcons::PAUSE => 'player-pause',
     ];
 
     public static function getName(): string
