@@ -73,4 +73,8 @@ final class AppShellIcons
     public const COMMENT = 'comment';
     public const GLOBE = 'globe';
     public const FLAG = 'flag';
+
+    public const PLAY = 'play';
+    public const STOP = 'start';
+    public const PAUSE = 'pause';
 }
