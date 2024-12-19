@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2024-XX-YY
+## 4.6.0
+##### 2024-12-19
 
 - Added the play, stop and pause icons
 
