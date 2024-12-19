@@ -16,7 +16,7 @@
         "issues": "https://github.com/artkonekt/appshell"
     },
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "ext-json": "*",
         "konekt/concord": "^1.15",
         "konekt/customer": "^3.1",
@@ -30,14 +30,14 @@
         "konekt/xtend": "^1.1",
         "konekt/html": "^6.5",
         "laracasts/flash": "^3.2.1",
-        "cviebrock/eloquent-sluggable": "^10.0|^11.0",
-        "diglactic/laravel-breadcrumbs": "^8.0|^9.0",
-        "laravel/framework": "^10.0|^11.0"
+        "cviebrock/eloquent-sluggable": "^11.0",
+        "diglactic/laravel-breadcrumbs": "^9.0",
+        "laravel/framework": "^11.0"
     },
     "require-dev": {
         "ext-sqlite3": "*",
-        "phpunit/phpunit": "^10.0",
-        "orchestra/testbench": "^8.0|^9.0",
+        "phpunit/phpunit": "^11.0",
+        "orchestra/testbench": "^9.0",
         "mockery/mockery": "^1.6.2"
     },
     "conflict": {

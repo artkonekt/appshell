@@ -1,5 +1,11 @@
 # AppShell Changelog
 
+## 5.x - Unreleased
+##### 2025-XX-YY
+
+- Dropped PHP 8.2 support
+- Dropped Laravel 10 support
+
 ## 4.6.0
 ##### 2024-12-19
 
