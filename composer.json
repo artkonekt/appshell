@@ -40,9 +40,6 @@
         "orchestra/testbench": "^9.0",
         "mockery/mockery": "^1.6.2"
     },
-    "conflict": {
-      "doctrine/dbal": ">=4.0"
-    },
     "autoload": {
         "psr-4": {
           "Konekt\\AppShell\\": "src"
