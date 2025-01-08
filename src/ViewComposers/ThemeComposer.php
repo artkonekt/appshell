@@ -18,18 +18,24 @@ use Konekt\AppShell\Contracts\Theme;
 
 class ThemeComposer
 {
-    /** @var null|Theme */
-    private $theme;
+    private ?Theme $theme = null;
+
+    private static ?Theme $forcedTheme = null;
 
     public function compose($view)
     {
         $view->with('theme', $this->theme());
     }
 
+    public static function enforceTheme(Theme $theme)
+    {
+        self::$forcedTheme = $theme;
+    }
+
     private function theme(): Theme
     {
         if (null === $this->theme) {
-            $this->theme = app('appshell.theme');
+            $this->theme = self::$forcedTheme ?? app('appshell.theme');
         }
 
         return $this->theme;

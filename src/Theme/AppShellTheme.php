@@ -33,16 +33,16 @@ final class AppShellTheme implements Theme
     ];
 
     private array $themeColors = [
-        ThemeColor::PRIMARY => '#146ebe',
-        ThemeColor::SECONDARY => '#f1f1f1',
-        ThemeColor::INFO => '#75a0d2',
-        ThemeColor::SUCCESS => '#9593C4',
-        ThemeColor::WARNING => '#f9df79',
-        ThemeColor::DANGER => '#cf5f89',
-        ThemeColor::TEXT => '#0d1d32',
+        ThemeColor::PRIMARY => '#385170',
+        ThemeColor::SECONDARY => '#8EA1A4',
+        ThemeColor::INFO => '#4A9DBE',
+        ThemeColor::SUCCESS => '#29C79C',
+        ThemeColor::WARNING => '#E8CC67',
+        ThemeColor::DANGER => '#F2504A',
+        ThemeColor::TEXT => '#303335',
         ThemeColor::DARK => '#607375',
-        ThemeColor::LIGHT => '#f1f3f3',
-        ThemeColor::MUTED => '#737376',
+        ThemeColor::LIGHT => '#F1F3F3',
+        ThemeColor::MUTED => '#8EA1A4',
         ThemeColor::NONE => '#444444',
     ];
 }

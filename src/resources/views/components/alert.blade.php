@@ -1,1 +1,1 @@
-<{{$tag}} class="alert alert-{{$variant}}" {{ $attributes }}>{{ $slot }}</{{$tag}}>
+<{{$tag}} {{ $attributes->merge(['class' => "alert alert-$variant"]) }} {{ $attributes }}>{{ $slot }}</{{$tag}}>

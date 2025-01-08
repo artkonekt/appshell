@@ -11,6 +11,7 @@
     <title>@yield('title') &middot; {{ $appshell->name }}</title>
 
     <!-- Styles -->
+    <link href="/css/normalize.css" media="all" type="text/css" rel="stylesheet" />
     <link href="{{ $appshell->useMix ? mix('/css/trident.css') : asset('/css/trident.css') }}" media="all" type="text/css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://use.typekit.net/utx1hrc.css">

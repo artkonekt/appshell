@@ -57,6 +57,12 @@ return [
             'middleware' => ['web'],
             'files' => ['public']
         ],
+        [
+            'prefix' => '_appshell',
+            'as' => 'appshell.dev.',
+            'middleware' => ['web'],
+            'files' => ['dev']
+        ],
     ],
     'breadcrumbs' => true,
     'disable' => [
@@ -68,7 +74,6 @@ return [
         'name' => 'AppShell',
         'customer_selection_for_users' => false, //false, true or and array of strings that represent Customer types
         'url' => '/admin/customer',
-        'logo_uri' => '/images/appshell/logo.svg',
         'theme' => 'appshell',
         'icon_theme' => 'zmdi',
         'use_mix' => false,

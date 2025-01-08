@@ -83,11 +83,11 @@ To complete user setup, you have several options, see some of the variants below
 
 #### Variant 1 - Simple
 
-Modify `App\User` so that it extends AppShell's user model:
+Modify `App\Models\User` class that comes with the default Laravel installation so that it extends AppShell's user model:
 
 ```php
-// app/User.php
-namespace App;
+// app/Models/User.php
+namespace App\Models;
 
 // No need to use Laravel default traits and properties as
 // they're already present in the base class exactly as
@@ -100,7 +100,7 @@ class User extends \Konekt\AppShell\Models\User
 Add this to your `AppServiceProviders`'s boot method:
 
 ```php
-   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
+   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\Models\User::class);
 ```
 
 #### Variant 2 - Flexible
@@ -109,7 +109,7 @@ In case you don't want to extend AppShell's User class, then it's sufficient to 
 interface:
 
 ```php
-// app/User.php
+// app/Models/User.php
 // ... The default User model or arbitrary code for your app
 
 // You can use any other base class eg: TCG\Voyager\Models\User
@@ -146,7 +146,7 @@ class User extends Authenticatable implements UserContract
 Add this to your `AppServiceProviders`'s boot method:
 
 ```php
-   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\User::class);
+   $this->app->concord->registerModel(\Konekt\User\Contracts\User::class, \App\Models\User::class);
 ```
 
 #### Variant 3 - No App\User
@@ -171,11 +171,89 @@ Run command `php artisan make:superuser`.
 
 This will ask a several questions and create a proper superuser that you can start working with.
 
-### Frontend Installation
+## Frontend Installation
 
-Since this package will be built along with your application, it's assets need to be added to it:
+Regardless of the build tool (vite, webpack, etc) you'll need the following packages for AppShell:
 
-**1. Add Admin's CSS To Laravel Mix:**
+```bash
+npm add bootstrap@5.3 alpinejs@3.14 popper.js
+```
+
+In the next step, choose your preferred build tool.
+
+### Vite
+
+If your application uses Vite to build the frontend, see the sample config file below.
+The example keeps the public frontend and the AppShell frontend separated, but feel free to modify according to your needs.
+
+```javascript
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import path from 'path';
+
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: [
+                'resources/js/app.js',
+                'vendor/konekt/appshell/src/resources/assets/js/appshell.standalone.js',
+                'resources/css/app.css',
+                'vendor/konekt/appshell/src/resources/assets/sass/appshell.sass',
+            ],
+            refresh: true,
+        }),
+    ],
+    resolve: {
+        alias: {
+            '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
+        },
+    },
+    build: {
+        outDir: 'public',
+        rollupOptions: {
+            input: {
+                appJs: 'resources/js/app.js',
+                appshellJs: 'vendor/konekt/appshell/src/resources/assets/js/appshell.standalone.js',
+                appStyles: 'resources/css/app.css',
+                appshellStyles: 'vendor/konekt/appshell/src/resources/assets/sass/appshell.sass',
+            },
+            output: {
+                entryFileNames: ({ name }) => {
+                    if (name === 'appshellJs') {
+                        return 'js/appshell.js';
+                    }
+                    if (name === 'appJs') {
+                        return 'js/app.js'
+                    }
+                    return 'js/[name].js';
+                },
+                chunkFileNames: 'js/[name].js',
+                assetFileNames: ({ name }) => {
+                    if (/^appStyles\.css$/.test(name ?? '')) {
+                        return 'css/app.css';
+                    }
+                    if (/^appshellStyles\.css$/.test(name ?? '')) {
+                        return 'css/appshell.css';
+                    }
+                    if (/\.css$/.test(name ?? '')) {
+                        return 'css/[name].[ext]';
+                    }
+                    return 'assets/[name].[ext]';
+                },
+            },
+        },
+        emptyOutDir: false,
+    },
+});
+```
+
+### Laravel Mix
+
+You can still use Laravel Mix if you prefer it over Vite.
+
+Add the AppShell assets to the mix config:
+
+Add Admin's CSS To Laravel Mix:
 
 ```javascript
    // webpack.mix.js
@@ -186,13 +264,21 @@ Since this package will be built along with your application, it's assets need t
     // Keep the the original assets if needed or remove them if AppShell's UI is the only one of your app
 ```
 
-**2. Install the following npm packages:**
+### Compilation
+
+Add the SASS compiler:
 
 ```bash
-npm add bootstrap@5.3 alpinejs@3.10 popper.js
+npm add -D sass
+```
+Now you can compile the assets:
+
+```bash
+npm run build
 ```
 
-**3. Compile the assets with mix:** `npm run dev`
+Once these steps succeed, you can start a local server with `php artisan serve` and open the default AppShell interface at:
+http://127.0.0.1:8000/admin/user
 
 
 ---

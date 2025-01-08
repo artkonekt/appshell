@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Theme;
 
+use Illuminate\Support\Facades\View;
 use Konekt\AppShell\Contracts\Theme;
 
 class TridentTheme implements Theme
@@ -25,6 +26,7 @@ class TridentTheme implements Theme
     private static string $name = 'Trident';
 
     private static string $viewNamespace = 'trident';
+    private static bool $viewNamespaceRegistered = false;
 
     private array $layouts = [
         'private' => 'trident::layouts.private',
@@ -45,4 +47,11 @@ class TridentTheme implements Theme
         ThemeColor::MUTED => '#737376',
         ThemeColor::NONE => '#444444',
     ];
+
+    public function __construct()
+    {
+        if (!self::$viewNamespaceRegistered) {
+            View::addNamespace(self::$viewNamespace, dirname(__DIR__) . '/resources/themes/trident');
+        }
+    }
 }

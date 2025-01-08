@@ -17,7 +17,7 @@ if (token) {
 
 Alpine.start();
 
-require('./appshell');
+import './appshell';
 
 import NiceSelect from "./nice-select2";
 
