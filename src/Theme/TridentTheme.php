@@ -26,6 +26,7 @@ class TridentTheme implements Theme
     private static string $name = 'Trident';
 
     private static string $viewNamespace = 'trident';
+
     private static bool $viewNamespaceRegistered = false;
 
     private array $layouts = [
