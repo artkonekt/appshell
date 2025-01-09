@@ -12,6 +12,8 @@ declare(strict_types=1);
  *
  */
 
+namespace Konekt\AppShell\Tests\Unit;
+
 use Illuminate\Support\Facades\Route;
 use Konekt\AppShell\Tests\TestCase;
 use Konekt\AppShell\Theme\AppShellTheme;
