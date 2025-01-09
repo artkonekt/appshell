@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added the `url` option to the avatar widget
+
 ## 4.6.0
 ##### 2024-12-19
 

@@ -28,6 +28,9 @@ class Avatar implements Widget
 
     private const DEFAULT_AVATAR_SIZE = 50;
 
+    /** @var null|callable */
+    private $url;
+
     /** @var callable */
     private $model;
 
@@ -36,15 +39,20 @@ class Avatar implements Widget
 
     private ?int $size = null;
 
-    public function __construct(Theme $theme, callable $model)
+    public function __construct(Theme $theme, callable $model, ?callable $url = null)
     {
         $this->theme = $theme;
         $this->model = $model;
+        $this->url = $url;
     }
 
     public static function create(Theme $theme, array $options = []): Widget
     {
-        $instance = new static($theme, self::makeCallable($options['model'] ?? '$model'));
+        $instance = new static(
+            $theme,
+            self::makeCallable($options['model'] ?? '$model'),
+            isset($options['url']) ? self::makeCallable($options['url']) : null,
+        );
         $instance->processRenderingConditions($options);
         if (isset($options['tooltip'])) {
             $instance->tooltip = self::makeCallable($options['tooltip']);
@@ -67,6 +75,7 @@ class Avatar implements Widget
             'data' => call_user_func($this->model, $data, $this),
             'tooltip' => null !== $this->tooltip ? call_user_func($this->tooltip, $data, $this) : null,
             'size' => $this->size ?? self::DEFAULT_AVATAR_SIZE,
+            'url' => null !== $this->url ? call_user_func($this->url, $data, $this) : null,
         ]);
     }
 }
