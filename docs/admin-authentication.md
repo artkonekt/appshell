@@ -15,7 +15,7 @@ AppShell only contains very tiny extensions to the stock Laravel authentication 
 
 ## Additional User Table Fields
 
-The underlying [user module](https://github.com/artkonekt/user) adds the following fields to the
+The underlying [user module](https://konekt.dev/user) adds the following fields to the
 user table:
 
 - `type` - `Konekt\User\Models\UserType`
