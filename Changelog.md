@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 4.8.0
+##### 2025-01-13
 
 - Added the `customer_number` field to the customer views and forms
 - Changed the minimal customer module requirement to v3.3
