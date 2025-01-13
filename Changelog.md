@@ -4,6 +4,7 @@
 ##### 2025-XX-YY
 
 - Added the `customer_number` field to the customer views and forms
+- Changed the minimal customer module requirement to v3.3
 
 ## 4.7.0
 ##### 2025-01-09
