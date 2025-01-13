@@ -58,6 +58,22 @@
     @include('appshell::customer._organization')
 </div>
 
+<div class="mb-3 row">
+    <label for="customer_number" class="col-form-label col-form-label-sm col-md-2">{{ __('Customer Number') }}</label>
+    <div class="col-md-10">
+        {{ Form::text('customer_number', null, [
+                'class' => 'form-control form-control-sm' . ($errors->has('customer_number') ? ' is-invalid': ''),
+                'placeholder' => __('E.g. the ERP customer code'),
+                'maxlength' => 255,
+                'id' => 'customer_number',
+            ])
+        }}
+        @if ($errors->has('customer_number'))
+            <div class="invalid-feedback">{{ $errors->first('customer_number') }}</div>
+        @endif
+    </div>
+</div>
+
 <hr>
 
 <div class="mb-4 row">

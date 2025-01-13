@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added the `customer_number` field to the customer views and forms
+
 ## 4.7.0
 ##### 2025-01-09
 

@@ -21,7 +21,10 @@
                 @endif
 
                 <x-slot:subtitle>
-                    {{ $customer->type->label() }}
+                    @if($customer->customer_number)
+                        <span title="{{ __('Customer Number') }}">{{ $customer->customer_number }}</span> |
+                    @endif
+                    <span title="{{ __('Customer type') }}">{{ $customer->type->label() }}</span>
                 </x-slot:subtitle>
             </x-appshell::card-with-icon>
         </div>

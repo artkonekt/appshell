@@ -38,6 +38,7 @@ class CreateCustomer extends FormRequest implements CreateCustomerContract
             'timezone' => 'sometimes|nullable|timezone',
             'ltv' => 'sometimes|nullable|numeric',
             'currency' => ['sometimes', 'nullable', Rule::in(array_keys((new DefaultCurrency())->options()))],
+            'customer_number' => 'sometimes|nullable|max:255',
         ];
     }
 
