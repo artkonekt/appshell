@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
-    "axios": "^0.27",
+    "axios": "^0.28.0",
     "bootstrap": "^5.3",
     "laravel-mix": "^6.0",
     "lodash": "^4.17",
