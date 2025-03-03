@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added Laravel 12 support
+
 ## 4.8.0
 ##### 2025-01-13
 
