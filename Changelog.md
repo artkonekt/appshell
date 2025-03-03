@@ -4,6 +4,9 @@
 ##### 2025-XX-YY
 
 - Added Laravel 12 support
+- Fixed the duplicate `SendEmailVerificationNotification` registration by adding an empty
+   `configureEmailVerification()` method to the `EventServiceProvider` class - [Fixes #35](https://github.com/artkonekt/appshell/issues/35)  
+   See also: [Laravel 11.x Upgrade Guide](https://laravel.com/docs/11.x/upgrade#email-verification-notification-on-registration)
 
 ## 4.8.0
 ##### 2025-01-13

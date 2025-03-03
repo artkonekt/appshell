@@ -30,4 +30,8 @@ class EventServiceProvider extends ServiceProvider
             UpdateUserLoginData::class,
         ],
     ];
+
+    protected function configureEmailVerification(): void
+    {
+    }
 }
