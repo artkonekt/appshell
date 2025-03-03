@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 4.9.0
+##### 2025-03-03
 
 - Added Laravel 12 support
 - Fixed the duplicate `SendEmailVerificationNotification` registration by adding an empty

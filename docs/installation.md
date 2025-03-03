@@ -4,10 +4,10 @@
 
 ## Requirements
 
-As of AppShell v4.0, the requirements are:
+As of AppShell v4.x, the requirements are:
 
-- PHP 8.2 - 8.3
-- Laravel 10.x, 11.x
+- PHP 8.2 - 8.4
+- Laravel 10.x, 11.x, 12.x
 
 ## Install AppShell
 
@@ -44,7 +44,7 @@ Now you should see this:
 +----+---------------------+------+----------+------------------+-----------------+
 | #  | Name                | Kind | Version  | Id               | Namespace       |
 +----+---------------------+------+----------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 4.8.0    | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 4.9.0    | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+----------+------------------+-----------------+
 ```
 
