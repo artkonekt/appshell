@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 4.9.1
+##### 2025-03-04
 
 - Fixed PHP 8.4 deprecation notices on implicitly nullable method arguments
 
