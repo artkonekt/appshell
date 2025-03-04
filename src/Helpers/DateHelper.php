@@ -28,7 +28,7 @@ class DateHelper
      *
      * @return string
      */
-    public function showDate($date, string $unknownDateText = '', string $format = null): string
+    public function showDate($date, string $unknownDateText = '', ?string $format = null): string
     {
         $carbon = $this->toCarbon($date);
 
@@ -52,7 +52,7 @@ class DateHelper
      *
      * @return string
      */
-    public function showDateTime($datetime, string $unknownDateTimeText = '', string $format = null): string
+    public function showDateTime($datetime, string $unknownDateTimeText = '', ?string $format = null): string
     {
         $carbon = $this->toCarbon($datetime);
 
@@ -76,7 +76,7 @@ class DateHelper
      *
      * @return string
      */
-    public function showTime($datetime, string $unknownTimeText = '', string $format = null): string
+    public function showTime($datetime, string $unknownTimeText = '', ?string $format = null): string
     {
         $carbon = $this->toCarbon($datetime);
 

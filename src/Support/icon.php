@@ -25,7 +25,7 @@ function enum_icon(Enum $enum): string
 /**
  * Renders an icon using the selected Icon theme
  */
-function icon(string $name, string $color = null, array $attributes = []): string
+function icon(string $name, ?string $color = null, array $attributes = []): string
 {
     return icon_theme()->render($name, ThemeColor::create($color), $attributes);
 }

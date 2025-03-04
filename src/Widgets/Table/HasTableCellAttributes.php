@@ -69,7 +69,7 @@ trait HasTableCellAttributes
         return $result;
     }
 
-    private function toCssRule(array $def, string $key, string $cssKey = null): string
+    private function toCssRule(array $def, string $key, ?string $cssKey = null): string
     {
         if (!isset($def[$key])) {
             return '';

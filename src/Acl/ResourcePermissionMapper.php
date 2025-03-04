@@ -41,7 +41,7 @@ final class ResourcePermissionMapper
 
     private ?array $aliases = null;
 
-    public function __construct(array $aliases = null)
+    public function __construct(?array $aliases = null)
     {
         if (null !== $aliases) {
             $this->loadAliases($aliases);
@@ -140,7 +140,7 @@ final class ResourcePermissionMapper
         return $this->customPluralForms[$word] ?? Str::plural($word);
     }
 
-    private function loadAliases(array $aliases = null): void
+    private function loadAliases(?array $aliases = null): void
     {
         if (null !== $this->aliases) {
             return;

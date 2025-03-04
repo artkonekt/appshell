@@ -40,7 +40,7 @@ class Filter implements Widget
 
     private $criteria = null;
 
-    public function __construct(Theme $theme, string $id, FilterType $type, string $title = null)
+    public function __construct(Theme $theme, string $id, FilterType $type, ?string $title = null)
     {
         $this->theme = $theme;
         $this->id = $id;
