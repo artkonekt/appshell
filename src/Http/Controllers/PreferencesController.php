@@ -21,9 +21,9 @@ class PreferencesController extends BaseController
 {
     public function index()
     {
-        return view('appshell::preferences.index', [
+        return view('appshell::preferences.index', $this->processViewData(__METHOD__, [
             'tree' => app('appshell.preferences_tree')
-        ]);
+        ]));
     }
 
     public function update(Request $request)

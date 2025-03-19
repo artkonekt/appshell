@@ -21,12 +21,12 @@ class ProvinceController extends BaseController
     {
         $province = app(Province::class);
 
-        return view('appshell::province.create', [
+        return view('appshell::province.create', $this->processViewData(__METHOD__, [
             'country' => $country,
             'province' => $province,
             'provinces' => $country->provinces,
             'types' => ProvinceTypeProxy::choices(),
-        ]);
+        ]));
     }
 
     public function store(Country $country, CreateProvince $request): RedirectResponse
@@ -68,20 +68,20 @@ class ProvinceController extends BaseController
 
     public function show(Country $country, Province $province): View
     {
-        return view('appshell::province.show', [
+        return view('appshell::province.show', $this->processViewData(__METHOD__, [
             'country' => $country,
             'province' => $province
-        ]);
+        ]));
     }
 
     public function edit(Country $country, Province $province): View
     {
-        return view('appshell::province.edit', [
+        return view('appshell::province.edit', $this->processViewData(__METHOD__, [
             'country' => $country,
             'province' => $province,
             'provinces' => $country->provinces->where('id', '!=', $province->id),
             'types' => ProvinceTypeProxy::choices(),
-        ]);
+        ]));
     }
 
     public function update(Country $country, Province $province, UpdateProvince $request): RedirectResponse

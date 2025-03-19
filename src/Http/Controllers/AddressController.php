@@ -29,12 +29,12 @@ class AddressController extends BaseController
     {
         $address = app(Address::class);
 
-        return view('appshell::address.create', [
+        return view('appshell::address.create', $this->processViewData(__METHOD__, [
             'address' => $address,
             'types' => AddressTypeProxy::choices(),
             'countries' => CountryProxy::all(),
             'for' => $request->getFor()
-        ]);
+        ]));
     }
 
     public function store(CreateAddress $request)
@@ -70,12 +70,12 @@ class AddressController extends BaseController
 
     public function edit(EditAddressForm $request, Address $address)
     {
-        return view('appshell::address.edit', [
+        return view('appshell::address.edit', $this->processViewData(__METHOD__, [
             'address' => $address,
             'types' => AddressTypeProxy::choices(),
             'countries' => CountryProxy::all(),
             'for' => $request->getFor()
-        ]);
+        ]));
     }
 
     public function update(Address $address, UpdateAddress $request)

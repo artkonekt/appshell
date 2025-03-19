@@ -20,9 +20,9 @@ class QuickLinkController extends BaseController
 {
     public function index()
     {
-        return view('appshell::quicklinks.index', [
+        return view('appshell::quicklinks.index', $this->processViewData(__METHOD__, [
             'links' => helper('quickLinks')->links()
-        ]);
+        ]));
     }
 
     public function update(Request $request)

@@ -30,10 +30,10 @@ class PublicInvitationController extends BaseController
             abort(404);
         }
 
-        return view('appshell::public-invitation.show', [
+        return view('appshell::public-invitation.show', $this->processViewData(__METHOD__, [
             'invitation' => $invitation,
             'appname' => Settings::get('appshell.ui.name')
-        ]);
+        ]));
     }
 
     public function accept(AcceptInvitation $request)
@@ -54,9 +54,9 @@ class PublicInvitationController extends BaseController
         ]);
         $user->syncRoles(...$invitation->roles);
 
-        return view('appshell::public-invitation.completed', [
+        return view('appshell::public-invitation.completed', $this->processViewData(__METHOD__, [
             'user' => $user,
             'appname' => Settings::get('appshell.ui.name')
-        ]);
+        ]));
     }
 }

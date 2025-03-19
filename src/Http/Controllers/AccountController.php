@@ -22,9 +22,9 @@ class AccountController extends BaseController
 {
     public function display()
     {
-        return view('appshell::account.show', [
+        return view('appshell::account.show', $this->processViewData(__METHOD__, [
             'user' => Auth::user()
-        ]);
+        ]));
     }
 
     public function save(SaveAccount $request)
