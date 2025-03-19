@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added support for konekt/xtend 2.0
+
 ## 4.9.1
 ##### 2025-03-04
 
