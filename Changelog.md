@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 4.11.0
+##### 2025-03-19
 
 - Added controller hooks support to every action that renders views
 
