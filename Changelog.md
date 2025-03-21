@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added `appshell.standalone.commonjs.js` and `appshell.standalone.esm.js` variants
+
 ## 4.11.0
 ##### 2025-03-19
 

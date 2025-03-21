@@ -6,7 +6,7 @@ on:
       - 'docs/**'
 
 jobs:
-  frontend:
+  mix:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     env:
@@ -25,7 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Configure Mix
         run: |
-          cp tests/frontend/package.json ./
+          cp tests/frontend/package.mix.json ./package.json
           cp tests/frontend/appshell.mix.js ./
           cp tests/frontend/print.mix.js ./
       - name: Install Dependencies
@@ -34,3 +34,28 @@ jobs:
         run: npm run appshell
       - name: Print Build
         run: npm run print
+  vite:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    env:
+      CI: true
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x, 22.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    name: Build ${{ matrix.os }} + node ${{ matrix.node-version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Configure Mix
+        run: |
+          cp tests/frontend/package.vite.json ./package.json
+          cp tests/frontend/vite.config.js ./
+      - name: Install Dependencies
+        run: npm i
+      - name: Theme Build
+        run: npm run build
