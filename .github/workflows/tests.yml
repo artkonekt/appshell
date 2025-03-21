@@ -2,8 +2,6 @@ name: tests
 
 on:
   push:
-    paths-ignore:
-      - 'docs/**'
     paths:
       - 'src/**.php'
       - 'test/**.php'
