@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Fixed the comment icon in the Lineicons 2 theme
+
 ## 4.12.0
 ##### 2025-03-21
 
