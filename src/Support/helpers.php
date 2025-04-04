@@ -36,7 +36,7 @@ function avatar_image_url($model = null, int $size = 100)
         $default = config('konekt.app_shell.avatar.gravatar.default');
     } else {
         $hash = '00000000000000000000000000000000';
-        $default = \Konekt\AppShell\Models\GravatarDefault::MYSTERY_PERSON;
+        $default = Konekt\AppShell\Models\GravatarDefault::MYSTERY_PERSON;
     }
 
     return sprintf(
