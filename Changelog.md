@@ -4,6 +4,10 @@
 ##### 2025-XX-YY
 
 - Fixed the comment icon in the Lineicons 2 theme
+- Added default address editing option for customers
+- Changed the minimum requirements:
+  - konekt/customer: v3.3 => v3.5
+  - konekt/address: v3.4 => v3.7
 
 ## 4.12.0
 ##### 2025-03-21
