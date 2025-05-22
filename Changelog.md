@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 4.13.0
+##### 2025-05-22
 
 - Fixed the comment icon in the Lineicons 2 theme
 - Added default address editing option for customers
