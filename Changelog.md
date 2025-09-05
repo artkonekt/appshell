@@ -1,5 +1,11 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Changed the minimum Laravel version from 10.0 to 10.48
+- Removed the doctrine/dbal >= 4 conflict from composer.json
+
 ## 4.13.0
 ##### 2025-05-22
 
