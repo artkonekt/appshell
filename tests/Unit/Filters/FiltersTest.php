@@ -23,33 +23,30 @@ use Konekt\AppShell\Filters\Generic\ExactMatchMultiple;
 use Konekt\AppShell\Filters\Generic\PartialMatch;
 use Konekt\AppShell\Tests\Dummies\SomeFilter;
 use Konekt\AppShell\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class FiltersTest extends TestCase
 {
-    /** @test */
-    public function it_can_be_instantiated()
+    #[Test] public function it_can_be_instantiated()
     {
         $this->assertInstanceOf(Filters::class, new Filters());
     }
 
-    /** @test */
-    public function it_can_be_counted()
+    #[Test] public function it_can_be_counted()
     {
         $filters = new Filters(new SomeFilter());
 
         $this->assertCount(1, $filters);
     }
 
-    /** @test */
-    public function it_can_be_counted_with_khm_dotdotdot_the_count_function()
+    #[Test] public function it_can_be_counted_with_khm_dotdotdot_the_count_function()
     {
         $filters = new Filters(new SomeFilter());
 
         $this->assertEquals(1, count($filters));
     }
 
-    /** @test */
-    public function it_can_be_iterated_through()
+    #[Test] public function it_can_be_iterated_through()
     {
         $filters = new Filters(
             $name = new SomeFilter('name'),
@@ -67,16 +64,14 @@ class FiltersTest extends TestCase
         $this->assertSame($active, $result['is_active']);
     }
 
-    /** @test */
-    public function filters_can_be_accessed_by_id()
+    #[Test] public function filters_can_be_accessed_by_id()
     {
         $filters = new Filters($orbit = new SomeFilter('orbit'));
 
         $this->assertSame($orbit, $filters->get('orbit'));
     }
 
-    /** @test */
-    public function filters_can_be_activated()
+    #[Test] public function filters_can_be_activated()
     {
         $filters = new Filters();
         $filters
@@ -91,16 +86,14 @@ class FiltersTest extends TestCase
         $this->assertCount(2, $filters->activeOnes());
     }
 
-    /** @test */
-    public function activating_an_inactive_filter_throws_an_exception()
+    #[Test] public function activating_an_inactive_filter_throws_an_exception()
     {
         $this->expectException(NonExistentFilterException::class);
 
         (new Filters(new SomeFilter()))->activate('I do not exist', 'yeah');
     }
 
-    /** @test */
-    public function filters_can_be_deactivated()
+    #[Test] public function filters_can_be_deactivated()
     {
         $filters = new Filters();
         $filters
@@ -116,8 +109,7 @@ class FiltersTest extends TestCase
         $this->assertCount(0, $filters->activeOnes());
     }
 
-    /** @test */
-    public function active_filter_terms_can_be_retrieved()
+    #[Test] public function active_filter_terms_can_be_retrieved()
     {
         $filters = new Filters(new SomeFilter('year'), new SomeFilter('project'));
         $filters
@@ -133,8 +125,7 @@ class FiltersTest extends TestCase
         $this->assertEquals('Martian Settlement', $project->criteria());
     }
 
-    /** @test */
-    public function the_factory_method_accepts_an_array_of_filter_object_instances()
+    #[Test] public function the_factory_method_accepts_an_array_of_filter_object_instances()
     {
         $filters = Filters::make([
             $asd = new SomeFilter('asd'),
@@ -148,8 +139,7 @@ class FiltersTest extends TestCase
         $this->assertSame($qwe, $filters->get('qwe'));
     }
 
-    /** @test */
-    public function the_factory_method_accepts_a_plain_array_of_filter_id_strings()
+    #[Test] public function the_factory_method_accepts_a_plain_array_of_filter_id_strings()
     {
         $filters = Filters::make(['type', 'status']);
 
@@ -160,16 +150,14 @@ class FiltersTest extends TestCase
         $this->assertInstanceOf(Filter::class, $filters->get('status'));
     }
 
-    /** @test */
-    public function the_factory_returns_exact_match_if_unspecified()
+    #[Test] public function the_factory_returns_exact_match_if_unspecified()
     {
         $filters = Filters::make(['state']);
 
         $this->assertInstanceOf(ExactMatch::class, $filters->get('state'));
     }
 
-    /** @test */
-    public function the_factory_method_accepts_a_list_of_filter_arrays_containing_filter_id_key_values()
+    #[Test] public function the_factory_method_accepts_a_list_of_filter_arrays_containing_filter_id_key_values()
     {
         $filters = Filters::make([
             ['id' => 'type'],
@@ -183,8 +171,7 @@ class FiltersTest extends TestCase
         $this->assertInstanceOf(Filter::class, $filters->get('status'));
     }
 
-    /** @test */
-    public function the_factory_method_accepts_a_hashmap_of_filter_arrays()
+    #[Test] public function the_factory_method_accepts_a_hashmap_of_filter_arrays()
     {
         $filters = Filters::make([
             'type' => [],
@@ -198,8 +185,7 @@ class FiltersTest extends TestCase
         $this->assertInstanceOf(Filter::class, $filters->get('status'));
     }
 
-    /** @test */
-    public function the_filter_type_classname_can_be_passed_to_the_factory_method()
+    #[Test] public function the_filter_type_classname_can_be_passed_to_the_factory_method()
     {
         $filters = Filters::make([
             [
