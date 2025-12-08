@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Konekt\AppShell\Contracts\Filter;
 use Konekt\AppShell\Filters\Concerns\DoesNotAllowMultipleValues;
 use Konekt\AppShell\Filters\Concerns\HasBaseFilterAttributes;
+use Konekt\AppShell\Filters\Concerns\HasFieldSetter;
 use Konekt\AppShell\Filters\Concerns\HasPlaceholderSetter;
 
 class BoolTriState implements Filter
@@ -25,6 +26,7 @@ class BoolTriState implements Filter
     use HasBaseFilterAttributes;
     use DoesNotAllowMultipleValues;
     use HasPlaceholderSetter;
+    use HasFieldSetter;
 
     public function __construct(
         string $id,
@@ -50,6 +52,6 @@ class BoolTriState implements Filter
             return $query;
         }
 
-        return $query->where($this->id, (bool) $criteria);
+        return $query->where($this->field(), (bool) $criteria);
     }
 }

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Konekt\AppShell\Contracts\Filter;
 use Konekt\AppShell\Filters\Concerns\DoesNotAllowMultipleValues;
 use Konekt\AppShell\Filters\Concerns\HasBaseFilterAttributes;
+use Konekt\AppShell\Filters\Concerns\HasLikeOperator;
 use Konekt\AppShell\Filters\Concerns\HasPartialMatchPattern;
 use Konekt\AppShell\Filters\Concerns\HasPlaceholderSetter;
 use Konekt\AppShell\Filters\Concerns\HasWidgetType;
@@ -30,6 +31,7 @@ class PartialMatchInMultipleFields implements Filter
     use DoesNotAllowMultipleValues;
     use HasWidgetType;
     use HasPartialMatchPattern;
+    use HasLikeOperator;
 
     private array $fields;
 
@@ -58,7 +60,7 @@ class PartialMatchInMultipleFields implements Filter
 
         return $query->where(function (Builder $query) use ($pattern, $criteria, $fields) {
             foreach ($fields as $field) {
-                $query->orWhere($field, 'like', $pattern->sqlExpression($criteria));
+                $query->orWhere($field, $this->likeOperator, $pattern->sqlExpression($criteria));
             }
         });
     }

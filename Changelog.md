@@ -1,5 +1,11 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2025-XX-YY
+
+- Added the possibility to use "ilike" in all generic partial matching filters
+- Added the possibility to use a different field for the query than the id of the filter
+
 ## 4.14.0
 ##### 2025-09-05
 

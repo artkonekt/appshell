@@ -18,6 +18,7 @@ use Konekt\AppShell\Filters\Generic\PartialMatch;
 use Konekt\AppShell\Filters\PartialMatchPattern;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class PartialMatchTest extends TestCase
 {
@@ -111,5 +112,23 @@ class PartialMatchTest extends TestCase
         $filter->matchingPattern(PartialMatchPattern::ANYWHERE());
         $anywhereQuery = $filter->apply(User::query(), 'Gatto');
         $this->assertEquals('%Gatto%', $anywhereQuery->getQuery()->wheres[0]['value']);
+    }
+
+    #[Test] public function ilike_can_be_used()
+    {
+        $filter = new PartialMatch('name');
+
+        $filter->useILikeOperator();
+        $query = $filter->apply(User::query(), 'Gatto');
+        $this->assertEquals('ilike', $query->getQuery()->wheres[0]['operator']);
+    }
+
+    #[Test] public function the_field_can_be_specified_regardless_of_the_id()
+    {
+        $filter = new PartialMatch('name');
+
+        $filter->setField('user_name');
+        $query = $filter->apply(User::query(), 'Gatto');
+        $this->assertEquals('user_name', $query->getQuery()->wheres[0]['column']);
     }
 }
