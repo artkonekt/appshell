@@ -5,6 +5,8 @@
 
 - Added the possibility to use "ilike" in all generic partial matching filters
 - Added the possibility to use a different field for the query than the id of the filter
+- Changed the minimum Laravel version requirements to v10.48, v11.46.2 and v12.38 respectively
+- Added PHP 8.5 support
 
 ## 4.14.0
 ##### 2025-09-05
