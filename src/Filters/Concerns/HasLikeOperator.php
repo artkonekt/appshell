@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Konekt\AppShell\Filters\Concerns;
 
 trait HasLikeOperator
