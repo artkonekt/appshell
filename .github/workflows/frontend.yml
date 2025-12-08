@@ -13,7 +13,7 @@ jobs:
       CI: true
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x, 22.x]
+        node-version: [16.x, 18.x, 20.x, 22.x, 24.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     name: Mix ${{ matrix.os }} + node ${{ matrix.node-version }}
     steps:
@@ -41,7 +41,7 @@ jobs:
       CI: true
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18.x, 20.x, 22.x, 24.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
     name: Vite ${{ matrix.os }} + node ${{ matrix.node-version }}
     steps:
