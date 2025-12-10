@@ -185,4 +185,31 @@ class TextWidgetTest extends TestCase
 
         $this->assertStringContainsString('style="color: #ff0000', $text->render());
     }
+
+    /** @test */
+    public function allowed_tag_attributes_can_be_calculated_by_closures()
+    {
+        $model = new \stdClass;
+        $model->is_active = true;
+        $model->name = 'Mr. Fritz Teufel';
+
+        $text = Text::create(new AppShellTheme(), [
+            'wrap' => 'span',
+            'text' => '$model.name',
+            'class' => fn ($m) => $m->is_active ? 'active' : 'inactive',
+            'style' => fn ($m) => 'color: ' . ($model->is_active ? 'green' : 'red'),
+            'title' => fn ($m) => $model->name . ' is ' . ($m->is_active ? 'active' : 'inactive'),
+        ]);
+
+        $activeVariant = $text->render($model);
+        $this->assertStringContainsString('style="color: green', $activeVariant);
+        $this->assertStringContainsString('class="active', $activeVariant);
+        $this->assertStringContainsString('title="Mr. Fritz Teufel is active', $activeVariant);
+
+        $model->is_active = false;
+        $inactiveVariant = $text->render($model);
+        $this->assertStringContainsString('style="color: red', $inactiveVariant);
+        $this->assertStringContainsString('class="inactive', $inactiveVariant);
+        $this->assertStringContainsString('title="Mr. Fritz Teufel is inactive', $inactiveVariant);
+    }
 }

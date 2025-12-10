@@ -68,4 +68,23 @@ class BadgeWidgetTest extends TestCase
         $this->assertStringContainsString('color: #FFFFFF', $html);
         $this->assertStringNotContainsString('color: #121212', $html);
     }
+
+    /** @test */
+    public function title_can_be_specified()
+    {
+        $text = Badge::create(new AppShellTheme(), ['title' => 'Buzzwords23']);
+        $html = trim($text->render());
+        $this->assertStringContainsString('title="Buzzwords23"', $html);
+    }
+
+    /** @test */
+    public function title_attribute_can_be_a_callback()
+    {
+        $m = new \stdClass();
+        $m->attr = 'Some Title';
+        $m->text = 'Text';
+        $text = Badge::create(new AppShellTheme(), ['text' => '$model.text', 'title' => fn($m) => $m->attr]);
+        $html = trim($text->render($m));
+        $this->assertStringContainsString('title="Some Title"', $html);
+    }
 }

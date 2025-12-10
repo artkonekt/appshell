@@ -132,7 +132,7 @@ class Text implements Widget
         return $this->renderViewFromTheme('text', [
             'text' => $this->modify($text($data, $this)),
             'wrap' => $this->wrap,
-            'tagAttributes' => $this->tagAttributes,
+            'tagAttributes' => array_map(fn($attr) => is_callable($attr) ? $attr($data) : $attr, $this->tagAttributes),
             'color' => $color,
             'bold' => $this->bold,
             'prefix' => is_callable($prefix) ? $prefix($data) : $this->resolveSubstitutions($prefix, $data),
