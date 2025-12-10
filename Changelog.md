@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 4.16.0
+##### 2025-12-10
 
 - Added closure-based interpolation support to Text widget attributes like class, style and title
 - Changed the closure parameter passed to the contextual color calculation to be the "model, pre-rendered text" - earlier it was the pre-rendered text only
