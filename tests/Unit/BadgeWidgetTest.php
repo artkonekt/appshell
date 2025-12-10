@@ -83,7 +83,7 @@ class BadgeWidgetTest extends TestCase
         $m = new \stdClass();
         $m->attr = 'Some Title';
         $m->text = 'Text';
-        $text = Badge::create(new AppShellTheme(), ['text' => '$model.text', 'title' => fn($m) => $m->attr]);
+        $text = Badge::create(new AppShellTheme(), ['text' => '$model.text', 'title' => fn ($m) => $m->attr]);
         $html = trim($text->render($m));
         $this->assertStringContainsString('title="Some Title"', $html);
     }

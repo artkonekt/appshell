@@ -189,7 +189,7 @@ class TextWidgetTest extends TestCase
     /** @test */
     public function allowed_tag_attributes_can_be_calculated_by_closures()
     {
-        $model = new \stdClass;
+        $model = new \stdClass();
         $model->is_active = true;
         $model->name = 'Mr. Fritz Teufel';
 
