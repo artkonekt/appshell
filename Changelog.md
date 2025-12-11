@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 4.16.1
+##### 2025-12-11
 
 - Fixed the bug introduced in v4.16 with color calculation by passing the pre-rendered text as first closure argument again, and the model as the second:
    - **v4.15 and before**: `'color' => fn ($text) => ...`
