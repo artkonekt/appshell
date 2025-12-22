@@ -1,9 +1,11 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2025-XX-YY
+## 4.16.2
+##### 2025-12-22
 
 - Fixed the broken Tabler Icon glyphs by locking the CSS version to v3.35.0 (the issue was introduced with Tabler Icons Webfont v3.36)
+   - See: https://github.com/tabler/tabler-icons/issues/1436
+   - Once the bug gets fixed this needs a subsequent review/update
 
 ## 4.16.1
 ##### 2025-12-11
