@@ -6,7 +6,7 @@
 - Added Laravel 13 support
 - Dropped Laravel 10 support
 - Dropped PHP 8.2 support
-- Changed the minimum Laravel version requirements to v11.46.2, v12.50 and v13.0
+- Changed the minimum Laravel version requirements to v11.46.2, v12.50 and v13.2
 
 ## 4.16.2
 ##### 2025-12-22
