@@ -6,6 +6,7 @@ on:
     paths:
       - 'src/**.php'
       - 'test/**.php'
+      - 'composer.json'
 
 jobs:
   build:
