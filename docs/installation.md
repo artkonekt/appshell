@@ -1,13 +1,13 @@
 # Installation
 
-> For upgrading from an earlier AppShell versions refer to the [Upgrade](upgrade.md) section.
+> For upgrading from earlier AppShell versions, refer to the [Upgrade](upgrade.md) section.
 
 ## Requirements
 
 As of AppShell v4.x, the requirements are:
 
 - PHP 8.2 - 8.5
-- Laravel 10.x, 11.x, 12.x
+- Laravel 10.x, 11.x, 12.x, 13.x
 
 ## Install AppShell
 
@@ -173,7 +173,7 @@ This will ask a several questions and create a proper superuser that you can sta
 
 ### Frontend Installation
 
-Since this package will be built along with your application, it's assets need to be added to it:
+Since this package will be built along with your application, its assets need to be added to it:
 
 **1. Add Admin's CSS To Laravel Mix:**
 
@@ -192,7 +192,45 @@ Since this package will be built along with your application, it's assets need t
 npm add bootstrap@5.3 alpinejs@3.10 popper.js
 ```
 
-**3. Compile the assets with mix:** `npm run dev`
+**3. Compile the assets:** `npm run dev`
+
+#### Vite
+
+For a Vite-based setup see the following files as a starting point:
+
+- [tests/frontend/vite.config.js](https://github.com/artkonekt/appshell/blob/4.x/tests/frontend/vite.config.js)
+- [tests/frontend/package.vite.json](https://github.com/artkonekt/appshell/blob/4.x/tests/frontend/package.vite.json)
+
+#### Laravel Mix
+
+Laravel Mix is no longer maintained, and you should consider using Vite instead.
+
+However, if you're still using Laravel Mix as of 2026, make sure to add this to your package.json file:
+
+```json
+{
+    "overrides": {
+        "webpackbar": "^7.0.0"
+    }
+}
+```
+Use `resolutions` instead of `overrides` if you're using YARN:
+
+```json
+{
+    "resolutions": {
+        "laravel-mix/webpackbar": "^7.0.0"
+    }
+}
+```
+
+> See this [issue](https://github.com/laravel-mix/laravel-mix/issues/3410) for more details.
+
+
+For a Mix-based setup see the following files as a starting point:
+
+- [tests/frontend/appshell.mix.js](https://github.com/artkonekt/appshell/blob/4.x/tests/frontend/appshell.mix.js)
+- [tests/frontend/package.mix.json](https://github.com/artkonekt/appshell/blob/4.x/tests/frontend/package.mix.json)
 
 
 ---
