@@ -4,5 +4,5 @@ declare(strict_types=1);
 
 return [
     'name' => 'AppShell',
-    'version' => '4.16.2'
+    'version' => '4.17.0'
 ];

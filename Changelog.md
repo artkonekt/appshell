@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2026-XX-YY
+## 4.17.0
+##### 2026-04-20
 
 - Added Laravel 13 support
 - Dropped Laravel 10 support
