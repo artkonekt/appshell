@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2026-XX-YY
+
+- Changed (Improved) the link widget so that it doesn't generate the link if it's denied by `onlyIf` or `onlyIfCan` directives
+
 ## 4.17.0
 ##### 2026-04-20
 
