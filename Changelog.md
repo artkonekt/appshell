@@ -1,5 +1,10 @@
 # AppShell Changelog
 
+## Unreleased
+##### 2026-XX-YY
+
+- Changed the visibility of the `$partialMatchPattern` attribute to protected in the `HasPartialMatchPattern` trait
+
 ## 4.18.0
 ##### 2026-05-07
 
