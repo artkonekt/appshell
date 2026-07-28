@@ -1,7 +1,7 @@
 # AppShell Changelog
 
-## Unreleased
-##### 2026-XX-YY
+## 4.19.0
+##### 2026-07-28
 
 - Changed the visibility of the `$partialMatchPattern` attribute to protected in the `HasPartialMatchPattern` trait
 - Added support for raw HTML in the MultiText widget's `secondary` attribute
