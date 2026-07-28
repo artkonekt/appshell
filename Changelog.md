@@ -5,6 +5,8 @@
 
 - Changed the visibility of the `$partialMatchPattern` attribute to protected in the `HasPartialMatchPattern` trait
 - Added support for raw HTML in the MultiText widget's `secondary` attribute
+- Dropped Laravel 11 support (due to security vulnerabilities)
+- Changed the minimum Laravel version requirements to v12.61.1 and v13.12 
 
 ## 4.18.0
 ##### 2026-05-07

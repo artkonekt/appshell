@@ -30,14 +30,14 @@
         "konekt/xtend": "^1.1|^2.0",
         "konekt/html": "^6.5",
         "laracasts/flash": "^3.2.1",
-        "cviebrock/eloquent-sluggable": "^11.0|^12.0|^13.0",
+        "cviebrock/eloquent-sluggable": "^12.0|^13.0",
         "diglactic/laravel-breadcrumbs": "^8.0|^9.0|^10",
-        "laravel/framework": "^11.46.2|^12.50|^13.2"
+        "laravel/framework": "^12.61.1|^13.12"
     },
     "require-dev": {
         "ext-sqlite3": "*",
         "phpunit/phpunit": "10 - 11",
-        "orchestra/testbench": "^9.0|^10.0|^11.0",
+        "orchestra/testbench": "^10.0|^11.0",
         "mockery/mockery": "^1.6.2"
     },
     "autoload": {
