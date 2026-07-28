@@ -54,6 +54,10 @@ class MultiText implements Widget
         if (null !== $options['secondary']) {
             $secondaryOptions = self::mergeWidgetOptions(self::$secondaryDefaults, $options['secondary'] ?? []);
             $secType = $secondaryOptions['type'] ?? (isset($secondaryOptions['url']) ? 'link' : 'text');
+            if ('text' === $secType && isset($secondaryOptions['html'])) {
+                $secType = 'raw_html';
+            }
+
             $secondary = Widgets::make($secType, $secondaryOptions, $theme);
         } else {
             $secondary = new NullWidget();
