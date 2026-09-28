@@ -44,14 +44,14 @@ class CustomerController extends BaseController
 
         $filters->activateFromRequest($request);
 
-        return view('appshell::customer.index', [
+        return view('appshell::customer.index', $this->processViewData(__METHOD__, [
             'customers' => $filters->apply(CustomerProxy::query())->paginate(100)->withQueryString(),
             'table' => widget('appshell::customer.index.table'),
             'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
                 'route' => 'appshell.customer.index',
                 'filters' => $filters,
             ])
-        ]);
+        ]));
     }
 
     public function create()
@@ -62,11 +62,11 @@ class CustomerController extends BaseController
         $customer->is_active = true;
         $customer->currency = Settings::get('appshell.default.currency');
 
-        return view('appshell::customer.create', [
+        return view('appshell::customer.create', $this->processViewData(__METHOD__, [
             'customer' => $customer,
             'currencies' => (new DefaultCurrency())->options(),
             'types' => CustomerTypeProxy::choices()
-        ]);
+        ]));
     }
 
     public function store(CreateCustomer $request)
@@ -188,22 +188,22 @@ class CustomerController extends BaseController
             }
         }
 
-        return view('appshell::customer.show', [
+        return view('appshell::customer.show', $this->processViewData(__METHOD__, [
             'customer' => $customer,
             'customerPurchases' => $customerPurchases,
             'purchasesCount' => $purchases->count(),
             'resolutions' => ChartResolution::choices(),
             'period' => $period,
-        ]);
+        ]));
     }
 
     public function edit(Customer $customer)
     {
-        return view('appshell::customer.edit', [
+        return view('appshell::customer.edit', $this->processViewData(__METHOD__, [
             'customer' => $customer,
             'currencies' => (new DefaultCurrency())->options(),
             'types' => CustomerTypeProxy::choices()
-        ]);
+        ]));
     }
 
     public function update(Customer $customer, UpdateCustomer $request)

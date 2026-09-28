@@ -18,55 +18,49 @@ use Konekt\AppShell\Filters\Generic\PartialMatch;
 use Konekt\AppShell\Filters\PartialMatchPattern;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class PartialMatchTest extends TestCase
 {
-    /** @test */
-    public function it_can_be_instantiated()
+    #[Test] public function it_can_be_instantiated()
     {
         $this->assertInstanceOf(PartialMatch::class, new PartialMatch('email'));
     }
 
-    /** @test */
-    public function id_can_be_assigned()
+    #[Test] public function id_can_be_assigned()
     {
         $filter = new PartialMatch('email');
         $this->assertEquals('email', $filter->id());
     }
 
-    /** @test */
-    public function the_possible_values_field_is_nullable()
+    #[Test] public function the_possible_values_field_is_nullable()
     {
         $filter = new PartialMatch('email');
         $this->assertNull($filter->possibleValues());
     }
 
-    /** @test */
-    public function the_label_defaults_to_the_id_if_unspecified()
+    #[Test] public function the_label_defaults_to_the_id_if_unspecified()
     {
         $filter = new PartialMatch('subject');
 
         $this->assertEquals('subject', $filter->label());
     }
 
-    /** @test */
-    public function the_label_can_be_specified()
+    #[Test] public function the_label_can_be_specified()
     {
         $filter = new PartialMatch('subject', 'Subject');
 
         $this->assertEquals('Subject', $filter->label());
     }
 
-    /** @test */
-    public function the_placeholder_is_null_by_default()
+    #[Test] public function the_placeholder_is_null_by_default()
     {
         $filter = new PartialMatch('description');
 
         $this->assertNull($filter->placeholder());
     }
 
-    /** @test */
-    public function the_placeholder_can_be_specified()
+    #[Test] public function the_placeholder_can_be_specified()
     {
         $filter = new PartialMatch('description');
         $filter->setPlaceholder('Description contains');
@@ -74,14 +68,12 @@ class PartialMatchTest extends TestCase
         $this->assertEquals('Description contains', $filter->placeholder());
     }
 
-    /** @test */
-    public function it_does_not_allow_multiple_values()
+    #[Test] public function it_does_not_allow_multiple_values()
     {
         $this->assertFalse((new PartialMatch('title'))->allowsMultipleValues());
     }
 
-    /** @test */
-    public function it_can_be_applied_to_a_query_builder_instance()
+    #[Test] public function it_can_be_applied_to_a_query_builder_instance()
     {
         $query = User::query();
         $filter = new PartialMatch('name');
@@ -95,8 +87,7 @@ class PartialMatchTest extends TestCase
         $this->assertEquals('Gatto%', $whereClause['value']);
     }
 
-    /** @test */
-    public function matching_pattern_can_be_specified()
+    #[Test] public function matching_pattern_can_be_specified()
     {
         $filter = new PartialMatch('name');
 
@@ -111,5 +102,23 @@ class PartialMatchTest extends TestCase
         $filter->matchingPattern(PartialMatchPattern::ANYWHERE());
         $anywhereQuery = $filter->apply(User::query(), 'Gatto');
         $this->assertEquals('%Gatto%', $anywhereQuery->getQuery()->wheres[0]['value']);
+    }
+
+    #[Test] public function ilike_can_be_used()
+    {
+        $filter = new PartialMatch('name');
+
+        $filter->useILikeOperator();
+        $query = $filter->apply(User::query(), 'Gatto');
+        $this->assertEquals('ilike', $query->getQuery()->wheres[0]['operator']);
+    }
+
+    #[Test] public function the_field_can_be_specified_regardless_of_the_id()
+    {
+        $filter = new PartialMatch('name');
+
+        $filter->setField('user_name');
+        $query = $filter->apply(User::query(), 'Gatto');
+        $this->assertEquals('user_name', $query->getQuery()->wheres[0]['column']);
     }
 }

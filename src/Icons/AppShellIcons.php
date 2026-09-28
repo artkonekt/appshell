@@ -75,6 +75,6 @@ final class AppShellIcons
     public const FLAG = 'flag';
 
     public const PLAY = 'play';
-    public const STOP = 'start';
+    public const STOP = 'start';// @todo fix this in V5 it's an ugly mistyping
     public const PAUSE = 'pause';
 }

@@ -22,48 +22,30 @@ use Konekt\AppShell\Contracts\Requests\UpdateRole;
 
 class RoleController extends BaseController
 {
-    /**
-     * Displays the list of roles/permissions
-     */
     public function index()
     {
-        return view('appshell::role.index', [
+        return view('appshell::role.index', $this->processViewData(__METHOD__, [
             'permissions' => PermissionProxy::all(),
-            'roles' => RoleProxy::with('users')->get()
-        ]);
+            'roles' => RoleProxy::with('users')->get(),
+        ]));
     }
 
-    /**
-     * Show role
-     *
-     * @param Role $role
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function show(Role $role)
     {
-        $permissions = PermissionProxy::all();
-        return view('appshell::role.show', compact('role', 'permissions'));
+        return view('appshell::role.show', $this->processViewData(__METHOD__, [
+            'role' => $role,
+            'permissions' => PermissionProxy::all(),
+        ]));
     }
 
-    /**
-     * Displays the create new role form
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create()
     {
-        return view('appshell::role.create', [
+        return view('appshell::role.create', $this->processViewData(__METHOD__, [
             'role' => app(Role::class),
             'permissions' => PermissionProxy::all()
-        ]);
+        ]));
     }
 
-    /**
-     * @param CreateRole $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function store(CreateRole $request)
     {
         try {
@@ -79,24 +61,14 @@ class RoleController extends BaseController
         return redirect(route('appshell.role.index'));
     }
 
-    /**
-     * @param Role $role
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function edit(Role $role)
     {
-        $permissions = PermissionProxy::all();
-
-        return view('appshell::role.edit', compact('role', 'permissions'));
+        return view('appshell::role.edit', $this->processViewData(__METHOD__, [
+            'role' => $role,
+            'permissions' => PermissionProxy::all(),
+        ]));
     }
 
-    /**
-     * @param Role       $role
-     * @param UpdateRole $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function update(Role $role, UpdateRole $request)
     {
         try {
@@ -112,13 +84,6 @@ class RoleController extends BaseController
         return redirect(route('appshell.role.show', $role));
     }
 
-    /**
-     * Delete a role
-     *
-     * @param Role $role
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function destroy(Role $role)
     {
         try {

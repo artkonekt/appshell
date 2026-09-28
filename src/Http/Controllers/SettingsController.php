@@ -20,9 +20,9 @@ class SettingsController extends BaseController
 {
     public function index()
     {
-        return view('appshell::settings.index', [
+        return view('appshell::settings.index', $this->processViewData(__METHOD__, [
             'tree' => app('appshell.settings_tree')
-        ]);
+        ]));
     }
 
     public function update(Request $request)

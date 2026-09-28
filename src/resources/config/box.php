@@ -128,7 +128,7 @@ return [
     ],
     'avatar' => [
         'gravatar' => [
-            'default' => \Konekt\AppShell\Models\GravatarDefault::defaultValue()
+            'default' => Konekt\AppShell\Models\GravatarDefault::defaultValue()
         ]
     ]
 ];

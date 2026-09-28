@@ -1,13 +1,13 @@
 # Installation
 
-> For upgrading from an earlier AppShell versions refer to the [Upgrade](upgrade.md) section.
+> For upgrading from earlier AppShell versions, refer to the [Upgrade](upgrade.md) section.
 
 ## Requirements
 
-As of AppShell v4.0, the requirements are:
+As of AppShell v5.x, the requirements are:
 
-- PHP 8.2 - 8.3
-- Laravel 10.x, 11.x
+- PHP 8.4 - 8.5
+- Laravel 12.61+, 13.12+
 
 ## Install AppShell
 
@@ -44,7 +44,7 @@ Now you should see this:
 +----+---------------------+------+----------+------------------+-----------------+
 | #  | Name                | Kind | Version  | Id               | Namespace       |
 +----+---------------------+------+----------+------------------+-----------------+
-| 1. | Konekt AppShell Box | Box  | 4.6.0    | konekt.app_shell | Konekt\AppShell |
+| 1. | Konekt AppShell Box | Box  | 4.19.0   | konekt.app_shell | Konekt\AppShell |
 +----+---------------------+------+----------+------------------+-----------------+
 ```
 
@@ -178,6 +178,7 @@ Regardless of the build tool (vite, webpack, etc) you'll need the following pack
 ```bash
 npm add bootstrap@5.3 alpinejs@3.14 popper.js
 ```
+Since this package will be built along with your application, its assets need to be added to it:
 
 In the next step, choose your preferred build tool.
 
@@ -249,20 +250,35 @@ export default defineConfig({
 
 ### Laravel Mix
 
-You can still use Laravel Mix if you prefer it over Vite.
+Laravel Mix is no longer maintained, and you should consider using Vite instead.
 
-Add the AppShell assets to the mix config:
+However, if you're still using Laravel Mix as of 2026, make sure to add this to your package.json file:
 
-Add Admin's CSS To Laravel Mix:
-
-```javascript
-   // webpack.mix.js
-   mix.js('resources/js/app.js', 'public/js')
-    // Add these 2 lines:
-   .js('vendor/konekt/appshell/src/resources/assets/js/appshell.standalone.js', 'public/js/appshell.js')
-   .sass('vendor/konekt/appshell/src/resources/assets/sass/appshell.sass', 'public/css')
-    // Keep the the original assets if needed or remove them if AppShell's UI is the only one of your app
+```json
+{
+    "overrides": {
+        "webpackbar": "^7.0.0"
+    }
+}
 ```
+Use `resolutions` instead of `overrides` if you're using YARN:
+
+```json
+{
+    "resolutions": {
+        "laravel-mix/webpackbar": "^7.0.0"
+    }
+}
+```
+
+> See this [issue](https://github.com/laravel-mix/laravel-mix/issues/3410) for more details.
+
+
+For a Mix-based setup see the following files as a starting point:
+
+- [tests/frontend/appshell.mix.js](https://github.com/artkonekt/appshell/blob/4.x/tests/frontend/appshell.mix.js)
+- [tests/frontend/package.mix.json](https://github.com/artkonekt/appshell/blob/4.x/tests/frontend/package.mix.json)
+
 
 ### Compilation
 

@@ -79,7 +79,7 @@ class LineIconsTheme implements IconTheme
         AppShellIcons::DOWNLOAD => 'cloud-download',
         AppShellIcons::FOLDER => 'folder',
         AppShellIcons::FILE => 'empty-file',
-        AppShellIcons::COMMENT => 'comments-alt-2',
+        AppShellIcons::COMMENT => 'comments-alt',
         AppShellIcons::GLOBE => 'world',
         AppShellIcons::FLAG => 'flag-alt',
         AppShellIcons::PLAY => 'play',

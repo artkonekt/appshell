@@ -68,10 +68,11 @@ class Link implements Widget
     public function render($data = null): string
     {
         $url = $this->url;
+        $can = $this->can($data);
         return $this->renderViewFromTheme('link', array_merge($this->options, [
-            'can' => $this->can($data),
+            'can' => $can,
             'text' => $this->text->render($data),
-            'url' => $url($data, $this),
+            'url' => $can ? $url($data, $this) : null,
         ]));
     }
 

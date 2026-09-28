@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Konekt\AppShell\Contracts\Filter;
 use Konekt\AppShell\Filters\Concerns\AllowsMultipleValues;
 use Konekt\AppShell\Filters\Concerns\HasBaseFilterAttributes;
+use Konekt\AppShell\Filters\Concerns\HasFieldSetter;
 use Konekt\AppShell\Filters\Concerns\HasGenericFilterConstructor;
 use Konekt\AppShell\Filters\Concerns\HasPlaceholderSetter;
 use Konekt\AppShell\Filters\Concerns\HasWidgetType;
@@ -27,6 +28,7 @@ class ExactMatchMultiple implements Filter
     use HasBaseFilterAttributes;
     use HasPlaceholderSetter;
     use HasGenericFilterConstructor;
+    use HasFieldSetter;
     use HasWidgetType;
     use AllowsMultipleValues;
 
@@ -36,6 +38,6 @@ class ExactMatchMultiple implements Filter
             return $query;
         }
 
-        return $query->whereIn($this->id, $criteria);
+        return $query->whereIn($this->field(), $criteria);
     }
 }

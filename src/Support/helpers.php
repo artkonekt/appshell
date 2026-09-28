@@ -36,7 +36,7 @@ function avatar_image_url($model = null, int $size = 100)
         $default = config('konekt.app_shell.avatar.gravatar.default');
     } else {
         $hash = '00000000000000000000000000000000';
-        $default = \Konekt\AppShell\Models\GravatarDefault::MYSTERY_PERSON;
+        $default = Konekt\AppShell\Models\GravatarDefault::MYSTERY_PERSON;
     }
 
     return sprintf(
@@ -67,7 +67,7 @@ if (!function_exists('show_date')) {
      *
      * @return string
      */
-    function show_date($date, string $unknownDateText = '', string $format = null): string
+    function show_date($date, string $unknownDateText = '', ?string $format = null): string
     {
         return helper('date')->showDate($date, $unknownDateText, $format);
     }
@@ -81,7 +81,7 @@ if (!function_exists('show_datetime')) {
      *
      * @return string
      */
-    function show_datetime($datetime, string $unknownDateTimeText = '', string $format = null): string
+    function show_datetime($datetime, string $unknownDateTimeText = '', ?string $format = null): string
     {
         return helper('date')->showDateTime($datetime, $unknownDateTimeText, $format);
     }
@@ -95,7 +95,7 @@ if (!function_exists('show_time')) {
      *
      * @return string
      */
-    function show_time($datetime, string $unknownTimeText = '', string $format = null): string
+    function show_time($datetime, string $unknownTimeText = '', ?string $format = null): string
     {
         return helper('date')->showTime($datetime, $unknownTimeText, $format);
     }

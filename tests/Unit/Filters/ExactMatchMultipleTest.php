@@ -18,62 +18,55 @@ use Konekt\AppShell\Filters\Generic\ExactMatchMultiple;
 use Konekt\AppShell\Models\User;
 use Konekt\AppShell\Tests\TestCase;
 use Konekt\User\Models\UserType;
+use PHPUnit\Framework\Attributes\Test;
 
 class ExactMatchMultipleTest extends TestCase
 {
-    /** @test */
-    public function it_can_be_instantiated()
+    #[Test] public function it_can_be_instantiated()
     {
         $this->assertInstanceOf(ExactMatchMultiple::class, new ExactMatchMultiple('hey'));
     }
 
-    /** @test */
-    public function id_can_be_assigned()
+    #[Test] public function id_can_be_assigned()
     {
         $filter = new ExactMatchMultiple('hey');
         $this->assertEquals('hey', $filter->id());
     }
 
-    /** @test */
-    public function the_possible_values_field_is_nullable()
+    #[Test] public function the_possible_values_field_is_nullable()
     {
         $filter = new ExactMatchMultiple('hey');
         $this->assertNull($filter->possibleValues());
     }
 
-    /** @test */
-    public function possible_values_can_be_specified()
+    #[Test] public function possible_values_can_be_specified()
     {
         $filter = new ExactMatchMultiple('hey', null, ['boo', 'moo']);
         $this->assertEquals(['boo', 'moo'], $filter->possibleValues());
     }
 
-    /** @test */
-    public function the_label_defaults_to_the_id_if_unspecified()
+    #[Test] public function the_label_defaults_to_the_id_if_unspecified()
     {
         $filter = new ExactMatchMultiple('status');
 
         $this->assertEquals('status', $filter->label());
     }
 
-    /** @test */
-    public function the_label_can_be_specified()
+    #[Test] public function the_label_can_be_specified()
     {
         $filter = new ExactMatchMultiple('status', 'Project Status');
 
         $this->assertEquals('Project Status', $filter->label());
     }
 
-    /** @test */
-    public function the_placeholder_is_null_by_default()
+    #[Test] public function the_placeholder_is_null_by_default()
     {
         $filter = new ExactMatchMultiple('status');
 
         $this->assertNull($filter->placeholder());
     }
 
-    /** @test */
-    public function the_placeholder_can_be_specified()
+    #[Test] public function the_placeholder_can_be_specified()
     {
         $filter = new ExactMatchMultiple('status');
         $filter->setPlaceholder('Select Status');
@@ -81,16 +74,14 @@ class ExactMatchMultipleTest extends TestCase
         $this->assertEquals('Select Status', $filter->placeholder());
     }
 
-    /** @test */
-    public function it_allows_multiple_values()
+    #[Test] public function it_allows_multiple_values()
     {
         $this->assertTrue(
             (new ExactMatchMultiple('project_id'))->allowsMultipleValues()
         );
     }
 
-    /** @test */
-    public function it_can_be_applied_to_a_query_builder_instance()
+    #[Test] public function it_can_be_applied_to_a_query_builder_instance()
     {
         $query = User::query();
         $filter = new ExactMatchMultiple('type');

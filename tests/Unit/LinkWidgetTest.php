@@ -188,4 +188,22 @@ class LinkWidgetTest extends TestCase
         $html = $link->render();
         $this->assertStringContainsString('<span class="text-muted">', $html);
     }
+
+    /** @test */
+    public function it_does_not_generate_a_route_if_it_is_not_allowed()
+    {
+        $link = Link::create(new AppShellTheme(), [
+            'text' => 'View Plan',
+            'url' => [
+                'route' => 'app.this_route_does_not_exist.show',
+                'parameters' => ['$model.plan_id'],
+            ],
+            'onlyIf' => '$model.plan_id',
+        ]);
+
+        $model = new \stdClass();
+        $model->plan_id = null;
+
+        $this->assertStringNotContainsString('href="', $link->render($model));
+    }
 }

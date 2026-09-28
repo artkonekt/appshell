@@ -25,18 +25,18 @@ class InvitationController extends BaseController
 {
     public function index()
     {
-        return view('appshell::invitation.index', [
+        return view('appshell::invitation.index', $this->processViewData(__METHOD__, [
             'invitations' => InvitationProxy::pending()->get()
-        ]);
+        ]));
     }
 
     public function create()
     {
-        return view('appshell::invitation.create', [
+        return view('appshell::invitation.create', $this->processViewData(__METHOD__, [
             'invitation' => app(Invitation::class),
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()
-        ]);
+        ]));
     }
 
     public function store(CreateInvitation $request)
@@ -66,18 +66,18 @@ class InvitationController extends BaseController
             return $redirect;
         }
 
-        return view('appshell::invitation.edit', [
+        return view('appshell::invitation.edit', $this->processViewData(__METHOD__, [
             'invitation' => $invitation,
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all()
-        ]);
+        ]));
     }
 
     public function show(Invitation $invitation)
     {
-        return view('appshell::invitation.show', [
+        return view('appshell::invitation.show', $this->processViewData(__METHOD__, [
             'invitation' => $invitation
-        ]);
+        ]));
     }
 
     public function update(Invitation $invitation, UpdateInvitation $request)

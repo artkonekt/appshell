@@ -63,7 +63,7 @@ trait CalculatesContextualColors
         }
 
         if (is_callable($definition)) {
-            $rawValue = $definition($value);
+            $rawValue = $definition($value, $model);
             return is_string($rawValue) ? $this->fromColorString($rawValue) : new ColorAttributes($rawValue, null);
         }
 

@@ -21,7 +21,7 @@ return [
                         'onlyIfCan' => 'view customers',
                     ],
                     'secondary' => [
-                        'text' => '$model.firstname $model.lastname'
+                        'text' => static fn ($customer) => $customer->customer_number ?? "$customer->firstname $customer->lastname",
                     ],
                 ],
                 'title' => __('Name'),

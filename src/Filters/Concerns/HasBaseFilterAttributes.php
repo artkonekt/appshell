@@ -18,6 +18,8 @@ trait HasBaseFilterAttributes
 {
     private string $id;
 
+    private ?string $field = null;
+
     private ?array $possibleValues = null;
 
     private ?string $label = null;
@@ -53,5 +55,10 @@ trait HasBaseFilterAttributes
     public function searchable(): bool
     {
         return $this->searchable;
+    }
+
+    protected function field(): string
+    {
+        return $this->field ?? $this->id;
     }
 }

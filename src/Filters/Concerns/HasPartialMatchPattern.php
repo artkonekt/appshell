@@ -18,7 +18,7 @@ use Konekt\AppShell\Filters\PartialMatchPattern;
 
 trait HasPartialMatchPattern
 {
-    private ?PartialMatchPattern $partialMatchPattern = null;
+    protected ?PartialMatchPattern $partialMatchPattern = null;
 
     public function matchingPattern(PartialMatchPattern $pattern): void
     {

@@ -9,6 +9,112 @@
 - Added the theme tester route, only available in local env, at `/_appshell/theme/`
 - Changed the Customer module requirement to 4.x
 
+## 4.19.0
+##### 2026-07-28
+
+- Changed the visibility of the `$partialMatchPattern` attribute to protected in the `HasPartialMatchPattern` trait
+- Added support for raw HTML in the MultiText widget's `secondary` attribute
+- Dropped Laravel 11 support (due to security vulnerabilities)
+- Changed the minimum Laravel version requirements to v12.61.1 and v13.12 
+
+## 4.18.0
+##### 2026-05-07
+
+- Changed (Improved) the link widget so that it doesn't generate the link if it's denied by `onlyIf` or `onlyIfCan` directives
+
+## 4.17.0
+##### 2026-04-20
+
+- Added Laravel 13 support
+- Dropped Laravel 10 support
+- Dropped PHP 8.2 support
+- Changed the minimum Laravel version requirements to v11.46.2, v12.50 and v13.2
+
+## 4.16.2
+##### 2025-12-22
+
+- Fixed the broken Tabler Icon glyphs by locking the CSS version to v3.35.0 (the issue was introduced with Tabler Icons Webfont v3.36)
+   - See: https://github.com/tabler/tabler-icons/issues/1436
+   - Once the bug gets fixed this needs a subsequent review/update
+
+## 4.16.1
+##### 2025-12-11
+
+- Fixed the bug introduced in v4.16 with color calculation by passing the pre-rendered text as first closure argument again, and the model as the second:
+   - **v4.15 and before**: `'color' => fn ($text) => ...`
+   - **v4.16.0**: `'color' => fn ($model) => ...` (it was a breaking change)
+   - **v4.16.1+**: `'color' => fn ($text, $model) => ...` (compatible with 4.15 and prior again)
+
+## 4.16.0
+##### 2025-12-10
+
+- Added closure-based interpolation support to Text widget attributes like class, style and title
+- Changed the closure parameter passed to the contextual color calculation to be the "model, pre-rendered text" - earlier it was the pre-rendered text only
+
+## 4.15.0
+##### 2025-12-08
+
+- Added the possibility to use "ilike" in all generic partial matching filters
+- Added the possibility to use a different field for the query than the id of the filter
+- Added the `NotNullTriState` filter type: it is very similar to `BoolTriState` except that it checks against null/not null on a given field
+- Changed the minimum Laravel version requirements to v10.48, v11.46.2 and v12.38 respectively
+- Added PHP 8.5 support
+- Added node v24 support
+
+## 4.14.0
+##### 2025-09-05
+
+- Changed the minimum Laravel version from 10.0 to 10.48
+- Removed the doctrine/dbal >= 4 conflict from composer.json
+
+## 4.13.0
+##### 2025-05-22
+
+- Fixed the comment icon in the Lineicons 2 theme
+- Added default address editing option for customers
+- Changed the minimum requirements:
+  - konekt/customer: v3.3 => v3.5
+  - konekt/address: v3.4 => v3.7
+
+## 4.12.0
+##### 2025-03-21
+
+- Added `appshell.standalone.commonjs.js` and `appshell.standalone.esm.js` variants
+
+## 4.11.0
+##### 2025-03-19
+
+- Added controller hooks support to every action that renders views
+
+## 4.10.0
+##### 2025-03-19
+
+- Added support for konekt/xtend 2.0
+
+## 4.9.1
+##### 2025-03-04
+
+- Fixed PHP 8.4 deprecation notices on implicitly nullable method arguments
+
+## 4.9.0
+##### 2025-03-03
+
+- Added Laravel 12 support
+- Fixed the duplicate `SendEmailVerificationNotification` registration by adding an empty
+   `configureEmailVerification()` method to the `EventServiceProvider` class - [Fixes #35](https://github.com/artkonekt/appshell/issues/35)  
+   See also: [Laravel 11.x Upgrade Guide](https://laravel.com/docs/11.x/upgrade#email-verification-notification-on-registration)
+
+## 4.8.0
+##### 2025-01-13
+
+- Added the `customer_number` field to the customer views and forms
+- Changed the minimal customer module requirement to v3.3
+
+## 4.7.0
+##### 2025-01-09
+
+- Added the `url` option to the avatar widget
+
 ## 4.6.0
 ##### 2024-12-19
 

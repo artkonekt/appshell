@@ -17,18 +17,18 @@ class CountryController extends BaseController
 {
     public function index(): View
     {
-        return view('appshell::country.index', [
+        return view('appshell::country.index', $this->processViewData(__METHOD__, [
             'countries' => CountryProxy::withCount('provinces as provinces_count')->get(),
-        ]);
+        ]));
     }
 
     public function create(): View
     {
         $country = app(Country::class);
 
-        return view('appshell::country.create', [
+        return view('appshell::country.create', $this->processViewData(__METHOD__, [
             'country' => $country,
-        ]);
+        ]));
     }
 
     public function store(CreateCountry $request): RedirectResponse
@@ -67,17 +67,17 @@ class CountryController extends BaseController
             }
         }
 
-        return view('appshell::country.show', [
+        return view('appshell::country.show', $this->processViewData(__METHOD__, [
             'country' => $country,
             'availableProvinceSeeders' => $availableProvinceSeeders,
-        ]);
+        ]));
     }
 
     public function edit(Country $country): View
     {
-        return view('appshell::country.edit', [
+        return view('appshell::country.edit', $this->processViewData(__METHOD__, [
             'country' => $country,
-        ]);
+        ]));
     }
 
     public function update(Country $country, UpdateCountry $request): RedirectResponse

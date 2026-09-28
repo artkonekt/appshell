@@ -23,6 +23,12 @@
 
                     @include('appshell::customer._settings')
                 </x-appshell::card>
+
+                <x-appshell::card accent="secondary">
+                    <x-slot:title>{{ __('Defaults') }}</x-slot:title>
+
+                    @include('appshell::customer._defaults')
+                </x-appshell::card>
             </div>
 
         </div>

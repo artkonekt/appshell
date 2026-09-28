@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Konekt\AppShell\Tests\Unit;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Konekt\AppShell\Tests\Dummies\BirdCage;
 use Konekt\AppShell\Tests\TestCase;
@@ -22,6 +23,13 @@ use Konekt\AppShell\Widgets\Table;
 
 class TableWidgetTest extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        Route::get('/table-test-user/{user}', ['as' => 'test.table-user.show']);
+    }
+
     /** @test */
     public function it_can_render_a_basic_table()
     {
@@ -89,6 +97,73 @@ class TableWidgetTest extends TestCase
         $this->assertStringContainsString('>Giovanni Gatto</a>', $html);
         $this->assertStringContainsString('<td><a href="https://github.com/fritz-teufel"', $html);
         $this->assertStringContainsString('Mr. Fritz Teufel</a>', $html);
+    }
+
+    /** @test */
+    public function it_can_render_an_avatar_widget()
+    {
+        $table = new Table(new AppShellTheme(), [
+            'id',
+            'name' => [
+                'widget' => [
+                    'type' => 'avatar',
+                ],
+            ]
+        ]);
+        $user1 = new \stdClass();
+        $user1->id = 1;
+        $user1->email = 'x@y.com';
+        $md5_1 = md5($user1->email);
+
+        $user2 = new \stdClass();
+        $user2->id = 2;
+        $user2->email = 'xyz@xyz.com';
+        $md5_2 = md5($user2->email);
+
+        $html = $table->render(collect([$user1, $user2]));
+
+        $this->assertStringContainsString('<td><img src="', $html);
+        $this->assertStringContainsString($md5_1, $html);
+        $this->assertStringContainsString($md5_2, $html);
+    }
+
+    /** @test */
+    public function it_can_render_an_avatar_widget_with_link()
+    {
+        $table = new Table(new AppShellTheme(), [
+            'id',
+            'user' => [
+                'width' => '66px',
+                'widget' => [
+                    'type' => 'avatar',
+                    'model' => '$model.user',
+                    'tooltip' => '$model.user.email',
+                    'size' => 42,
+                    'url' => [
+                        'route' => 'test.table-user.show',
+                        'parameters' => ['$model.user.id'],
+                    ],
+                ],
+            ],
+        ]);
+        $user1 = new \stdClass();
+        $user1->id = 977;
+        $user1->email = 'x@y.com';
+        $task1 = new \stdClass();
+        $task1->id = 5;
+        $task1->user = $user1;
+
+        $user2 = new \stdClass();
+        $user2->id = 603;
+        $user2->email = 'xyz@xyz.com';
+        $task2 = new \stdClass();
+        $task2->id = 6;
+        $task2->user = $user2;
+
+        $html = $table->render(collect([$task1, $task2]));
+
+        $this->assertStringContainsString('<a href="http://localhost/table-test-user/977', $html);
+        $this->assertStringContainsString('<a href="http://localhost/table-test-user/603', $html);
     }
 
     /** @test */

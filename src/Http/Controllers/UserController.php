@@ -33,9 +33,6 @@ use Konekt\User\Models\UserTypeProxy;
 
 class UserController extends BaseController
 {
-    /**
-     * Displays the list of users
-     */
     public function index(Request $request)
     {
         $filters = Filters::make([
@@ -46,40 +43,30 @@ class UserController extends BaseController
 
         $filters->activateFromRequest($request);
 
-        return view('appshell::user.index', [
+        return view('appshell::user.index', $this->processViewData(__METHOD__, [
             'users' => $filters->apply(UserProxy::query())->with('roles')->paginate(100)->withQueryString(),
             'table' => widget('appshell::user.index.table'),
             'filters' => Widgets::make(AppShellWidgets::FILTER_SET, [
                 'route' => 'appshell.user.index',
                 'filters' => $filters,
             ])
-        ]);
+        ]));
     }
 
-    /**
-     * Displays the create new user view
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create()
     {
         $user = app(User::class);
         $user->is_active = true;
 
-        return view('appshell::user.create', [
+        return view('appshell::user.create', $this->processViewData(__METHOD__, [
             'user' => $user,
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all(),
             'customerSelection' => config('konekt.app_shell.ui.customer_selection_for_users'),
             'customers' => Auth::user()->customersVisible(),
-        ]);
+        ]));
     }
 
-    /**
-     * @param CreateUser $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function store(CreateUser $request)
     {
         $request->merge(['password' => Hash::make($request->get('password'))]);
@@ -97,40 +84,22 @@ class UserController extends BaseController
         return redirect(route('appshell.user.index'));
     }
 
-    /**
-     * Show user
-     *
-     * @param User $user
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function show(User $user)
     {
-        return view('appshell::user.show', compact('user'));
+        return view('appshell::user.show', $this->processViewData(__METHOD__, ['user' => $user]));
     }
 
-    /**
-     * @param User $user
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function edit(User $user)
     {
-        return view('appshell::user.edit', [
+        return view('appshell::user.edit', $this->processViewData(__METHOD__, [
             'user' => $user,
             'types' => UserTypeProxy::choices(),
             'roles' => RoleProxy::all(),
             'customerSelection' => config('konekt.app_shell.ui.customer_selection_for_users'),
             'customers' => Auth::user()->customersVisible(),
-        ]);
+        ]));
     }
 
-    /**
-     * @param User       $user
-     * @param UpdateUser $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function update(User $user, UpdateUser $request)
     {
         $data = $request->except(['password', 'roles']);
@@ -157,13 +126,6 @@ class UserController extends BaseController
         return redirect(route('appshell.user.show', $user));
     }
 
-    /**
-     * Delete a user
-     *
-     * @param User $user
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function destroy(User $user)
     {
         if ($user->id == Auth::user()->id) {

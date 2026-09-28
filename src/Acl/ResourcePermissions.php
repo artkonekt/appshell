@@ -42,7 +42,7 @@ final class ResourcePermissions
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function createPermissionsForResource($resources, string $guard = null)
+    public static function createPermissionsForResource($resources, ?string $guard = null)
     {
         $resources = is_array($resources) ? $resources : [$resources];
         $result = collect();

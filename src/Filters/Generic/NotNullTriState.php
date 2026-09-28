@@ -2,16 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Contains the BoolTriState class.
- *
- * @copyright   Copyright (c) 2021 Attila Fulop
- * @author      Attila Fulop
- * @license     MIT
- * @since       2021-09-20
- *
- */
-
 namespace Konekt\AppShell\Filters\Generic;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -21,7 +11,7 @@ use Konekt\AppShell\Filters\Concerns\HasBaseFilterAttributes;
 use Konekt\AppShell\Filters\Concerns\HasFieldSetter;
 use Konekt\AppShell\Filters\Concerns\HasPlaceholderSetter;
 
-class BoolTriState implements Filter
+class NotNullTriState implements Filter
 {
     use HasBaseFilterAttributes;
     use DoesNotAllowMultipleValues;
@@ -30,14 +20,14 @@ class BoolTriState implements Filter
 
     public function __construct(
         string $id,
-        string $labelTrue,
-        string $labelFalse,
+        string $labelNotNull,
+        string $labelNull,
         string $labelAny,
-        string $label = null
+        ?string $label = null
     ) {
         $this->id = $id;
         $this->placeholder = $labelAny;
-        $this->possibleValues = [0 => $labelFalse, 1 => $labelTrue];
+        $this->possibleValues = [0 => $labelNull, 1 => $labelNotNull];
         $this->label = $label ?? $id;
     }
 
@@ -52,6 +42,6 @@ class BoolTriState implements Filter
             return $query;
         }
 
-        return $query->where($this->field(), (bool) $criteria);
+        return $criteria ? $query->whereNotNull($this->field()) : $query->whereNull($this->field());
     }
 }

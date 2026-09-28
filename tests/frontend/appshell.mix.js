@@ -6,5 +6,5 @@ const mix = require('laravel-mix');
  |--------------------------------------------------------------------------
  */
 
-mix.js('src/resources/assets/js/appshell.standalone.js', 'public/js/appshell.js')
+mix.js('src/resources/assets/js/appshell.standalone.commonjs.js', 'public/js/appshell.js')
     .sass('src/resources/assets/sass/appshell.sass', 'public/css');

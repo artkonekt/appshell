@@ -1,9 +1,12 @@
 name: tests
 
 on:
+  workflow_dispatch:
   push:
-    paths-ignore:
-      - 'docs/**'
+    paths:
+      - 'src/**.php'
+      - 'test/**.php'
+      - 'composer.json'
 
 jobs:
   build:
@@ -11,8 +14,8 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        php: ['8.3', '8.4']
-        laravel: ['11.0', '11.36']
+        php: [ '8.4', '8.5' ]
+        laravel: ['12.61.1', '12.69', '13.12', '13.33' ]
     name: PHP ${{ matrix.php }} Laravel ${{ matrix.laravel }}
     steps:
       - name: Checkout
