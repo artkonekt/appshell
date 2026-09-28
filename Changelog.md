@@ -3,8 +3,7 @@
 ## 5.x - Unreleased
 ##### 2025-XX-YY
 
-- Dropped PHP 8.2 support
-- Dropped Laravel 10 support
+- Dropped PHP 8.3 support
 - Removed the default logo (/images/appshell/logo.svg) from the default config
 - Added the theme tester route, only available in local env, at `/_appshell/theme/`
 - Changed the Customer module requirement to 4.x
