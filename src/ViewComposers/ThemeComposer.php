@@ -18,9 +18,9 @@ use Konekt\AppShell\Contracts\Theme;
 
 class ThemeComposer
 {
-    private ?Theme $theme = null;
-
     public static ?Theme $forcedTheme = null;
+
+    private ?Theme $theme = null;
 
     public function compose($view)
     {
