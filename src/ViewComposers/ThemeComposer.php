@@ -20,7 +20,7 @@ class ThemeComposer
 {
     private ?Theme $theme = null;
 
-    private static ?Theme $forcedTheme = null;
+    public static ?Theme $forcedTheme = null;
 
     public function compose($view)
     {

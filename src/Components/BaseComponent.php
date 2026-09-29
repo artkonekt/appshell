@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 use Konekt\AppShell\Acl\ResourcePermissionMapper;
+use Konekt\AppShell\ViewComposers\ThemeComposer;
 
 abstract class BaseComponent extends Component
 {
@@ -41,9 +42,11 @@ abstract class BaseComponent extends Component
 
     protected function resolveBladePath(string $view)
     {
-        $ns = theme()->viewNamespace();
+        // @todo The theme composer should not be used for this purpose: Find a better way to determine the theme
+        $theme = ThemeComposer::$forcedTheme ?? theme();
+        $ns = $theme->viewNamespace();
         if (null === (self::$viewFileNameCache[$ns][$view] ?? null)) {
-            $fqvn = theme()->viewNamespace() . "::components.$view";
+            $fqvn = "$ns::components.$view";
             if (!View::exists($fqvn)) { // Fall back to default view
                 $fqvn = "appshell::components.$view";
             }

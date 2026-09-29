@@ -22,6 +22,9 @@ class ViewServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        // @todo v5: we only want to inject it to all views if all the routes
+        // in the app are running on appshell. If the app uses appshell an
+        // area as a frontend without appshell, having injected is wrong
         View::composer('*', ThemeComposer::class);
     }
 }
