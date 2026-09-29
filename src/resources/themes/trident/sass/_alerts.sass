@@ -1,0 +1,44 @@
+@use "sass:color"
+
+=alert-variant($color, $link-color)
+  box-shadow: color.adjust($color, $alpha: 0.04) 0 3px 6px
+  a
+    color: $link-color
+  .btn-close
+    position: absolute
+    right: 1rem
+    top: 1rem
+
+.alert
+  position: relative
+  border-radius: 1rem
+  border: 1px solid $color-border
+  background-color: $white-almost
+  padding: 1rem 2rem
+  color: $color-text-lighter
+  box-shadow: 0 3px 6px color.adjust($color-border, $alpha: 0.15)
+
+.alert-primary
+  +alert-variant($color-primary-dimmed, $color-primary)
+
+.alert-secondary
+  +alert-variant($color-secondary-dimmed, $color-secondary-text)
+
+.alert-info
+  +alert-variant($color-info-dimmed, $color-info)
+
+.alert-success
+  +alert-variant($color-success-dimmed, $color-success)
+
+.alert-warning
+  +alert-variant($color-warning-dimmed, $color-warning)
+
+.alert-danger
+  +alert-variant($color-danger-dimmed, $color-danger)
+
+.alert-light
+  +alert-variant($color-light, $color-light-text)
+
+.alert-dark
+  +alert-variant($color-dark-dimmed, $color-dark)
+

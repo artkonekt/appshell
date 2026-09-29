@@ -7,6 +7,8 @@
 - Removed the default logo (/images/appshell/logo.svg) from the default config
 - Added the theme tester route, only available in local env, at `/_appshell/theme/`
 - Changed the Customer module requirement to 4.x
+- Added the `dismissable` attribute to the Alert component
+- Completed the Trident Theme
 
 ## 4.19.0
 ##### 2026-07-28

@@ -20,6 +20,7 @@ class CardWithIcon extends BaseComponent
         public ?string $icon = null,
         public ?string $type = null,
         public string $cardBodyClass = '',
+        public ?string $subtitle = null,
     ) {
     }
 }

@@ -52,7 +52,7 @@ class TridentTheme implements Theme
     public function __construct()
     {
         if (!self::$viewNamespaceRegistered) {
-            View::addNamespace(self::$viewNamespace, dirname(__DIR__) . '/resources/themes/trident');
+            View::addNamespace(self::$viewNamespace, dirname(__DIR__) . '/resources/themes/trident/views');
         }
     }
 }

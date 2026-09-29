@@ -1,0 +1,173 @@
+@import "variables"
+@import "typography"
+@import "base"
+@import "alerts"
+@import "buttons"
+@import "cards"
+@import "utils"
+
+.appshell-layout
+  display: flex
+  min-height: 100%
+
+#nav-sidebar-apps
+  flex: 0 0 64px
+  display: flex
+  flex-direction: column
+  background-color: #e8e8e8
+  text-align: center
+
+.nav-apps-primary
+  display: flex
+  flex-direction: column
+  > a
+    display: block
+    font-size: 24px
+    color: #222
+    &:hover
+      color: $blue
+    > *
+      width: 32px
+      padding: 17px 0
+      margin: 0 auto
+
+.nav-apps-secondary
+  display: flex
+  flex: 1 1 auto
+  flex-direction: column
+  justify-content: flex-end
+  margin-bottom: 17px
+
+#nav-sidebar-menu
+  flex: 0 0 230px
+  box-sizing: border-box
+  background-color: #f1f1f1
+  border-right: 1px solid #e8e8e8
+  padding: 20px 12px 20px 20px
+
+.nav-menu
+  padding-top: .5rem
+  a
+    color: #222
+    min-height: 20px
+    text-decoration: none
+    &:hover
+      color: $blue
+
+.nav-menu-title
+  font-family: $font-heading
+  margin: 0 0 20px 0
+  font-size: 27px
+  line-height: 29px
+
+.nav-menu-item
+  color: #222
+  text-decoration: none
+  font-weight: 600
+  padding: 6px 8px 9px
+
+.nav-menu-group-title, .nav-menu > a
+  font-family: $font-heading
+  display: block
+  padding-bottom: 8px
+
+.nav-menu-group
+  a
+    font-size: 14px
+    padding: 6px 8px 7px 10px
+    display: block
+    font-weight: 400
+
+#appshell-main
+  flex: 1
+  padding-left: 24px
+
+.page-header
+  padding: 20px 24px
+  margin-left: -24px
+  background-color: #f1f1f1
+
+.page-header-titlebar
+  display: flex
+  justify-content: space-between
+
+.page-title
+  font-size: 27px
+  line-height: 29px
+  color: #222
+  margin: 0
+
+.content
+  margin: 0 24px 24px 0
+
+.logo
+  width: 30px
+  margin: 1px
+
+.nav-app-selected
+  background-color: #f1f1f1
+
+.filters
+  margin: 15px 0
+  padding-bottom: 15px
+  border-bottom: 1px solid #f1f1f1
+
+.avatar
+  border-radius: 50em
+  max-width: 100%
+
+.avatar-30
+  width: 30px
+
+
+.text-muted
+  color: rgb(115, 115, 118)
+
+.badge
+  display: inline-block
+  padding: .35em .65em
+  font-size: .75em
+  font-weight: 600
+  line-height: 1
+  color: #fff
+  text-align: center
+  white-space: nowrap
+  vertical-align: baseline
+  border-radius: .25rem
+
+.bg-success
+  background-color: $amethyst
+
+.rounded-pill
+  border-radius: 50rem !important
+
+.font-weight-bold
+  font-weight: 700
+
+.float-right
+  float: right
+
+.table
+  width: 100%
+  th
+    text-align: left
+    color: #737376
+  th, td
+    padding: 7px 0
+
+.breadcrumb
+  display: flex
+  flex-wrap: wrap
+  padding: 0 0
+  margin-bottom: 1rem
+  list-style: none
+
+.breadcrumb-item a
+  text-decoration: none
+
+.breadcrumb-item + .breadcrumb-item::before
+  float: left
+  padding: 0 .5rem
+  color: #6c757d
+  content: "\3009"
+  font-size: 9px

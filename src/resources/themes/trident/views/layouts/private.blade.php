@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/normalize.css" media="all" type="text/css" rel="stylesheet" />
-    <link href="{{ $appshell->useMix ? mix('/css/trident.css') : asset('/css/trident.css') }}" media="all" type="text/css" rel="stylesheet" />
+    <link href="{{ $appshell->useMix ? mix('/build/trident.css') : asset('/build/trident.css') }}" media="all" type="text/css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://use.typekit.net/utx1hrc.css">
     <script src="https://kit.fontawesome.com/f2a94220aa.js" crossorigin="anonymous"></script>

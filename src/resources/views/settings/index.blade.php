@@ -7,31 +7,23 @@
 @section('content')
 
     {!! Form::open(['route' => 'appshell.settings.update', 'method' => 'PUT']) !!}
-    @component(theme_widget('tab_control'))
+    <x-appshell::tab_control>
         @slot('tabs')
-            @component(theme_widget('tab.tabs'))
+            <x-appshell::tab.tabs>
                 @foreach($tree->nodes() as $tab)
-                    @component(theme_widget('tab.tab'), [
-                        'id' => $tab->id(),
-                        'active' => $loop->first,
-                        'label' => $tab->label()
-                    ])
-                    @endcomponent
+                    <x-appshell::tab.tab :id="$tab->id()" :active="$loop->first" :label="$tab->label()" />
                 @endforeach
-            @endcomponent
+            </x-appshell::tab.tabs>
         @endslot
         @slot('panes')
-            @component(theme_widget('tab.panes'))
+            <x-appshell::tab.panes>
                 @foreach($tree->nodes() as $tab)
-                    @component(theme_widget('tab.pane'), [
-                        'id' => $tab->id(),
-                        'active' => $loop->first
-                    ])
+                    <x-appshell::tab.pane :id="$tab->id()" :active="$loop->first">
                         @foreach($tab->children() as $group)
                             <x-appshell::card accent="secondary">
                                 <x-slot:title>{{ $group->label() }}</x-slot:title>
                                 @foreach($group->items() as $item)
-                                    @component(theme_widget('form.' . $item->getWidget()->component()),
+                                    @component('appshell::components.form.' . $item->getWidget()->component(),
                                         array_merge([
                                             'name'  => sprintf('settings[%s]', $item->getKey()),
                                             'value' => $item->getValue(),
@@ -42,11 +34,11 @@
                                 @endforeach
                             </x-appshell::card>
                         @endforeach
-                    @endcomponent
+                    </x-appshell::tab.pane>
                 @endforeach
-            @endcomponent
+            </x-appshell::tab.panes>
         @endslot
-    @endcomponent
+    </x-appshell::tab_control>
 
     <x-appshell::card class="mt-3">
         <x-appshell::save-button :text="__('Save settings')" />

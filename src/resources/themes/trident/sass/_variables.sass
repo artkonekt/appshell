@@ -1,0 +1,37 @@
+@use "sass:color"
+
+$blue: #146EBE
+$light-blue: #75A0D2
+$amethyst: #9593C4
+$rose-red: #CF5F89
+$rajah: #FFB072
+$jasmine: #F9DF79
+$mercury: #E8E8E4
+$mercury-darker: #c6bfc7
+$purple-touch: #F2EFFE
+$purple-touch-darker: #D0CDDA
+$black: #0D1D32
+$grey: #656c78
+$white-almost: #FEFCFE
+
+$color-primary: $blue
+$color-primary-dimmed: color.change($blue, $alpha: 0.35)
+$color-info: $light-blue
+$color-info-dimmed: color.change($color-info, $alpha: 0.35)
+$color-success: $amethyst
+$color-success-dimmed: color.change($color-success, $alpha: 0.35)
+$color-secondary: $mercury
+$color-secondary-text: $grey
+$color-secondary-dimmed: color.change($color-secondary-text, $alpha: 0.35)
+$color-warning: $rajah
+$color-warning-dimmed: color.change($color-warning, $alpha: 0.35)
+$color-danger: $rose-red
+$color-danger-dimmed: color.change($color-danger, $alpha: 0.35)
+$color-light: $purple-touch
+$color-light-text: $purple-touch-darker
+$color-dark: $black
+$color-dark-dimmed: color.change($color-dark, $alpha: 0.35)
+
+$color-text: $black
+$color-text-lighter: $grey
+$color-border: color.change($mercury, $alpha: 0.9)

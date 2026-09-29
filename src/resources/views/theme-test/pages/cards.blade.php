@@ -50,4 +50,15 @@
         </div>
     </div>
 
+    <div class="row">
+        @foreach(['success', 'warning', 'danger'] as $type)
+            <div class="col col-md-4 mb-4">
+                <x-appshell::card-with-icon :type="$type" icon="time" :subtitle="ucfirst($type)">
+                    <x-slot:title>Card With Icon</x-slot:title>
+                    Content
+                </x-appshell::card-with-icon>
+            </div>
+        @endforeach
+    </div>
+
 @endsection

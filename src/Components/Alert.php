@@ -16,9 +16,13 @@ namespace Konekt\AppShell\Components;
 
 class Alert extends BaseComponent
 {
+    public bool $dismissable;
+
     public function __construct(
         public string $variant = 'info',
         public string $tag = 'div',
+        mixed $dismissable = false
     ) {
+        $this->dismissable = (bool) $dismissable;
     }
 }

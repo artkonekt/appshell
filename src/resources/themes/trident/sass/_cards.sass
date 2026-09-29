@@ -1,0 +1,36 @@
+@use "sass:color"
+
+.card
+  border-radius: 1rem
+  border: 1px solid $color-border
+  padding: 1rem
+  color: $color-text-lighter
+  box-shadow: 0 0 6px color.adjust($color-border, $alpha: 0.05)
+
+=card-accent-variant($color, $link-color)
+  border-color: $color
+  box-shadow: 0 0 6px color.adjust($color, $alpha: 0.04)
+
+.card-accent-primary
+  +card-accent-variant($color-primary-dimmed, $color-primary)
+
+.card-accent-secondary
+  +card-accent-variant($color-secondary-dimmed, $color-secondary-text)
+
+.card-accent-info
+  +card-accent-variant($color-info-dimmed, $color-info)
+
+.card-accent-success
+  +card-accent-variant($color-success-dimmed, $color-success)
+
+.card-accent-warning
+  +card-accent-variant($color-warning-dimmed, $color-warning)
+
+.card-accent-danger
+  +card-accent-variant($color-danger-dimmed, $color-danger)
+
+.card-accent-light
+  +card-accent-variant($color-light, $color-light-text)
+
+.card-accent-dark
+  +card-accent-variant($color-dark-dimmed, $color-dark)

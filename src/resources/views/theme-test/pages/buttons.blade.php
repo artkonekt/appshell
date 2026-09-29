@@ -47,7 +47,7 @@
                 <x-slot:title>Outline Buttons</x-slot:title>
 
                 @foreach(['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark', 'link'] as $variant)
-                    <x-appshell::button variant="outline-{{ $variant }}">{{ ucfirst($variant) }}</x-appshell::button>
+                    <x-appshell::button variant="outline-{{ $variant }}">Outline {{ ucfirst($variant) }}</x-appshell::button>
                 @endforeach
 
                 <div class="my-4">
@@ -55,7 +55,7 @@
                 </div>
 
                 @foreach(['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark', 'link'] as $variant)
-                    <x-appshell::button variant="outline-{{ $variant }}" size="lg" class="mb-2">{{ ucfirst($variant) }} Large</x-appshell::button>
+                    <x-appshell::button variant="outline-{{ $variant }}" size="lg" class="mb-2">Outline {{ ucfirst($variant) }} Large</x-appshell::button>
                 @endforeach
 
             </x-appshell::card>
@@ -66,7 +66,7 @@
                 <x-slot:title>Small Outline Buttons</x-slot:title>
 
                 @foreach(['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark', 'link'] as $variant)
-                    <x-appshell::button variant="outline-{{ $variant }}" size="sm" class="mb-2">{{ ucfirst($variant) }} Small</x-appshell::button>
+                    <x-appshell::button variant="outline-{{ $variant }}" size="sm" class="mb-2">Outline {{ ucfirst($variant) }} Small</x-appshell::button>
                 @endforeach
 
                 <div class="my-4">
@@ -74,7 +74,7 @@
                 </div>
 
                 @foreach(['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark', 'link'] as $variant)
-                    <x-appshell::button variant="outline-{{ $variant }}" size="xs" class="mb-2">{{ ucfirst($variant) }} X-Small</x-appshell::button>
+                    <x-appshell::button variant="outline-{{ $variant }}" size="xs" class="mb-2">Outling {{ ucfirst($variant) }} X-Small</x-appshell::button>
                 @endforeach
             </x-appshell::card>
         </div>

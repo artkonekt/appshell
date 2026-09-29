@@ -1,0 +1,20 @@
+.mb-1
+  margin-bottom: .25rem
+
+.mb-2
+  margin-bottom: .5rem
+
+.mb-4
+  margin-bottom: 1rem
+
+=bg-gradient-variant($color)
+  background-image: linear-gradient(to right bottom, transparent 0%, $color 200%)
+
+.bg-danger-gradient
+  +bg-gradient-variant($color-danger-dimmed)
+
+.bg-warning-gradient
+  +bg-gradient-variant($color-warning-dimmed)
+
+.bg-success-gradient
+  +bg-gradient-variant($color-success-dimmed)
