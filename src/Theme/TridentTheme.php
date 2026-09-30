@@ -36,16 +36,16 @@ class TridentTheme implements Theme
     ];
 
     private array $themeColors = [
-        ThemeColor::PRIMARY => '#146ebe',
-        ThemeColor::SECONDARY => '#f1f1f1',
-        ThemeColor::INFO => '#75a0d2',
+        ThemeColor::PRIMARY => '#146EBE',
+        ThemeColor::SECONDARY => '#E8E8E4',
+        ThemeColor::INFO => '#75A0D2',
         ThemeColor::SUCCESS => '#9593C4',
-        ThemeColor::WARNING => '#f9df79',
-        ThemeColor::DANGER => '#cf5f89',
-        ThemeColor::TEXT => '#0d1d32',
-        ThemeColor::DARK => '#607375',
-        ThemeColor::LIGHT => '#f1f3f3',
-        ThemeColor::MUTED => '#737376',
+        ThemeColor::WARNING => '#FFB072',
+        ThemeColor::DANGER => '#CF5F89',
+        ThemeColor::TEXT => '#0D1D32',
+        ThemeColor::DARK => '#0D1D32',
+        ThemeColor::LIGHT => '#F2EFFE',
+        ThemeColor::MUTED => '#F2EFFE',
         ThemeColor::NONE => '#444444',
     ];
 

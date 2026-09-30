@@ -1,14 +1,19 @@
 @import "variables"
+@import "mixins"
 @import "typography"
 @import "base"
+@import "layout"
+@import "grid"
 @import "alerts"
+@import "badges"
 @import "buttons"
 @import "cards"
+@import "dropdown"
+@import "modals"
+@import "forms"
+@import "input-group"
 @import "utils"
-
-.appshell-layout
-  display: flex
-  min-height: 100%
+@import "appshell"
 
 #nav-sidebar-apps
   flex: 0 0 64px
@@ -78,10 +83,6 @@
     display: block
     font-weight: 400
 
-#appshell-main
-  flex: 1
-  padding-left: 24px
-
 .page-header
   padding: 20px 24px
   margin-left: -24px
@@ -96,9 +97,6 @@
   line-height: 29px
   color: #222
   margin: 0
-
-.content
-  margin: 0 24px 24px 0
 
 .logo
   width: 30px
@@ -123,23 +121,6 @@
 .text-muted
   color: rgb(115, 115, 118)
 
-.badge
-  display: inline-block
-  padding: .35em .65em
-  font-size: .75em
-  font-weight: 600
-  line-height: 1
-  color: #fff
-  text-align: center
-  white-space: nowrap
-  vertical-align: baseline
-  border-radius: .25rem
-
-.bg-success
-  background-color: $amethyst
-
-.rounded-pill
-  border-radius: 50rem !important
 
 .font-weight-bold
   font-weight: 700

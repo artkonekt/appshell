@@ -1,11 +1,40 @@
 @use "sass:color"
 
 .card
-  border-radius: 1rem
+  border-radius: $generic-border-radius
   border: 1px solid $color-border
   padding: 1rem
   color: $color-text-lighter
   box-shadow: 0 0 6px color.adjust($color-border, $alpha: 0.05)
+
+.card-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 1rem
+
+.card-title
+  font-size: $font-size-base
+  color: $color-text
+  font-weight: 500
+  margin: 0
+  line-height: 1
+  flex: 1 1 0
+
+.card-actionbar
+  flex: 0 0 auto
+  padding-left: .25rem
+
+.card-icon-bg
+  border-radius: 50%
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 3rem
+  height: 3rem
+
+.card-icon
+  font-size: 1.75rem!important
 
 =card-accent-variant($color, $link-color)
   border-color: $color

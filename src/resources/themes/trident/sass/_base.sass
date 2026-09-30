@@ -1,11 +1,14 @@
+*, *::before, *::after
+  box-sizing: border-box
+
 html
   height: 100%
 
 body
   margin: 0
   font-weight: 400
-  font-size: 15px
-  line-height: 21px
+  font-size: .9375rem
+  line-height: 1.3125rem
   color: $color-text
   font-family: $font-base
 
@@ -14,4 +17,14 @@ h1, h2, h3, h4, h5
   font-weight: 600
 
 a
-  color: $color-primary
+  color: $color-link
+  text-decoration: none
+  &:hover
+    text-decoration: 1px dotted underline $color-link
+
+hr
+  border: 0
+  border-top: 1px solid
+  color: inherit
+  margin: 1rem 0
+  opacity: .25

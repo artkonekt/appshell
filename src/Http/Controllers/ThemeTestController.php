@@ -36,7 +36,7 @@ class ThemeTestController
             }
 
             $appshellMenu->addItem('Widgets', 'widgets');
-            foreach (['cards', 'buttons', 'alerts', 'forms', 'tables'] as $item) {
+            foreach (['cards', 'buttons', 'alerts', 'badges', 'forms', 'tables'] as $item) {
                 $appshellMenu->addItem($item, ucfirst($item), ['url' => route('appshell.dev.theme.page', ['theme' => $theme, 'page' => $item])]);
             }
         }

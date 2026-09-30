@@ -1,9 +1,9 @@
 @extends($theme->layout('private'))
 
-@section('content')
-    <h1>Forms</h1>
-    <hr>
+@section('title')Forms
+@endsection
 
+@section('content')
     <div class="row">
         <div class="col col-md-6">
             <x-appshell::card accent="success">

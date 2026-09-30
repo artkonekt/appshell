@@ -1,0 +1,55 @@
+$form-select-indicator-size: 1.8rem
+
+.form-control, .form-select
+  appearance: none
+  font-family: $font-base
+  color: $color-text
+  background-color: $white-almost
+  border: 1px solid $color-border
+  border-radius: $form-control-border-radius
+  display: block
+  font-size: $font-size-sm
+  font-weight: $input-font-weight
+  line-height: $input-line-height
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+  width: 100%
+
+.form-control
+  background-clip: padding-box
+  padding: $input-padding-y $input-padding-x
+
+.form-control:focus, .form-select:focus
+  background-color: $white
+  border-color: $color-light
+  box-shadow: 0 0 0 .25rem $color-secondary-dimmed
+  outline: 0
+
+.form-control-lg
+  font-size: $font-size-base
+  min-height: calc($font-size-base + .7rem + 2px)
+  padding: $input-padding-x-lg $input-padding-y-lg
+
+.form-control-sm
+  line-height: 1
+  font-size: $font-size-xs
+  min-height: calc($font-size-xs + .3rem + 2px)
+  padding: .15rem .25rem
+
+.form-select
+  -moz-padding-start: calc(.75rem - 3px)
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E")
+  background-position: right .75rem center
+  background-repeat: no-repeat
+  background-size: 16px 12px
+  line-height: 1.25
+  padding: $input-padding-y calc($input-padding-x + $form-select-indicator-size) $input-padding-y $input-padding-x
+
+.form-check
+  display: block
+  margin-bottom: .125rem
+  min-height: 1.40625rem
+  padding-left: 1.5em
+
+.form-check-inline
+  display: inline-block
+  margin-right: 1rem

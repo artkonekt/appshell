@@ -52,6 +52,5 @@
                 @endforeach
             @endunless
         </div>
-        <a href="#" class="nav-menu-item">Deals</a>
     </nav>
 </nav>

@@ -11,7 +11,6 @@
     <title>@yield('title') &middot; {{ $appshell->name }}</title>
 
     <!-- Styles -->
-    <link href="/css/normalize.css" media="all" type="text/css" rel="stylesheet" />
     <link href="{{ $appshell->useMix ? mix('/build/trident.css') : asset('/build/trident.css') }}" media="all" type="text/css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://use.typekit.net/utx1hrc.css">
@@ -35,16 +34,13 @@
     <main id="appshell-main">
         @include('trident::layouts._header')
         <section class="content">
-            <div class="filters">
-                <button class="btn btn-sm btn-secondary">Inactives</button>
-            </div>
             <div class="content-workspace">
                 @yield('content')
             </div>
         </section>
     </main>
 
-    <script src="{{ $appshell->useMix ? mix('/js/trident.js') : asset('/js/trident.js') }}"></script>
+    <script src="{{ $appshell->useMix ? mix('/build/trident.js') : asset('/build/trident.js') }}"></script>
 
 </body>
 

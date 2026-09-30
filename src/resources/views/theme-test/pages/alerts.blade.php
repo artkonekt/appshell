@@ -1,9 +1,10 @@
 @extends($theme->layout('private'))
 
-@section('content')
-    <h1>Alerts</h1>
-    <hr>
+@section('title')Alerts
+@endsection
 
+
+@section('content')
     <div class="row">
         <div class="col col-md-8">
             @foreach(['primary', 'secondary', 'info', 'success', 'warning', 'danger', 'light', 'dark'] as $variant)

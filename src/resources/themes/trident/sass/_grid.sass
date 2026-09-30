@@ -1,0 +1,88 @@
+$grid-columns: 12!default
+$grid-gutter-width: 1.5rem !default
+$grid-row-columns: 6 !default
+
+.row
+  --grid-gutter-x: 1.5rem
+  --grid-gutter-y: 0
+  display: flex
+  flex-wrap: wrap
+  margin-top: calc(-1 * var(--grid-gutter-y))
+  margin-right: calc(-.5 * var(--grid-gutter-x))
+  margin-left: calc(-.5 * var(--grid-gutter-x))
+  > *
+    flex-shrink: 0
+    width: 100%
+    max-width: 100%
+    padding-right: calc(var(--grid-gutter-x) * .5)
+    padding-left: calc(var(--grid-gutter-x) * .5)
+    margin-top: var(--grid-gutter-y)
+
+
+@mixin make-col($size: false, $columns: $grid-columns)
+  @if $size
+    flex: 0 0 auto
+    width: percentage(divide($size, $columns))
+  @else
+    flex: 1 1 0
+    max-width: 100%
+
+@mixin make-col-auto()
+  flex: 0 0 auto
+  width: auto
+
+@mixin make-col-offset($size, $columns: $grid-columns)
+  $num: divide($size, $columns)
+  margin-left: if($num == 0, 0, percentage($num))
+
+
+@mixin row-cols($count)
+  > *
+    flex: 0 0 auto
+    width: percentage(divide(1, $count))
+
+=make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints)
+  @each $breakpoint in map-keys($breakpoints)
+
+    $infix: breakpoint-infix($breakpoint, $breakpoints)
+    @include media-breakpoint-up($breakpoint, $breakpoints)
+      // Provide basic `.col-bp` classes for equal-width flexbox columns
+      .col#{$infix}
+        flex: 1 0 0
+
+      .row-cols#{$infix}-auto > *
+        @include make-col-auto()
+
+      @if $grid-row-columns > 0
+        @for $i from 1 through $grid-row-columns
+          .row-cols#{$infix}-#{$i}
+            @include row-cols($i)
+
+      .col#{$infix}-auto
+        @include make-col-auto()
+
+      @if $columns > 0
+        @for $i from 1 through $columns
+          .col#{$infix}-#{$i}
+            @include make-col($i, $columns)
+
+        // `$columns - 1` because offsetting by the width of an entire row isn't possible
+        @for $i from 0 through ($columns - 1)
+          @if not ($infix == "" and $i == 0)  // Avoid emitting useless .offset-0
+            .offset#{$infix}-#{$i}
+              @include make-col-offset($i, $columns)
+
+      // Gutters
+      //
+      // Make use of `.g-*`, `.gx-*` or `.gy-*` utilities to change spacing between the columns.
+      @each $key, $value in $spacers
+        .g#{$infix}-#{$key},
+        .gx#{$infix}-#{$key}
+          --grid-gutter-x: #{$value}
+
+
+        .g#{$infix}-#{$key},
+        .gy#{$infix}-#{$key}
+          --grid-gutter-y: #{$value}
+
++make-grid-columns

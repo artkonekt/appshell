@@ -1,3 +1,5 @@
+@use "sass:color"
+
 .btn
   display: inline-block
   font-weight: 600
@@ -12,6 +14,10 @@
   background-color: transparent
   border: 1px solid transparent
   border-radius: .25rem
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)
+
+.btn-link, .btn-outline-link
+  box-shadow: none
 
 .btn-primary
   color: $white-almost
@@ -20,8 +26,8 @@
 
 .btn-secondary
   color: $color-text-lighter
-  background-color: $color-secondary
-  border-color: $color-secondary
+  background-color: $white-almost
+  border-color: $color-border
 
 .btn-info
   color: $white-almost
@@ -54,8 +60,8 @@
   border-color: $color-light
 
 .btn-outline-primary
-  color: $color-primary
-  border-color: $color-primary
+  color: $color-dark
+  border-color: $color-dark
 
 .btn-outline-secondary
   color: $color-secondary-text
@@ -96,9 +102,12 @@
   border-radius: .2rem
 
 .btn-xs
-  padding: .15rem .4rem
-  font-size: .6875rem
+  line-height: 1
+  padding: .4rem .4rem .35rem
+  font-size: $font-size-xxs
   border-radius: .2rem
 
 .btn-close
+  border: none
+  cursor: pointer
   background: transparent url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23656c78'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") 50%/1em auto no-repeat

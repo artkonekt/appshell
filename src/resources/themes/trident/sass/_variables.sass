@@ -1,7 +1,9 @@
 @use "sass:color"
 
+$navy-deep: #041727
 $blue: #146EBE
-$light-blue: #75A0D2
+$grey-blue: #546783
+//$light-blue: #75A0D2
 $amethyst: #9593C4
 $rose-red: #CF5F89
 $rajah: #FFB072
@@ -13,10 +15,11 @@ $purple-touch-darker: #D0CDDA
 $black: #0D1D32
 $grey: #656c78
 $white-almost: #FEFCFE
+$white: #FFFFFF
 
-$color-primary: $blue
-$color-primary-dimmed: color.change($blue, $alpha: 0.35)
-$color-info: $light-blue
+$color-primary: $navy-deep
+$color-primary-dimmed: color.change($color-primary, $alpha: 0.35)
+$color-info: $blue
 $color-info-dimmed: color.change($color-info, $alpha: 0.35)
 $color-success: $amethyst
 $color-success-dimmed: color.change($color-success, $alpha: 0.35)
@@ -28,10 +31,34 @@ $color-warning-dimmed: color.change($color-warning, $alpha: 0.35)
 $color-danger: $rose-red
 $color-danger-dimmed: color.change($color-danger, $alpha: 0.35)
 $color-light: $purple-touch
+$color-light-dimmed: color.change($color-light, $alpha: 0.35)
 $color-light-text: $purple-touch-darker
 $color-dark: $black
 $color-dark-dimmed: color.change($color-dark, $alpha: 0.35)
 
+$color-link: $grey-blue
 $color-text: $black
 $color-text-lighter: $grey
 $color-border: color.change($mercury, $alpha: 0.9)
+
+$spacer: 1rem !default
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xxl: 1400px) !default
+$spacers: (0: 0, 1: $spacer * .25, 2: $spacer * .5, 3: $spacer, 4: $spacer * 1.5, 5: $spacer * 3) !default
+
+$transition-base: all .2s ease-in-out !default
+$transition-fade: opacity .15s linear !default
+$transition-collapse: height .35s ease !default
+$transition-collapse-width: width .35s ease !default
+
+$generic-border-radius: .35rem
+$form-control-border-radius: .2rem
+
+$input-padding-y: .35rem
+$input-padding-x: .5rem
+$input-padding-y-lg: .5rem
+$input-padding-x-lg: 1rem
+$input-padding-y-sm: .15rem
+$input-padding-x-sm: .25rem
+
+$input-line-height: 1.25
+$input-font-weight: 400

@@ -1,9 +1,9 @@
 @extends($theme->layout('private'))
 
-@section('content')
-    <h1>Buttons</h1>
-    <hr>
+@section('title')Buttons
+@endsection
 
+@section('content')
     <div class="row">
         <div class="col col-md-8">
             <x-appshell::card>
