@@ -7,7 +7,7 @@
                     @if ($item->hasLink() && $item->isAllowed())
                         <a class="{{ $item->link->attr('class') }}" href="{!! $item->url() !!}">
                             @if($item->data('icon'))
-                                {!! icon($item->data('icon')) !!}
+                                {!! icon($item->data('icon'), null, ['class' => 'sidebar-item-icon']) !!}
                             @endif
                             {!! $item->title !!}
                         </a>
@@ -19,7 +19,7 @@
                         <a href="#sidebar-submenu-{{$item->name}}" class="sidebar-link sidebar-collapse-group-toggle"
                            data-bs-toggle="collapse" aria-expanded="{{ $item->hasActiveChild() ? 'true' : 'false' }}">
                             @if($item->data('icon'))
-                                {!! icon($item->data('icon')) !!}
+                                {!! icon($item->data('icon'), null, ['class' => 'sidebar-item-icon']) !!}
                             @endif
                             <span>{!! $item->title !!}</span>
                             {!! icon('>', null, ['class' => 'sidebar-collapse-group-indicator']) !!}
@@ -32,7 +32,7 @@
                                         <a class="sidebar-link {{ $childItem->link->attr('class') }}"
                                            href="{!! $childItem->url() !!}">
                                             @if($childItem->data('icon'))
-                                                {!! icon($childItem->data('icon')) !!}
+                                                {!! icon($childItem->data('icon'), null, ['class' => 'sidebar-item-icon']) !!}
                                             @endif
                                             {!! $childItem->title !!}
                                         </a>
@@ -45,7 +45,7 @@
                         @elseif ($item->isAllowed())
                             <span class="sidebar-menu-group-title">
                                 @if($item->data('icon'))
-                                    {!! icon($item->data('icon')) !!}
+                                    {!! icon($item->data('icon'), null, ['class' => 'sidebar-item-icon']) !!}
                                 @endif
                                 {!! $item->title !!}
                             </span>

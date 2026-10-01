@@ -36,11 +36,12 @@
 .sidebar-menu
   padding-top: .5rem
   a
-    color: #222
+    border-radius: $generic-border-radius
+    color: $color-text-lighter
     min-height: 20px
     text-decoration: none
     &:hover
-      color: $blue
+      background-color: $color-border
 
 .sidebar-menu-title
   font-family: $font-heading
@@ -49,7 +50,7 @@
   line-height: 29px
 
 .sidebar-menu-item
-  color: #222
+  color: $color-text-lighter
   text-decoration: none
   font-weight: 600
   padding: 6px 8px 9px
@@ -61,10 +62,14 @@
 
 .sidebar-menu-group
   a
-    font-size: 14px
+    font-size: $font-size-sm
+    font-weight: 500
     padding: 6px 8px 7px 10px
     display: flex
-    font-weight: 400
+    align-items: center
+
+.sidebar-item-icon
+  margin-right: .5rem
 
 .sidebar-collapse-group-toggle
   display: flex
