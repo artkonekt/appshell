@@ -17,7 +17,7 @@
     <script src="https://kit.fontawesome.com/f2a94220aa.js" crossorigin="anonymous"></script>
 
     {!! icon_theme_assets() !!}
-    @include('trident::layouts._header_includes')
+    @include('appshell::layouts.default._header_includes')
 
     <!-- Scripts -->
     <script>
@@ -34,6 +34,7 @@
     <main id="appshell-main">
         @include('trident::layouts._header')
         <section class="content">
+            @include('flash::message')
             <div class="content-workspace">
                 @yield('content')
             </div>
@@ -44,40 +45,9 @@
 
 </body>
 
-{{--<body>--}}
-
-{{--    <div class="container-fluid app-body">--}}
-{{--        @include('appshell::layouts.default._sidebar')--}}
-
-{{--        <!-- Main content -->--}}
-{{--        <main class="main">--}}
-{{--            @include('appshell::layouts.default._header')--}}
-{{--            @include('appshell::layouts.default._breadcrumbs')--}}
-
-{{--            <div class="container-fluid">--}}
-{{--                @include('flash::message')--}}
-{{--                @yield('content')--}}
-{{--            </div>--}}
-{{--            <!-- /.container-fluid -->--}}
-{{--        </main>--}}
-
-{{--    </div>--}}
-
-{{--    <footer class="app-footer">--}}
-{{--        @section('footer')--}}
-{{--        &copy; {{ date('Y') }}&nbsp;<a href="{{ $appshell->url }}">{{ $appshell->name }}</a>--}}
-{{--        @endsection--}}
-{{--        @yield('footer')--}}
-{{--    </footer>--}}
-
-{{--<!-- Scripts -->--}}
-{{--<script src="{{ $appshell->useMix ? mix('/js/appshell.js') : asset('/js/appshell.js') }}"></script>--}}
-
-{{--@include('appshell::layouts.default._scripts')--}}
-
-{{--@include('appshell::layouts.default._footer_includes')--}}
-
-{{--@yield('scripts')--}}
-{{--@stack('footer-scripts')--}}
+@stack('footer-scripts')
+@include('appshell::layouts.default._footer_includes')
+@yield('scripts')
+@stack('bottom')
 </body>
 </html>

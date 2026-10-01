@@ -1,3 +1,122 @@
+@use 'sass:color'
+
+$dropdown-min-width: 10rem !default
+$dropdown-padding-x: 0 !default
+$dropdown-padding-y: .5rem !default
+$dropdown-spacer: .125rem !default
+$dropdown-link-color: $color-text-lighter !default
+$dropdown-link-hover-color: $color-border !default
+$caret-width: .3em !default
+$caret-vertical-align: $caret-width * .85 !default
+$caret-spacing: $caret-width * .85 !default
+
+.dropup,
+.dropend,
+.dropdown,
+.dropstart,
+.dropup-center,
+.dropdown-center
+  position: relative
+
+.dropdown-toggle
+  white-space: nowrap
+
+  &::after
+    display: inline-block
+    margin-left: $caret-spacing
+    vertical-align: $caret-vertical-align
+    content: ""
+    border-top: $caret-width solid
+    border-right: $caret-width solid transparent
+    border-bottom: 0
+    border-left: $caret-width solid transparent
+
+  &:empty::after
+    margin-left: 0
+
+.dropup
+  .dropdown-menu[data-bs-popper]
+    top: auto
+    bottom: 100%
+    margin-top: 0
+    margin-bottom: $dropdown-spacer
+
+  .dropdown-toggle
+    &::after
+      display: inline-block
+      margin-left: $caret-spacing
+      vertical-align: $caret-vertical-align
+      content: ""
+      border-top: 0
+      border-right: $caret-width solid transparent
+      border-bottom: $caret-width solid
+      border-left: $caret-width solid transparent
+
+    &:empty::after
+      margin-left: 0
+
+.dropend
+  .dropdown-menu[data-bs-popper]
+    top: 0
+    right: auto
+    left: 100%
+    margin-top: 0
+    margin-left: $dropdown-spacer
+
+  .dropdown-toggle
+    &::after
+      display: inline-block
+      margin-left: $caret-spacing
+      vertical-align: $caret-vertical-align
+      content: ""
+      border-top: $caret-width solid transparent
+      border-right: 0
+      border-bottom: $caret-width solid transparent
+      border-left: $caret-width solid
+
+    &:empty::after
+      margin-left: 0
+
+.dropstart
+  .dropdown-menu[data-bs-popper]
+    top: 0
+    right: 100%
+    left: auto
+    margin-top: 0
+    margin-right: $dropdown-spacer
+
+  .dropdown-toggle
+    &::before
+      display: inline-block
+      margin-right: $caret-spacing
+      vertical-align: $caret-vertical-align
+      content: ""
+      border-top: $caret-width solid transparent
+      border-right: $caret-width solid
+      border-bottom: $caret-width solid transparent
+
+    &::after
+      display: none
+
+    &:empty::after
+      margin-left: 0
+
+.dropdown-center
+  .dropdown-menu[data-bs-popper]
+    top: 100%
+    left: 50%
+    margin-top: $dropdown-spacer
+    transform: translate(-50%, 0)
+
+.dropup-center
+  .dropdown-menu[data-bs-popper]
+    top: auto
+    bottom: 100%
+    left: 50%
+    margin-top: 0
+    margin-bottom: $dropdown-spacer
+    transform: translate(-50%, 0)
+
 .dropdown-menu
   position: absolute
   z-index: 1000
@@ -11,8 +130,100 @@
   background-color: $white-almost
   background-clip: padding-box
   border: 1px solid $color-border
+  border-radius: $generic-border-radius
+  box-shadow: 0 0 6px color.adjust($color-border, $alpha: 0.05)
 
   &[data-bs-popper]
     top: 100%
     left: 0
-    margin-top: 1rem
+    margin-top: $dropdown-spacer
+
+
+@each $breakpoint in map-keys($grid-breakpoints)
+  @include media-breakpoint-up($breakpoint)
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints)
+
+    .dropdown-menu#{$infix}-start
+      --bs-position: start
+
+      &[data-bs-popper]
+        right: auto
+        left: 0
+
+    .dropdown-menu#{$infix}-end
+      --bs-position: end
+
+      &[data-bs-popper]
+        right: 0
+        left: auto
+
+// Dividers (basically an `<hr>`) within the dropdown
+.dropdown-divider
+  height: 0
+  margin: .5rem 0
+  overflow: hidden
+  border-top: 1px solid $color-border
+  opacity: 1
+
+.dropdown-item
+  display: block
+  width: calc(100% - 2*0.25rem)
+  line-height: 1
+  padding: .5rem .75rem
+  margin: 0 .25rem
+  clear: both
+  font-weight: 500
+  font-size: $font-size-sm
+  color: $dropdown-link-color
+  text-decoration: none
+  text-align: inherit
+  // For `<button>`s
+  white-space: nowrap
+  // prevent links from randomly breaking onto new lines
+  background-color: transparent
+  // For `<button>`s
+  border: 0
+  // For `<button>`s
+  border-radius: $generic-border-radius
+  > i
+    width: 1em
+
+  &:hover,
+  &:focus
+    text-decoration: none
+    background-color: #e8e8e8 //$dropdown-link-hover-color
+
+  //
+  //&.active,
+  //&:active
+  //  color: var(--#{$prefix}dropdown-link-active-color)
+  //  text-decoration: none
+  //  @include gradient-bg(var(--#{$prefix}dropdown-link-active-bg))
+  //
+  //&.disabled,
+  //&:disabled
+  //  color: var(--#{$prefix}dropdown-link-disabled-color)
+  //  pointer-events: none
+  //  background-color: transparent
+  //  // Remove CSS gradients if they're enabled
+  //  background-image: if($enable-gradients, none, null)
+
+.dropdown-menu.show
+  display: block
+
+// Dropdown section headers
+//.dropdown-header
+//  display: block
+//  padding: var(--#{$prefix}dropdown-header-padding-y) var(--#{$prefix}dropdown-header-padding-x)
+//  margin-bottom: 0
+//  // for use with heading elements
+//  @include font-size($font-size-sm)
+//  color: var(--#{$prefix}dropdown-header-color)
+//  white-space: nowrap
+//// as with > li > a
+//
+//// Dropdown text
+//.dropdown-item-text
+//  display: block
+//  padding: var(--#{$prefix}dropdown-item-padding-y) var(--#{$prefix}dropdown-item-padding-x)
+//  color: var(--#{$prefix}dropdown-link-color)

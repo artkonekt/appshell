@@ -50,6 +50,18 @@
   margin-top: 1rem
   margin-bottom: 1rem
 
+.p-1
+  padding: .25rem
+
+.p-2
+  padding: .5rem
+
+.p-3
+  padding: .75rem
+
+.p-4
+  padding: 1rem
+
 .d-flex
   display: flex
 
@@ -57,7 +69,13 @@
   display: none
 
 .d-block
-  display: block
+  display: block!important
+
+.d-inline
+  display: inline!important
+
+.d-inline-block
+  display: inline-block!important
 
 .flex-shrink-0
   flex-shrink: 0
@@ -79,6 +97,9 @@
 
 .bg-info-gradient
   +bg-gradient-variant($color-info-dimmed)
+
+.bg-primary
+  background-color: $color-primary-dimmed
 
 .bg-danger
   background-color: $color-danger-dimmed
@@ -106,3 +127,32 @@
 
 .gap-1
   gap: .25rem
+
+.position-static
+  position: static!important
+
+
+.list-unstyled
+  padding-left: 0
+  list-style: none
+
+.list-inline
+  padding-left: 0
+  list-style: none
+
+.list-inline-item
+  display: inline-block
+
+.list-inline-item:not(:last-child)
+  margin-right: 0.5rem
+
+.float-right, .float-end
+  float: right!important
+
+.float-left, .float-start
+  float: left!important
+
+// Mystery
+
+[role="group"]
+  position: relative

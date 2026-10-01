@@ -1,0 +1,87 @@
+#sidebar-apps
+  flex: 0 0 64px
+  display: flex
+  flex-direction: column
+  background-color: #e8e8e8
+  text-align: center
+
+.sidebar-apps-primary
+  display: flex
+  flex-direction: column
+  > a
+    display: block
+    font-size: 24px
+    color: #222
+    &:hover
+      color: $blue
+    > *
+      width: 32px
+      padding: 17px 0
+      margin: 0 auto
+
+.sidebar-apps-secondary
+  display: flex
+  flex: 1 1 auto
+  flex-direction: column
+  justify-content: flex-end
+  margin-bottom: 17px
+
+#sidebar-menu
+  flex: 0 0 230px
+  box-sizing: border-box
+  background-color: #f1f1f1
+  border-right: 1px solid #e8e8e8
+  padding: 20px 12px 20px 20px
+
+.sidebar-menu
+  padding-top: .5rem
+  a
+    color: #222
+    min-height: 20px
+    text-decoration: none
+    &:hover
+      color: $blue
+
+.sidebar-menu-title
+  font-family: $font-heading
+  margin: 0 0 20px 0
+  font-size: 27px
+  line-height: 29px
+
+.sidebar-menu-item
+  color: #222
+  text-decoration: none
+  font-weight: 600
+  padding: 6px 8px 9px
+
+.sidebar-menu-group-title, .sidebar-menu > a
+  font-family: $font-heading
+  display: block
+  padding-bottom: 8px
+
+.sidebar-menu-group
+  a
+    font-size: 14px
+    padding: 6px 8px 7px 10px
+    display: flex
+    font-weight: 400
+
+.sidebar-collapse-group-toggle
+  display: flex
+  align-content: center
+
+.sidebar-collapse-group-indicator
+  margin-left: auto
+  transition: 0.3s ease-in
+
+.sidebar-collapse-group-toggle[aria-expanded="true"]
+  .sidebar-collapse-group-indicator
+    transform: rotate(90deg)
+
+.sidebar-collapse-group-items
+  overflow: hidden
+  max-height: 0
+  transition: max-height 0.1s ease-in-out
+
+  &.show
+    max-height: 1000vh

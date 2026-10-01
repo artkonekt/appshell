@@ -1,22 +1,38 @@
 @use "sass:color"
 
 .card
+  display: flex
+  flex-direction: column
+  position: relative
+  word-wrap: break-word
+  background-clip: border-box
   border-radius: $generic-border-radius
   border: 1px solid $color-border
-  padding: 1rem
   color: $color-text-lighter
   box-shadow: 0 0 6px color.adjust($color-border, $alpha: 0.05)
 
+
+.card-body
+  // Enable `flex-grow: 1` for decks and groups so that card blocks take up
+  // as much space as possible, ensuring footers are aligned to the bottom.
+  flex: 1 1 auto
+  padding: 1rem
+
 .card-header
   display: flex
+  padding: 1rem
   justify-content: space-between
   align-items: center
-  margin-bottom: 1rem
+
+
+.card-footer
+  padding: 1rem
+  border-top: 1px solid $color-border
 
 .card-title
   font-size: $font-size-base
-  color: $color-text
-  font-weight: 500
+  color: $color-text-lighter
+  font-weight: 400
   margin: 0
   line-height: 1
   flex: 1 1 0

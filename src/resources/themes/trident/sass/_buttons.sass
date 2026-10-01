@@ -16,6 +16,15 @@
   border-radius: .25rem
   box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)
 
+a.btn
+  text-decoration: none!important
+
+.btn:not(.btn-link)
+  &:active
+    transform: perspective(5cm) rotateX(1deg) rotateY(5deg)
+  &:hover
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 1px 3px 0 rgba(0, 0, 0, .3), 0 1px 2px -1px rgba(0, 0, 0, 0.3)
+
 .btn-link, .btn-outline-link
   box-shadow: none
 
